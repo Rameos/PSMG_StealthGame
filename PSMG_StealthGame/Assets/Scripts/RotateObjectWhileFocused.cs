@@ -21,7 +21,7 @@ public class RotateObjectWhileFocused : MonoBehaviourWithGazeComponent{
     
     public override void OnGazeEnter(RaycastHit hit)
     {
-    
+        Debug.Log("Hello!");
     }
 
     //Rotate the Element if the Gaze stays on the Collider
@@ -38,6 +38,7 @@ public class RotateObjectWhileFocused : MonoBehaviourWithGazeComponent{
     //Reset the Element.Transform when the gaze leaves the Collider
     public override void OnGazeExit()
     {
+        Debug.Log("Bye!");
         transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 }
