@@ -2,16 +2,20 @@
 using System.Collections;
 
 public class KellnerTalk : MonoBehaviour {
-    private GUIText KellnerSagt;
+    public GUIText kellnerText;
 	// Use this for initialization
 	void Start () {
-        Debug.Log("war hier!");
-        KellnerSagt = GUIElement.FindObjectOfType<GUIText>();
-        KellnerSagt.GetComponent<aussageBehaviour>().setText("aussageBehaviouraussageBehaviouraussageBehaviouraussageBehaviouraussageBehaviouraussageBehaviour");
+        setText("ulumulu");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    public void setText(string bla)
+    {
+
+        kellnerText.text = bla;
+    }
 }
