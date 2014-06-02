@@ -21,7 +21,6 @@ namespace iViewX
     {
 
         public bool useGazeFilter = true;
-        public bool useLocalConnectionSettings = true; 
         /// <summary>
         /// Required designer variables.
         /// </summary>
@@ -109,14 +108,12 @@ namespace iViewX
         public void UseGazeFilter()
         {
            if(useGazeFilter)
-           {
-               useGazeFilter = false;
-               gazeController.disableGazeFilter();
+           {                              
+               gazeController.enableGazeFilter();
            }
            else
            {
-               useGazeFilter = true;
-               gazeController.enableGazeFilter();
+               gazeController.disableGazeFilter();
            }
         }
 
@@ -293,6 +290,15 @@ namespace iViewX
                     // Invoke Start and Update of the GazeEvent
                     hitMono.OnObjectHit(hit);
 
+                }
+                
+                else
+                {
+                    if (oldSelection != null)
+                    {
+                        oldSelection.OnObjectExit();
+                        oldSelection = null;
+                    }
                 }
 
             }
