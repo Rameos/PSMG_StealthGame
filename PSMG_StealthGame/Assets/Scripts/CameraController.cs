@@ -30,18 +30,18 @@ public class CameraController : MonoBehaviourWithGazeComponent{
 
     private void MoveCameraWithEyes()
     {
-        if (leftArea.Contains((gazeModel.posGazeLeft + gazeModel.posGazeRight) / 2))
-            transform.Translate(Vector3.left * 5 * Time.deltaTime);
-        if (rightArea.Contains((gazeModel.posGazeLeft + gazeModel.posGazeRight) / 2))
-            transform.Translate(-Vector3.left * 5 * Time.deltaTime);
+        if (gazeModel.isEyeTrackerRunning) 
+        {
+            if (leftArea.Contains((gazeModel.posGazeLeft + gazeModel.posGazeRight) / 2))
+                transform.Translate(Vector3.left * 5 * Time.deltaTime);
+            if (rightArea.Contains((gazeModel.posGazeLeft + gazeModel.posGazeRight) / 2))
+                transform.Translate(-Vector3.left * 5 * Time.deltaTime);
+        }
+        
     }
 
     void OnGUI()
     {
-
-
-     //   GUI.Box(new Rect(0, 0, Screen.width/4, Screen.height),"");
-     //   GUI.Box(new Rect(Screen.width - Screen.width / 4, 0, Screen.width / 4, Screen.height), "");
 
     }
 
