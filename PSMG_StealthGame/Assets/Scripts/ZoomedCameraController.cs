@@ -4,8 +4,10 @@ using iViewX;
 
 public class ZoomedCameraController : MonoBehaviourWithGazeComponent
 {
+    public Transform target;
 
     Rect upperArea, lowerArea;
+    Vector3 screenPos;
 
     // Use this for initialization
     void Start()
@@ -17,8 +19,11 @@ public class ZoomedCameraController : MonoBehaviourWithGazeComponent
     // Update is called once per frame
     void Update()
     {
+        screenPos = camera.WorldToScreenPoint(target.position);
+        print("target is " + screenPos.y + " pixels from the left");
+
         MoveCameraWithMouse();
-        Debug.Log("Cameraposition in space");
+
         MoveCameraWithEyes();
 
     }
@@ -26,21 +31,39 @@ public class ZoomedCameraController : MonoBehaviourWithGazeComponent
     private void MoveCameraWithMouse()
     {
         if (upperArea.Contains(Input.mousePosition))
-            transform.Translate(Vector3.down * 3 * Time.deltaTime);
+            moveCameraDown();
         if (lowerArea.Contains(Input.mousePosition))
-            transform.Translate(Vector3.up * 3 * Time.deltaTime);
+            moveCameraUp();
     }
+
 
     private void MoveCameraWithEyes()
     {
         if (gazeModel.isEyeTrackerRunning)
         {
             if (upperArea.Contains((gazeModel.posGazeLeft + gazeModel.posGazeRight) / 2))
-                transform.Translate(Vector3.down * 3 * Time.deltaTime);
+                moveCameraDown();
             if (lowerArea.Contains((gazeModel.posGazeLeft + gazeModel.posGazeRight) / 2))
-                transform.Translate(Vector3.up * 3 * Time.deltaTime);
+                moveCameraUp();
         }
     }
+
+
+    private void moveCameraUp()
+    {
+        if (screenPos.y > 260)
+        {
+            transform.Translate(Vector3.up * 3 * Time.deltaTime);
+        }
+    }
+
+    private void moveCameraDown()
+    {
+        if (screenPos.y < 685)
+        {
+            transform.Translate(Vector3.down * 3 * Time.deltaTime);
+        }
+    } 
 
     void OnGUI()
     {

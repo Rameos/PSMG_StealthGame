@@ -3,8 +3,10 @@ using System.Collections;
 using iViewX;
 
 public class CameraController : MonoBehaviourWithGazeComponent{
+    public Transform target;
 
     Rect leftArea, rightArea;
+    Vector3 screenPos;
 
 	// Use this for initialization
 	void Start () {
@@ -17,28 +19,47 @@ public class CameraController : MonoBehaviourWithGazeComponent{
         MoveCameraWithMouse();
         
         MoveCameraWithEyes();
+
+        screenPos = camera.WorldToScreenPoint(target.position);
         
 	}
 
     private void MoveCameraWithMouse()
     {
         if (leftArea.Contains(Input.mousePosition))
-            transform.Translate(Vector3.left * 5 * Time.deltaTime);
+            moveCameraToLeft();
         if (rightArea.Contains(Input.mousePosition))
-            transform.Translate(-Vector3.left * 5 * Time.deltaTime);
+            moveCameraToRight();
     }
+
 
     private void MoveCameraWithEyes()
     {
         if (gazeModel.isEyeTrackerRunning) 
         {
             if (leftArea.Contains((gazeModel.posGazeLeft + gazeModel.posGazeRight) / 2))
-                transform.Translate(Vector3.left * 5 * Time.deltaTime);
+                moveCameraToLeft();
             if (rightArea.Contains((gazeModel.posGazeLeft + gazeModel.posGazeRight) / 2))
-                transform.Translate(-Vector3.left * 5 * Time.deltaTime);
+                moveCameraToRight();
         }
-        
     }
+
+    private void moveCameraToLeft()
+    {
+        if (screenPos.x < 2130)
+        {
+            transform.Translate(Vector3.left * 5 * Time.deltaTime);
+        }
+    }
+
+    private void moveCameraToRight()
+    {
+        if (screenPos.x > 1080)
+        {
+            transform.Translate(-Vector3.left * 5 * Time.deltaTime); 
+        }
+    }
+
 
     void OnGUI()
     {
