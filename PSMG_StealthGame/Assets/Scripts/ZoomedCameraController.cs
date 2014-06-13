@@ -42,9 +42,13 @@ public class ZoomedCameraController : MonoBehaviourWithGazeComponent
         if (gazeModel.isEyeTrackerRunning)
         {
             if (upperArea.Contains((gazeModel.posGazeLeft + gazeModel.posGazeRight) / 2))
-                moveCameraDown();
-            if (lowerArea.Contains((gazeModel.posGazeLeft + gazeModel.posGazeRight) / 2))
+            {
                 moveCameraUp();
+            }
+            if (lowerArea.Contains((gazeModel.posGazeLeft + gazeModel.posGazeRight) / 2))
+            {
+                moveCameraDown();
+            }
         }
     }
 
