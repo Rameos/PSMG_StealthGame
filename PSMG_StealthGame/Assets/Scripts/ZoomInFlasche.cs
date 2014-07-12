@@ -10,11 +10,11 @@ public class ZoomInFlasche : MonoBehaviourWithGazeComponent {
 
 	// Use this for initialization
 	void Start () {
-
+	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () { 
         buttonPressed = Input.GetKeyDown("space");
 	    if (isLooking && buttonPressed) {
             Debug.Log("space was pressed");
