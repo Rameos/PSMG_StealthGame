@@ -1,0 +1,178 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class InputController : MonoBehaviour 
+{
+	public static InputController inputController;
+	
+	public static InputOption controls;
+	
+	#region component declarations
+	PauseMenu pauseMenu;
+	MovementManager movement;
+	InteractionManager interaction;
+	KeyboardInput keyboard;
+	GamepadInput pad;
+	MouseInput mouse;
+	GazeInput gaze;
+	#endregion
+	
+	GameObject hitObject;
+
+	void Awake () 
+	{
+		#region singleton
+		if(inputController == null) 
+		{
+			DontDestroyOnLoad(gameObject);
+			inputController = this;
+		} 
+		else if(inputController != this) 
+		{
+			Destroy(gameObject);
+		}
+		#endregion
+		
+		#region component initializations
+		pauseMenu		= GetComponent<PauseMenu> ();
+		movement 		= GetComponent<MovementManager> ();
+		interaction		= GetComponent<InteractionManager> ();
+		keyboard 		= GetComponent<KeyboardInput> ();
+		pad 			= GetComponent<GamepadInput> ();
+		mouse 			= GetComponent<MouseInput> ();
+		gaze 			= GetComponent<GazeInput> ();
+		#endregion
+		
+		controls = InputOption.KeyboardControls;
+	}
+
+	void Update () 
+	{	
+		if(GameController.gameState != GameState.Paused)
+		{
+			KeyboardControls();
+			GamepadControls();
+		}
+	}
+	
+	// CHECK DEVICE INPUTS
+	
+	#region device inputs
+	void CheckKeyBoardInputs() 
+	{	
+		if(keyboard.inputInteract ()) 
+		{
+			if(hitObject.CompareTag("Interactable"))
+			{	
+				interaction.Inspect();
+			} 
+			else if(hitObject.CompareTag("Suspect"))
+			{
+				interaction.Interrogate();
+			}
+			else if(hitObject.CompareTag("Door"))
+			{
+				interaction.EnterDoor();
+			}
+		}
+		
+		if(keyboard.inputPause())
+		{
+			pauseMenu.Open();
+		}
+	}
+	
+	void CheckMouseInputs() 
+	{	
+		hitObject = mouse.rayTarget().collider.gameObject;
+		
+		#region movement mouse
+		if(ScrollAreas.left.Contains(mouse.Position())) 	movement.turnLeft();
+		
+		if(ScrollAreas.right.Contains(mouse.Position())) 	movement.turnRight();
+		
+		if(ScrollAreas.top.Contains(mouse.Position())) 		movement.turnUp();
+		
+		if(ScrollAreas.bottom.Contains(mouse.Position())) 	movement.turnDown();
+		#endregion
+		
+		#region interaction mouse
+		if(mouse.leftClicked())
+		{
+			Debug.Log("Left Clicked");
+		}
+		
+		if(mouse.rightClicked()) 
+		{
+			Debug.Log("Right Clicked");
+		}
+		#endregion
+ 	}
+ 	
+	void CheckGazeInputs()
+	{	
+		hitObject = gaze.rayTarget().collider.gameObject;
+		
+		if(ScrollAreas.left.Contains(gaze.Position()))		movement.turnLeft();
+		
+		if(ScrollAreas.right.Contains(gaze.Position()))		movement.turnRight();
+		//BUG
+		if(ScrollAreas.top.Contains(gaze.Position()))		movement.turnDown();
+		
+		if(ScrollAreas.bottom.Contains(gaze.Position()))	movement.turnUp();
+	}
+	
+	void CheckGamepadInputs() 
+	{	
+		if(pad.inputLeftTrigger())
+		{
+			Debug.Log("Left trigger");
+		}
+		
+		if(pad.inputRightTrigger())
+		{
+			Debug.Log("Right trigger");
+		}
+		
+		if(pad.inputInteract())
+		{
+			Debug.Log ("Pad");
+		}
+	}
+	#endregion
+	
+	//CHECK CONTROLS SETTINGS
+	
+	#region controls settings
+	/// <summary>
+	/// If controls set to keyboard, uses keyboard and gazetracker (mouse if gazetracker not running) for inputs.
+	/// </summary>
+	void KeyboardControls()
+	{	
+		if(controls == InputOption.KeyboardControls)
+		{	
+			if(gazeModel.isEyeTrackerRunning)
+			{
+				CheckGazeInputs();
+			}
+			else 
+			{
+				CheckMouseInputs();
+			}	
+			CheckKeyBoardInputs();					
+		}
+	}
+	
+	/// <summary>
+	/// If controls set to gamepad, uses gamepad and gazetracker for inputs.
+	/// </summary>
+	void GamepadControls()
+	{
+		if(controls == InputOption.GamepadControls && gazeModel.isEyeTrackerRunning)
+		{
+			CheckGamepadInputs();
+			CheckGazeInputs();
+		}
+	}
+	#endregion
+}
