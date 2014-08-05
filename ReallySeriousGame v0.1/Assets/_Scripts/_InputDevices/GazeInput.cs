@@ -16,7 +16,8 @@ public class GazeInput : MonoBehaviour
 	public Vector3 Position() {	
 		rightEyePos = gazeModel.posGazeRight;
 		leftEyePos = gazeModel.posGazeLeft;
-		return gazePos = (gazeModel.posGazeLeft + gazeModel.posGazeRight) * 0.5f;
+		gazePos = (leftEyePos + rightEyePos) * 0.5f;
+		return gazePos;
 	}
 	
 	public RaycastHit rayTarget()

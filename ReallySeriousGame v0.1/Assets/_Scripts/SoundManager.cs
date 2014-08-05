@@ -3,11 +3,16 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour 
 {
-	public static SoundManager soundManager;
-	// Use this for initialization
+	//public static SoundManager soundManager;
+	
+	public AudioClip[] musicClips;
+	public AudioClip[] ambientClips;
+	
+	private AudioClip backgroundSound;
+	
 	void Awake () 
 	{
-		#region singleton
+		/*#region singleton
 		if(soundManager == null) 
 		{
 			DontDestroyOnLoad(gameObject);
@@ -17,11 +22,14 @@ public class SoundManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-		#endregion
+		#endregion*/
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
+	}
 	
+	void PlayBackgroundSound() 
+	{
 	}
 }

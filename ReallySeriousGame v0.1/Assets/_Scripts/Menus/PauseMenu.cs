@@ -16,11 +16,11 @@ public class PauseMenu : MonoBehaviour
 	
 	void OnGUI () 
 	{	
-		if(GameController.gameState == GameState.Paused)
+		if(GameState.IsPaused)
 		{
 			if(GUI.Button(new Rect(buttonXPos, buttonPos1, buttonWidth, buttonHeight), "Resume Game")) 
 			{
-				GameController.gameState = GameState.InGame;
+				GameState.ChangeState(GameState.States.InGame);
 			}
 			
 			if(GUI.Button(new Rect(buttonXPos, buttonPos2, buttonWidth, buttonHeight), "Load Save")) 
@@ -41,7 +41,7 @@ public class PauseMenu : MonoBehaviour
 			if(GUI.Button(new Rect(buttonXPos, buttonPos5, buttonWidth, buttonHeight), "Return to Main Menu")) 
 			{
 				Application.LoadLevel("MainMenu");
-				GameController.gameState = GameState.MainMenu;
+				GameState.ChangeState(GameState.States.MainMenu);
 				Destroy(gameObject);
 			}
 		
@@ -50,6 +50,6 @@ public class PauseMenu : MonoBehaviour
 	
 	public void Open()
 	{
-		GameController.gameState = GameState.Paused;
+		GameState.ChangeState(GameState.States.Paused);
 	}
 }

@@ -33,12 +33,13 @@ public class KeyboardInput : MonoBehaviour
 	}
 	#endregion
 	
+	
+	#region interaction
 	/// <summary>
 	/// Reads input for action: 'interact'
 	/// </summary>
 	/// <returns><c>true</c>, if SPACE was pressed, <c>false</c> otherwise.</returns>
 	
-	#region interaction
 	public bool inputInteract() 
 	{
 		if(Input.GetKey(KeyCode.Space)) 
@@ -46,6 +47,20 @@ public class KeyboardInput : MonoBehaviour
 		return false;
 	}
 	
+	/// <summary>
+	/// Reads input for action: 'return'
+	/// </summary>
+	/// <returns><c>true</c>, if RETURN was pressed, <c>false</c> otherwise.</returns>
+	
+	public bool inputReturn()
+	{
+		if(Input.GetKey(KeyCode.Return))
+			return true;
+		return false;
+	}
+	#endregion
+	
+	#region ui
 	/// <summary>
 	/// Reads input for action: 'pause'
 	/// </summary>
