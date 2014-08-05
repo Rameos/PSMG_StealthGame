@@ -10,12 +10,12 @@ public class MouseInput : MonoBehaviour
 	#region mouse clicks
 	public bool leftClicked()
 	{
-		return Input.GetKeyDown(KeyCode.Mouse0) ? true : false;
+		return Input.GetKey(KeyCode.Mouse0) ? true : false;
 	}
 	
 	public bool rightClicked()
 	{
-		return Input.GetKeyDown(KeyCode.Mouse1) ? true : false;
+		return Input.GetKey(KeyCode.Mouse1) ? true : false;
 	}
 	#endregion
 	/// <summary>
@@ -23,7 +23,8 @@ public class MouseInput : MonoBehaviour
 	/// </summary>
 	public Vector3 Position()
 	{
-		return mousePos = Input.mousePosition;
+		mousePos = Input.mousePosition;
+		return mousePos;
 	}
 	
 	public RaycastHit rayTarget()

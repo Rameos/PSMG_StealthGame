@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour
 	
 	public static GameState gameState;
 	
+	InputController inputController;
+	
 	//private string dataFileName = "/gameprogress.dat";
 	
 	void Awake() 
@@ -22,11 +24,20 @@ public class GameController : MonoBehaviour
 			Destroy(gameObject);
 		}
 		#endregion
+		
+		//inputController = GameObject.FindGameObjectWithTag("Player").GetComponent<InputController>();
 	}
 	
 	void Update () 
-	{
-		
+	{	
+	
+		/*
+		if(GameController.gameState != GameState.Paused)
+		{
+			inputController.KeyboardControls();
+			inputController.GamepadControls();
+		}
+		*/
 	}
 	
 	/*

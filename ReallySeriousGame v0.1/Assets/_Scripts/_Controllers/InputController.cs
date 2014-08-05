@@ -18,6 +18,7 @@ public class InputController : MonoBehaviour
 	#endregion
 	
 	GameObject hitObject;
+	GameObject selectedObject;
 
 	void Awake () 
 	{
@@ -48,7 +49,7 @@ public class InputController : MonoBehaviour
 
 	void Update () 
 	{	
-		if(GameController.gameState != GameState.Paused)
+		if(!GameState.IsState(GameState.States.Paused))
 		{
 			KeyboardControls();
 			GamepadControls();
@@ -60,25 +61,49 @@ public class InputController : MonoBehaviour
 	#region device inputs
 	void CheckKeyBoardInputs() 
 	{	
-		if(keyboard.inputInteract ()) 
+		#region interactions keyboard
+		if(keyboard.inputInteract() && GameState.IsRunning)
 		{
-			if(hitObject.CompareTag("Interactable"))
-			{	
-				interaction.Inspect();
-			} 
-			else if(hitObject.CompareTag("Suspect"))
+			selectedObject = hitObject;
+			
+			switch(selectedObject.tag)
 			{
-				interaction.Interrogate();
-			}
-			else if(hitObject.CompareTag("Door"))
-			{
-				interaction.EnterDoor();
+				case "Interactable": 
+					interaction.Inspect(selectedObject); 
+					break;
+					
+				case "Suspect":
+					interaction.Interrogate(selectedObject); 
+					break;
+					
+				case "Door":
+					interaction.EnterDoor(); 
+					break;
+				
+				default: break;
 			}
 		}
+		#endregion
 		
 		if(keyboard.inputPause())
 		{
 			pauseMenu.Open();
+		}
+		
+		if(keyboard.inputReturn())
+		{
+			switch(GameState.gameState)
+			{
+				case GameState.States.Inspecting:
+					interaction.StopInspection();
+					break;
+				
+				case GameState.States.Interrogating:
+					interaction.StopInterrogation();
+					break;
+				
+				default: break;
+			}
 		}
 	}
 	
@@ -86,25 +111,28 @@ public class InputController : MonoBehaviour
 	{	
 		hitObject = mouse.rayTarget().collider.gameObject;
 		
-		#region movement mouse
-		if(ScrollAreas.left.Contains(mouse.Position())) 	movement.turnLeft();
+		if(!GameState.IsState(GameState.States.Inspecting))
+		{
+			#region movement mouse
+			if(ScrollAreas.left.Contains(mouse.Position()))		movement.turnLeft();
+			
+			if(ScrollAreas.right.Contains(mouse.Position()))	movement.turnRight();
+			
+			if(ScrollAreas.top.Contains(mouse.Position()))		movement.turnUp();
+			
+			if(ScrollAreas.bottom.Contains(mouse.Position()))	movement.turnDown();
+			#endregion
+		}
 		
-		if(ScrollAreas.right.Contains(mouse.Position())) 	movement.turnRight();
-		
-		if(ScrollAreas.top.Contains(mouse.Position())) 		movement.turnUp();
-		
-		if(ScrollAreas.bottom.Contains(mouse.Position())) 	movement.turnDown();
-		#endregion
-		
-		#region interaction mouse
+		#region interactions mouse
 		if(mouse.leftClicked())
 		{
-			Debug.Log("Left Clicked");
+			interaction.RotateItemLeft(selectedObject);
 		}
 		
 		if(mouse.rightClicked()) 
 		{
-			Debug.Log("Right Clicked");
+			interaction.RotateItemRight(selectedObject);
 		}
 		#endregion
  	}
@@ -113,13 +141,16 @@ public class InputController : MonoBehaviour
 	{	
 		hitObject = gaze.rayTarget().collider.gameObject;
 		
-		if(ScrollAreas.left.Contains(gaze.Position()))		movement.turnLeft();
-		
-		if(ScrollAreas.right.Contains(gaze.Position()))		movement.turnRight();
-		//BUG
-		if(ScrollAreas.top.Contains(gaze.Position()))		movement.turnDown();
-		
-		if(ScrollAreas.bottom.Contains(gaze.Position()))	movement.turnUp();
+		if(GameState.IsRunning)
+		{
+			if(ScrollAreas.left.Contains(gaze.Position()))		movement.turnLeft();
+			
+			if(ScrollAreas.right.Contains(gaze.Position()))		movement.turnRight();
+			//BUG
+			if(ScrollAreas.top.Contains(gaze.Position()))		movement.turnDown();
+			
+			if(ScrollAreas.bottom.Contains(gaze.Position()))	movement.turnUp();
+		}
 	}
 	
 	void CheckGamepadInputs() 
@@ -147,7 +178,7 @@ public class InputController : MonoBehaviour
 	/// <summary>
 	/// If controls set to keyboard, uses keyboard and gazetracker (mouse if gazetracker not running) for inputs.
 	/// </summary>
-	void KeyboardControls()
+	public void KeyboardControls()
 	{	
 		if(controls == InputOption.KeyboardControls)
 		{	
@@ -166,7 +197,7 @@ public class InputController : MonoBehaviour
 	/// <summary>
 	/// If controls set to gamepad, uses gamepad and gazetracker for inputs.
 	/// </summary>
-	void GamepadControls()
+	public void GamepadControls()
 	{
 		if(controls == InputOption.GamepadControls && gazeModel.isEyeTrackerRunning)
 		{
