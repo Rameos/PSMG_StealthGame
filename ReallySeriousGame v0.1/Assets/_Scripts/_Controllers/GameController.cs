@@ -8,9 +8,7 @@ public class GameController : MonoBehaviour
 {
 	public static GameController gameControl;
 	
-	public static GameState gameState;
-	
-	InputController inputController;
+	//InputController inputController;
 	
 	//private string dataFileName = "/gameprogress.dat";
 	
@@ -30,14 +28,22 @@ public class GameController : MonoBehaviour
 	
 	void Update () 
 	{	
+		CheckGameState();
+	}
 	
-		/*
-		if(GameController.gameState != GameState.Paused)
+	void CheckGameState()
+	{
+		if(!GameState.IsPaused && !InteractionManager.isInteracting)
 		{
-			inputController.KeyboardControls();
-			inputController.GamepadControls();
+			if(Application.loadedLevelName == "MainMenu" && !GameState.IsState(GameState.States.MainMenu))
+			{
+				GameState.ChangeState(GameState.States.MainMenu);
+			}
+			if(Application.loadedLevelName == "BarScene" && !GameState.IsState(GameState.States.InGame))
+			{
+				GameState.ChangeState(GameState.States.InGame);
+			}
 		}
-		*/
 	}
 	
 	/*

@@ -42,14 +42,8 @@ public class PauseMenu : MonoBehaviour
 			{
 				Application.LoadLevel("MainMenu");
 				GameState.ChangeState(GameState.States.MainMenu);
-				Destroy(gameObject);
 			}
 		
 		}
-	}
-	
-	public void Open()
-	{
-		GameState.ChangeState(GameState.States.Paused);
 	}
 }

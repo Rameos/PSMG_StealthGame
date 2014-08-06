@@ -8,7 +8,6 @@ public class InputController : MonoBehaviour
 	public static InputOption controls;
 	
 	#region component declarations
-	PauseMenu pauseMenu;
 	MovementManager movement;
 	InteractionManager interaction;
 	KeyboardInput keyboard;
@@ -25,7 +24,6 @@ public class InputController : MonoBehaviour
 		#region singleton
 		if(inputController == null) 
 		{
-			DontDestroyOnLoad(gameObject);
 			inputController = this;
 		} 
 		else if(inputController != this) 
@@ -35,7 +33,6 @@ public class InputController : MonoBehaviour
 		#endregion
 		
 		#region component initializations
-		pauseMenu		= GetComponent<PauseMenu> ();
 		movement 		= GetComponent<MovementManager> ();
 		interaction		= GetComponent<InteractionManager> ();
 		keyboard 		= GetComponent<KeyboardInput> ();
@@ -69,14 +66,17 @@ public class InputController : MonoBehaviour
 			switch(selectedObject.tag)
 			{
 				case "Interactable": 
+					GameState.ChangeState(GameState.States.Inspecting);
 					interaction.Inspect(selectedObject); 
 					break;
 					
 				case "Suspect":
+					GameState.ChangeState(GameState.States.Interrogating);
 					interaction.Interrogate(selectedObject); 
 					break;
 					
 				case "Door":
+					GameState.ChangeState(GameState.States.InGame);
 					interaction.EnterDoor(); 
 					break;
 				
@@ -87,7 +87,7 @@ public class InputController : MonoBehaviour
 		
 		if(keyboard.inputPause())
 		{
-			pauseMenu.Open();
+			GameState.ChangeState(GameState.States.Paused);
 		}
 		
 		if(keyboard.inputReturn())
@@ -95,10 +95,12 @@ public class InputController : MonoBehaviour
 			switch(GameState.gameState)
 			{
 				case GameState.States.Inspecting:
+					GameState.ChangeState(GameState.States.InGame);
 					interaction.StopInspection();
 					break;
 				
 				case GameState.States.Interrogating:
+					GameState.ChangeState(GameState.States.InGame);
 					interaction.StopInterrogation();
 					break;
 				
@@ -127,12 +129,14 @@ public class InputController : MonoBehaviour
 		#region interactions mouse
 		if(mouse.leftClicked())
 		{
-			interaction.RotateItemLeft(selectedObject);
+			if(GameState.IsState(GameState.States.Inspecting))
+				interaction.RotateItemLeft(selectedObject);
 		}
 		
 		if(mouse.rightClicked()) 
 		{
-			interaction.RotateItemRight(selectedObject);
+			if(GameState.IsState(GameState.States.Inspecting))
+				interaction.RotateItemRight(selectedObject);
 		}
 		#endregion
  	}

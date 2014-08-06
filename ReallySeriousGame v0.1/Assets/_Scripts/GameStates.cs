@@ -1,14 +1,4 @@
-﻿/*
-public enum GameState
-{
-	MainMenu,
-	InGame,
-	Paused,
-	Inspecting,
-	Interrogating
-}
-*/
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class GameState 
