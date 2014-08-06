@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour 
 {
-	//public static SoundManager soundManager;
+	public static SoundManager soundManager;
 	
 	public AudioClip[] musicClips;
 	public AudioClip[] ambientClips;
@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour
 	
 	void Awake () 
 	{
-		/*#region singleton
+		#region singleton
 		if(soundManager == null) 
 		{
 			DontDestroyOnLoad(gameObject);
@@ -22,7 +22,7 @@ public class SoundManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-		#endregion*/
+		#endregion
 	}
 	
 	void Update () 
@@ -30,8 +30,20 @@ public class SoundManager : MonoBehaviour
 	
 	}
 	
-	void PlayBackgroundSound() 
+	public void PlayBackgroundSound(string sound) 
 	{
-		
+		switch (sound)
+		{
+		case "music":
+			backgroundSound = musicClips[Random.Range(0, musicClips.Length)];
+			break;
+		case "ambient":
+			backgroundSound = ambientClips[Random.Range(0, ambientClips.Length)];
+			break;
+		default:
+			break;
+		}
+		audio.clip = backgroundSound;
+		audio.Play();
 	}
 }

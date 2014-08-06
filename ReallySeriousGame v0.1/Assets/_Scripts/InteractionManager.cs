@@ -37,7 +37,7 @@ public class InteractionManager : MonoBehaviour
 	}
 	
 	/// <summary>
-	/// Move Camera towards suspect.
+	/// Move Player towards suspect.
 	/// </summary>
 	
 	public void Interrogate(GameObject suspect)
