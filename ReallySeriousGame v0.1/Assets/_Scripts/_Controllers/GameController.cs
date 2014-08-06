@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
 {
 	public static GameController gameControl;
 	
+	SoundManager sound;
+	
 	//InputController inputController;
 	
 	//private string dataFileName = "/gameprogress.dat";
@@ -22,6 +24,8 @@ public class GameController : MonoBehaviour
 			Destroy(gameObject);
 		}
 		#endregion
+		
+		sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
 		
 		//inputController = GameObject.FindGameObjectWithTag("Player").GetComponent<InputController>();
 	}
@@ -38,10 +42,12 @@ public class GameController : MonoBehaviour
 			if(Application.loadedLevelName == "MainMenu" && !GameState.IsState(GameState.States.MainMenu))
 			{
 				GameState.ChangeState(GameState.States.MainMenu);
+				sound.PlayBackgroundSound("music");
 			}
 			if(Application.loadedLevelName == "BarScene" && !GameState.IsState(GameState.States.InGame))
 			{
 				GameState.ChangeState(GameState.States.InGame);
+				sound.PlayBackgroundSound("ambient");
 			}
 		}
 	}
