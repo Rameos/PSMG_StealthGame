@@ -11,8 +11,10 @@ public class InteractionManager : MonoBehaviour
 	float suspectDistanceFromPlayer = 0.5f;
 	GameObject currentSuspect;
 	
+	public static bool isInteracting = false;
+	
 	/// <summary>
-	/// Pull object into camera center and switch Gamestate to inspecting.
+	/// Pull object into camera center.
 	/// </summary>
 	
 	public void Inspect(GameObject item)
@@ -21,18 +23,21 @@ public class InteractionManager : MonoBehaviour
 		itemOriginalPos = currentItem.transform.position;
 		transform.LookAt(currentItem.transform);
 		currentItem.transform.position = Camera.main.transform.position + Camera.main.transform.forward * itemDistanceFromCamera;
-		
-		GameState.ChangeState(GameState.States.Inspecting);
+		isInteracting = true;
 	}
+	
+	/// <summary>
+	/// Quit Inspection and return item to its original position
+	/// </summary>
 	
 	public void StopInspection()
 	{
 		currentItem.transform.position = itemOriginalPos;
-		GameState.ChangeState(GameState.States.InGame);
+		isInteracting = false;
 	}
 	
 	/// <summary>
-	/// Move Camera towards suspect and switch Gamestate to Interrogating.
+	/// Move Camera towards suspect.
 	/// </summary>
 	
 	public void Interrogate(GameObject suspect)
@@ -42,14 +47,17 @@ public class InteractionManager : MonoBehaviour
 		Vector3 suspectPos = new Vector3(currentSuspect.transform.position.x, transform.position.y, currentSuspect.transform.position.z); //Lock Y-Axis
 		transform.LookAt(suspectPos);
 		transform.position = Vector3.Lerp(transform.position, currentSuspect.transform.position, suspectDistanceFromPlayer);
-		
-		GameState.ChangeState(GameState.States.Interrogating);
+		isInteracting = true;
 	}
+	
+	/// <summary>
+	/// Quit Interrogation and return player to his original location
+	/// </summary>
 	
 	public void StopInterrogation()
 	{
 		transform.position = playerOriginalPos;
-		GameState.ChangeState(GameState.States.InGame);
+		isInteracting = false;
 	}
 	
 	/// <summary>
@@ -64,13 +72,11 @@ public class InteractionManager : MonoBehaviour
 	
 	public void RotateItemLeft(GameObject interactable)
 	{
-		if(GameState.IsState(GameState.States.Inspecting))
-			interactable.transform.Rotate(Vector3.up * 50 * Time.deltaTime,Space.World);
+		interactable.transform.Rotate(Vector3.up * 50 * Time.deltaTime,Space.World);
 	}
 	
 	public void RotateItemRight(GameObject interactable)
 	{
-		if(GameState.IsState(GameState.States.Inspecting))
-			interactable.transform.Rotate(Vector3.down * 50 * Time.deltaTime,Space.World);
+		interactable.transform.Rotate(Vector3.down * 50 * Time.deltaTime,Space.World);
 	}
 }

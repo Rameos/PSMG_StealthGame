@@ -22,7 +22,6 @@ public class MainMenu : MonoBehaviour
 		if(GUI.Button(new Rect(buttonXPos, buttonPos1, buttonWidth, buttonHeight), "Start Game")) 
 		{
 			Application.LoadLevel("BarScene");
-			GameState.ChangeState(GameState.States.InGame);
 		}
 		
 		if(GUI.Button(new Rect(buttonXPos, buttonPos2, buttonWidth, buttonHeight), "Load Save")) 
