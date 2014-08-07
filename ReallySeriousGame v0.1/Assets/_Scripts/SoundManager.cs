@@ -5,8 +5,15 @@ public class SoundManager : MonoBehaviour
 {
 	public static SoundManager soundManager;
 	
-	public AudioClip[] musicClips;
-	public AudioClip[] ambientClips;
+	private AudioSource backgroundSource;
+	private AudioSource[] voiceOverSource;
+	private AudioSource[] soundEffectSource;
+	
+	public AudioClip[] musicClip;
+	public AudioClip[] ambientClip;
+	public AudioClip[] noiseClip;
+	public AudioClip[] voiceClip;
+	
 	
 	private AudioClip backgroundSound;
 	
@@ -23,27 +30,52 @@ public class SoundManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 		#endregion
+		
+		backgroundSource = gameObject.AddComponent<AudioSource>();
+		backgroundSource.loop = true;
 	}
 	
-	void Update () 
+	public void PlayBGSound(string level) 
 	{
-	
-	}
-	
-	public void PlayBackgroundSound(string sound) 
-	{
-		switch (sound)
+		backgroundSource.Stop();
+		switch (level)
 		{
-		case "music":
-			backgroundSound = musicClips[Random.Range(0, musicClips.Length)];
+		case "MainMenu":
+			backgroundSound = musicClip[Random.Range(0, musicClip.Length)];
 			break;
-		case "ambient":
-			backgroundSound = ambientClips[Random.Range(0, ambientClips.Length)];
+		case "BarScene":
+			backgroundSound = ambientClip[Random.Range(0, ambientClip.Length)];
 			break;
 		default:
 			break;
 		}
-		audio.clip = backgroundSound;
-		audio.Play();
+		backgroundSource.clip = backgroundSound;
+		backgroundSource.Play();
+	}
+	
+	public void StopBGSound()
+	{
+		backgroundSource.Stop();
+		backgroundSource.clip = null;
+	}
+	
+	public void PlayVoiceOver()
+	{
+		
+	}
+	
+	public void StopVoiceOver()
+	{
+	
+	}
+	
+	public void PlaySoundEffect()
+	{
+	
+	}
+	
+	public void StopSoundEffect()
+	{
+	
 	}
 }
