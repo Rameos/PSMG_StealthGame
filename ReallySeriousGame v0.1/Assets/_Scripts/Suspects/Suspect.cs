@@ -46,7 +46,7 @@ public class Suspect : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        barkeeper = new SuspectObject(name_barkeeper, age_barkeeper, true, details_barkeeper, );
+        barkeeper = new SuspectObject(name_barkeeper, age_barkeeper, true, details_barkeeper);
         doctor = new SuspectObject(name_doctor, age_doctor, false, details_doctor);
         junkie = new SuspectObject(name_junkie, age_junkie, true, details_junkie);
         investor = new SuspectObject(name_investor, age_investor, true, details_investor);
