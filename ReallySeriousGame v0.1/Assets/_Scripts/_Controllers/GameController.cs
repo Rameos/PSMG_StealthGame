@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour
 	public static GameController gameControl;
 	
 	SoundManager sound;
-	
 	//InputController inputController;
 	
 	//private string dataFileName = "/gameprogress.dat";
@@ -25,8 +24,7 @@ public class GameController : MonoBehaviour
 		}
 		#endregion
 		
-		sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
-		
+		sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
 		//inputController = GameObject.FindGameObjectWithTag("Player").GetComponent<InputController>();
 	}
 	
@@ -34,20 +32,22 @@ public class GameController : MonoBehaviour
 	{	
 		CheckGameState();
 	}
-	
+	/// <summary>
+	/// Checks GameState and sets Background sound accordingly.
+	/// </summary>
 	void CheckGameState()
 	{
 		if(!GameState.IsPaused && !InteractionManager.isInteracting)
 		{
 			if(Application.loadedLevelName == "MainMenu" && !GameState.IsState(GameState.States.MainMenu))
 			{
+				sound.PlayBGSound(Application.loadedLevelName);
 				GameState.ChangeState(GameState.States.MainMenu);
-				sound.PlayBackgroundSound("music");
 			}
 			if(Application.loadedLevelName == "BarScene" && !GameState.IsState(GameState.States.InGame))
 			{
+				sound.PlayBGSound(Application.loadedLevelName);
 				GameState.ChangeState(GameState.States.InGame);
-				sound.PlayBackgroundSound("ambient");
 			}
 		}
 	}
