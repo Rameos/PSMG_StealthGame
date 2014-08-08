@@ -4,14 +4,12 @@ using System.Collections;
 public class InteractionManager : MonoBehaviour 
 {
 	Vector3 itemOriginalPos;
-	float itemDistanceFromCamera = 2f;
+	public float itemDistanceFromCamera = 2f;
 	GameObject currentItem;
 	
 	Vector3 playerOriginalPos;
-	float suspectDistanceFromPlayer = 0.5f;
+	public float suspectDistanceFromPlayer = 0.5f;
 	GameObject currentSuspect;
-	
-	public static bool isInteracting = false;
 	
 	/// <summary>
 	/// Pull object into camera center.
@@ -23,7 +21,6 @@ public class InteractionManager : MonoBehaviour
 		itemOriginalPos = currentItem.transform.position;
 		transform.LookAt(currentItem.transform);
 		currentItem.transform.position = Camera.main.transform.position + Camera.main.transform.forward * itemDistanceFromCamera;
-		isInteracting = true;
 	}
 	
 	/// <summary>
@@ -33,7 +30,6 @@ public class InteractionManager : MonoBehaviour
 	public void StopInspection()
 	{
 		currentItem.transform.position = itemOriginalPos;
-		isInteracting = false;
 	}
 	
 	/// <summary>
@@ -47,7 +43,6 @@ public class InteractionManager : MonoBehaviour
 		Vector3 suspectPos = new Vector3(currentSuspect.transform.position.x, transform.position.y, currentSuspect.transform.position.z); //Lock Y-Axis
 		transform.LookAt(suspectPos);
 		transform.position = Vector3.Lerp(transform.position, currentSuspect.transform.position, suspectDistanceFromPlayer);
-		isInteracting = true;
 	}
 	
 	/// <summary>
@@ -57,7 +52,6 @@ public class InteractionManager : MonoBehaviour
 	public void StopInterrogation()
 	{
 		transform.position = playerOriginalPos;
-		isInteracting = false;
 	}
 	
 	/// <summary>

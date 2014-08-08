@@ -328,7 +328,7 @@ GameObject:
   - 23: {fileID: 237085014}
   - 114: {fileID: 237085018}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Big Capsule
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -381,11 +381,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 237085013}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .5, z: -2.18264389}
+  m_LocalPosition: {x: 1.02514505, y: -.932004571, z: -1.82304108}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 311165050}
+  m_RootOrder: 3
 --- !u!114 &237085018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 311165050}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Interactables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -493,6 +493,7 @@ Transform:
   - {fileID: 349662205}
   - {fileID: 2103914886}
   - {fileID: 1665199767}
+  - {fileID: 237085017}
   m_Father: {fileID: 0}
   m_RootOrder: 9
 --- !u!1 &320161969
@@ -1220,6 +1221,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 760393578}
   - 137: {fileID: 760393579}
+  - 136: {fileID: 760393582}
+  - 114: {fileID: 760393580}
   m_Layer: 0
   m_Name: Robot2
   m_TagString: Untagged
@@ -1319,6 +1322,30 @@ SkinnedMeshRenderer:
     m_Center: {x: .270246029, y: -.0418999046, z: 0}
     m_Extent: {x: .952545166, y: .231277123, z: .651418328}
   m_DirtyAABB: 0
+--- !u!114 &760393580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 760393577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &760393582
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 760393577}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .349999994
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &810336466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,6 +2101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9010d8999dee2d4cb3b530b2ef009de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemDistanceFromCamera: 2
+  suspectDistanceFromPlayer: .5
 --- !u!1001 &1218937052
 Prefab:
   m_ObjectHideFlags: 0
@@ -2571,7 +2600,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1486649718}
   - 111: {fileID: 1486649717}
-  - 136: {fileID: 1486649719}
   m_Layer: 0
   m_Name: Robot Kyle
   m_TagString: Suspect
@@ -2608,19 +2636,6 @@ Transform:
   - {fileID: 1428824641}
   m_Father: {fileID: 0}
   m_RootOrder: 8
---- !u!136 &1486649719
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1486649716}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .349999994
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1499708172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2632,6 +2647,7 @@ GameObject:
   - 33: {fileID: 1499708175}
   - 65: {fileID: 1499708174}
   - 23: {fileID: 1499708173}
+  - 114: {fileID: 1499708177}
   m_Layer: 0
   m_Name: Door
   m_TagString: Door
@@ -2690,6 +2706,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1895636646}
   m_RootOrder: 3
+--- !u!114 &1499708177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1499708172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1540287945
 GameObject:
   m_ObjectHideFlags: 0
@@ -3161,6 +3188,7 @@ GameObject:
   - 4: {fileID: 1831920948}
   - 212: {fileID: 1831920947}
   - 65: {fileID: 1831920949}
+  - 114: {fileID: 1831920950}
   m_Layer: 0
   m_Name: Barkeep
   m_TagString: Suspect
@@ -3214,6 +3242,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 16.7700005, y: 36.7800026, z: .200000003}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1831920950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1831920946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1843088910
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour
 	/// </summary>
 	void CheckGameState()
 	{
-		if(!GameState.IsPaused && !InteractionManager.isInteracting)
+		if(!GameState.IsPaused && !GameState.IsInteracting)
 		{
 			if(Application.loadedLevelName == "MainMenu" && !GameState.IsState(GameState.States.MainMenu))
 			{

@@ -6,17 +6,26 @@ public class Interactable : MonoBehaviourWithGazeComponent
 {
 
 	private Color initialColor;
-	private bool isHighlighted;
+	public Color highlightColor = new Color (0.75f, 1f, 0.75f, 1f);
+	public static bool isHighlighted = false;
 	
 	void OnMouseEnter()
 	{
-		Highlight();
-		Debug.Log ("What're you lookin' at?");
+		if(!GameState.IsInteracting)
+			Highlight();
+	}
+	
+	void OnMouseOver()
+	{
+		//Unhighlight when interacting
+		if(GameState.IsInteracting)
+			UnHighlight();
 	}
 	
 	void OnMouseExit()
 	{
-		UnHighlight();
+		if(!GameState.IsInteracting)
+			UnHighlight();
 	}
 	
 	public override void OnGazeEnter(RaycastHit hit)
@@ -38,7 +47,7 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	void Highlight() 
 	{
 		initialColor = renderer.material.color;
-		renderer.material.color = Color.yellow;
+		renderer.material.color = highlightColor;
 		
 		isHighlighted = true;
 	}
