@@ -10,7 +10,7 @@ public class Suspect : MonoBehaviour
 
     public enum State
     {
-        save, normal = 0, nervous, suspicious, angry
+        normal, save, nervous, suspicious, angry
     }
 
 
