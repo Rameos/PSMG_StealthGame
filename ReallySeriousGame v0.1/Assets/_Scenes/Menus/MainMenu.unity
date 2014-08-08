@@ -190,11 +190,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c83a4835026ef5b4faa7d39d46694138, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c83a4835026ef5b4faa7d39d46694138, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c83a4835026ef5b4faa7d39d46694138, type: 2}
       propertyPath: m_LocalRotation.x
@@ -237,7 +237,7 @@ GameObject:
   - 114: {fileID: 1183398512}
   m_Layer: 0
   m_Name: SoundManager
-  m_TagString: Untagged
+  m_TagString: SoundManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,8 +254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7057f8fdd43aa41b3e451fb091bd0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicClip: []
-  ambientClip: []
+  musicClip:
+  - {fileID: 8300000, guid: f2ec400185b866147bfb27f2046cb9f3, type: 3}
+  - {fileID: 8300000, guid: b61008ed9a55d7c48a98dc682252165c, type: 3}
+  ambientClip:
+  - {fileID: 8300000, guid: ebd83106ec5d53f4a8da7f4f08577a6f, type: 3}
+  - {fileID: 8300000, guid: 23a839ad29b6cde49a067fd1d6ea8864, type: 3}
   noiseClip: []
   voiceClip: []
 --- !u!4 &1183398513
@@ -265,7 +269,7 @@ Transform:
   m_PrefabInternal: {fileID: 1052656588}
   m_GameObject: {fileID: 1183398510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

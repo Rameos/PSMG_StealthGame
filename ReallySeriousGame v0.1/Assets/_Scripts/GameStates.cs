@@ -42,4 +42,12 @@ public class GameState
 			return IsState(States.Paused);
 		}
 	}
+	
+	public static bool IsInteracting
+	{
+		get
+		{
+			return (IsState(States.Inspecting) || IsState(States.Interrogating));
+		}
+	}
 }
