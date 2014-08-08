@@ -397,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightColor: {r: .75, g: 1, b: .75, a: 1}
 --- !u!1 &287394138
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,6 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightColor: {r: .75, g: 1, b: .75, a: 1}
 --- !u!1001 &387700232
 Prefab:
   m_ObjectHideFlags: 0
@@ -1333,6 +1335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightColor: {r: .75, g: 1, b: .75, a: 1}
 --- !u!136 &760393582
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2717,6 +2720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightColor: {r: .75, g: 1, b: .75, a: 1}
 --- !u!1 &1540287945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2993,6 +2997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightColor: {r: .75, g: 1, b: .75, a: 1}
 --- !u!1 &1732526891
 GameObject:
   m_ObjectHideFlags: 0
@@ -3253,6 +3258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightColor: {r: .75, g: 1, b: .75, a: 1}
 --- !u!1 &1843088910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3937,6 +3943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightColor: {r: .75, g: 1, b: .75, a: 1}
 --- !u!1 &2126545843
 GameObject:
   m_ObjectHideFlags: 0
