@@ -49,7 +49,6 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	
 	}
 	
-	
 	void Highlight() 
 	{
 		initialColor = renderer.material.color;
