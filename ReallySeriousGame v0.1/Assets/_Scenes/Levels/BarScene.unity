@@ -74,6 +74,45 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &5652470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 5652472}
+  - 114: {fileID: 5652471}
+  m_Layer: 0
+  m_Name: ClueManager
+  m_TagString: ClueManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &5652471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 5652470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd88870e1b3d034ca7d4c5577da5ad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &5652472
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 5652470}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.06443954, z: -4.28467941}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1 &26482158
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +628,7 @@ Transform:
   - {fileID: 1665199767}
   - {fileID: 237085017}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1 &320161969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,6 +1604,10 @@ Prefab:
     - target: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: clueName
       value: Barkeep_Clue_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
@@ -3964,7 +4007,7 @@ Transform:
   - {fileID: 2013812106}
   - {fileID: 742209225}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1 &1776127530
 GameObject:
   m_ObjectHideFlags: 0
@@ -4103,7 +4146,7 @@ Transform:
   - {fileID: 1414855907}
   - {fileID: 1083024044}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!65 &1831920949
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4158,7 +4201,7 @@ Transform:
   - {fileID: 2099377591}
   - {fileID: 1892598772}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!95 &1843088912
 Animator:
   serializedVersion: 3
@@ -4384,7 +4427,7 @@ Transform:
   - {fileID: 1499708176}
   - {fileID: 1862072850}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1001 &1918513335
 Prefab:
   m_ObjectHideFlags: 0
