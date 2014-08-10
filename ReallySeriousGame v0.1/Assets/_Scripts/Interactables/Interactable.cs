@@ -11,21 +11,27 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	
 	void OnMouseEnter()
 	{
-		if(!GameState.IsInteracting)
+		if(!GameState.IsInteracting && !isHighlighted)
+		{
 			Highlight();
+		}
 	}
 	
 	void OnMouseOver()
 	{
-		//Unhighlight when interacting
-		if(GameState.IsInteracting)
+		//Unhighlight when interacting with highlighted object
+		if(GameState.IsInteracting && isHighlighted)
+		{
 			UnHighlight();
+		}
 	}
 	
 	void OnMouseExit()
 	{
-		if(!GameState.IsInteracting)
+		if(isHighlighted)
+		{
 			UnHighlight();
+		}
 	}
 	
 	public override void OnGazeEnter(RaycastHit hit)
@@ -42,7 +48,6 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	{
 	
 	}
-	
 	
 	void Highlight() 
 	{
