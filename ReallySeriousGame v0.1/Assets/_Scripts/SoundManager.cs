@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
 	
 	
 	private AudioClip backgroundSound;
+    private AudioClip voiceOverSound;
 	
 	void Awake () 
 	{
@@ -59,14 +60,25 @@ public class SoundManager : MonoBehaviour
 		backgroundSource.clip = null;
 	}
 	
-	public void PlayVoiceOver()
+	public void PlayVoiceOver(string track)
 	{
-		
+        voiceOverSource[0].Stop();
+        switch (track)
+        {
+            case "Barkeeper":
+                voiceOverSound = voiceClip[Random.Range(0, musicClip.Length)];
+                break;
+            default:
+                break;
+        }
+        voiceOverSource[0].clip = voiceOverSound;
+        voiceOverSource[0].Play();
 	}
 	
 	public void StopVoiceOver()
 	{
-	
+        voiceOverSource[0].Stop();
+        voiceOverSource[0].clip = null;
 	}
 	
 	public void PlaySoundEffect()
