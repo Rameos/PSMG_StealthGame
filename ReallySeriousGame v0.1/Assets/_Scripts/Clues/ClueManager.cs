@@ -7,7 +7,10 @@ public class ClueManager : MonoBehaviour
 	public static ClueManager clueManager;
 	
 	List<GameObject> clues;
+	List<Clue> foundClues = new List<Clue>();
+	Clue selectedClue;
 	bool isActivated = true;
+	
 	
 	void Awake()
 	{
@@ -50,7 +53,27 @@ public class ClueManager : MonoBehaviour
 		}
 	}
 	
-	public void DeactivateAllClues()
+	/// <summary>
+	/// Sets the selected Clue to discovered and adds it to the found clues list.
+	/// </summary>
+	/// <param name="newClue">Selected Clue.</param>
+	public void FoundClue(GameObject newClue)
+	{
+		selectedClue = newClue.GetComponent<Clue>();
+		selectedClue.SetDiscovered();
+		foundClues.Add(selectedClue);
+	}
+	
+	/// <summary>
+	/// Returns all found clues as a List.
+	/// </summary>
+	/// <returns>List of type Clue.</returns>
+	public List<Clue> GetFoundClues()
+	{
+		return foundClues;
+	}
+	
+	void DeactivateAllClues()
 	{
 		Debug.Log("Total clues in scene: " + clues.Count);
 		if(isActivated)

@@ -7,7 +7,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 	public string clueName;
 	private Light highlight;
 	private bool isHighlighted = false;
-	private bool isDiscovered; //Discovered by player?
+	private bool isDiscovered = false; //Discovered by player?
 	private bool isVisible = true;	//Visible on suspect?
 	
 	void Awake()
@@ -51,7 +51,6 @@ public class Clue : MonoBehaviourWithGazeComponent
 		{	
 			highlight.enabled = true;
 			isHighlighted = true;
-			//isDiscovered = true;
 		}
 	}
 	
@@ -62,5 +61,15 @@ public class Clue : MonoBehaviourWithGazeComponent
 			highlight.enabled = false;
 			isHighlighted = false;
 		}
+	}
+	
+	public void SetDiscovered()
+	{
+		isDiscovered = true;
+	}
+	
+	public void ToggleVisibility()
+	{
+		isVisible = !isVisible;
 	}
 }

@@ -41,7 +41,6 @@ public class GameController : MonoBehaviour
 	{
 		if(!GameState.IsPaused && !GameState.IsInteracting)
 		{	
-			//clueManager.DeactivateClues();
 			if(Application.loadedLevelName == "MainMenu" && !GameState.IsState(GameState.States.MainMenu))
 			{
 				sound.PlayBGSound(Application.loadedLevelName);
@@ -52,10 +51,6 @@ public class GameController : MonoBehaviour
 				sound.PlayBGSound(Application.loadedLevelName);
 				GameState.ChangeState(GameState.States.InGame);
 			}
-		}
-		if(GameState.IsInteracting)
-		{
-			//clueManager.ActivateClues();
 		}
 	}
 	
