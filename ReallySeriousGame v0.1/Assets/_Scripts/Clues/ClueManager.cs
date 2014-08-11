@@ -6,25 +6,22 @@ public class ClueManager : MonoBehaviour
 {
 	public static ClueManager clueManager;
 	
-	List<GameObject> clues;
-	List<Clue> foundClues = new List<Clue>();
+	static List<string> foundClues = new List<string>();
 	Clue selectedClue;
-	bool isActivated = true;
 	
-	
-	void Awake()
+	void Awake ()
 	{
 		#region singleton
-		if(clueManager == null) {
+		if(clueManager == null) 
+		{
 			DontDestroyOnLoad(gameObject);
 			clueManager = this;
-		} else if(clueManager != this) {
+		} 
+		else if(clueManager != this) 
+		{
 			Destroy(gameObject);
 		}
 		#endregion
-		
-		clues = new List<GameObject>(GameObject.FindGameObjectsWithTag("Clue"));
-		DeactivateAllClues();
 	}
 	
 	/// <summary>
@@ -35,8 +32,12 @@ public class ClueManager : MonoBehaviour
 	{
 		foreach (Transform child in selectedObject.transform)
 		{
+			string childClueName = child.GetComponent<Clue>().clueName;
 			if(child.tag == "Clue")
-				child.gameObject.SetActive(true);
+			{
+				if(!foundClues.Contains(childClueName))
+					child.gameObject.SetActive(true);
+			}
 		}
 	}
 	
@@ -61,28 +62,15 @@ public class ClueManager : MonoBehaviour
 	{
 		selectedClue = newClue.GetComponent<Clue>();
 		selectedClue.SetDiscovered();
-		foundClues.Add(selectedClue);
+		foundClues.Add(selectedClue.clueName);
 	}
 	
 	/// <summary>
 	/// Returns all found clues as a List.
 	/// </summary>
 	/// <returns>List of type Clue.</returns>
-	public List<Clue> GetFoundClues()
+	public List<string> GetFoundClues()
 	{
 		return foundClues;
-	}
-	
-	void DeactivateAllClues()
-	{
-		Debug.Log("Total clues in scene: " + clues.Count);
-		if(isActivated)
-		{
-			foreach (GameObject clue in clues)
-			{
-				clue.SetActive(false);
-			}
-			isActivated = false;
-		}
 	}
 }

@@ -65,7 +65,9 @@ public class InputController : MonoBehaviour
 		if(keyboard.inputInteract() && GameState.IsRunning)
 		{
 			selectedObject = hitObject;
-			clue.ActivateCluesOn(selectedObject);
+			//activate clues on object when engaging in interaction
+			if(selectedObject != null)
+				clue.ActivateCluesOn(selectedObject); //???
 			
 			switch(selectedObject.tag)
 			{
@@ -104,7 +106,9 @@ public class InputController : MonoBehaviour
 		
 		if(keyboard.inputReturn())
 		{
-			clue.DeactivateCluesOn(selectedObject);
+			//deactivate clues on object when quitting interaction
+			if(selectedObject != null)
+				clue.DeactivateCluesOn(selectedObject);
 			
 			switch(GameState.gameState)
 			{

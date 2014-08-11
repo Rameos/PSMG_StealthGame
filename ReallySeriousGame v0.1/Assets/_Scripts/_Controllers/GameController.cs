@@ -17,10 +17,13 @@ public class GameController : MonoBehaviour
 	void Awake() 
 	{
 		#region singleton
-		if(gameControl == null) {
+		if(gameControl == null) 
+		{
 			DontDestroyOnLoad(gameObject);
 			gameControl = this;
-		} else if(gameControl != this) {
+		} 
+		else if(gameControl != this) 
+		{
 			Destroy(gameObject);
 		}
 		#endregion
