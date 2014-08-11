@@ -51,7 +51,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 		{	
 			highlight.enabled = true;
 			isHighlighted = true;
-			isDiscovered = true;
+			//isDiscovered = true;
 		}
 	}
 	

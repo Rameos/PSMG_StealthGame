@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 	
 	SoundManager sound;
 	ClueManager clueManager;
-	//InputController inputController;
+	InputController inputController;
 	
 	//private string dataFileName = "/gameprogress.dat";
 	
@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
 		#endregion
 		
 		sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
-		clueManager = GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
+		//clueManager = GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
 		//inputController = GameObject.FindGameObjectWithTag("Player").GetComponent<InputController>();
 	}
 	
@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
 	{
 		if(!GameState.IsPaused && !GameState.IsInteracting)
 		{	
-			clueManager.DeactivateClues();
+			//clueManager.DeactivateClues();
 			if(Application.loadedLevelName == "MainMenu" && !GameState.IsState(GameState.States.MainMenu))
 			{
 				sound.PlayBGSound(Application.loadedLevelName);
@@ -55,8 +55,7 @@ public class GameController : MonoBehaviour
 		}
 		if(GameState.IsInteracting)
 		{
-			Debug.Log ("isInteracting");
-			clueManager.ActivateClues();
+			//clueManager.ActivateClues();
 		}
 	}
 	

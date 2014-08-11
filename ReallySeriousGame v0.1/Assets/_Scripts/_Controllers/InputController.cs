@@ -8,6 +8,7 @@ public class InputController : MonoBehaviour
 	public static InputOption controls;
 	
 	#region component declarations
+	ClueManager clue;
 	MovementManager movement;
 	InteractionManager interaction;
 	KeyboardInput keyboard;
@@ -33,6 +34,7 @@ public class InputController : MonoBehaviour
 		#endregion
 		
 		#region component initializations
+		clue			= GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
 		movement 		= GetComponent<MovementManager> ();
 		interaction		= GetComponent<InteractionManager> ();
 		keyboard 		= GetComponent<KeyboardInput> ();
@@ -62,6 +64,7 @@ public class InputController : MonoBehaviour
 		if(keyboard.inputInteract() && GameState.IsRunning)
 		{
 			selectedObject = hitObject;
+			clue.ActivateCluesOn(selectedObject);
 			
 			switch(selectedObject.tag)
 			{
@@ -92,6 +95,8 @@ public class InputController : MonoBehaviour
 		
 		if(keyboard.inputReturn())
 		{
+			clue.DeactivateCluesOn(selectedObject);
+			
 			switch(GameState.gameState)
 			{
 				case GameState.States.Inspecting:

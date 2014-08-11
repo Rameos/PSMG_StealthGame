@@ -6,7 +6,6 @@ public class ClueManager : MonoBehaviour
 {
 	public static ClueManager clueManager;
 	
-	//private GameObject[] allClues;
 	List<GameObject> clues;
 	bool isActivated = true;
 	
@@ -22,24 +21,38 @@ public class ClueManager : MonoBehaviour
 		#endregion
 		
 		clues = new List<GameObject>(GameObject.FindGameObjectsWithTag("Clue"));
-		Debug.Log(clues.Count);
-		DeactivateClues();
+		DeactivateAllClues();
 	}
 	
-	public void ActivateClues()
+	/// <summary>
+	/// Activate all Clue objects on selected GameObject.
+	/// </summary>
+	/// <param name="selectedObject">Selected GameObject.</param>
+	public void ActivateCluesOn(GameObject selectedObject)
 	{
-		if(!isActivated)
+		foreach (Transform child in selectedObject.transform)
 		{
-			foreach (GameObject clue in clues)
-			{
-				clue.SetActive(true);
-			}
-			isActivated = true;
+			if(child.tag == "Clue")
+				child.gameObject.SetActive(true);
 		}
 	}
 	
-	public void DeactivateClues()
+	/// <summary>
+	/// Deactivate all Clue objects on selected GameObject.
+	/// </summary>
+	/// <param name="selectedObject">Selected GameObject.</param>
+	public void DeactivateCluesOn(GameObject selectedObject)
 	{
+		foreach (Transform child in selectedObject.transform)
+		{
+			if(child.tag == "Clue")
+				child.gameObject.SetActive(false);
+		}
+	}
+	
+	public void DeactivateAllClues()
+	{
+		Debug.Log("Total clues in scene: " + clues.Count);
 		if(isActivated)
 		{
 			foreach (GameObject clue in clues)
