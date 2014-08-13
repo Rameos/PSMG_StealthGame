@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Suspect : MonoBehaviour
 {
+    
     public enum SuspectData
     {
         None, Barkeeper, Doctor, Junkie, Investor, Wife_Investor, Personnel, Detective
@@ -20,6 +21,8 @@ public class Suspect : MonoBehaviour
     public string Gender;
     public string suspectDetails;
     public State state;
+    public int numberOfConversations;
+
 
     private SuspectData previousSuspect;
     private const string name_default_barkeeper = "Karl";
@@ -65,6 +68,14 @@ public class Suspect : MonoBehaviour
     private const int state_nervous = 2;
     private const int state_suspicious = 3;
     private const int state_angry = 4;
+
+    private int numberConversationsBarkeeper;
+    private int numberConversationsDoctor;
+    private int numberConversationsJunkie;
+    private int numberConversationsInvestor;
+    private int numberConversationsWife;
+    private int numberConversationsPersonnel;
+    private int numberConversationsDetective;
 
     //private SuspectObject barkeeper, doctor, junkie, investor, wife, personnel, detective;
 
