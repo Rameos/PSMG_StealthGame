@@ -167,6 +167,11 @@ public class Suspect : MonoBehaviour
         }
         previousSuspect = currentSuspect;
     }
+
+    public int getNumberOfConversations()
+    {
+        return numberOfConversations;
+    }
 }
 
 //public class SuspectObject

@@ -10,6 +10,10 @@ public class InteractionManager : MonoBehaviour
 	Vector3 playerOriginalPos;
 	public float suspectDistanceFromPlayer = 0.5f;
 	GameObject currentSuspect;
+
+    public delegate void DialogEvent(string Data);
+    public static event DialogEvent OnTalking;
+    public static event DialogEvent OnLeaving;
 	
 	/// <summary>
 	/// Pull object into camera center.
@@ -43,6 +47,11 @@ public class InteractionManager : MonoBehaviour
 		Vector3 suspectPos = new Vector3(currentSuspect.transform.position.x, transform.position.y, currentSuspect.transform.position.z); //Lock Y-Axis
 		transform.LookAt(suspectPos);
 		transform.position = Vector3.Lerp(transform.position, currentSuspect.transform.position, suspectDistanceFromPlayer);
+        //if (OnTalking != null)
+        //{
+            Debug.Log("Test Event");
+            OnTalking("Hi");
+        //}
 	}
 	
 	/// <summary>
@@ -62,6 +71,7 @@ public class InteractionManager : MonoBehaviour
 	{
 		Application.LoadLevel("Scene_2");
 		Debug.Log ("Entered door");
+
 	}
 	
 	public void RotateItemLeft(GameObject interactable)

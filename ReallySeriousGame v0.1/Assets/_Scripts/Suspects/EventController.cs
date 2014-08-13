@@ -3,13 +3,42 @@ using System.Collections;
 
 public class EventController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    SoundManager sound;
+
+    void awake()
+    {
+        //sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        //Debug.Log(sound.GetInstanceID());
+    }
+
+    void OnEnable()
+    {
+        DialogManager.OnTalking += StartDialog;
+        DialogManager.OnLeaving += EndDialog;
+    }
+
+    void OnDisable()
+    {
+        DialogManager.OnTalking -= StartDialog;
+        DialogManager.OnLeaving -= EndDialog;
+    }
+
+    void StartDialog(string data)
+    {
+        switch (data)
+        {
+            case "Gruener Fleck":
+                Debug.Log("Grüner Fleck - Weed Drink");
+                break;
+            case "Hello":
+                Debug.Log("Hallo");
+                break;
+        }
+        //sound.PlayVoiceOver("Barkeeper");
+    }
+
+    void EndDialog(string data)
+    {
+        Debug.Log(data);
+    }
 }
