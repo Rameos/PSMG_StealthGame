@@ -42,7 +42,7 @@ public class KeyboardInput : MonoBehaviour
 	
 	public bool inputInteract() 
 	{
-		if(Input.GetKey(KeyCode.Space)) 
+		if(Input.GetKeyDown(KeyCode.Space)) 
 			return true;
 		return false;
 	}
@@ -54,7 +54,7 @@ public class KeyboardInput : MonoBehaviour
 	
 	public bool inputReturn()
 	{
-		if(Input.GetKey(KeyCode.Return))
+		if(Input.GetKeyDown(KeyCode.Return))
 			return true;
 		return false;
 	}

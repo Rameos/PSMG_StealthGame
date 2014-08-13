@@ -9,22 +9,27 @@ public class GameController : MonoBehaviour
 	public static GameController gameControl;
 	
 	SoundManager sound;
-	//InputController inputController;
+	ClueManager clueManager;
+	InputController inputController;
 	
 	//private string dataFileName = "/gameprogress.dat";
 	
 	void Awake() 
 	{
 		#region singleton
-		if(gameControl == null) {
+		if(gameControl == null) 
+		{
 			DontDestroyOnLoad(gameObject);
 			gameControl = this;
-		} else if(gameControl != this) {
+		} 
+		else if(gameControl != this) 
+		{
 			Destroy(gameObject);
 		}
 		#endregion
 		
 		sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+		//clueManager = GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
 		//inputController = GameObject.FindGameObjectWithTag("Player").GetComponent<InputController>();
 	}
 	
@@ -38,7 +43,7 @@ public class GameController : MonoBehaviour
 	void CheckGameState()
 	{
 		if(!GameState.IsPaused && !GameState.IsInteracting)
-		{
+		{	
 			if(Application.loadedLevelName == "MainMenu" && !GameState.IsState(GameState.States.MainMenu))
 			{
 				sound.PlayBGSound(Application.loadedLevelName);
