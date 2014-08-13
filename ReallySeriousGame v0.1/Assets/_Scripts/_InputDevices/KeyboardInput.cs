@@ -58,6 +58,13 @@ public class KeyboardInput : MonoBehaviour
 			return true;
 		return false;
 	}
+	
+	public bool inputToggleNotebook()
+	{
+		if(Input.GetKeyDown(KeyCode.N))
+			return true;
+		return false;
+	}
 	#endregion
 	
 	#region ui
