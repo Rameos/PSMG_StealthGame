@@ -9,18 +9,18 @@ public class InputController : MonoBehaviour
 	
 	#region component declarations
 	NoteBook 			notebook;
-	ClueManager 		clue;
+	ClueManager 		clueManager;
 	MovementManager 	movement;
 	InteractionManager 	interaction;
 	KeyboardInput 		keyboard;
 	GamepadInput 		pad;
 	MouseInput 			mouse;
 	GazeInput 			gaze;
+	PauseMenu			pause;
 	#endregion
 	
 	GameObject hitObject;
 	GameObject selectedObject;
-	GameObject selectedClue;
 
 	void Awake () 
 	{
@@ -36,8 +36,9 @@ public class InputController : MonoBehaviour
 		#endregion
 		
 		#region component initializations
+		pause			= GetComponent<PauseMenu>();
 		notebook		= gameObject.GetComponentInChildren<NoteBook>();
-		clue			= GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
+		clueManager		= GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
 		movement 		= GetComponent<MovementManager> ();
 		interaction		= GetComponent<InteractionManager> ();
 		keyboard 		= GetComponent<KeyboardInput> ();
@@ -51,11 +52,8 @@ public class InputController : MonoBehaviour
 
 	void Update () 
 	{	
-		if(!GameState.IsState(GameState.States.Paused))
-		{
-			KeyboardControls();
-			GamepadControls();
-		}
+		KeyboardControls();
+		GamepadControls();
 	}
 	
 	// CHECK DEVICE INPUTS
@@ -64,73 +62,38 @@ public class InputController : MonoBehaviour
 	void CheckKeyBoardInputs() 
 	{	
 		#region interactions keyboard
-		if(keyboard.inputInteract() && GameState.IsRunning)
+		if(keyboard.inputInteract())
 		{
 			selectedObject = hitObject;
-			//activate clues on object when engaging in interaction
+				
+			interaction.StartInteraction(selectedObject);
+				//activate clues on object when engaging in interaction
 			if(selectedObject != null)
-				clue.ActivateCluesOn(selectedObject); //???
-			
-			switch(selectedObject.tag)
-			{
-				case "Interactable": 
-					GameState.ChangeState(GameState.States.Inspecting);
-					interaction.Inspect(selectedObject); 
-					break;
-					
-				case "Suspect":
-					GameState.ChangeState(GameState.States.Interrogating);
-					interaction.Interrogate(selectedObject); 
-					break;
-					
-				case "Door":
-					GameState.ChangeState(GameState.States.InGame);
-					interaction.EnterDoor(); 
-					break;
-					
-				default: break;
-			}
-		}
-		else if(keyboard.inputInteract() && GameState.IsInteracting)
-		{
-			selectedClue = hitObject;
-			if(selectedClue.tag == "Clue")
-			{
-				clue.FoundClue(selectedClue);
-			}
-		}
-		#endregion
-		
-		if(keyboard.inputToggleNotebook())
-		{
-			notebook.ToggleNotebook();
-		}
-		
-		if(keyboard.inputPause())
-		{
-			GameState.ChangeState(GameState.States.Paused);
+				clueManager.ActivateCluesOn(selectedObject); //???
+				
+			clueManager.FoundClue(selectedObject);
 		}
 		
 		if(keyboard.inputReturn())
 		{
 			//deactivate clues on object when quitting interaction
 			if(selectedObject != null)
-				clue.DeactivateCluesOn(selectedObject);
+				clueManager.DeactivateCluesOn(selectedObject);
 			
-			switch(GameState.gameState)
-			{
-				case GameState.States.Inspecting:
-					GameState.ChangeState(GameState.States.InGame);
-					interaction.StopInspection();
-					break;
-				
-				case GameState.States.Interrogating:
-					GameState.ChangeState(GameState.States.InGame);
-					interaction.StopInterrogation();
-					break;
-				
-				default: break;
-			}
+			interaction.StopInteraction();
+		}
+		#endregion
+		
+		//NOTEBOOK
+		if(keyboard.inputToggleNotebook())
+		{
+			notebook.ToggleNotebook();
+		}
+		
+		//PAUSE
+		if(keyboard.inputPause())
+		{
+			pause.TogglePause();
 		}
 	}
 	
@@ -138,30 +101,25 @@ public class InputController : MonoBehaviour
 	{	
 		hitObject = mouse.rayTarget().collider.gameObject;
 		
-		if(!GameState.IsState(GameState.States.Inspecting))
-		{
-			#region movement mouse
-			if(ScrollAreas.left.Contains(mouse.Position()))		movement.turnLeft();
+		#region movement mouse
+		if(ScrollAreas.left.Contains(mouse.Position()))		movement.turnLeft();
 			
-			if(ScrollAreas.right.Contains(mouse.Position()))	movement.turnRight();
+		if(ScrollAreas.right.Contains(mouse.Position()))	movement.turnRight();
 			
-			if(ScrollAreas.top.Contains(mouse.Position()))		movement.turnUp();
+		if(ScrollAreas.top.Contains(mouse.Position()))		movement.turnUp();
 			
-			if(ScrollAreas.bottom.Contains(mouse.Position()))	movement.turnDown();
-			#endregion
-		}
+		if(ScrollAreas.bottom.Contains(mouse.Position()))	movement.turnDown();
+		#endregion
 		
 		#region interactions mouse
 		if(mouse.leftClicked())
 		{
-			if(GameState.IsState(GameState.States.Inspecting))
-				interaction.RotateItemLeft(selectedObject);
+			interaction.RotateItemLeft(selectedObject);
 		}
 		
 		if(mouse.rightClicked()) 
 		{
-			if(GameState.IsState(GameState.States.Inspecting))
-				interaction.RotateItemRight(selectedObject);
+			interaction.RotateItemRight(selectedObject);
 		}
 		#endregion
  	}
@@ -170,16 +128,13 @@ public class InputController : MonoBehaviour
 	{	
 		hitObject = gaze.rayTarget().collider.gameObject;
 		
-		if(GameState.IsRunning)
-		{
-			if(ScrollAreas.left.Contains(gaze.Position()))		movement.turnLeft();
-			
-			if(ScrollAreas.right.Contains(gaze.Position()))		movement.turnRight();
+		if(ScrollAreas.left.Contains(gaze.Position()))		movement.turnLeft();
+		
+		if(ScrollAreas.right.Contains(gaze.Position()))		movement.turnRight();
 			//BUG
-			if(ScrollAreas.top.Contains(gaze.Position()))		movement.turnDown();
+		if(ScrollAreas.top.Contains(gaze.Position()))		movement.turnDown();
 			
-			if(ScrollAreas.bottom.Contains(gaze.Position()))	movement.turnUp();
-		}
+		if(ScrollAreas.bottom.Contains(gaze.Position()))	movement.turnUp();
 	}
 	
 	void CheckGamepadInputs() 

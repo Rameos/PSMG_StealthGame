@@ -8,6 +8,7 @@ public class ClueManager : MonoBehaviour
 	
 	static List<string> foundClues = new List<string>();
 	Clue selectedClue;
+	bool cluesActivated = false;
 	
 	void Awake ()
 	{
@@ -30,14 +31,22 @@ public class ClueManager : MonoBehaviour
 	/// <param name="selectedObject">Selected GameObject.</param>
 	public void ActivateCluesOn(GameObject selectedObject)
 	{
-		foreach (Transform child in selectedObject.transform)
+		if(!cluesActivated)
 		{
-			string childClueName = child.GetComponent<Clue>().clueName;
-			if(child.tag == "Clue")
+			foreach (Transform child in selectedObject.transform)
 			{
-				if(!foundClues.Contains(childClueName))
-					child.gameObject.SetActive(true);
+				string childClueName = child.GetComponent<Clue>().clueName;
+				if(child.tag == "Clue")
+				{
+					if(!foundClues.Contains(childClueName))
+						child.gameObject.SetActive(true);
+				}
 			}
+			cluesActivated = true;
+		}
+		else
+		{
+			return;
 		}
 	}
 	
@@ -47,10 +56,18 @@ public class ClueManager : MonoBehaviour
 	/// <param name="selectedObject">Selected GameObject.</param>
 	public void DeactivateCluesOn(GameObject selectedObject)
 	{
-		foreach (Transform child in selectedObject.transform)
+		if(cluesActivated)
 		{
-			if(child.tag == "Clue")
-				child.gameObject.SetActive(false);
+			foreach (Transform child in selectedObject.transform.parent != null ? selectedObject.transform.parent : selectedObject.transform)
+			{
+				if(child.tag == "Clue")
+					child.gameObject.SetActive(false);
+			}
+			cluesActivated = false;
+		}
+		else
+		{
+			return;
 		}
 	}
 	
@@ -60,9 +77,13 @@ public class ClueManager : MonoBehaviour
 	/// <param name="newClue">Selected Clue.</param>
 	public void FoundClue(GameObject newClue)
 	{
-		selectedClue = newClue.GetComponent<Clue>();
-		selectedClue.SetDiscovered();
-		foundClues.Add(selectedClue.clueName);
+		if(newClue.tag == "Clue")
+		{
+			selectedClue = newClue.GetComponent<Clue>();
+			selectedClue.SetDiscovered();
+			if(!foundClues.Contains(selectedClue.clueName))
+				foundClues.Add(selectedClue.clueName);
+		}
 	}
 	
 	/// <summary>

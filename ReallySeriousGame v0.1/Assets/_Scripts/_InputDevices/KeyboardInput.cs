@@ -75,7 +75,7 @@ public class KeyboardInput : MonoBehaviour
 	
 	public bool inputPause()
 	{
-		if(Input.GetKey(KeyCode.Escape))
+		if(Input.GetKeyDown(KeyCode.Escape))
 			return true;
 		return false;
 	}

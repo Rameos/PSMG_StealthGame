@@ -4,6 +4,9 @@ using iViewX;
 
 public class PauseMenu : MonoBehaviour 
 {
+	private bool isPaused = false;
+	private GameState.States previousGameState;
+
 	float buttonWidth 	= Screen.width 	* 0.3f;
 	float buttonHeight 	= Screen.height * 0.1f;
 	float buttonXPos 	= Screen.width 	* 0.35f;
@@ -16,11 +19,11 @@ public class PauseMenu : MonoBehaviour
 	
 	void OnGUI () 
 	{	
-		if(GameState.IsPaused)
+		if(isPaused)
 		{
 			if(GUI.Button(new Rect(buttonXPos, buttonPos1, buttonWidth, buttonHeight), "Resume Game")) 
 			{
-				GameState.ChangeState(GameState.States.InGame);
+				ResumeGame();
 			}
 			
 			if(GUI.Button(new Rect(buttonXPos, buttonPos2, buttonWidth, buttonHeight), "Load Save")) 
@@ -42,8 +45,39 @@ public class PauseMenu : MonoBehaviour
 			{
 				Application.LoadLevel("MainMenu");
 				GameState.ChangeState(GameState.States.MainMenu);
+				isPaused = false;
+				Time.timeScale = 1;
 			}
 		
+		}
+	}
+	
+	public void PauseGame()
+	{
+		isPaused = true;
+		previousGameState = GameState.gameState;
+		GameState.ChangeState(GameState.States.Paused);
+		Time.timeScale = 0;
+	}
+	
+	public void ResumeGame()
+	{
+		isPaused = false;
+		GameState.ChangeState(previousGameState);
+		Time.timeScale = 1;
+	}
+	
+	public void TogglePause()
+	{
+		isPaused = !isPaused;
+		
+		if(isPaused)
+		{
+			PauseGame();
+		}
+		else
+		{
+			ResumeGame();
 		}
 	}
 }

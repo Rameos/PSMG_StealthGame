@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
 	SoundManager sound;
 	ClueManager clueManager;
 	InputController inputController;
+	GameObject selectedObject;
+	GameObject selectedClue;
 	
 	//private string dataFileName = "/gameprogress.dat";
 	
@@ -35,6 +37,8 @@ public class GameController : MonoBehaviour
 	
 	void Update () 
 	{	
+		Debug.Log(GameState.gameState);
+		Debug.Log(Interactable.isHighlighted);
 		CheckGameState();
 	}
 	/// <summary>
@@ -55,6 +59,11 @@ public class GameController : MonoBehaviour
 				GameState.ChangeState(GameState.States.InGame);
 			}
 		}
+	}
+	
+	public void SelectedObject()
+	{
+		
 	}
 	
 	/*

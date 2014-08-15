@@ -66,6 +66,7 @@ public class SoundManager : MonoBehaviour
         voiceOverSource.Stop();
         switch (track)
         {
+                //Events Barkeeper
             case Constants.EventBarkeeperDrink:
                 voiceOverSound = voiceClip[0];
                 break;
@@ -99,8 +100,77 @@ public class SoundManager : MonoBehaviour
             case Constants.EventBarkeeperAllesMischen:
                 voiceOverSound = voiceClip[10];
                 break;
-            //case Constants.EventBarkeeperFleck:
-            //    voiceOverSound = voiceClip[2];
+                //Events Detektiv
+            case Constants.EventDetektivBesserNicht:
+                voiceOverSound = voiceClip[11];
+                break;
+            case Constants.EventDetektivZimmerUntersuchen:
+                voiceOverSound = voiceClip[12];
+                break;
+            case Constants.EventDetektivVersuchZuMischen:
+                voiceOverSound = voiceClip[13];
+                break;
+            case Constants.EventDetektivInteressant:
+                voiceOverSound = voiceClip[14];
+                break;
+            case Constants.EventDetektivNichtGut:
+                voiceOverSound = voiceClip[15];
+                break;
+            case Constants.EventDetektivBuchUntersuchen:
+                voiceOverSound = voiceClip[16];
+                break;
+            case Constants.EventDetektivWlanAusschalten:
+                voiceOverSound = voiceClip[17];
+                break;
+            case Constants.EventDetektivSchlossKnacken:
+                voiceOverSound = voiceClip[18];
+                break;
+            case Constants.EventDetektivBesserLassen:
+                voiceOverSound = voiceClip[19];
+                break;
+            case Constants.EventDetektivFallGeloest:
+                voiceOverSound = voiceClip[19];
+                break;
+                //Events Junkie
+            case Constants.EventJunkieMedizin:
+                voiceOverSound = voiceClip[20];
+                break;
+            case Constants.EventJunkieWasIsLos:
+                voiceOverSound = voiceClip[21];
+                break;
+            case Constants.EventJunkieCharly:
+                voiceOverSound = voiceClip[22];
+                break;
+            case Constants.EventJunkieHoseGeklaut:
+                voiceOverSound = voiceClip[23];
+                break;
+            case Constants.EventJunkieSchaefchen:
+                voiceOverSound = voiceClip[24];
+                break;
+            case Constants.EventJunkieVomBarmann:
+                voiceOverSound = voiceClip[25];
+                break;
+            case Constants.EventJunkieMalen:
+                voiceOverSound = voiceClip[26];
+                break;
+            case Constants.EventJunkieKurzNippen:
+                voiceOverSound = voiceClip[27];
+                break;
+            case Constants.EventJunkieBraucheStoff:
+                voiceOverSound = voiceClip[28];
+                break;
+            case Constants.EventJunkieMalenDiesUndDas:
+                voiceOverSound = voiceClip[29];
+                break;
+            case Constants.EventJunkieCharlyNein:
+                voiceOverSound = voiceClip[30];
+                break;
+            case Constants.EventJunkieNachschub:
+                voiceOverSound = voiceClip[31];
+                break;
+            case Constants.EventJunkieHirte:
+                voiceOverSound = voiceClip[32];
+                break;
             //case Constants.EventBarkeeperFleck:
             //    voiceOverSound = voiceClip[2];
                 //break;
