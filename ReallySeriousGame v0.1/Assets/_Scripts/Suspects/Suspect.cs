@@ -104,7 +104,7 @@ public class Suspect : MonoBehaviour
 
     private void loadData(SuspectData currentSuspect)
     {
-        Debug.Log(previousSuspect + " " + currentSuspect);
+        //Debug.Log(previousSuspect + " " + currentSuspect);
         string suspect = currentSuspect.ToString();
         switch(suspect)
         {

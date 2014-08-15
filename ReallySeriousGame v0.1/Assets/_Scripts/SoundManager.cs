@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour
 	public static SoundManager soundManager;
 	
 	private AudioSource backgroundSource;
-	private AudioSource[] voiceOverSource;
+	private AudioSource voiceOverSource;
 	private AudioSource[] soundEffectSource;
 	
 	public AudioClip[] musicClip;
@@ -34,6 +34,7 @@ public class SoundManager : MonoBehaviour
 		
 		backgroundSource = gameObject.AddComponent<AudioSource>();
 		backgroundSource.loop = true;
+        voiceOverSource = gameObject.AddComponent<AudioSource>();
 	}
 	
 	public void PlayBGSound(string level) 
@@ -62,23 +63,67 @@ public class SoundManager : MonoBehaviour
 	
 	public void PlayVoiceOver(string track)
 	{
-        voiceOverSource[0].Stop();
+        voiceOverSource.Stop();
         switch (track)
         {
-            case "Barkeeper":
-                voiceOverSound = voiceClip[Random.Range(0, musicClip.Length)];
+            case Constants.EventBarkeeperDrink:
+                voiceOverSound = voiceClip[0];
                 break;
+            case Constants.EventBarkeeperMixexperte:
+                voiceOverSound = voiceClip[1];
+                break;
+            case Constants.EventBarkeeperFleck:
+                voiceOverSound = voiceClip[2];
+                break;            
+            case Constants.EventBarkeeperMischung:
+                voiceOverSound = voiceClip[3];
+                break;
+            case Constants.EventBarkeeperErfolgsgeheimnis:
+                voiceOverSound = voiceClip[4];
+                break;
+            case Constants.EventBarkeeperKillerdrink:
+                voiceOverSound = voiceClip[5];
+                break;
+            case Constants.EventBarkeeperRatten:
+                voiceOverSound = voiceClip[6];
+                break;
+            case Constants.EventBarkeeperDrogen:
+                voiceOverSound = voiceClip[7];
+                break;
+            case Constants.EventBarkeeperRattengift:
+                voiceOverSound = voiceClip[8];
+                break;
+            case Constants.EventBarkeeperBesterDrink:
+                voiceOverSound = voiceClip[9];
+                break;
+            case Constants.EventBarkeeperAllesMischen:
+                voiceOverSound = voiceClip[10];
+                break;
+            //case Constants.EventBarkeeperFleck:
+            //    voiceOverSound = voiceClip[2];
+            //case Constants.EventBarkeeperFleck:
+            //    voiceOverSound = voiceClip[2];
+                //break;
+                //break;
+                //break;
+                //break;
+                //break;
+                //break;
+                //break;
+                //break;
+                //break;
+                //break;
             default:
                 break;
         }
-        voiceOverSource[0].clip = voiceOverSound;
-        voiceOverSource[0].Play();
+        voiceOverSource.clip = voiceOverSound;
+        voiceOverSource.Play();
 	}
 	
 	public void StopVoiceOver()
 	{
-        voiceOverSource[0].Stop();
-        voiceOverSource[0].clip = null;
+        voiceOverSource.Stop();
+        voiceOverSource.clip = null;
 	}
 	
 	public void PlaySoundEffect()

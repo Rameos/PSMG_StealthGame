@@ -5,40 +5,23 @@ public class EventController : MonoBehaviour {
 
     SoundManager sound;
 
-    void awake()
+    void Awake()
     {
-        //sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
-        //Debug.Log(sound.GetInstanceID());
+        sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
     }
 
     void OnEnable()
     {
-        DialogManager.OnTalking += StartDialog;
-        DialogManager.OnLeaving += EndDialog;
+        DialogManager.PlayVoice += PlayDialog;
     }
 
     void OnDisable()
     {
-        DialogManager.OnTalking -= StartDialog;
-        DialogManager.OnLeaving -= EndDialog;
+        DialogManager.PlayVoice -= PlayDialog;
     }
 
-    void StartDialog(string data)
+    void PlayDialog(object obj, string data)
     {
-        switch (data)
-        {
-            case "Gruener Fleck":
-                Debug.Log("Grüner Fleck - Weed Drink");
-                break;
-            case "Hello":
-                Debug.Log("Hallo");
-                break;
-        }
-        //sound.PlayVoiceOver("Barkeeper");
-    }
-
-    void EndDialog(string data)
-    {
-        Debug.Log(data);
+        sound.PlayVoiceOver(data);
     }
 }

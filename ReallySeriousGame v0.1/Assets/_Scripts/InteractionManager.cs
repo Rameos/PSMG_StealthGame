@@ -11,9 +11,8 @@ public class InteractionManager : MonoBehaviour
 	public float suspectDistanceFromPlayer = 0.5f;
 	GameObject currentSuspect;
 
-    public delegate void DialogEvent(string Data);
-    public static event DialogEvent OnTalking;
-    public static event DialogEvent OnLeaving;
+    public delegate void DialogEvent (object sender, string e);
+    public static event DialogEvent PlayVoice;
 	
 	/// <summary>
 	/// Pull object into camera center.
@@ -47,11 +46,11 @@ public class InteractionManager : MonoBehaviour
 		Vector3 suspectPos = new Vector3(currentSuspect.transform.position.x, transform.position.y, currentSuspect.transform.position.z); //Lock Y-Axis
 		transform.LookAt(suspectPos);
 		transform.position = Vector3.Lerp(transform.position, currentSuspect.transform.position, suspectDistanceFromPlayer);
-        //if (OnTalking != null)
-        //{
+        if (PlayVoice != null)
+        {
             Debug.Log("Test Event");
-            OnTalking("Hi");
-        //}
+            PlayVoice(this, "Hi");
+        }
 	}
 	
 	/// <summary>
