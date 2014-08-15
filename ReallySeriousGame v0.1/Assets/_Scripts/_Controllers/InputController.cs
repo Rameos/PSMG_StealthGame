@@ -8,6 +8,7 @@ public class InputController : MonoBehaviour
 	public static InputOption controls;
 	
 	#region component declarations
+	NoteBook 			notebook;
 	ClueManager 		clue;
 	MovementManager 	movement;
 	InteractionManager 	interaction;
@@ -35,6 +36,7 @@ public class InputController : MonoBehaviour
 		#endregion
 		
 		#region component initializations
+		notebook		= gameObject.GetComponentInChildren<NoteBook>();
 		clue			= GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
 		movement 		= GetComponent<MovementManager> ();
 		interaction		= GetComponent<InteractionManager> ();
@@ -98,6 +100,11 @@ public class InputController : MonoBehaviour
 			}
 		}
 		#endregion
+		
+		if(keyboard.inputToggleNotebook())
+		{
+			notebook.ToggleNotebook();
+		}
 		
 		if(keyboard.inputPause())
 		{
