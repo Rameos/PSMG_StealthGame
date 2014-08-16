@@ -45,6 +45,9 @@ MonoBehaviour:
   ambientClip:
   - {fileID: 8300000, guid: ebd83106ec5d53f4a8da7f4f08577a6f, type: 3}
   - {fileID: 8300000, guid: 23a839ad29b6cde49a067fd1d6ea8864, type: 3}
+  - {fileID: 8300000, guid: 2a49ac481880ab244b649cc20489fcc1, type: 3}
+  - {fileID: 8300000, guid: 0ff0d08aa8a702e4393b23f0b66753fe, type: 3}
+  - {fileID: 8300000, guid: d5b72c56542508e409187d225fc3ce76, type: 3}
   noiseClip: []
   voiceClip: []
 --- !u!1001 &100100000

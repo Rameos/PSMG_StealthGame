@@ -1,31 +1,30 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class KeyboardInput : MonoBehaviour 
+public class Keyboard
 {	
 	#region movement
-	public bool inputForward() 
+	public static bool inputForward() 
 	{
 		if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) 
 			return true;   
 		return false;
 	}
 
-	public bool inputBackward() 
+	public static bool inputBackward() 
 	{
 		if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) 
 			return true;
 		return false;
 	}
 
-	public bool inputRight() 
+	public static bool inputRight() 
 	{
 		if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) 
 			return true; 
 		return false;
 	}
 
-	public bool inputLeft() 
+	public static bool inputLeft() 
 	{
 		if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) 
 			return true; 
@@ -40,7 +39,7 @@ public class KeyboardInput : MonoBehaviour
 	/// </summary>
 	/// <returns><c>true</c>, if SPACE was pressed, <c>false</c> otherwise.</returns>
 	
-	public bool inputInteract() 
+	public static bool inputInteract() 
 	{
 		if(Input.GetKeyDown(KeyCode.Space)) 
 			return true;
@@ -52,14 +51,14 @@ public class KeyboardInput : MonoBehaviour
 	/// </summary>
 	/// <returns><c>true</c>, if RETURN was pressed, <c>false</c> otherwise.</returns>
 	
-	public bool inputReturn()
+	public static bool inputReturn()
 	{
 		if(Input.GetKeyDown(KeyCode.Return))
 			return true;
 		return false;
 	}
 	
-	public bool inputToggleNotebook()
+	public static bool inputToggleNotebook()
 	{
 		if(Input.GetKeyDown(KeyCode.N))
 			return true;
@@ -73,7 +72,7 @@ public class KeyboardInput : MonoBehaviour
 	/// </summary>
 	/// <returns><c>true</c>, if ESC was pressed, <c>false</c> otherwise.</returns>
 	
-	public bool inputPause()
+	public static bool inputPause()
 	{
 		if(Input.GetKeyDown(KeyCode.Escape))
 			return true;

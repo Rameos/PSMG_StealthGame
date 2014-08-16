@@ -1,21 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class InputController : MonoBehaviour 
 {
 	public static InputController inputController;
-	
-	public static InputOption controls;
 	
 	#region component declarations
 	NoteBook 			notebook;
 	ClueManager 		clueManager;
 	MovementManager 	movement;
 	InteractionManager 	interaction;
-	KeyboardInput 		keyboard;
-	GamepadInput 		pad;
-	MouseInput 			mouse;
-	GazeInput 			gaze;
 	PauseMenu			pause;
 	#endregion
 	
@@ -41,19 +34,7 @@ public class InputController : MonoBehaviour
 		clueManager		= GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
 		movement 		= GetComponent<MovementManager> ();
 		interaction		= GetComponent<InteractionManager> ();
-		keyboard 		= GetComponent<KeyboardInput> ();
-		pad 			= GetComponent<GamepadInput> ();
-		mouse 			= GetComponent<MouseInput> ();
-		gaze 			= GetComponent<GazeInput> ();
 		#endregion
-		
-		controls = InputOption.KeyboardControls;
-	}
-
-	void Update () 
-	{	
-		KeyboardControls();
-		GamepadControls();
 	}
 	
 	// CHECK DEVICE INPUTS
@@ -62,19 +43,23 @@ public class InputController : MonoBehaviour
 	void CheckKeyBoardInputs() 
 	{	
 		#region interactions keyboard
-		if(keyboard.inputInteract())
+		if(Keyboard.inputInteract())
 		{
-			selectedObject = hitObject;
+			if(hitObject.tag != "Clue")
+			{
+				selectedObject = hitObject;
 				
-			interaction.StartInteraction(selectedObject);
-				//activate clues on object when engaging in interaction
-			if(selectedObject != null)
-				clueManager.ActivateCluesOn(selectedObject); //???
-				
-			clueManager.FoundClue(selectedObject);
+				interaction.StartInteraction(selectedObject);
+				if(selectedObject != null)
+					clueManager.ActivateCluesOn(selectedObject); //???
+			}
+			else
+			{
+				clueManager.FoundClue(hitObject);
+			}
 		}
 		
-		if(keyboard.inputReturn())
+		if(Keyboard.inputReturn())
 		{
 			//deactivate clues on object when quitting interaction
 			if(selectedObject != null)
@@ -85,13 +70,13 @@ public class InputController : MonoBehaviour
 		#endregion
 		
 		//NOTEBOOK
-		if(keyboard.inputToggleNotebook())
+		if(Keyboard.inputToggleNotebook())
 		{
 			notebook.ToggleNotebook();
 		}
 		
 		//PAUSE
-		if(keyboard.inputPause())
+		if(Keyboard.inputPause())
 		{
 			pause.TogglePause();
 		}
@@ -99,25 +84,25 @@ public class InputController : MonoBehaviour
 	
 	void CheckMouseInputs() 
 	{	
-		hitObject = mouse.rayTarget().collider.gameObject;
+		hitObject = Mouse.rayTarget().collider.gameObject;
 		
 		#region movement mouse
-		if(ScrollAreas.left.Contains(mouse.Position()))		movement.turnLeft();
+		if(ScrollAreas.left.Contains(Mouse.Position()))		movement.turnLeft();
 			
-		if(ScrollAreas.right.Contains(mouse.Position()))	movement.turnRight();
+		if(ScrollAreas.right.Contains(Mouse.Position()))	movement.turnRight();
 			
-		if(ScrollAreas.top.Contains(mouse.Position()))		movement.turnUp();
+		if(ScrollAreas.top.Contains(Mouse.Position()))		movement.turnUp();
 			
-		if(ScrollAreas.bottom.Contains(mouse.Position()))	movement.turnDown();
+		if(ScrollAreas.bottom.Contains(Mouse.Position()))	movement.turnDown();
 		#endregion
 		
 		#region interactions mouse
-		if(mouse.leftClicked())
+		if(Mouse.leftClicked())
 		{
 			interaction.RotateItemLeft(selectedObject);
 		}
 		
-		if(mouse.rightClicked()) 
+		if(Mouse.rightClicked()) 
 		{
 			interaction.RotateItemRight(selectedObject);
 		}
@@ -126,30 +111,30 @@ public class InputController : MonoBehaviour
  	
 	void CheckGazeInputs()
 	{	
-		hitObject = gaze.rayTarget().collider.gameObject;
+		hitObject = Gaze.rayTarget().collider.gameObject;
 		
-		if(ScrollAreas.left.Contains(gaze.Position()))		movement.turnLeft();
+		if(ScrollAreas.left.Contains(Gaze.Position()))		movement.turnLeft();
 		
-		if(ScrollAreas.right.Contains(gaze.Position()))		movement.turnRight();
-			//BUG
-		if(ScrollAreas.top.Contains(gaze.Position()))		movement.turnDown();
+		if(ScrollAreas.right.Contains(Gaze.Position()))		movement.turnRight();
+		//BUG
+		if(ScrollAreas.top.Contains(Gaze.Position()))		movement.turnDown();
 			
-		if(ScrollAreas.bottom.Contains(gaze.Position()))	movement.turnUp();
+		if(ScrollAreas.bottom.Contains(Gaze.Position()))	movement.turnUp();
 	}
 	
 	void CheckGamepadInputs() 
 	{	
-		if(pad.inputLeftTrigger())
+		if(Gamepad.inputLeftTrigger())
 		{
 			Debug.Log("Left trigger");
 		}
 		
-		if(pad.inputRightTrigger())
+		if(Gamepad.inputRightTrigger())
 		{
 			Debug.Log("Right trigger");
 		}
 		
-		if(pad.inputInteract())
+		if(Gamepad.inputInteract())
 		{
 			Debug.Log ("Pad");
 		}
@@ -164,18 +149,15 @@ public class InputController : MonoBehaviour
 	/// </summary>
 	public void KeyboardControls()
 	{	
-		if(controls == InputOption.KeyboardControls)
-		{	
-			if(gazeModel.isEyeTrackerRunning)
-			{
-				CheckGazeInputs();
-			}
-			else 
-			{
-				CheckMouseInputs();
-			}	
-			CheckKeyBoardInputs();					
+		if(gazeModel.isEyeTrackerRunning)
+		{
+			CheckGazeInputs();
 		}
+		else 
+		{
+			CheckMouseInputs();
+		}	
+		CheckKeyBoardInputs();	
 	}
 	
 	/// <summary>
@@ -183,7 +165,7 @@ public class InputController : MonoBehaviour
 	/// </summary>
 	public void GamepadControls()
 	{
-		if(controls == InputOption.GamepadControls && gazeModel.isEyeTrackerRunning)
+		if(gazeModel.isEyeTrackerRunning)
 		{
 			CheckGamepadInputs();
 			CheckGazeInputs();

@@ -24,22 +24,22 @@ public class InteractionManager : MonoBehaviour
 			{
 			case "Interactable": 
 				GameState.ChangeState(GameState.States.Inspecting);
-				Inspect(selection); 
+				Inspect(selection);
+				isInteracting = true;
 				break;
 				
 			case "Suspect":
 				GameState.ChangeState(GameState.States.Interrogating);
-				Interrogate(selection); 
+				Interrogate(selection);
+				isInteracting = true;
 				break;
 				
 			case "Door":
-				GameState.ChangeState(GameState.States.InGame);
 				EnterDoor(); 
 				break;
 				
 			default: break;
 			}
-			isInteracting = true;
 		}
 		else
 		{
@@ -57,17 +57,16 @@ public class InteractionManager : MonoBehaviour
 			switch(GameState.gameState)
 			{
 			case GameState.States.Inspecting:
-				GameState.ChangeState(GameState.States.InGame);
 				StopInspection();
 				break;
 				
 			case GameState.States.Interrogating:
-				GameState.ChangeState(GameState.States.InGame);
 				StopInterrogation();
 				break;
 				
 			default: break;
 			}
+			GameState.ChangeState(GameState.States.InGame);
 			isInteracting = false;
 		}
 		else
@@ -130,7 +129,6 @@ public class InteractionManager : MonoBehaviour
 	public void EnterDoor()
 	{
 		Application.LoadLevel("Scene_2");
-		Debug.Log ("Entered door");
 	}
 	
 	public void RotateItemLeft(GameObject interactable)

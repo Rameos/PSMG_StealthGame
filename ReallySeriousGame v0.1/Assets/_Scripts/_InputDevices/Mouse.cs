@@ -1,19 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class MouseInput : MonoBehaviour 
+public class Mouse
 {	
-	Ray ray;
-	RaycastHit hit;
-	Vector3 mousePos;
-	
 	#region mouse clicks
-	public bool leftClicked()
+	public static bool leftClicked()
 	{
 		return Input.GetKey(KeyCode.Mouse0) ? true : false;
 	}
 	
-	public bool rightClicked()
+	public static bool rightClicked()
 	{
 		return Input.GetKey(KeyCode.Mouse1) ? true : false;
 	}
@@ -21,15 +16,16 @@ public class MouseInput : MonoBehaviour
 	/// <summary>
 	/// Returns Vector3 position.
 	/// </summary>
-	public Vector3 Position()
+	public static Vector3 Position()
 	{
-		mousePos = Input.mousePosition;
+		Vector3 mousePos = Input.mousePosition;
 		return mousePos;
 	}
 	
-	public RaycastHit rayTarget()
+	public static RaycastHit rayTarget()
 	{
-		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit hit;
 		Physics.Raycast(ray, out hit);
 		return hit;
 	}
