@@ -8,13 +8,20 @@ public class NoteBook : MonoBehaviour
 	
 	public GUIStyle notebookStyle;
 	public Texture notebookTexture;
+
+	private float defaultButtonSize;
+	private Rect buttonBarmann1;
+	//buttonBarmann2, buttonBarmann3;
+
+
 	
 	private Rect notebook;
+	private Rect notebookWindow;
 	private float notebookX;
 	private float notebookY;
-	private float notebookWidth		= Screen.width / 3;
-	private float notebookHeight 	= Screen.height * 0.7f;
-	private float offset			= 10;
+	private float notebookWidth		= Screen.width*0.22f;
+	private float notebookHeight 	= Screen.height * 0.9f;
+	private float offset			= 30;
 	
 	private Rect note;
 	private float noteHeight;
@@ -42,6 +49,7 @@ public class NoteBook : MonoBehaviour
 	{
 		if(isToggled)
 		{
+		
 			notes = clue.GetFoundClues();
 			notebook = GUI.Window(NOTEBOOK_ID, notebook, DisplayFoundClues, notebookHeader);
 		}
@@ -49,6 +57,12 @@ public class NoteBook : MonoBehaviour
 	
 	void DisplayFoundClues(int ID)
 	{
+		defaultButtonSize =notebook.width * 0.18f;
+
+		GUI.DrawTexture(new Rect(0,0,notebook.width,notebook.height),notebookTexture,ScaleMode.StretchToFill,true);
+
+		GUI.Button(buttonBarmann1 =new Rect(notebook.width*0.15f, notebook.width*0.48f, defaultButtonSize, defaultButtonSize), notebookTexture);
+
 		for(int i = 0; i < notes.Count; i++)
 		{
 			if(GUI.Button(new Rect(offset, (offset * 2) + (noteHeight * i), noteWidth, noteHeight), notes[i]))
@@ -60,4 +74,21 @@ public class NoteBook : MonoBehaviour
 	{
 		isToggled = !isToggled;
 	}
+
+	/*
+	public Rect windowRect0 = new Rect(20, 20, 120, 50);
+	public Rect windowRect1 = new Rect(20, 100, 120, 50);
+	void OnGUI() {
+		GUI.color = Color.red;
+		windowRect0 = GUI.Window(0, windowRect0, DoMyWindow, "Red Window");
+		GUI.color = Color.green;
+		windowRect1 = GUI.Window(1, windowRect1, DoMyWindow, "Green Window");
+	}
+	void DoMyWindow(int windowID) {
+		if (GUI.Button(new Rect(10, 20, 100, 20), "Hello World"))
+			print("Got a click in window with color " + GUI.color);
+		
+		GUI.DragWindow(new Rect(0, 0, 1000, 1000));
+	}
+	*/
 }
