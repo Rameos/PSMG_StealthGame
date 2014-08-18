@@ -5,7 +5,8 @@ public class SoundManager : MonoBehaviour
 {
 	public static SoundManager soundManager;
 	
-	private AudioSource backgroundSource;
+	private AudioSource musicSource;
+	private AudioSource ambientSource;
 	private AudioSource voiceOverSource;
 	private AudioSource[] soundEffectSource;
 	
@@ -32,33 +33,56 @@ public class SoundManager : MonoBehaviour
 		}
 		#endregion
 		
-		backgroundSource = gameObject.AddComponent<AudioSource>();
-		backgroundSource.loop = true;
         voiceOverSource = gameObject.AddComponent<AudioSource>();
+		musicSource = gameObject.AddComponent<AudioSource>();
+		musicSource.loop = true;
+		
+		ambientSource = gameObject.AddComponent<AudioSource>();
+		ambientSource.loop = true;
 	}
 	
-	public void PlayBGSound(string level) 
+	public void PlayBGMusic(string level)
 	{
-		backgroundSource.Stop();
+		musicSource.Stop();
+		switch(level)
+		{
+			case "MainMenu":
+				backgroundSound = musicClip[Random.Range(0, musicClip.Length)];
+				break;
+			default: break;
+		}
+		musicSource.clip = backgroundSound;
+		musicSource.Play();
+	}
+	
+	public void StopBGMusic()
+	{
+		musicSource.Stop();
+		musicSource.clip = null;
+	}
+	
+	public void PlayAmbientSound(string level) 
+	{
+		ambientSource.Stop();
 		switch (level)
 		{
-		case "MainMenu":
-			backgroundSound = musicClip[Random.Range(0, musicClip.Length)];
-			break;
 		case "BarScene":
-			backgroundSound = ambientClip[Random.Range(0, ambientClip.Length)];
+			backgroundSound = ambientClip[Random.Range(0, 1)];
+			break;
+		case "Scene_2":
+			backgroundSound = ambientClip[Random.Range(2, ambientClip.Length)];
 			break;
 		default:
 			break;
 		}
-		backgroundSource.clip = backgroundSound;
-		backgroundSource.Play();
+		ambientSource.clip = backgroundSound;
+		ambientSource.Play();
 	}
 	
-	public void StopBGSound()
+	public void StopAmbientSound()
 	{
-		backgroundSource.Stop();
-		backgroundSource.clip = null;
+		ambientSource.Stop();
+		ambientSource.clip = null;
 	}
 	
 	public void PlayVoiceOver(string track)
@@ -171,18 +195,6 @@ public class SoundManager : MonoBehaviour
             case Constants.EventJunkieHirte:
                 voiceOverSound = voiceClip[32];
                 break;
-            //case Constants.EventBarkeeperFleck:
-            //    voiceOverSound = voiceClip[2];
-                //break;
-                //break;
-                //break;
-                //break;
-                //break;
-                //break;
-                //break;
-                //break;
-                //break;
-                //break;
             default:
                 break;
         }

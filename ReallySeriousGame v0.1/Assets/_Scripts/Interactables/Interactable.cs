@@ -19,7 +19,11 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	
 	void OnMouseOver()
 	{
-		if(GameState.IsPaused)
+		if(!GameState.IsPaused && !isHighlighted)
+		{
+			Highlight();
+		}
+		if(GameState.IsPaused && isHighlighted)
 		{
 			UnHighlight();
 		}

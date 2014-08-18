@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 // DS4 Layout
 // Facebuttons: 0 = Square, 1 = Cross, 2 = Circle, 3 = Triangle
@@ -7,7 +6,7 @@ using System.Collections;
 // 8 = Share, 9 = Options, 13 = Touchpad Click
 // 10 = Left Stick Click, 11 = Right Stick Click, 12 = PS Home
 
-public class GamepadInput : MonoBehaviour 
+public class Gamepad 
 {
 	/*
 	public bool inputLeft()
@@ -30,21 +29,21 @@ public class GamepadInput : MonoBehaviour
 	/// </summary>
 	/// <returns><c>true</c>, if button for 'interact' was pressed, <c>false</c> otherwise.</returns>
 	
-	public bool inputInteract()
+	public static bool inputInteract()
 	{
 		if(Input.GetKeyDown(KeyCode.Joystick1Button1))
 			return true;
 		return false;
 	}
 	
-	public bool inputLeftTrigger()
+	public static bool inputLeftTrigger()
 	{
 		if(Input.GetKeyDown(KeyCode.Joystick1Button6))
 			return true;
 		return false;
 	}
 	
-	public bool inputRightTrigger()
+	public static bool inputRightTrigger()
 	{
 		if(Input.GetKeyDown(KeyCode.Joystick1Button7))
 			return true;

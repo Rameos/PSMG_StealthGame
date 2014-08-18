@@ -33,13 +33,13 @@ public class ClueManager : MonoBehaviour
 	{
 		if(!cluesActivated)
 		{
-			foreach (Transform child in selectedObject.transform)
+			foreach (Transform clue in selectedObject.transform)
 			{
-				string childClueName = child.GetComponent<Clue>().clueName;
-				if(child.tag == "Clue")
+				string childClueName = clue.GetComponent<Clue>().clueName;
+				if(clue.tag == "Clue")
 				{
 					if(!foundClues.Contains(childClueName))
-						child.gameObject.SetActive(true);
+						clue.gameObject.SetActive(true);
 				}
 			}
 			cluesActivated = true;
@@ -58,7 +58,7 @@ public class ClueManager : MonoBehaviour
 	{
 		if(cluesActivated)
 		{
-			foreach (Transform child in selectedObject.transform.parent != null ? selectedObject.transform.parent : selectedObject.transform)
+			foreach (Transform child in selectedObject.transform)
 			{
 				if(child.tag == "Clue")
 					child.gameObject.SetActive(false);
@@ -81,6 +81,7 @@ public class ClueManager : MonoBehaviour
 		{
 			selectedClue = newClue.GetComponent<Clue>();
 			selectedClue.SetDiscovered();
+			
 			if(!foundClues.Contains(selectedClue.clueName))
 				foundClues.Add(selectedClue.clueName);
 		}

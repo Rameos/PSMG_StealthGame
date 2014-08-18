@@ -9,12 +9,11 @@ public class GameController : MonoBehaviour
 	public static GameController gameControl;
 	
 	SoundManager sound;
-	ClueManager clueManager;
-	InputController inputController;
-	GameObject selectedObject;
-	GameObject selectedClue;
+	//ClueManager clueManager;
 	
 	//private string dataFileName = "/gameprogress.dat";
+	
+	int currentLevel = -1;
 	
 	void Awake() 
 	{
@@ -32,13 +31,12 @@ public class GameController : MonoBehaviour
 		
 		sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
 		//clueManager = GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
-		//inputController = GameObject.FindGameObjectWithTag("Player").GetComponent<InputController>();
 	}
 	
 	void Update () 
 	{	
 		Debug.Log(GameState.gameState);
-		Debug.Log(Interactable.isHighlighted);
+		CheckControls();
 		CheckGameState();
 	}
 	/// <summary>
@@ -46,24 +44,41 @@ public class GameController : MonoBehaviour
 	/// </summary>
 	void CheckGameState()
 	{
-		if(!GameState.IsPaused && !GameState.IsInteracting)
-		{	
-			if(Application.loadedLevelName == "MainMenu" && !GameState.IsState(GameState.States.MainMenu))
+		if(!(currentLevel == Application.loadedLevel))
+		{
+			switch(Application.loadedLevelName)
 			{
-				sound.PlayBGSound(Application.loadedLevelName);
+			case "MainMenu":
+				sound.StopAmbientSound();
+				sound.PlayBGMusic(Application.loadedLevelName);
 				GameState.ChangeState(GameState.States.MainMenu);
-			}
-			if(Application.loadedLevelName == "BarScene" && !GameState.IsState(GameState.States.InGame))
-			{
-				sound.PlayBGSound(Application.loadedLevelName);
+				break;
+			case "BarScene":
+			case "Scene_2":
+				sound.StopBGMusic();
+				sound.PlayAmbientSound(Application.loadedLevelName);
 				GameState.ChangeState(GameState.States.InGame);
+				break;
+			default:
+				break;
 			}
+			currentLevel = Application.loadedLevel;
 		}
 	}
 	
-	public void SelectedObject()
+	void CheckControls()
 	{
-		
+		if(!(Application.loadedLevel == 0))
+		{
+			if(ControlsOptions.IsKeyboardControls)
+			{
+				InputController.inputController.KeyboardControls();
+			}
+			else if(ControlsOptions.IsGamepadControls)
+			{
+				InputController.inputController.GamepadControls();
+			}
+		}
 	}
 	
 	/*

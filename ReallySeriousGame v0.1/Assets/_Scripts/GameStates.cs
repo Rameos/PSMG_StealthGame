@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class GameState 
+﻿public class GameState 
 {
 	public enum States
 	{
@@ -11,7 +8,7 @@ public class GameState
 		Inspecting,
 		Interrogating
 	}	
-	public static States gameState = States.InGame;
+	public static States gameState;
 	
 	public static void ChangeState(States newGameState) 
 	{
