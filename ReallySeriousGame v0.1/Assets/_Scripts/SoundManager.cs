@@ -153,47 +153,84 @@ public class SoundManager : MonoBehaviour
                 voiceOverSound = voiceClip[19];
                 break;
             case Constants.EventDetektivFallGeloest:
-                voiceOverSound = voiceClip[19];
+                voiceOverSound = voiceClip[20];
                 break;
                 //Events Junkie
             case Constants.EventJunkieMedizin:
-                voiceOverSound = voiceClip[20];
-                break;
-            case Constants.EventJunkieWasIsLos:
                 voiceOverSound = voiceClip[21];
                 break;
-            case Constants.EventJunkieCharly:
+            case Constants.EventJunkieWasIsLos:
                 voiceOverSound = voiceClip[22];
                 break;
-            case Constants.EventJunkieHoseGeklaut:
+            case Constants.EventJunkieCharly:
                 voiceOverSound = voiceClip[23];
                 break;
-            case Constants.EventJunkieSchaefchen:
+            case Constants.EventJunkieHoseGeklaut:
                 voiceOverSound = voiceClip[24];
                 break;
-            case Constants.EventJunkieVomBarmann:
+            case Constants.EventJunkieSchaefchen:
                 voiceOverSound = voiceClip[25];
                 break;
-            case Constants.EventJunkieMalen:
+            case Constants.EventJunkieVomBarmann:
                 voiceOverSound = voiceClip[26];
                 break;
-            case Constants.EventJunkieKurzNippen:
+            case Constants.EventJunkieMalen:
                 voiceOverSound = voiceClip[27];
                 break;
-            case Constants.EventJunkieBraucheStoff:
+            case Constants.EventJunkieKurzNippen:
                 voiceOverSound = voiceClip[28];
                 break;
-            case Constants.EventJunkieMalenDiesUndDas:
+            case Constants.EventJunkieBraucheStoff:
                 voiceOverSound = voiceClip[29];
                 break;
-            case Constants.EventJunkieCharlyNein:
+            case Constants.EventJunkieMalenDiesUndDas:
                 voiceOverSound = voiceClip[30];
                 break;
-            case Constants.EventJunkieNachschub:
+            case Constants.EventJunkieCharlyNein:
                 voiceOverSound = voiceClip[31];
                 break;
-            case Constants.EventJunkieHirte:
+            case Constants.EventJunkieNachschub:
                 voiceOverSound = voiceClip[32];
+                break;
+            case Constants.EventJunkieHirte:
+                voiceOverSound = voiceClip[33];
+                break;
+                //Events Doctor
+            case Constants.EventDoctorDummeMenschen:
+                voiceOverSound = voiceClip[34];
+                break;
+            case Constants.EventDoctorBinBeschaeftigt:
+                voiceOverSound = voiceClip[35];
+                break;
+            case Constants.EventDoctorNochDa:
+                voiceOverSound = voiceClip[36];
+                break;
+            case Constants.EventDoctorPflanzen:
+                voiceOverSound = voiceClip[37];
+                break;
+            case Constants.EventDoctorFingerWeg:
+                voiceOverSound = voiceClip[38];
+                break;
+            case Constants.EventDoctorIstAerztin:
+                voiceOverSound = voiceClip[39];
+                break;
+            case Constants.EventDoctorKeinAlkohol:
+                voiceOverSound = voiceClip[40];
+                break;
+            case Constants.EventDoctorZuTun:
+                voiceOverSound = voiceClip[41];
+                break;
+            case Constants.EventDoctorFaszinationPflanzen:
+                voiceOverSound = voiceClip[42];
+                break;
+            case Constants.EventDoctorMedikament:
+                voiceOverSound = voiceClip[43];
+                break;
+            case Constants.EventDoctorKrebsHeilen:
+                voiceOverSound = voiceClip[44];
+                break;
+            case Constants.EventDoctorZeitVerschwenden:
+                voiceOverSound = voiceClip[45];
                 break;
             default:
                 break;

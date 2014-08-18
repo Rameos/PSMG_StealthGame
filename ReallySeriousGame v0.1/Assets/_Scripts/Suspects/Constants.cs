@@ -37,9 +37,18 @@ public class Constants : MonoBehaviour {
     public const string EventJunkieCharlyNein = "Junkie-CharlyNein";
     public const string EventJunkieNachschub = "Junkie-Nachschub";
     public const string EventJunkieHirte = "Junkie-Hirte";
-
-
-    
+    public const string EventDoctorDummeMenschen = "Doctor-DummeMenschen";
+    public const string EventDoctorBinBeschaeftigt = "Doctor-BinBeschaeftigt";
+    public const string EventDoctorNochDa = "Doctor-NochDa";
+    public const string EventDoctorPflanzen = "Doctor-Pflanzen";
+    public const string EventDoctorFingerWeg = "Doctor-FingerWeg";
+    public const string EventDoctorIstAerztin = "Doctor-IstAerztin";
+    public const string EventDoctorKeinAlkohol = "Doctor-KeinAlcohol";
+    public const string EventDoctorZuTun = "Doctor-ZuTun";
+    public const string EventDoctorFaszinationPflanzen = "Doctor-FaszinationPflanzen";
+    public const string EventDoctorMedikament = "Doctor-Medikament";
+    public const string EventDoctorKrebsHeilen = "Doctor-KrebsHeilen";
+    public const string EventDoctorZeitVerschwenden = "Doctor-ZeitVerschwenden";    
     
 	// Use this for initialization
 	void Start () {
