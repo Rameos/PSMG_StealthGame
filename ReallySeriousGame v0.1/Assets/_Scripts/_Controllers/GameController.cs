@@ -7,6 +7,7 @@ using System.IO;
 public class GameController : MonoBehaviour 
 {
 	public static GameController gameControl;
+    private GameState.States currentState, previousState;
 	
 	SoundManager sound;
 	//ClueManager clueManager;
@@ -34,8 +35,13 @@ public class GameController : MonoBehaviour
 	}
 	
 	void Update () 
-	{	
-		Debug.Log(GameState.gameState);
+	{
+        previousState = currentState;
+        currentState = GameState.gameState;
+        if (currentState != previousState)
+        {
+            Debug.Log(GameState.gameState);
+        }
 		CheckControls();
 		CheckGameState();
 	}
