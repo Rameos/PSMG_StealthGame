@@ -15,6 +15,7 @@ public class InteractionManager : MonoBehaviour
 
     public delegate void DialogEvent (object sender, string e);
     public static event DialogEvent PlayVoice;
+    private Suspect activeSuspect;
 	
 	/// <summary>
 	/// Starts interaction with selected object.
@@ -109,6 +110,12 @@ public class InteractionManager : MonoBehaviour
 	/// </summary>
 	public void Interrogate(GameObject suspect)
 	{
+        if (PlayVoice != null)
+        {
+            activeSuspect = suspect.GetComponent<Suspect>();
+            //PlayVoice(this, activeSuspect.);
+            PlayVoice(this, suspect.GetComponent<Suspect>)
+        }
 		currentSuspect = suspect;
 		#region position player
 		playerOriginalPos = transform.position;

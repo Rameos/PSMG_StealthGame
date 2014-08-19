@@ -4278,6 +4278,7 @@ GameObject:
   - 212: {fileID: 1831920947}
   - 65: {fileID: 1831920949}
   - 114: {fileID: 1831920950}
+  - 114: {fileID: 1831920951}
   m_Layer: 0
   m_Name: Barkeep
   m_TagString: Suspect
@@ -4346,6 +4347,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightColor: {r: .75, g: 1, b: .75, a: 1}
+--- !u!114 &1831920951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1831920946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94dea9939b3eb54b9b1cefe2154cb11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSuspect: 1
+  suspectName: 
+  suspectAge: 0
+  Gender: 
+  suspectDetails: 
+  state: 0
+  numberOfConversations: 0
 --- !u!1 &1843088910
 GameObject:
   m_ObjectHideFlags: 0
