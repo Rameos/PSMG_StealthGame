@@ -49,7 +49,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0ff0d08aa8a702e4393b23f0b66753fe, type: 3}
   - {fileID: 8300000, guid: d5b72c56542508e409187d225fc3ce76, type: 3}
   noiseClip: []
-  voiceClip:
+  voiceClipBarkeeper:
   - {fileID: 8300000, guid: daa742142c1f0d54c9c4b37e3a946f0c, type: 3}
   - {fileID: 8300000, guid: 1bf578e1071be3e4a93ca71345977c83, type: 3}
   - {fileID: 8300000, guid: 5eec03d1a8c34f846b8168243b9acdb0, type: 3}
@@ -61,6 +61,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7439f3d6ccadda34bae3c03a25abe872, type: 3}
   - {fileID: 8300000, guid: 9b4f82e5714bab6498433ccc3620a680, type: 3}
   - {fileID: 8300000, guid: 15cd21aed1fcb174d90e6e871870eff8, type: 3}
+  voiceClipDetective:
   - {fileID: 8300000, guid: d719cf60996af244eb85cad6dfdfbe12, type: 3}
   - {fileID: 8300000, guid: 7e206dec0acb03b4d886226d18ab25ec, type: 3}
   - {fileID: 8300000, guid: 7055470d705dd0247a917db191c4ef51, type: 3}
@@ -71,6 +72,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dfb2ea2aeeea6544d87d6e457a1551a5, type: 3}
   - {fileID: 8300000, guid: 2c4598c3b9f498d46ab228280c716ad7, type: 3}
   - {fileID: 8300000, guid: a875ba45925815044bbc940ff8f42143, type: 3}
+  voiceClipJunkie:
   - {fileID: 8300000, guid: 9a1e826f65fab4c47ab463a7861875ee, type: 3}
   - {fileID: 8300000, guid: d8e4cd2d7cca2de44a3e8d4fc30154aa, type: 3}
   - {fileID: 8300000, guid: ec71e2a462edbc849b7ab9128af122d3, type: 3}
@@ -84,6 +86,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4505b1a334a193b4e933e647ccbce2a8, type: 3}
   - {fileID: 8300000, guid: 7e2504df4e43b4d4e80cdc8f28fa89b1, type: 3}
   - {fileID: 8300000, guid: 2ce90efc50776704ebb2a4907aaf02d7, type: 3}
+  voiceClipDoctor:
   - {fileID: 8300000, guid: 08c0f273651a2c84d8fa98e84eb21d56, type: 3}
   - {fileID: 8300000, guid: 4e0b221c1cdf5634d9ea271056441d5f, type: 3}
   - {fileID: 8300000, guid: ae46ee1db9392be4da20e76d9e86c5c5, type: 3}

@@ -13,7 +13,10 @@ public class SoundManager : MonoBehaviour
 	public AudioClip[] musicClip;
 	public AudioClip[] ambientClip;
 	public AudioClip[] noiseClip;
-	public AudioClip[] voiceClip;
+    public AudioClip[] voiceClipBarkeeper;
+    public AudioClip[] voiceClipDetective;
+    public AudioClip[] voiceClipJunkie;
+    public AudioClip[] voiceClipDoctor;
 	
 	
 	private AudioClip backgroundSound;
@@ -92,145 +95,145 @@ public class SoundManager : MonoBehaviour
         {
                 //Events Barkeeper
             case Constants.EventBarkeeperDrink:
-                voiceOverSound = voiceClip[0];
+                voiceOverSound = voiceClipBarkeeper[0];
                 break;
             case Constants.EventBarkeeperMixexperte:
-                voiceOverSound = voiceClip[1];
+                voiceOverSound = voiceClipBarkeeper[1];
                 break;
             case Constants.EventBarkeeperFleck:
-                voiceOverSound = voiceClip[2];
+                voiceOverSound = voiceClipBarkeeper[2];
                 break;            
             case Constants.EventBarkeeperMischung:
-                voiceOverSound = voiceClip[3];
+                voiceOverSound = voiceClipBarkeeper[3];
                 break;
             case Constants.EventBarkeeperErfolgsgeheimnis:
-                voiceOverSound = voiceClip[4];
+                voiceOverSound = voiceClipBarkeeper[4];
                 break;
             case Constants.EventBarkeeperKillerdrink:
-                voiceOverSound = voiceClip[5];
+                voiceOverSound = voiceClipBarkeeper[5];
                 break;
             case Constants.EventBarkeeperRatten:
-                voiceOverSound = voiceClip[6];
+                voiceOverSound = voiceClipBarkeeper[6];
                 break;
             case Constants.EventBarkeeperDrogen:
-                voiceOverSound = voiceClip[7];
+                voiceOverSound = voiceClipBarkeeper[7];
                 break;
             case Constants.EventBarkeeperRattengift:
-                voiceOverSound = voiceClip[8];
+                voiceOverSound = voiceClipBarkeeper[8];
                 break;
             case Constants.EventBarkeeperBesterDrink:
-                voiceOverSound = voiceClip[9];
+                voiceOverSound = voiceClipBarkeeper[9];
                 break;
             case Constants.EventBarkeeperAllesMischen:
-                voiceOverSound = voiceClip[10];
+                voiceOverSound = voiceClipBarkeeper[10];
                 break;
                 //Events Detektiv
             case Constants.EventDetektivBesserNicht:
-                voiceOverSound = voiceClip[11];
+                voiceOverSound = voiceClipDetective[0];
                 break;
             case Constants.EventDetektivZimmerUntersuchen:
-                voiceOverSound = voiceClip[12];
+                voiceOverSound = voiceClipDetective[1];
                 break;
             case Constants.EventDetektivVersuchZuMischen:
-                voiceOverSound = voiceClip[13];
+                voiceOverSound = voiceClipDetective[2];
                 break;
             case Constants.EventDetektivInteressant:
-                voiceOverSound = voiceClip[14];
+                voiceOverSound = voiceClipDetective[3];
                 break;
             case Constants.EventDetektivNichtGut:
-                voiceOverSound = voiceClip[15];
+                voiceOverSound = voiceClipDetective[4];
                 break;
             case Constants.EventDetektivBuchUntersuchen:
-                voiceOverSound = voiceClip[16];
+                voiceOverSound = voiceClipDetective[5];
                 break;
             case Constants.EventDetektivWlanAusschalten:
-                voiceOverSound = voiceClip[17];
+                voiceOverSound = voiceClipDetective[6];
                 break;
             case Constants.EventDetektivSchlossKnacken:
-                voiceOverSound = voiceClip[18];
+                voiceOverSound = voiceClipDetective[7];
                 break;
             case Constants.EventDetektivBesserLassen:
-                voiceOverSound = voiceClip[19];
+                voiceOverSound = voiceClipDetective[8];
                 break;
             case Constants.EventDetektivFallGeloest:
-                voiceOverSound = voiceClip[20];
+                voiceOverSound = voiceClipDetective[9];
                 break;
                 //Events Junkie
             case Constants.EventJunkieMedizin:
-                voiceOverSound = voiceClip[21];
+                voiceOverSound = voiceClipJunkie[0];
                 break;
             case Constants.EventJunkieWasIsLos:
-                voiceOverSound = voiceClip[22];
+                voiceOverSound = voiceClipJunkie[1];
                 break;
             case Constants.EventJunkieCharly:
-                voiceOverSound = voiceClip[23];
+                voiceOverSound = voiceClipJunkie[2];
                 break;
             case Constants.EventJunkieHoseGeklaut:
-                voiceOverSound = voiceClip[24];
+                voiceOverSound = voiceClipJunkie[3];
                 break;
             case Constants.EventJunkieSchaefchen:
-                voiceOverSound = voiceClip[25];
+                voiceOverSound = voiceClipJunkie[4];
                 break;
             case Constants.EventJunkieVomBarmann:
-                voiceOverSound = voiceClip[26];
+                voiceOverSound = voiceClipJunkie[5];
                 break;
             case Constants.EventJunkieMalen:
-                voiceOverSound = voiceClip[27];
+                voiceOverSound = voiceClipJunkie[6];
                 break;
             case Constants.EventJunkieKurzNippen:
-                voiceOverSound = voiceClip[28];
+                voiceOverSound = voiceClipJunkie[7];
                 break;
             case Constants.EventJunkieBraucheStoff:
-                voiceOverSound = voiceClip[29];
+                voiceOverSound = voiceClipJunkie[8];
                 break;
             case Constants.EventJunkieMalenDiesUndDas:
-                voiceOverSound = voiceClip[30];
+                voiceOverSound = voiceClipJunkie[9];
                 break;
             case Constants.EventJunkieCharlyNein:
-                voiceOverSound = voiceClip[31];
+                voiceOverSound = voiceClipJunkie[10];
                 break;
             case Constants.EventJunkieNachschub:
-                voiceOverSound = voiceClip[32];
+                voiceOverSound = voiceClipJunkie[11];
                 break;
             case Constants.EventJunkieHirte:
-                voiceOverSound = voiceClip[33];
+                voiceOverSound = voiceClipJunkie[12];
                 break;
                 //Events Doctor
             case Constants.EventDoctorDummeMenschen:
-                voiceOverSound = voiceClip[34];
+                voiceOverSound = voiceClipDoctor[0];
                 break;
             case Constants.EventDoctorBinBeschaeftigt:
-                voiceOverSound = voiceClip[35];
+                voiceOverSound = voiceClipDoctor[1];
                 break;
             case Constants.EventDoctorNochDa:
-                voiceOverSound = voiceClip[36];
+                voiceOverSound = voiceClipDoctor[2];
                 break;
             case Constants.EventDoctorPflanzen:
-                voiceOverSound = voiceClip[37];
+                voiceOverSound = voiceClipDoctor[3];
                 break;
             case Constants.EventDoctorFingerWeg:
-                voiceOverSound = voiceClip[38];
+                voiceOverSound = voiceClipDoctor[4];
                 break;
             case Constants.EventDoctorIstAerztin:
-                voiceOverSound = voiceClip[39];
+                voiceOverSound = voiceClipDoctor[5];
                 break;
             case Constants.EventDoctorKeinAlkohol:
-                voiceOverSound = voiceClip[40];
+                voiceOverSound = voiceClipDoctor[6];
                 break;
             case Constants.EventDoctorZuTun:
-                voiceOverSound = voiceClip[41];
+                voiceOverSound = voiceClipDoctor[7];
                 break;
             case Constants.EventDoctorFaszinationPflanzen:
-                voiceOverSound = voiceClip[42];
+                voiceOverSound = voiceClipDoctor[8];
                 break;
             case Constants.EventDoctorMedikament:
-                voiceOverSound = voiceClip[43];
+                voiceOverSound = voiceClipDoctor[9];
                 break;
             case Constants.EventDoctorKrebsHeilen:
-                voiceOverSound = voiceClip[44];
+                voiceOverSound = voiceClipDoctor[10];
                 break;
             case Constants.EventDoctorZeitVerschwenden:
-                voiceOverSound = voiceClip[45];
+                voiceOverSound = voiceClipDoctor[11];
                 break;
             default:
                 break;
