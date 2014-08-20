@@ -8,10 +8,12 @@ public class NoteBook : MonoBehaviour
 	
 	public GUIStyle notebookStyle;
 	public Texture notebookTexture;
+	public Texture barmannClue1, barmannClue2, barmannClue3;
+	public Texture docClue1, docClue2, docClue3;
 
 	private float defaultButtonSize;
-	private Rect buttonBarmann1;
-	//buttonBarmann2, buttonBarmann3;
+	private Rect buttonBarmann1, buttonBarmann2, buttonBarmann3;
+	private Rect buttonDoc1, buttonDoc2, buttonDoc3;
 
 
 	
@@ -61,8 +63,18 @@ public class NoteBook : MonoBehaviour
 
 		GUI.DrawTexture(new Rect(0,0,notebook.width,notebook.height),notebookTexture,ScaleMode.StretchToFill,true);
 
-		GUI.Button(buttonBarmann1 =new Rect(notebook.width*0.15f, notebook.width*0.48f, defaultButtonSize, defaultButtonSize), notebookTexture);
+		GUI.Button(buttonBarmann1 = new Rect(notebook.width*0.17f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue1);
+		GUI.Button(buttonBarmann2 = new Rect(notebook.width*0.41f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue2);
+		GUI.Button(buttonBarmann3 = new Rect(notebook.width*0.65f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue3);
 
+		GUI.Button(buttonDoc1 = new Rect(notebook.width*0.17f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue1);
+		GUI.Button(buttonDoc2 = new Rect(notebook.width*0.41f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue2);
+		GUI.Button(buttonDoc3 = new Rect(notebook.width*0.65f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue3);
+
+		float m = buttonBarmann1.width + buttonBarmann2.width + buttonBarmann3.width + buttonDoc1.width + buttonDoc2.width + buttonDoc3.width;
+		if (m<1) {
+
+		}
 		for(int i = 0; i < notes.Count; i++)
 		{
 			if(GUI.Button(new Rect(offset, (offset * 2) + (noteHeight * i), noteWidth, noteHeight), notes[i]))
