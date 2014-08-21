@@ -37,6 +37,7 @@ public class SoundManager : MonoBehaviour
 		#endregion
 		
         voiceOverSource = gameObject.AddComponent<AudioSource>();
+        //voiceOverSource.rolloffMode = AudioRolloffMode.Linear;
 		musicSource = gameObject.AddComponent<AudioSource>();
 		musicSource.loop = true;
 		

@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
         currentState = GameState.gameState;
         if (currentState != previousState)
         {
-            Debug.Log(GameState.gameState);
+            Debug.Log(currentState);
         }
         previousState = currentState;
 		CheckControls();

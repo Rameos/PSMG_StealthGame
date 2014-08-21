@@ -12,16 +12,67 @@ public class EventController : MonoBehaviour {
 
     void OnEnable()
     {
-        DialogManager.PlayVoice += PlayDialog;
+        //DialogManager.PlayVoice += PlayDialog;
+        InteractionManager.PlayVoice += PlayDialog;
+        Interactable.PlayVoice += PlayDialog;
     }
 
     void OnDisable()
     {
-        DialogManager.PlayVoice -= PlayDialog;
+        //DialogManager.PlayVoice -= PlayDialog;
+        InteractionManager.PlayVoice -= PlayDialog;
+        Interactable.PlayVoice -= PlayDialog;
+
     }
 
-    void PlayDialog(object obj, string data)
+    void PlayDialog(object obj, string name, int index)
     {
-        sound.PlayVoiceOver(data);
+        switch (name)
+        {
+            case "Barkeeper":
+                playDialogBarkeeper(index);
+                break;
+            case "Doctor":
+                playDialogDoctor(index);
+                break;
+            case "Junkie": 
+                playDialogJunkie(index);
+                break;
+            case "Detective":
+                playDialogDetective(index);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void playDialogBarkeeper(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                sound.PlayVoiceOver(Constants.EventBarkeeperDrink);
+                break;
+            case 1:
+                sound.PlayVoiceOver(Constants.EventBarkeeperMixexperte);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void playDialogDoctor(int index)
+    {
+
+    }
+
+    private void playDialogJunkie(int index)
+    {
+
+    }
+
+    private void playDialogDetective(int index)
+    {
+
     }
 }

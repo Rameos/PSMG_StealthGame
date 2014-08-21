@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
 public class InteractionManager : MonoBehaviour 
 {
@@ -13,7 +13,7 @@ public class InteractionManager : MonoBehaviour
 	public float suspectDistanceFromPlayer = 0.5f;
 	GameObject currentSuspect;
 
-    public delegate void DialogEvent (object sender, string e);
+    public delegate void DialogEvent (object sender, string data, int index);
     public static event DialogEvent PlayVoice;
     private Suspect activeSuspect;
 	
@@ -33,6 +33,7 @@ public class InteractionManager : MonoBehaviour
 				break;
 				
 			case "Suspect":
+                //Debug.Log("Interrogating " + selection.GetComponent<Suspect>().currentSuspect.ToString());
 				GameState.ChangeState(GameState.States.Interrogating);
 				Interrogate(selection);
 				isInteracting = true;
@@ -113,8 +114,11 @@ public class InteractionManager : MonoBehaviour
         if (PlayVoice != null)
         {
             activeSuspect = suspect.GetComponent<Suspect>();
-            //PlayVoice(this, activeSuspect.);
-            PlayVoice(this, suspect.GetComponent<Suspect>)
+            //Debug.Log(activeSuspect.currentSuspect.ToString() + " " +  activeSuspect.numberOfConversations);
+            if (PlayVoice != null)
+            {
+                PlayVoice(this, activeSuspect.currentSuspect.ToString(), activeSuspect.numberOfConversations);
+            }
         }
 		currentSuspect = suspect;
 		#region position player
@@ -131,6 +135,7 @@ public class InteractionManager : MonoBehaviour
 	public void StopInterrogation()
 	{
 		transform.position = playerOriginalPos;
+        activeSuspect.numberOfConversations++;
 	}
 	
 	/// <summary>
