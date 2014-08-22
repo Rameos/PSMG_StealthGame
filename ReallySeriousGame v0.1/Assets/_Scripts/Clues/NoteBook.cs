@@ -7,16 +7,13 @@ public class NoteBook : MonoBehaviour
 	ClueManager clue;
 	
 	public GUIStyle notebookStyle;
+	public GUIStyle btnStyle;
 	public Texture notebookTexture;
 	public Texture barmannClue1, barmannClue2, barmannClue3;
 	public Texture docClue1, docClue2, docClue3;
 
 	private float defaultButtonSize;
-	private Rect buttonBarmann1, buttonBarmann2, buttonBarmann3;
-	private Rect buttonDoc1, buttonDoc2, buttonDoc3;
 
-
-	
 	private Rect notebook;
 	private Rect notebookWindow;
 	private float notebookX;
@@ -63,18 +60,25 @@ public class NoteBook : MonoBehaviour
 
 		GUI.DrawTexture(new Rect(0,0,notebook.width,notebook.height),notebookTexture,ScaleMode.StretchToFill,true);
 
-		GUI.Button(buttonBarmann1 = new Rect(notebook.width*0.17f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue1);
-		GUI.Button(buttonBarmann2 = new Rect(notebook.width*0.41f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue2);
-		GUI.Button(buttonBarmann3 = new Rect(notebook.width*0.65f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue3);
-
-		GUI.Button(buttonDoc1 = new Rect(notebook.width*0.17f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue1);
-		GUI.Button(buttonDoc2 = new Rect(notebook.width*0.41f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue2);
-		GUI.Button(buttonDoc3 = new Rect(notebook.width*0.65f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue3);
-
-		float m = buttonBarmann1.width + buttonBarmann2.width + buttonBarmann3.width + buttonDoc1.width + buttonDoc2.width + buttonDoc3.width;
-		if (m<1) {
-
+		if (clue.CheckClue(0)) {
+			GUI.Button(new Rect(notebook.width*0.17f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize*2), barmannClue1, btnStyle);
 		}
+		if (clue.CheckClue(1)) {
+			GUI.Button(new Rect(notebook.width*0.41f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue2, btnStyle);
+		}
+		if (clue.CheckClue(2)) {
+			GUI.Button(new Rect(notebook.width*0.65f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue3, btnStyle);
+		}
+		if (clue.CheckClue(3)) {
+			GUI.Button(new Rect(notebook.width*0.17f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue1, btnStyle);
+		}
+		if (clue.CheckClue(4)) {
+			GUI.Button(new Rect(notebook.width*0.41f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue2, btnStyle);
+		}
+		if (clue.CheckClue(5)) {
+			GUI.Button(new Rect(notebook.width*0.65f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue3, btnStyle);
+		}
+
 		for(int i = 0; i < notes.Count; i++)
 		{
 			if(GUI.Button(new Rect(offset, (offset * 2) + (noteHeight * i), noteWidth, noteHeight), notes[i]))

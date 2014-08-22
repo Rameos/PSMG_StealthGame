@@ -7,6 +7,8 @@ public class ClueManager : MonoBehaviour
 	public static ClueManager clueManager;
 	
 	static List<string> foundClues = new List<string>();
+	static List<bool> noteBookClues = new List<bool>();
+
 	Clue selectedClue;
 	
 	void Awake ()
@@ -20,6 +22,10 @@ public class ClueManager : MonoBehaviour
 		else if(clueManager != this) 
 		{
 			Destroy(gameObject);
+		}
+
+		for (int i = 0; i < 6; i++) {
+			noteBookClues.Add(false);
 		}
 		#endregion
 	}
@@ -62,7 +68,24 @@ public class ClueManager : MonoBehaviour
 	{
 		selectedClue = newClue.GetComponent<Clue>();
 		selectedClue.SetDiscovered();
-		foundClues.Add(selectedClue.clueName);
+
+		Debug.Log (selectedClue.clueName);
+		if (selectedClue.clueName.Contains("Drink")) {
+			noteBookClues[0] = true;
+		}if (selectedClue.clueName.Contains("Mixbuch")) {
+			noteBookClues[1] = true;
+		}if (selectedClue.clueName.Contains("Gift")) {
+			noteBookClues[2] = true;
+		}if (selectedClue.clueName.Contains("Pille")) {
+			noteBookClues[3] = true;
+		}if (selectedClue.clueName.Contains("Pflanze")) {
+			noteBookClues[4] = true;
+		}if (selectedClue.clueName.Contains("Docbuch")) {
+			noteBookClues[5] = true;
+		}
+
+		// old
+		//foundClues.Add(selectedClue.clueName);
 	}
 	
 	/// <summary>
@@ -72,5 +95,9 @@ public class ClueManager : MonoBehaviour
 	public List<string> GetFoundClues()
 	{
 		return foundClues;
+	}
+
+	public bool CheckClue (int cluePosition) {
+		return noteBookClues [cluePosition];
 	}
 }
