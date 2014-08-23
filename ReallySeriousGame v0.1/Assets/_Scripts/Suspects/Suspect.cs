@@ -14,7 +14,6 @@ public class Suspect : MonoBehaviour
         normal, save, nervous, suspicious, angry
     }
 
-
     public SuspectData currentSuspect;
     public string suspectName;
     public int suspectAge;
@@ -22,7 +21,6 @@ public class Suspect : MonoBehaviour
     public string suspectDetails;
     public State state;
     public int numberOfConversations;
-
 
     private SuspectData previousSuspect;
     private const string name_default_barkeeper = "Karl";
@@ -77,20 +75,10 @@ public class Suspect : MonoBehaviour
     private int numberConversationsPersonnel;
     private int numberConversationsDetective;
 
-    //private SuspectObject barkeeper, doctor, junkie, investor, wife, personnel, detective;
-
     // Use this for initialization
     void Start()
     {
         loadData(currentSuspect);
-        //barkeeper = new SuspectObject(name_barkeeper, age_barkeeper, true, details_barkeeper);
-        //doctor = new SuspectObject(name_doctor, age_doctor, false, details_doctor);
-        //junkie = new SuspectObject(name_junkie, age_junkie, true, details_junkie);
-        //investor = new SuspectObject(name_investor, age_investor, true, details_investor);
-        //wife = new SuspectObject(name_wife, age_wife, false, details_wife);
-        //personnel = new SuspectObject(name_personnel, age_personnel, false, details_personnel);
-        //detective = new SuspectObject(name_detective, age_detective, true, details_detective);
-
     }
 
     // Update is called once per frame
@@ -173,40 +161,3 @@ public class Suspect : MonoBehaviour
         return numberOfConversations;
     }
 }
-
-//public class SuspectObject
-//{
-//    private int age;
-//    private string name;
-//    private string details;
-//    private string gender;
-    //public SuspectObject(string name, int age, bool gender, string details)
-    //{
-    //    this.name = name;
-    //    this.age = age;
-    //    this.details = details;
-    //    if (gender)
-    //    {
-    //        this.gender = "male";
-    //    }
-    //    else
-    //    {
-    //        this.gender = "female";
-    //    }
-    //}
-
-    //public int getAge()
-    //{
-    //    return age;
-    //}
-    //public string getName()
-    //{
-    //    return name;
-    //}
-
-    //public string getDetails()
-    //{
-    //    return details;
-    //}
-
-//}

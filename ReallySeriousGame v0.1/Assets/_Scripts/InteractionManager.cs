@@ -96,6 +96,10 @@ public class InteractionManager : MonoBehaviour
 		transform.LookAt(currentItem.transform);
 		currentItem.transform.position = Camera.main.transform.position + Camera.main.transform.forward * itemDistanceFromCamera;
 		#endregion
+        if (PlayVoice != null)
+        {
+            PlayVoice(this, "Detective", 4);
+        }
 	}
 	
 	/// <summary>
@@ -111,14 +115,14 @@ public class InteractionManager : MonoBehaviour
 	/// </summary>
 	public void Interrogate(GameObject suspect)
 	{
+            activeSuspect = suspect.GetComponent<Suspect>();
         if (PlayVoice != null)
         {
-            activeSuspect = suspect.GetComponent<Suspect>();
             //Debug.Log(activeSuspect.currentSuspect.ToString() + " " +  activeSuspect.numberOfConversations);
-            if (PlayVoice != null)
-            {
-                PlayVoice(this, activeSuspect.currentSuspect.ToString(), activeSuspect.numberOfConversations);
-            }
+            //if (PlayVoice != null)
+            //{
+            //    PlayVoice(this, activeSuspect.currentSuspect.ToString(), activeSuspect.numberOfConversations);
+            //}
         }
 		currentSuspect = suspect;
 		#region position player

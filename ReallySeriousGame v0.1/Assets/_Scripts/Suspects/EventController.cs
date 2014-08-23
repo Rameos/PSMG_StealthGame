@@ -15,6 +15,8 @@ public class EventController : MonoBehaviour {
         //DialogManager.PlayVoice += PlayDialog;
         InteractionManager.PlayVoice += PlayDialog;
         Interactable.PlayVoice += PlayDialog;
+        ClueManager.PlayVoice += PlayDialog;
+
     }
 
     void OnDisable()
@@ -22,6 +24,7 @@ public class EventController : MonoBehaviour {
         //DialogManager.PlayVoice -= PlayDialog;
         InteractionManager.PlayVoice -= PlayDialog;
         Interactable.PlayVoice -= PlayDialog;
+        ClueManager.PlayVoice -= PlayDialog;
 
     }
 
@@ -30,7 +33,7 @@ public class EventController : MonoBehaviour {
         switch (name)
         {
             case "Barkeeper":
-                playDialogBarkeeper(index);
+                playDialogBarkeeper(obj, index);
                 break;
             case "Doctor":
                 playDialogDoctor(index);
@@ -41,12 +44,21 @@ public class EventController : MonoBehaviour {
             case "Detective":
                 playDialogDetective(index);
                 break;
+            case "Barkeep_Clue_1":
+                playDialogBarkeeper(obj, -1);
+                break;
+            case "Barkeep_Clue_2":
+                playDialogBarkeeper(obj, index);
+                break;
+            case "Barkeep_Clue_3":
+                playDialogBarkeeper(obj, -3);
+                break;
             default:
                 break;
         }
     }
 
-    private void playDialogBarkeeper(int index)
+    private void playDialogBarkeeper(object obj, int index)
     {
         switch (index)
         {
@@ -55,6 +67,15 @@ public class EventController : MonoBehaviour {
                 break;
             case 1:
                 sound.PlayVoiceOver(Constants.EventBarkeeperMixexperte);
+                break;
+            case 2:
+                sound.PlayVoiceOver(Constants.EventBarkeeperDrogen);
+                break;
+            case -1:
+                sound.PlayVoiceOver(Constants.EventBarkeeperFleck);
+                break;
+            case -3:
+                sound.PlayVoiceOver(Constants.EventBarkeeperRatten);
                 break;
             default:
                 break;
@@ -73,6 +94,13 @@ public class EventController : MonoBehaviour {
 
     private void playDialogDetective(int index)
     {
-
+        switch (index)
+        {
+            case 4:
+                sound.PlayVoiceOver(Constants.EventDetektivInteressant);
+                break;
+            default:
+                break;
+        }
     }
 }

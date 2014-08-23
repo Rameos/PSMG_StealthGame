@@ -9,6 +9,10 @@ public class ClueManager : MonoBehaviour
 	static List<string> foundClues = new List<string>();
 	Clue selectedClue;
 	bool cluesActivated = false;
+
+    public delegate void DialogEvent(object sender, string data, int index);
+    public static event DialogEvent PlayVoice;
+
 	
 	void Awake ()
 	{
@@ -81,6 +85,11 @@ public class ClueManager : MonoBehaviour
 		{
 			selectedClue = newClue.GetComponent<Clue>();
 			selectedClue.SetDiscovered();
+            
+            if (PlayVoice != null)
+            {
+                PlayVoice(this , selectedClue.clueName, selectedClue.GetComponentInParent<Suspect>().numberOfConversations);
+            }
 			
 			if(!foundClues.Contains(selectedClue.clueName))
 				foundClues.Add(selectedClue.clueName);
