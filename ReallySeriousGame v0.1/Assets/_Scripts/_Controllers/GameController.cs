@@ -35,7 +35,6 @@ public class GameController : MonoBehaviour
 	
 	void Update () 
 	{	
-		Debug.Log(GameState.gameState);
 		CheckControls();
 		CheckGameState();
 	}
@@ -64,6 +63,8 @@ public class GameController : MonoBehaviour
 			}
 			currentLevel = Application.loadedLevel;
 		}
+		
+		ControllBGVolume();
 	}
 	
 	void CheckControls()
@@ -78,6 +79,18 @@ public class GameController : MonoBehaviour
 			{
 				InputController.inputController.GamepadControls();
 			}
+		}
+	}
+	
+	void ControllBGVolume()
+	{
+		if(GameState.IsInteracting)
+		{
+			sound.LowerBGVolume();
+		}
+		else
+		{
+			sound.DefaultBGVolume();
 		}
 	}
 	

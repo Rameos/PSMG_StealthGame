@@ -4,6 +4,7 @@ using iViewX;
 
 public class Clue : MonoBehaviourWithGazeComponent
 {
+	public int clueID;
 	public string clueName;
 	private Light highlight;
 	private bool isHighlighted = false;
@@ -19,6 +20,19 @@ public class Clue : MonoBehaviourWithGazeComponent
 	void OnMouseEnter()
 	{
 		HighlightClue();
+		
+		if(transform.parent.CompareTag("Suspect"))
+		{
+			transform.parent.SendMessage("RandomClueReaction", clueID);
+		}
+	}
+	
+	void OnMouseOver()
+	{
+		if(transform.parent.CompareTag("Suspect"))
+		{
+			transform.parent.SendMessage("FixatedClueReaction", clueID);
+		}
 	}
 	
 	void OnMouseExit()

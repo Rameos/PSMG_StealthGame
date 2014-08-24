@@ -12,9 +12,6 @@ public class InteractionManager : MonoBehaviour
 	Vector3 playerOriginalPos;
 	public float suspectDistanceFromPlayer = 0.5f;
 	GameObject currentSuspect;
-
-    public delegate void DialogEvent (object sender, string e);
-    public static event DialogEvent PlayVoice;
 	
 	/// <summary>
 	/// Starts interaction with selected object.
