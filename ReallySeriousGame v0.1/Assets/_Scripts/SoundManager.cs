@@ -88,7 +88,7 @@ public class SoundManager : MonoBehaviour
 	
 	public void StopSoundEffect()
 	{
-	
+		
 	}
 	
 	public void LowerBGVolume()

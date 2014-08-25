@@ -6,7 +6,6 @@ public class InputController : MonoBehaviour
 	
 	#region component declarations
 	NoteBook 			notebook;
-	ClueManager 		clueManager;
 	MovementManager 	movement;
 	InteractionManager 	interaction;
 	PauseMenu			pause;
@@ -31,7 +30,6 @@ public class InputController : MonoBehaviour
 		#region component initializations
 		pause			= GetComponent<PauseMenu>();
 		notebook		= gameObject.GetComponentInChildren<NoteBook>();
-		clueManager		= GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
 		movement 		= GetComponent<MovementManager> ();
 		interaction		= GetComponent<InteractionManager> ();
 		#endregion
@@ -45,26 +43,13 @@ public class InputController : MonoBehaviour
 		#region interactions keyboard
 		if(Keyboard.inputInteract())
 		{
-			if(hitObject.tag != "Clue")
-			{
-				selectedObject = hitObject;
+			selectedObject = hitObject;
 				
-				interaction.StartInteraction(selectedObject);
-				if(selectedObject != null)
-					clueManager.ActivateCluesOn(selectedObject); //???
-			}
-			else
-			{
-				clueManager.FoundClue(hitObject);
-			}
+			interaction.StartInteraction(selectedObject);
 		}
 		
 		if(Keyboard.inputReturn())
 		{
-			//deactivate clues on object when quitting interaction
-			if(selectedObject != null)
-				clueManager.DeactivateCluesOn(selectedObject);
-			
 			interaction.StopInteraction();
 		}
 		#endregion
@@ -174,7 +159,6 @@ public class InputController : MonoBehaviour
 	#endregion
 }
 
-//SCROLL AOI
 [System.Serializable]
 public class ScrollAreas
 {

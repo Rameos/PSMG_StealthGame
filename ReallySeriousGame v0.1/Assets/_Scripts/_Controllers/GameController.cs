@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
 	{	
 		CheckControls();
 		CheckGameState();
+		ControllBGVolume();
 	}
 	/// <summary>
 	/// Checks GameState and sets Background sound accordingly.
@@ -63,8 +64,6 @@ public class GameController : MonoBehaviour
 			}
 			currentLevel = Application.loadedLevel;
 		}
-		
-		ControllBGVolume();
 	}
 	
 	void CheckControls()
