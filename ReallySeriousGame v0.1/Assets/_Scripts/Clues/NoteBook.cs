@@ -11,6 +11,9 @@ public class NoteBook : MonoBehaviour
 	public Texture notebookTexture;
 	public Texture barmannClue1, barmannClue2, barmannClue3;
 	public Texture docClue1, docClue2, docClue3;
+	//übergangsweise, muss noch refactored werden
+	public Texture drink, mixbuch, gift, pille, pflanze, docbuch;
+	private Texture clueNote;
 
 	private float defaultButtonSize;
 
@@ -27,10 +30,11 @@ public class NoteBook : MonoBehaviour
 	private float noteWidth;
 	
 	private List<string> notes;
-	
+
 	private const int NOTEBOOK_ID = 0;
 	private string notebookHeader = "NOTES";
 	private bool isToggled = false;
+	private bool clueNotesActive = false;
 	
 	void Awake()
 	{
@@ -46,6 +50,8 @@ public class NoteBook : MonoBehaviour
 	
 	void OnGUI()
 	{
+
+
 		if(isToggled)
 		{
 		
@@ -58,27 +64,62 @@ public class NoteBook : MonoBehaviour
 	{
 		defaultButtonSize =notebook.width * 0.18f;
 
+
+
 		GUI.DrawTexture(new Rect(0,0,notebook.width,notebook.height),notebookTexture,ScaleMode.StretchToFill,true);
 
+
+
+
 		if (clue.CheckClue(0)) {
-			GUI.Button(new Rect(notebook.width*0.17f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue1, btnStyle);
+			if (GUI.Button(new Rect(notebook.width*0.17f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue1, btnStyle)) {
+				clueNote = drink;
+				clueNotesActive = true;
+			}
 		}
 		if (clue.CheckClue(1)) {
-			GUI.Button(new Rect(notebook.width*0.41f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue2, btnStyle);
+			if (GUI.Button(new Rect(notebook.width*0.41f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue2, btnStyle)) {
+				clueNote = mixbuch;
+				clueNotesActive = true;
+			}
 		}
 		if (clue.CheckClue(2)) {
-			GUI.Button(new Rect(notebook.width*0.65f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue3, btnStyle);
+			if (GUI.Button(new Rect(notebook.width*0.65f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue3, btnStyle)) {
+				clueNote = gift;
+				clueNotesActive = true;
+			}
 		}
 		if (clue.CheckClue(3)) {
-			GUI.Button(new Rect(notebook.width*0.17f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue1, btnStyle);
+			if (GUI.Button(new Rect(notebook.width*0.17f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue1, btnStyle)) {
+				clueNote = pille;
+				clueNotesActive = true;
+			}
 		}
 		if (clue.CheckClue(4)) {
-			GUI.Button(new Rect(notebook.width*0.41f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue2, btnStyle);
+			if (GUI.Button(new Rect(notebook.width*0.41f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue2, btnStyle)) {
+				clueNote = pflanze;
+				clueNotesActive = true;
+			}
 		}
 		if (clue.CheckClue(5)) {
-			GUI.Button(new Rect(notebook.width*0.65f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue3, btnStyle);
+			if (GUI.Button(new Rect(notebook.width*0.65f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue3, btnStyle)) {
+				clueNote = docbuch;
+				clueNotesActive = true;
+			}
 		}
 
+
+		if (clueNotesActive) {
+
+			// verbugt, ergibt nullpointer
+			//if (GUI.Button(new Rect(0, 0, notebook.width, notebook.height), clue.GetClueNotesAtPosition(0))) {
+
+			if (GUI.Button(new Rect(0, 0, notebook.width, notebook.height), clueNote)) {
+					clueNotesActive = false;
+			}
+		}
+
+		//old
 		for(int i = 0; i < notes.Count; i++)
 		{
 			if(GUI.Button(new Rect(offset, (offset * 2) + (noteHeight * i), noteWidth, noteHeight), notes[i]))
@@ -90,21 +131,5 @@ public class NoteBook : MonoBehaviour
 	{
 		isToggled = !isToggled;
 	}
-
-	/*
-	public Rect windowRect0 = new Rect(20, 20, 120, 50);
-	public Rect windowRect1 = new Rect(20, 100, 120, 50);
-	void OnGUI() {
-		GUI.color = Color.red;
-		windowRect0 = GUI.Window(0, windowRect0, DoMyWindow, "Red Window");
-		GUI.color = Color.green;
-		windowRect1 = GUI.Window(1, windowRect1, DoMyWindow, "Green Window");
-	}
-	void DoMyWindow(int windowID) {
-		if (GUI.Button(new Rect(10, 20, 100, 20), "Hello World"))
-			print("Got a click in window with color " + GUI.color);
-		
-		GUI.DragWindow(new Rect(0, 0, 1000, 1000));
-	}
-	*/
+	
 }

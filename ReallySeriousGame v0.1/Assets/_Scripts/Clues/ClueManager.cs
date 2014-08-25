@@ -5,9 +5,14 @@ using System.Collections.Generic;
 public class ClueManager : MonoBehaviour 
 {
 	public static ClueManager clueManager;
-	
+	public Texture drink, mixbuch, gift, pille, pflanze, docbuch;
+
 	static List<string> foundClues = new List<string>();
 	static List<bool> noteBookClues = new List<bool>();
+
+	// verbugt
+	static List<Texture> clueNotes;
+	
 
 	Clue selectedClue;
 	
@@ -23,10 +28,17 @@ public class ClueManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-
 		for (int i = 0; i < 6; i++) {
 			noteBookClues.Add(false);
 		}
+		// verbugt
+		List<Texture> clueNotes = new List<Texture>()
+		{
+			drink, mixbuch, gift, pille, pflanze, docbuch
+		};
+		Debug.Log ("nitch " +clueNotes[0]);
+
+
 		#endregion
 	}
 	
@@ -95,6 +107,12 @@ public class ClueManager : MonoBehaviour
 	public List<string> GetFoundClues()
 	{
 		return foundClues;
+	}
+
+	// verbugt
+	public Texture GetClueNotesAtPosition(int index)
+	{
+		return clueNotes[index];
 	}
 
 	public bool CheckClue (int cluePosition) {
