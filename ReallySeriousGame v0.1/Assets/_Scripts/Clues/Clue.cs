@@ -23,7 +23,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 		
 		if(transform.parent.CompareTag("Suspect"))
 		{
-			transform.parent.SendMessage("RandomClueReaction", clueID);
+			transform.parent.SendMessage("RandomOnClueReaction", clueID);
 		}
 	}
 	
@@ -31,7 +31,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 	{
 		if(transform.parent.CompareTag("Suspect"))
 		{
-			transform.parent.SendMessage("FixatedClueReaction", clueID);
+			transform.parent.SendMessage("FixatedOnClueReaction", clueID);
 		}
 	}
 	

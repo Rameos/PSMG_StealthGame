@@ -62,7 +62,7 @@ public class BehaviourController : MonoBehaviour
 	/// Triggers specific suspect behaviour when clue/item is being fixated.
 	/// </summary>
 	/// <param name="clueID">Clue ID.</param>
-	public void FixatedClueReaction(int clueID)
+	public void FixatedOnClueReaction(int clueID)
 	{
 		#region subscribe
 		OnFixatedClueBehaviour += voice.FixatedClueVO;
@@ -77,7 +77,7 @@ public class BehaviourController : MonoBehaviour
 	/// Triggers random suspect behaviour when clue/item is sighted.
 	/// </summary>
 	/// <param name="clueID">Clue ID.</param>
-	public void RandomClueReaction(int clueID)
+	public void RandomOnClueReaction(int clueID)
 	{
 		#region subscribe
 		OnRandomClueBehaviour += voice.RandomClueVO;

@@ -9,13 +9,6 @@ public class VerbalResponse : MonoBehaviour
 	
 	private AudioClip newVOClip;
 	
-	SoundManager VO;
-
-	void Awake()
-	{
-		VO = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
-	}
-	
 	public void RandomVO()
 	{
 		newVOClipPath = dir + gameObject.name + "_Default_" + Suspect.state + "_" + Random.Range(0,2);

@@ -13,7 +13,7 @@ public static class ClueID
 
 public class ClueManager : MonoBehaviour 
 {
-	public static ClueManager clueManager;
+	public static ClueManager instance;
 	
 	static List<string> foundClues = new List<string>();
 	Clue selectedClue;
@@ -22,12 +22,12 @@ public class ClueManager : MonoBehaviour
 	void Awake ()
 	{
 		#region singleton
-		if(clueManager == null) 
+		if(instance == null) 
 		{
 			DontDestroyOnLoad(gameObject);
-			clueManager = this;
+			instance = this;
 		} 
-		else if(clueManager != this) 
+		else if(instance != this) 
 		{
 			Destroy(gameObject);
 		}
