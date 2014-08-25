@@ -1211,6 +1211,22 @@ Prefab:
       propertyPath: notebookStyle.m_Normal.m_TextColor.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: notebookStyle.m_OnActive.m_TextColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: notebookStyle.m_OnActive.m_TextColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: notebookStyle.m_OnActive.m_TextColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: notebookStyle.m_OnActive.m_Background
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
   m_RootGameObject: {fileID: 1899968682}

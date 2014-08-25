@@ -61,7 +61,7 @@ public class NoteBook : MonoBehaviour
 		GUI.DrawTexture(new Rect(0,0,notebook.width,notebook.height),notebookTexture,ScaleMode.StretchToFill,true);
 
 		if (clue.CheckClue(0)) {
-			GUI.Button(new Rect(notebook.width*0.17f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize*2), barmannClue1, btnStyle);
+			GUI.Button(new Rect(notebook.width*0.17f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue1, btnStyle);
 		}
 		if (clue.CheckClue(1)) {
 			GUI.Button(new Rect(notebook.width*0.41f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue2, btnStyle);
