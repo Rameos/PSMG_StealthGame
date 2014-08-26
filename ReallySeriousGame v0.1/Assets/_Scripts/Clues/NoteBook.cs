@@ -50,13 +50,14 @@ public class NoteBook : MonoBehaviour
 	
 	void OnGUI()
 	{
-
+		//Debug.Log ("list "+ clue.GetClueNotesAtPosition(0));
 
 		if(isToggled)
 		{
 		
 			notes = clue.GetFoundClues();
-			notebook = GUI.Window(NOTEBOOK_ID, notebook, DisplayFoundClues, notebookHeader);
+
+			notebook = GUI.Window(NOTEBOOK_ID, notebook, DisplayFoundClues, notebookHeader, notebookStyle);
 		}
 	}
 	

@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notebookStyle:
-    m_Name: 
+    m_Name: notebookStyle
     m_Normal:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -220,13 +220,19 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 0
     m_StretchHeight: 0
-  notebookTexture: {fileID: 2800000, guid: 3a341caac096df44daeb698d0750335a, type: 3}
+  notebookTexture: {fileID: 2800000, guid: 54ec89ddcbebe324997e95f4e39c22d9, type: 3}
   barmannClue1: {fileID: 2800000, guid: 973f3a0e560b03f4eb1851d7aefe0013, type: 3}
   barmannClue2: {fileID: 2800000, guid: 3a0a813ca24711749ba1466e096334a6, type: 3}
   barmannClue3: {fileID: 2800000, guid: 8aba0e2ba2dda894d9e01faafcdbbc55, type: 3}
   docClue1: {fileID: 2800000, guid: 76bff3bcb00190e42a4ebee5ace6b877, type: 3}
   docClue2: {fileID: 2800000, guid: b26d902a147220b4ea151d39dac6e172, type: 3}
   docClue3: {fileID: 2800000, guid: ed87cd6ae9c818c4fb585f48efa6fe4d, type: 3}
+  drink: {fileID: 2800000, guid: a834a20b91e15fb48b5797b171abfb41, type: 3}
+  mixbuch: {fileID: 2800000, guid: 1bc4089813e645242b7c3c8c881aacb7, type: 3}
+  gift: {fileID: 2800000, guid: 4cf3fca6d94f13a49a4beebaf89e68bf, type: 3}
+  pille: {fileID: 2800000, guid: bb17abd7d56e08648925595ad72f3b36, type: 3}
+  pflanze: {fileID: 2800000, guid: 7259d33c38a85bb47a9d8836794b1e54, type: 3}
+  docbuch: {fileID: 2800000, guid: 64abbf38a1bcaa142b6aa74ff0c61f21, type: 3}
 --- !u!4 &67331796
 Transform:
   m_ObjectHideFlags: 0
@@ -561,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd88870e1b3d034ca7d4c5577da5ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drink: {fileID: 0}
+  drink: {fileID: 2800000, guid: 64abbf38a1bcaa142b6aa74ff0c61f21, type: 3}
   mixbuch: {fileID: 0}
   gift: {fileID: 0}
   pille: {fileID: 0}
@@ -1144,7 +1150,7 @@ Prefab:
     - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: notebookTexture
       value: 
-      objectReference: {fileID: 2800000, guid: 3a341caac096df44daeb698d0750335a, type: 3}
+      objectReference: {fileID: 2800000, guid: 54ec89ddcbebe324997e95f4e39c22d9, type: 3}
     - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: barmannClue1
       value: 
@@ -1233,6 +1239,34 @@ Prefab:
       propertyPath: notebookStyle.m_OnActive.m_Background
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: notebookStyle.m_Name
+      value: notebookStyle
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: docbuch
+      value: 
+      objectReference: {fileID: 2800000, guid: 64abbf38a1bcaa142b6aa74ff0c61f21, type: 3}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: drink
+      value: 
+      objectReference: {fileID: 2800000, guid: a834a20b91e15fb48b5797b171abfb41, type: 3}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: gift
+      value: 
+      objectReference: {fileID: 2800000, guid: 4cf3fca6d94f13a49a4beebaf89e68bf, type: 3}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: mixbuch
+      value: 
+      objectReference: {fileID: 2800000, guid: 1bc4089813e645242b7c3c8c881aacb7, type: 3}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: pflanze
+      value: 
+      objectReference: {fileID: 2800000, guid: 7259d33c38a85bb47a9d8836794b1e54, type: 3}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: pille
+      value: 
+      objectReference: {fileID: 2800000, guid: bb17abd7d56e08648925595ad72f3b36, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
   m_RootGameObject: {fileID: 1899968682}
@@ -1514,6 +1548,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: drink
+      value: 
+      objectReference: {fileID: 2800000, guid: 64abbf38a1bcaa142b6aa74ff0c61f21, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
   m_RootGameObject: {fileID: 403418960}

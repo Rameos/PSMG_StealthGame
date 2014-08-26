@@ -28,18 +28,18 @@ public class ClueManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+		#endregion
+
 		for (int i = 0; i < 6; i++) {
 			noteBookClues.Add(false);
 		}
+
 		// verbugt
 		List<Texture> clueNotes = new List<Texture>()
 		{
 			drink, mixbuch, gift, pille, pflanze, docbuch
 		};
 		Debug.Log ("nitch " +clueNotes[0]);
-
-
-		#endregion
 	}
 	
 	/// <summary>
