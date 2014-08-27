@@ -220,7 +220,13 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 0
     m_StretchHeight: 0
-  notebookTexture: {fileID: 2800000, guid: 429e1ceca1bdc5d4d9a74fea87f7864d, type: 3}
+  notebookTextureClean: {fileID: 2800000, guid: c4d78c3038a6e71458fb51ca2977140d,
+    type: 3}
+  notebookTextureAll: {fileID: 2800000, guid: 14454757f0a012841a52bc63d5005a56, type: 3}
+  notebookInfo: {fileID: 2800000, guid: b8868e0fd2d9e6f44ae050666b366d99, type: 3}
+  buttonChar: {fileID: 2800000, guid: 71547d6864b2f6749b28c0f8407374d9, type: 3}
+  buttonClues: {fileID: 2800000, guid: 5b6246964ea611647b5eb5faa642966d, type: 3}
+  buttonHome: {fileID: 2800000, guid: cfa9471dd736a1d40b22d40dc4132d11, type: 3}
 --- !u!4 &67331796
 Transform:
   m_ObjectHideFlags: 0
@@ -622,7 +628,9 @@ MonoBehaviour:
   bmFleck: {fileID: 2800000, guid: 6e0e31c1dae28224faca9496ed521689, type: 3}
   docPille: {fileID: 2800000, guid: 76bff3bcb00190e42a4ebee5ace6b877, type: 3}
   docPlfanze: {fileID: 2800000, guid: b26d902a147220b4ea151d39dac6e172, type: 3}
-  docBuch: {fileID: 2800000, guid: 3a0a813ca24711749ba1466e096334a6, type: 3}
+  docBuch: {fileID: 2800000, guid: ed87cd6ae9c818c4fb585f48efa6fe4d, type: 3}
+  detTatwaffe: {fileID: 2800000, guid: 4ecb025e2c50a824d84e0a3528b89d60, type: 3}
+  detStoff: {fileID: 2800000, guid: 76bff3bcb00190e42a4ebee5ace6b877, type: 3}
   bmDrinkNote: {fileID: 2800000, guid: a834a20b91e15fb48b5797b171abfb41, type: 3}
   bmMixbuchNote: {fileID: 2800000, guid: 1bc4089813e645242b7c3c8c881aacb7, type: 3}
   bmGiftNote: {fileID: 2800000, guid: 4cf3fca6d94f13a49a4beebaf89e68bf, type: 3}
@@ -631,6 +639,8 @@ MonoBehaviour:
   docPilleNote: {fileID: 2800000, guid: bb17abd7d56e08648925595ad72f3b36, type: 3}
   docPlfanzeNote: {fileID: 2800000, guid: 7259d33c38a85bb47a9d8836794b1e54, type: 3}
   docBuchNote: {fileID: 2800000, guid: 64abbf38a1bcaa142b6aa74ff0c61f21, type: 3}
+  detStoffNote: {fileID: 2800000, guid: c15d43a69e9334a47b2e5affb8cf27ec, type: 3}
+  detTatwaffeNote: {fileID: 2800000, guid: ae09faf4b4485a84a96f6863c53c776e, type: 3}
 --- !u!4 &403418962
 Transform:
   m_ObjectHideFlags: 0
@@ -1292,7 +1302,7 @@ Prefab:
     - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: notebookTexture
       value: 
-      objectReference: {fileID: 2800000, guid: 429e1ceca1bdc5d4d9a74fea87f7864d, type: 3}
+      objectReference: {fileID: 2800000, guid: 14454757f0a012841a52bc63d5005a56, type: 3}
     - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: barmannClue1
       value: 
@@ -1409,6 +1419,30 @@ Prefab:
       propertyPath: pille
       value: 
       objectReference: {fileID: 2800000, guid: bb17abd7d56e08648925595ad72f3b36, type: 3}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: buttonHome
+      value: 
+      objectReference: {fileID: 2800000, guid: cfa9471dd736a1d40b22d40dc4132d11, type: 3}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: buttonClues
+      value: 
+      objectReference: {fileID: 2800000, guid: 5b6246964ea611647b5eb5faa642966d, type: 3}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: buttonChar
+      value: 
+      objectReference: {fileID: 2800000, guid: 71547d6864b2f6749b28c0f8407374d9, type: 3}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: notebookTextureAll
+      value: 
+      objectReference: {fileID: 2800000, guid: 14454757f0a012841a52bc63d5005a56, type: 3}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: notebookTextureClean
+      value: 
+      objectReference: {fileID: 2800000, guid: c4d78c3038a6e71458fb51ca2977140d, type: 3}
+    - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: notebookInfo
+      value: 
+      objectReference: {fileID: 2800000, guid: b8868e0fd2d9e6f44ae050666b366d99, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
   m_RootGameObject: {fileID: 1899968682}
@@ -1717,7 +1751,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
       propertyPath: docBuch
       value: 
-      objectReference: {fileID: 2800000, guid: 3a0a813ca24711749ba1466e096334a6, type: 3}
+      objectReference: {fileID: 2800000, guid: ed87cd6ae9c818c4fb585f48efa6fe4d, type: 3}
     - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
       propertyPath: docBuchNote
       value: 
@@ -1758,6 +1792,22 @@ Prefab:
       propertyPath: bmHandNote
       value: 
       objectReference: {fileID: 2800000, guid: 8e619ec8c540e134c88f973e25d46e7f, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: detTatwaffe
+      value: 
+      objectReference: {fileID: 2800000, guid: 4ecb025e2c50a824d84e0a3528b89d60, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: detStoff
+      value: 
+      objectReference: {fileID: 2800000, guid: 76bff3bcb00190e42a4ebee5ace6b877, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: detStoffNote
+      value: 
+      objectReference: {fileID: 2800000, guid: c15d43a69e9334a47b2e5affb8cf27ec, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: detTatwaffeNote
+      value: 
+      objectReference: {fileID: 2800000, guid: ae09faf4b4485a84a96f6863c53c776e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
   m_RootGameObject: {fileID: 403418960}

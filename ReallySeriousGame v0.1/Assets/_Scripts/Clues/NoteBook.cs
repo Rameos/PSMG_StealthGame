@@ -8,8 +8,10 @@ public class NoteBook : MonoBehaviour
 	
 	public GUIStyle notebookStyle;
 	public GUIStyle btnStyle;
-	public Texture notebookTexture;
-	private Texture clueNote;
+	public Texture notebookTextureClean, notebookTextureAll, notebookInfo;
+	public Texture buttonChar , buttonClues, buttonHome;
+
+	private Texture clueNote, notebookTexture;
 
 	private float defaultButtonSize;
 
@@ -20,12 +22,7 @@ public class NoteBook : MonoBehaviour
 	private float notebookWidth		= Screen.width*0.22f;
 	private float notebookHeight 	= Screen.height * 0.9f;
 	private float offset			= 30;
-	
-	private Rect note;
-//	private float noteHeight;
-//	private float noteWidth;
-	
-//	private List<string> notes;
+
 	private List<string> cluesBarmann;
 	private List<string> cluesDoctor;
 	private List<string> cluesDetective;
@@ -39,6 +36,8 @@ public class NoteBook : MonoBehaviour
 	private string notebookHeader = "NOTES";
 	private bool isToggled = false;
 	private bool clueNotesActive = false;
+	private bool startFensterActive = true;
+	private bool infoIsActive = false;
 	
 	void Awake()
 	{
@@ -47,23 +46,16 @@ public class NoteBook : MonoBehaviour
 		notebookX 	= Screen.width - notebookWidth - offset;
 		notebookY 	= Screen.height - notebookHeight;
 		notebook 	= new Rect(notebookX, notebookY, notebookWidth, notebookHeight);
-		
-//		noteHeight 	= notebookHeight * 0.1f;
-//		noteWidth 	= notebookWidth - (offset * 2);
+
 	}
 	
 	void OnGUI()
 	{
-		//Debug.Log ("list "+ clue.GetClueNotesAtPosition(0));
-
 		if(isToggled)
 		{
-		
-//			notes = clue.GetFoundClues();
 			cluesBarmann = clue.GetCluesBarmann();
 			cluesDoctor = clue.GetCluesDoctor();
 			cluesDetective = clue.GetCluesDetective();
-
 			notebook = GUI.Window(NOTEBOOK_ID, notebook, DisplayFoundClues, notebookHeader, notebookStyle);
 		}
 	}
@@ -71,57 +63,51 @@ public class NoteBook : MonoBehaviour
 	void DisplayFoundClues(int ID)
 	{
 		defaultButtonSize = notebook.width * 0.18f;
-
 		GUI.DrawTexture(new Rect(0,0,notebook.width,notebook.height),notebookTexture,ScaleMode.StretchToFill,true);
 
-		showClues (cluesBarmann, barmannsCluesName);
-		showClues (cluesDoctor, doctorCluesName);
-		showClues (cluesDetective, detectiveCluesName);
-//
-//
-//		if (clue.CheckClue(0)) {
-//			if (GUI.Button(new Rect(notebook.width*0.17f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue1, btnStyle)) {
-//				clueNote = drink;
-//				clueNotesActive = true;
-//			}
-//		}
-//		if (clue.CheckClue(1)) {
-//			if (GUI.Button(new Rect(notebook.width*0.41f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue2, btnStyle)) {
-//				clueNote = mixbuch;
-//				clueNotesActive = true;
-//			}
-//		}
-//		if (clue.CheckClue(2)) {
-//			if (GUI.Button(new Rect(notebook.width*0.65f, notebook.height*0.23f, defaultButtonSize, defaultButtonSize), barmannClue3, btnStyle)) {
-//				clueNote = gift;
-//				clueNotesActive = true;
-//			}
-//		}
-//		if (clue.CheckClue(3)) {
-//			if (GUI.Button(new Rect(notebook.width*0.17f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue1, btnStyle)) {
-//				clueNote = pille;
-//				clueNotesActive = true;
-//			}
-//		}
-//		if (clue.CheckClue(4)) {
-//			if (GUI.Button(new Rect(notebook.width*0.41f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue2, btnStyle)) {
-//				clueNote = pflanze;
-//				clueNotesActive = true;
-//			}
-//		}
-//		if (clue.CheckClue(5)) {
-//			if (GUI.Button(new Rect(notebook.width*0.65f, notebook.height*0.39f, defaultButtonSize, defaultButtonSize), docClue3, btnStyle)) {
-//				clueNote = docbuch;
-//				clueNotesActive = true;
-//			}
-//		}
+		if (startFensterActive) {
+			notebookTexture = notebookTextureClean;
+		} else {
+			notebookTexture = notebookTextureAll;
+		}
 
 
-		if (clueNotesActive) {
-			if (GUI.Button(new Rect(0, 0, notebook.width, notebook.height), clueNote)) {
+		if (startFensterActive && !infoIsActive) {
+			float buttonPosY = notebook.height*0.27f;
+			float buttonPosX = offset*2.5f;		
+			float noteHeight = notebookHeight * 0.2f;
+			float noteWidth = notebookWidth - buttonPosX*2;
+			
+			if (GUI.Button(new Rect(buttonPosX, buttonPosY, noteWidth, noteHeight), buttonChar)) {
+				infoIsActive = true;
+			}
+
+			if (GUI.Button(new Rect(buttonPosX, buttonPosY*2, noteWidth, noteHeight), buttonClues)) {
+				startFensterActive = false;
+			}
+
+
+		} else {
+			showClues (cluesBarmann, barmannsCluesName);
+			showClues (cluesDoctor, doctorCluesName);
+			showClues (cluesDetective, detectiveCluesName);
+
+			if (clueNotesActive) {
+				if (GUI.Button(new Rect(0, 0, notebook.width, notebook.height), clueNote)) {
 					clueNotesActive = false;
+				}
 			}
 		}
+
+		if (infoIsActive) {
+			GUI.DrawTexture(new Rect(0,0,notebook.width,notebook.height),notebookInfo,ScaleMode.StretchToFill,true);
+		}
+
+		if (GUI.Button(new Rect(notebook.width/2-(defaultButtonSize*0.8f)/2,notebook.height*0.88f,defaultButtonSize*0.8f,defaultButtonSize*0.8f), buttonHome, btnStyle)) {
+			startFensterActive = true;
+			infoIsActive = false;
+		}
+		 
 
 	}
 	private void showClues (List<string> clues, string whosClues) {
