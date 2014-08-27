@@ -220,19 +220,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 0
     m_StretchHeight: 0
-  notebookTexture: {fileID: 2800000, guid: 54ec89ddcbebe324997e95f4e39c22d9, type: 3}
-  barmannClue1: {fileID: 2800000, guid: 973f3a0e560b03f4eb1851d7aefe0013, type: 3}
-  barmannClue2: {fileID: 2800000, guid: 3a0a813ca24711749ba1466e096334a6, type: 3}
-  barmannClue3: {fileID: 2800000, guid: 8aba0e2ba2dda894d9e01faafcdbbc55, type: 3}
-  docClue1: {fileID: 2800000, guid: 76bff3bcb00190e42a4ebee5ace6b877, type: 3}
-  docClue2: {fileID: 2800000, guid: b26d902a147220b4ea151d39dac6e172, type: 3}
-  docClue3: {fileID: 2800000, guid: ed87cd6ae9c818c4fb585f48efa6fe4d, type: 3}
-  drink: {fileID: 2800000, guid: a834a20b91e15fb48b5797b171abfb41, type: 3}
-  mixbuch: {fileID: 2800000, guid: 1bc4089813e645242b7c3c8c881aacb7, type: 3}
-  gift: {fileID: 2800000, guid: 4cf3fca6d94f13a49a4beebaf89e68bf, type: 3}
-  pille: {fileID: 2800000, guid: bb17abd7d56e08648925595ad72f3b36, type: 3}
-  pflanze: {fileID: 2800000, guid: 7259d33c38a85bb47a9d8836794b1e54, type: 3}
-  docbuch: {fileID: 2800000, guid: 64abbf38a1bcaa142b6aa74ff0c61f21, type: 3}
+  notebookTexture: {fileID: 2800000, guid: 429e1ceca1bdc5d4d9a74fea87f7864d, type: 3}
 --- !u!4 &67331796
 Transform:
   m_ObjectHideFlags: 0
@@ -382,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb32917f72210554f8e7a7f5899c46d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueName: Pille
+  clueName: docPille
 --- !u!108 &205651789
 Light:
   m_ObjectHideFlags: 0
@@ -464,7 +452,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: clueName
-      value: Gift
+      value: barmannGift
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: m_Range
@@ -477,6 +465,66 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
   m_RootGameObject: {fileID: 2130120252}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
+--- !u!1001 &365955097
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 675022141}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -.473243654
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .131366253
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: .238838345
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_RootMapOrder
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: clueName
+      value: barmannHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_Range
+      value: .800000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_Intensity
+      value: 4.73999977
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+  m_RootGameObject: {fileID: 1453874716}
   m_IsPrefabParent: 0
   m_IsExploded: 1
 --- !u!1001 &367107488
@@ -524,7 +572,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: clueName
-      value: Mixbuch
+      value: barmannMixBuch
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: m_Range
@@ -567,12 +615,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd88870e1b3d034ca7d4c5577da5ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drink: {fileID: 2800000, guid: 64abbf38a1bcaa142b6aa74ff0c61f21, type: 3}
-  mixbuch: {fileID: 0}
-  gift: {fileID: 0}
-  pille: {fileID: 0}
-  pflanze: {fileID: 0}
-  docbuch: {fileID: 0}
+  bmDrink: {fileID: 2800000, guid: 973f3a0e560b03f4eb1851d7aefe0013, type: 3}
+  bmMixbuch: {fileID: 2800000, guid: 3a0a813ca24711749ba1466e096334a6, type: 3}
+  bmGift: {fileID: 2800000, guid: 8aba0e2ba2dda894d9e01faafcdbbc55, type: 3}
+  bmHand: {fileID: 2800000, guid: 10127a375727f884780e09fc117cd62c, type: 3}
+  bmFleck: {fileID: 2800000, guid: 6e0e31c1dae28224faca9496ed521689, type: 3}
+  docPille: {fileID: 2800000, guid: 76bff3bcb00190e42a4ebee5ace6b877, type: 3}
+  docPlfanze: {fileID: 2800000, guid: b26d902a147220b4ea151d39dac6e172, type: 3}
+  docBuch: {fileID: 2800000, guid: 3a0a813ca24711749ba1466e096334a6, type: 3}
+  bmDrinkNote: {fileID: 2800000, guid: a834a20b91e15fb48b5797b171abfb41, type: 3}
+  bmMixbuchNote: {fileID: 2800000, guid: 1bc4089813e645242b7c3c8c881aacb7, type: 3}
+  bmGiftNote: {fileID: 2800000, guid: 4cf3fca6d94f13a49a4beebaf89e68bf, type: 3}
+  bmHandNote: {fileID: 2800000, guid: 8e619ec8c540e134c88f973e25d46e7f, type: 3}
+  bmFleckNote: {fileID: 2800000, guid: 417465d2a88c10b42a33882c749c2fef, type: 3}
+  docPilleNote: {fileID: 2800000, guid: bb17abd7d56e08648925595ad72f3b36, type: 3}
+  docPlfanzeNote: {fileID: 2800000, guid: 7259d33c38a85bb47a9d8836794b1e54, type: 3}
+  docBuchNote: {fileID: 2800000, guid: 64abbf38a1bcaa142b6aa74ff0c61f21, type: 3}
 --- !u!4 &403418962
 Transform:
   m_ObjectHideFlags: 0
@@ -763,7 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb32917f72210554f8e7a7f5899c46d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueName: Docbuch
+  clueName: docBuch
 --- !u!108 &491274992
 Light:
   m_ObjectHideFlags: 0
@@ -854,7 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb32917f72210554f8e7a7f5899c46d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueName: Pflanze
+  clueName: docPflanze
 --- !u!108 &569865256
 Light:
   m_ObjectHideFlags: 0
@@ -947,7 +1005,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: clueName
-      value: Pflanze
+      value: docPflanze
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: m_Range
@@ -1009,6 +1067,90 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &675022140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 675022141}
+  - 33: {fileID: 675022145}
+  - 136: {fileID: 675022144}
+  - 23: {fileID: 675022143}
+  - 114: {fileID: 675022142}
+  m_Layer: 0
+  m_Name: Capsule
+  m_TagString: Interactable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &675022141
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 675022140}
+  m_LocalRotation: {x: 0, y: -.753048956, z: 0, w: .657964528}
+  m_LocalPosition: {x: 6.7111702, y: 4.25033188, z: 1.30520904}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1453874720}
+  m_Father: {fileID: 0}
+--- !u!114 &675022142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 675022140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightColor: {r: .75, g: 1, b: .75, a: 1}
+--- !u!23 &675022143
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 675022140}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: bdb74a7162079b542bf0944e80b27a6e, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+--- !u!136 &675022144
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 675022140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &675022145
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 675022140}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &752112968
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,7 +1194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb32917f72210554f8e7a7f5899c46d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueName: Drink
+  clueName: barmannDrink
 --- !u!108 &752112971
 Light:
   m_ObjectHideFlags: 0
@@ -1150,7 +1292,7 @@ Prefab:
     - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: notebookTexture
       value: 
-      objectReference: {fileID: 2800000, guid: 54ec89ddcbebe324997e95f4e39c22d9, type: 3}
+      objectReference: {fileID: 2800000, guid: 429e1ceca1bdc5d4d9a74fea87f7864d, type: 3}
     - target: {fileID: 11400016, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: barmannClue1
       value: 
@@ -1552,6 +1694,70 @@ Prefab:
       propertyPath: drink
       value: 
       objectReference: {fileID: 2800000, guid: 64abbf38a1bcaa142b6aa74ff0c61f21, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: bmDrink
+      value: 
+      objectReference: {fileID: 2800000, guid: 973f3a0e560b03f4eb1851d7aefe0013, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: bmMixbuch
+      value: 
+      objectReference: {fileID: 2800000, guid: 3a0a813ca24711749ba1466e096334a6, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: bmGift
+      value: 
+      objectReference: {fileID: 2800000, guid: 8aba0e2ba2dda894d9e01faafcdbbc55, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: docPille
+      value: 
+      objectReference: {fileID: 2800000, guid: 76bff3bcb00190e42a4ebee5ace6b877, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: docPlfanze
+      value: 
+      objectReference: {fileID: 2800000, guid: b26d902a147220b4ea151d39dac6e172, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: docBuch
+      value: 
+      objectReference: {fileID: 2800000, guid: 3a0a813ca24711749ba1466e096334a6, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: docBuchNote
+      value: 
+      objectReference: {fileID: 2800000, guid: 64abbf38a1bcaa142b6aa74ff0c61f21, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: bmDrinkNote
+      value: 
+      objectReference: {fileID: 2800000, guid: a834a20b91e15fb48b5797b171abfb41, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: bmGiftNote
+      value: 
+      objectReference: {fileID: 2800000, guid: 4cf3fca6d94f13a49a4beebaf89e68bf, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: bmMixbuchNote
+      value: 
+      objectReference: {fileID: 2800000, guid: 1bc4089813e645242b7c3c8c881aacb7, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: docPilleNote
+      value: 
+      objectReference: {fileID: 2800000, guid: bb17abd7d56e08648925595ad72f3b36, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: docPlfanzeNote
+      value: 
+      objectReference: {fileID: 2800000, guid: 7259d33c38a85bb47a9d8836794b1e54, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: bmFleck
+      value: 
+      objectReference: {fileID: 2800000, guid: 6e0e31c1dae28224faca9496ed521689, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: bmHand
+      value: 
+      objectReference: {fileID: 2800000, guid: 10127a375727f884780e09fc117cd62c, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: bmFleckNote
+      value: 
+      objectReference: {fileID: 2800000, guid: 417465d2a88c10b42a33882c749c2fef, type: 3}
+    - target: {fileID: 11400000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
+      propertyPath: bmHandNote
+      value: 
+      objectReference: {fileID: 2800000, guid: 8e619ec8c540e134c88f973e25d46e7f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58d94f8f6fbe82b49ae481763c12d307, type: 2}
   m_RootGameObject: {fileID: 403418960}
@@ -1803,6 +2009,90 @@ Prefab:
   m_RootGameObject: {fileID: 604052752}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1119000493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1119000498}
+  - 33: {fileID: 1119000497}
+  - 136: {fileID: 1119000496}
+  - 23: {fileID: 1119000495}
+  - 114: {fileID: 1119000494}
+  m_Layer: 0
+  m_Name: Capsule
+  m_TagString: Interactable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1119000494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119000493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa6baf6c6e890f46ac3a113393859eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightColor: {r: .75, g: 1, b: .75, a: 1}
+--- !u!23 &1119000495
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119000493}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 14c70ccc51375944cad23b0d0933a73b, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+--- !u!136 &1119000496
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119000493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1119000497
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119000493}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1119000498
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119000493}
+  m_LocalRotation: {x: 0, y: -.753048956, z: 0, w: .657964528}
+  m_LocalPosition: {x: 4.64797926, y: 4.25033188, z: 1.02587461}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1471668003}
+  m_Father: {fileID: 0}
 --- !u!1 &1121502909
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,7 +2292,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: clueName
-      value: Pille
+      value: docPille
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: m_Range
@@ -2015,6 +2305,66 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
   m_RootGameObject: {fileID: 205651785}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
+--- !u!1001 &1230423116
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1119000498}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -.473243654
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .131366253
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: .238838345
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_RootMapOrder
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: clueName
+      value: barmannFleck
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_Range
+      value: .800000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+      propertyPath: m_Intensity
+      value: 4.73999977
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+  m_RootGameObject: {fileID: 1471668002}
   m_IsPrefabParent: 0
   m_IsExploded: 1
 --- !u!1 &1331549768
@@ -2101,6 +2451,97 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1331549768}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1453874716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+  m_PrefabInternal: {fileID: 365955097}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1453874720}
+  - 108: {fileID: 1453874719}
+  - 114: {fileID: 1453874718}
+  - 65: {fileID: 1453874717}
+  m_Layer: 0
+  m_Name: Clue
+  m_TagString: Clue
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!65 &1453874717
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80,
+    type: 2}
+  m_PrefabInternal: {fileID: 365955097}
+  m_GameObject: {fileID: 1453874716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .200000003, y: .200000003, z: .200000003}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1453874718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80,
+    type: 2}
+  m_PrefabInternal: {fileID: 365955097}
+  m_GameObject: {fileID: 1453874716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb32917f72210554f8e7a7f5899c46d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clueName: barmannHand
+--- !u!108 &1453874719
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80,
+    type: 2}
+  m_PrefabInternal: {fileID: 365955097}
+  m_GameObject: {fileID: 1453874716}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 4.73999977
+  m_Range: .800000012
+  m_SpotAngle: 100
+  m_CookieSize: .639999986
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
+--- !u!4 &1453874720
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+  m_PrefabInternal: {fileID: 365955097}
+  m_GameObject: {fileID: 1453874716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.473243654, y: .131366253, z: .238838345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 675022141}
 --- !u!1 &1464942202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,7 +2596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb32917f72210554f8e7a7f5899c46d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueName: Mixbuch
+  clueName: barmannMixBuch
 --- !u!108 &1464942206
 Light:
   m_ObjectHideFlags: 0
@@ -2163,6 +2604,97 @@ Light:
     type: 2}
   m_PrefabInternal: {fileID: 367107488}
   m_GameObject: {fileID: 1464942202}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 4.73999977
+  m_Range: .800000012
+  m_SpotAngle: 100
+  m_CookieSize: .639999986
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
+--- !u!1 &1471668002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+  m_PrefabInternal: {fileID: 1230423116}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1471668003}
+  - 108: {fileID: 1471668006}
+  - 114: {fileID: 1471668005}
+  - 65: {fileID: 1471668004}
+  m_Layer: 0
+  m_Name: Clue
+  m_TagString: Clue
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1471668003
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
+  m_PrefabInternal: {fileID: 1230423116}
+  m_GameObject: {fileID: 1471668002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.473243654, y: .131366253, z: .238838345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1119000498}
+--- !u!65 &1471668004
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80,
+    type: 2}
+  m_PrefabInternal: {fileID: 1230423116}
+  m_GameObject: {fileID: 1471668002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .200000003, y: .200000003, z: .200000003}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1471668005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80,
+    type: 2}
+  m_PrefabInternal: {fileID: 1230423116}
+  m_GameObject: {fileID: 1471668002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb32917f72210554f8e7a7f5899c46d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clueName: barmannFleck
+--- !u!108 &1471668006
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80,
+    type: 2}
+  m_PrefabInternal: {fileID: 1230423116}
+  m_GameObject: {fileID: 1471668002}
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
@@ -2237,7 +2769,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: clueName
-      value: Drink
+      value: barmannDrink
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: m_Range
@@ -2770,7 +3302,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: clueName
-      value: Docbuch
+      value: docBuch
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: m_Range
@@ -2982,7 +3514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb32917f72210554f8e7a7f5899c46d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueName: Gift
+  clueName: barmannGift
 --- !u!108 &2130120256
 Light:
   m_ObjectHideFlags: 0
