@@ -2,20 +2,12 @@
 using System.Collections;
 using iViewX;
 
-[System.Serializable]
-public static class SuspectID
-{
-	public const int BARKEEP_ID = 0;
-	public const int DOCTOR_ID = 1;
-}
-
 public class Suspect : MonoBehaviourWithGazeComponent 
 {
 	public enum SuspectState
 	{
-		Positive,
 		Neutral,
-		Negative
+		Nervous
 	}
 	
 	public static SuspectState state = SuspectState.Neutral;
@@ -28,6 +20,26 @@ public class Suspect : MonoBehaviourWithGazeComponent
 		behaviour = GetComponent<BehaviourController>();
 	}
 	
+	void Update()
+	{
+		Debug.Log("in action: " + behaviour.IsInAction);
+	}
+	
+	public void SetNervousState()
+	{
+		state = SuspectState.Nervous;
+	}
+	
+	public void SetNeutralState()
+	{
+		state = SuspectState.Neutral;
+	}
+	
+	public SuspectState GetSuspectState()
+	{
+		return state;
+	}
+	
 	void OnMouseEnter()
 	{
 		behaviour.RandomReaction();
@@ -36,6 +48,11 @@ public class Suspect : MonoBehaviourWithGazeComponent
 	void OnMouseOver()
 	{
 		behaviour.FixatedReaction();
+	}
+	
+	void OnMouseExit()
+	{
+		StartCoroutine("SeekAttention");
 	}
 	
 	public override void OnGazeEnter(RaycastHit hit)
@@ -51,5 +68,11 @@ public class Suspect : MonoBehaviourWithGazeComponent
 	public override void OnGazeExit()
 	{
 		
+	}
+	
+	IEnumerator SeekAttention()
+	{
+		yield return new WaitForSeconds(2f);
+		behaviour.NotLookingReaction();
 	}
 }

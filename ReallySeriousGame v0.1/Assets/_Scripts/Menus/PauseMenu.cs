@@ -48,7 +48,6 @@ public class PauseMenu : MonoBehaviour
 				isPaused = false;
 				Time.timeScale = 1;
 			}
-		
 		}
 	}
 	

@@ -7,9 +7,10 @@ public class Clue : MonoBehaviourWithGazeComponent
 	public int clueID;
 	public string clueName;
 	private Light highlight;
-	private bool isHighlighted = false;
-	private bool isDiscovered = false; //Discovered by player?
-	private bool isVisible = true;	//Visible on suspect?
+	public bool isHighlighted 	= false;
+	public bool isDiscovered 	= false; //Discovered by player?
+	public bool isVisible 		= true; //Visible on suspect?
+	public bool isRelevant 		= false;
 	
 	void Awake()
 	{
@@ -23,7 +24,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 		
 		if(transform.parent.CompareTag("Suspect"))
 		{
-			transform.parent.SendMessage("RandomOnClueReaction", clueID);
+			transform.parent.SendMessage("RandomOnClueReaction", clueName);
 		}
 	}
 	
@@ -31,7 +32,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 	{
 		if(transform.parent.CompareTag("Suspect"))
 		{
-			transform.parent.SendMessage("FixatedOnClueReaction", clueID);
+			transform.parent.SendMessage("FixatedOnClueReaction", clueName);
 		}
 	}
 	

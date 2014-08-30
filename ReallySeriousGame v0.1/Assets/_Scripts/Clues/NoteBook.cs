@@ -52,7 +52,12 @@ public class NoteBook : MonoBehaviour
 		for(int i = 0; i < notes.Count; i++)
 		{
 			if(GUI.Button(new Rect(offset, (offset * 2) + (noteHeight * i), noteWidth, noteHeight), notes[i]))
-				Debug.Log("stuff");
+			{
+				if(GameState.IsState(GameState.States.Interrogating))
+				{
+					GameController.instance.GetCurrentSuspect().SendMessage("ReactionOnAccusation", notes[i]);
+				}
+			}
 		}
 	}
 	

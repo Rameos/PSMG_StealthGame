@@ -6,24 +6,29 @@ using System.IO;
 
 public class GameController : MonoBehaviour 
 {
-	public static GameController gameControl;
+	public static GameController instance;
 	
 	SoundManager sound;
 	//ClueManager clueManager;
 	
 	//private string dataFileName = "/gameprogress.dat";
 	
+	GameObject hitObject, selectedObject;
+	GameObject currentSuspect;
+	GameObject currentInteractable;
+	GameObject currentClue;
+	
 	int currentLevel = -1;
 	
 	void Awake() 
 	{
 		#region singleton
-		if(gameControl == null) 
+		if(instance == null) 
 		{
 			DontDestroyOnLoad(gameObject);
-			gameControl = this;
+			instance = this;
 		} 
-		else if(gameControl != this) 
+		else if(instance != this) 
 		{
 			Destroy(gameObject);
 		}
@@ -35,6 +40,7 @@ public class GameController : MonoBehaviour
 	
 	void Update () 
 	{	
+		Debug.Log(selectedObject);
 		CheckControls();
 		CheckGameState();
 		ControllBGVolume();
@@ -72,11 +78,11 @@ public class GameController : MonoBehaviour
 		{
 			if(ControlsOptions.IsKeyboardControls)
 			{
-				InputController.inputController.KeyboardControls();
+				InputController.instance.KeyboardControls();
 			}
 			else if(ControlsOptions.IsGamepadControls)
 			{
-				InputController.inputController.GamepadControls();
+				InputController.instance.GamepadControls();
 			}
 		}
 	}
@@ -92,6 +98,83 @@ public class GameController : MonoBehaviour
 			sound.DefaultBGVolume();
 		}
 	}
+	
+	#region set object references
+	public GameObject GetSelectedObject()
+	{
+		return selectedObject;
+	}
+	
+	public void SetSelectedObject()
+	{
+		selectedObject = Mouse.rayTarget().collider.gameObject;
+		
+		if(selectedObject.tag == "Suspect")
+		{
+			Debug.Log("is suspect");
+			currentSuspect = selectedObject;
+			
+			if(GameState.IsState(GameState.States.InGame))
+			{
+				GameState.ChangeState(GameState.States.Interrogating);
+			}
+		}
+		else if(selectedObject.tag == "Clue")
+		{
+			Debug.Log("is clue");
+			currentClue = selectedObject;
+		}
+		else if(selectedObject.tag == "Interactable")
+		{
+			Debug.Log("is interactable");
+			currentInteractable = selectedObject;
+			
+			if(GameState.IsState(GameState.States.InGame))
+			{
+				GameState.ChangeState(GameState.States.Inspecting);
+			}
+		}
+	}
+	
+	public void ClearSelections()
+	{
+		selectedObject = null;
+		currentSuspect = null;
+		currentClue = null;
+		currentInteractable = null;
+		GameState.ChangeState(GameState.States.InGame);
+	}
+	
+	public void SetCurrentSuspect(GameObject suspect)
+	{
+		currentSuspect = suspect;
+	}
+	
+	public GameObject GetCurrentSuspect()
+	{
+		return currentSuspect;
+	}
+	
+	public void SetCurrentClue(GameObject clue)
+	{
+		currentClue = clue;
+	}
+	
+	public GameObject GetCurrentClue()
+	{
+		return currentClue;
+	}
+	
+	public void SetCurrentInteractable(GameObject interactable)
+	{
+		currentInteractable = interactable;
+	}
+	
+	public GameObject GetCurrentInteractable()
+	{
+		return currentInteractable;
+	}
+	#endregion
 	
 	/*
 	#region save/load player data

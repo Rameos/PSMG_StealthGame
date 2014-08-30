@@ -7,12 +7,12 @@ public class Interactable : MonoBehaviourWithGazeComponent
 
 	private Color initialColor;
 	public Color highlightColor = new Color (0.75f, 1f, 0.75f, 1f);
-	public static bool isHighlighted = false;
+	bool isHighlighted = false;
 	
 	void OnMouseEnter()
 	{
-		if(!GameState.IsPaused && !GameState.IsInteracting && !isHighlighted)
-		{
+		if(!GameState.IsPaused && !isHighlighted)
+		{	
 			Highlight();
 		}
 	}
@@ -28,9 +28,19 @@ public class Interactable : MonoBehaviourWithGazeComponent
 			UnHighlight();
 		}
 		//Unhighlight when interacting with highlighted object
-		if(GameState.IsInteracting && isHighlighted)
+		if(gameObject == GameController.instance.GetSelectedObject())
 		{
 			UnHighlight();
+		}
+		
+		//UGGGGGGGGGGGG
+		if(Keyboard.inputInteract())
+		{
+			if(GameState.IsState(GameState.States.Interrogating))
+			{	
+				GameController.instance.GetCurrentSuspect().SendMessage("ReactionOnInteractable", this.name);
+				ClueManager.instance.FoundClue(gameObject);
+			}
 		}
 	}
 	
@@ -59,10 +69,14 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	
 	void Highlight() 
 	{
-		initialColor = renderer.material.color;
-		renderer.material.color = highlightColor;
+		//Do not highlight selected object again.
+		if(gameObject != GameController.instance.GetSelectedObject())
+		{
+			initialColor = renderer.material.color;
+			renderer.material.color = highlightColor;
 		
-		isHighlighted = true;
+			isHighlighted = true;
+		}
 	}
 	
 	void UnHighlight()
