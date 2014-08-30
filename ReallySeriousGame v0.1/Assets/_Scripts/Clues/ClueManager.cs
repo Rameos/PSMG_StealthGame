@@ -2,15 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[System.Serializable]
-public static class ClueID 
-{
-	public const int CLUE_INTERACTABLE1_ID = 0;
-	public const int CLUE_INTERACTABLE2_ID = 1;
-	public const int CLUE_INTERACTABLE3_ID = 2;
-	public const int CLUE_INTERACTABLE4_ID = 3;
-}
-
 public class ClueManager : MonoBehaviour 
 {
 	public static ClueManager instance;
@@ -44,9 +35,9 @@ public class ClueManager : MonoBehaviour
 		{
 			foreach (Transform clue in selectedObject.transform)
 			{
-				string childClueName = clue.GetComponent<Clue>().clueName;
 				if(clue.tag == "Clue")
 				{
+					string childClueName = clue.GetComponent<Clue>().clueName;
 					if(!foundClues.Contains(childClueName))
 						clue.gameObject.SetActive(true);
 				}
@@ -94,6 +85,10 @@ public class ClueManager : MonoBehaviour
 			
 			if(!foundClues.Contains(selectedClue.clueName))
 				foundClues.Add(selectedClue.clueName);
+		} 
+		else if(newClue.tag == "Interactable")
+		{
+			foundClues.Add("Barmann Aussage: " + newClue.name);
 		}
 	}
 	

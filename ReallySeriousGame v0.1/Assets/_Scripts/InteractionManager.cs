@@ -4,6 +4,7 @@ using System.Collections;
 public class InteractionManager : MonoBehaviour 
 {
 	public float turnSpeed = 66f;
+	private bool isInteracting = false;
 
 	Vector3 itemOriginalPos;
 	public float itemDistanceFromCamera = 2f;
@@ -30,17 +31,15 @@ public class InteractionManager : MonoBehaviour
 			ClueManager.instance.FoundClue(selection);
 		}
 		
-		if(!GameState.IsInteracting)
+		if(!isInteracting)
 		{
 			switch(selection.tag)
 			{
 			case "Interactable": 
-				GameState.ChangeState(GameState.States.Inspecting);
 				Inspect(selection);
 				break;
 				
 			case "Suspect":
-				GameState.ChangeState(GameState.States.Interrogating);
 				Interrogate(selection);
 				break;
 				
@@ -50,6 +49,7 @@ public class InteractionManager : MonoBehaviour
 				
 			default: break;
 			}
+			isInteracting = true;
 		}
 		else
 		{
@@ -78,8 +78,7 @@ public class InteractionManager : MonoBehaviour
 				
 			default: break;
 			}
-			
-			GameState.ChangeState(GameState.States.InGame);
+			isInteracting = false;
 		}
 		else
 		{

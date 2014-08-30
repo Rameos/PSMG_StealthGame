@@ -11,8 +11,11 @@ public class SoundManager : MonoBehaviour
 	private AudioSource ambientSource;
 	public AudioClip[] ambientClip;
 	
-	private AudioSource[] soundEffectSource;
-	//public AudioClip[] soundEffectClip;
+	private AudioSource soundEffectSource;
+	public AudioClip[] soundEffectClip;
+	
+	private AudioSource voiceSource;
+	public AudioClip[] voiceClip;
 	
 	private AudioClip backgroundSound;
 	
@@ -35,6 +38,10 @@ public class SoundManager : MonoBehaviour
 		
 		ambientSource = gameObject.AddComponent<AudioSource>();
 		ambientSource.loop = true;
+		
+		voiceSource = gameObject.AddComponent<AudioSource>();
+		
+		soundEffectSource = gameObject.AddComponent<AudioSource>();
 	}
 	
 	public void PlayBGMusic(string level)
@@ -81,14 +88,33 @@ public class SoundManager : MonoBehaviour
 		ambientSource.clip = null;
 	}
 	
-	public void PlaySoundEffect()
+	public void PlayVoice(string subject)
 	{
+		if(voiceSource.isPlaying)
+		{
+			return;
+		}
+		voiceSource.Stop();
+		voiceSource.clip = Resources.Load(subject, typeof(AudioClip)) as AudioClip;
+		voiceSource.Play();
+	}
 	
+	public void StopVoice()
+	{
+		voiceSource.Stop();
+		voiceSource.clip = null;
+	}
+	
+	public void PlaySoundEffect(string item)
+	{
+		soundEffectSource.clip = Resources.Load(item, typeof(AudioClip)) as AudioClip;
+		soundEffectSource.Play();
 	}
 	
 	public void StopSoundEffect()
 	{
-		
+		soundEffectSource = null;
+		soundEffectSource.clip = null;
 	}
 	
 	public void LowerBGVolume()
