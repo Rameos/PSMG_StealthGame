@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class ClueManager : MonoBehaviour 
 {
-	public static ClueManager clueManager;
+	public static ClueManager instance;
 	
 	static List<string> foundClues = new List<string>();
 	Clue selectedClue;
@@ -17,12 +17,12 @@ public class ClueManager : MonoBehaviour
 	void Awake ()
 	{
 		#region singleton
-		if(clueManager == null) 
+		if(instance == null) 
 		{
 			DontDestroyOnLoad(gameObject);
-			clueManager = this;
+			instance = this;
 		} 
-		else if(clueManager != this) 
+		else if(instance != this) 
 		{
 			Destroy(gameObject);
 		}
@@ -39,9 +39,9 @@ public class ClueManager : MonoBehaviour
 		{
 			foreach (Transform clue in selectedObject.transform)
 			{
-				string childClueName = clue.GetComponent<Clue>().clueName;
 				if(clue.tag == "Clue")
 				{
+					string childClueName = clue.GetComponent<Clue>().clueName;
 					if(!foundClues.Contains(childClueName))
 						clue.gameObject.SetActive(true);
 				}
@@ -85,14 +85,14 @@ public class ClueManager : MonoBehaviour
 		{
 			selectedClue = newClue.GetComponent<Clue>();
 			selectedClue.SetDiscovered();
-            
-            if (PlayVoice != null)
-            {
-                PlayVoice(this , selectedClue.clueName, selectedClue.GetComponentInParent<Suspect>().numberOfConversations);
-            }
+			selectedClue.gameObject.SetActive(false);
 			
 			if(!foundClues.Contains(selectedClue.clueName))
 				foundClues.Add(selectedClue.clueName);
+		} 
+		else if(newClue.tag == "Interactable")
+		{
+			foundClues.Add("Barmann Aussage: " + newClue.name);
 		}
 	}
 	

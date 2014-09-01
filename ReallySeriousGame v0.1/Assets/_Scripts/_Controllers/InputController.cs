@@ -2,27 +2,23 @@
 
 public class InputController : MonoBehaviour 
 {
-	public static InputController inputController;
+	public static InputController instance;
 	
 	#region component declarations
 	NoteBook 			notebook;
-	ClueManager 		clueManager;
 	MovementManager 	movement;
 	InteractionManager 	interaction;
 	PauseMenu			pause;
 	#endregion
 	
-	GameObject hitObject;
-	GameObject selectedObject;
-
 	void Awake () 
 	{
 		#region singleton
-		if(inputController == null) 
+		if(instance == null) 
 		{
-			inputController = this;
+			instance = this;
 		} 
-		else if(inputController != this) 
+		else if(instance != this) 
 		{
 			Destroy(gameObject);
 		}
@@ -31,7 +27,6 @@ public class InputController : MonoBehaviour
 		#region component initializations
 		pause			= GetComponent<PauseMenu>();
 		notebook		= gameObject.GetComponentInChildren<NoteBook>();
-		clueManager		= GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
 		movement 		= GetComponent<MovementManager> ();
 		interaction		= GetComponent<InteractionManager> ();
 		#endregion
@@ -45,27 +40,14 @@ public class InputController : MonoBehaviour
 		#region interactions keyboard
 		if(Keyboard.inputInteract())
 		{
-			if(hitObject.tag != "Clue")
-			{
-				selectedObject = hitObject;
-				
-				interaction.StartInteraction(selectedObject);
-				if(selectedObject != null)
-					clueManager.ActivateCluesOn(selectedObject); //???
-			}
-			else
-			{
-				clueManager.FoundClue(hitObject);
-			}
+			GameController.instance.SetSelectedObject();
+			interaction.StartInteraction(GameController.instance.GetSelectedObject());
 		}
 		
 		if(Keyboard.inputReturn())
 		{
-			//deactivate clues on object when quitting interaction
-			if(selectedObject != null)
-				clueManager.DeactivateCluesOn(selectedObject);
-			
 			interaction.StopInteraction();
+			GameController.instance.ClearSelections();
 		}
 		#endregion
 		
@@ -84,8 +66,6 @@ public class InputController : MonoBehaviour
 	
 	void CheckMouseInputs() 
 	{	
-		hitObject = Mouse.rayTarget().collider.gameObject;
-		
 		#region movement mouse
 		if(ScrollAreas.left.Contains(Mouse.Position()))		movement.turnLeft();
 			
@@ -99,20 +79,18 @@ public class InputController : MonoBehaviour
 		#region interactions mouse
 		if(Mouse.leftClicked())
 		{
-			interaction.RotateItemLeft(selectedObject);
+			interaction.RotateItemLeft(GameController.instance.GetSelectedObject());
 		}
 		
 		if(Mouse.rightClicked()) 
 		{
-			interaction.RotateItemRight(selectedObject);
+			interaction.RotateItemRight(GameController.instance.GetSelectedObject());
 		}
 		#endregion
  	}
  	
 	void CheckGazeInputs()
 	{	
-		hitObject = Gaze.rayTarget().collider.gameObject;
-		
 		if(ScrollAreas.left.Contains(Gaze.Position()))		movement.turnLeft();
 		
 		if(ScrollAreas.right.Contains(Gaze.Position()))		movement.turnRight();
@@ -172,4 +150,13 @@ public class InputController : MonoBehaviour
 		}
 	}
 	#endregion
+}
+
+[System.Serializable]
+public class ScrollAreas
+{
+	public static Rect top 		= new Rect(0, Screen.height - Screen.height / 6, Screen.width, Screen.height / 6);
+	public static Rect right 	= new Rect(Screen.width - Screen.width / 6, 0, Screen.width / 6, Screen.height);
+	public static Rect bottom 	= new Rect(0, 0, Screen.width, Screen.height / 6);
+	public static Rect left 	= new Rect(0, 0, Screen.width / 6, Screen.height);
 }

@@ -3,46 +3,45 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour 
 {
-	public static SoundManager soundManager;
+	public static SoundManager instance;
 	
 	private AudioSource musicSource;
-	private AudioSource ambientSource;
-	private AudioSource voiceOverSource;
-	private AudioSource[] soundEffectSource;
-	
 	public AudioClip[] musicClip;
-	public AudioClip[] ambientClip;
-	public AudioClip[] noiseClip;
-    public AudioClip[] voiceClipBarkeeper;
-    public AudioClip[] voiceClipDetective;
-    public AudioClip[] voiceClipJunkie;
-    public AudioClip[] voiceClipDoctor;
 	
+	private AudioSource ambientSource;
+	public AudioClip[] ambientClip;
+	
+	private AudioSource soundEffectSource;
+	public AudioClip[] soundEffectClip;
+	
+	private AudioSource voiceSource;
+	public AudioClip[] voiceClip;
 	
 	private AudioClip backgroundSound;
-    private AudioClip voiceOverSound;
 	
 	void Awake () 
 	{
 		#region singleton
-		if(soundManager == null) 
+		if(instance == null) 
 		{
 			DontDestroyOnLoad(gameObject);
-			soundManager = this;
+			instance = this;
 		} 
-		else if(soundManager != this) 
+		else if(instance != this) 
 		{
 			Destroy(gameObject);
 		}
 		#endregion
 		
-        voiceOverSource = gameObject.AddComponent<AudioSource>();
-        //voiceOverSource.rolloffMode = AudioRolloffMode.Linear;
 		musicSource = gameObject.AddComponent<AudioSource>();
 		musicSource.loop = true;
 		
 		ambientSource = gameObject.AddComponent<AudioSource>();
 		ambientSource.loop = true;
+		
+		voiceSource = gameObject.AddComponent<AudioSource>();
+		
+		soundEffectSource = gameObject.AddComponent<AudioSource>();
 	}
 	
 	public void PlayBGMusic(string level)
@@ -71,7 +70,7 @@ public class SoundManager : MonoBehaviour
 		switch (level)
 		{
 		case "BarScene":
-			backgroundSound = ambientClip[Random.Range(0, 1)];
+			backgroundSound = ambientClip[Random.Range(0, 2)];
 			break;
 		case "Scene_2":
 			backgroundSound = ambientClip[Random.Range(2, ambientClip.Length)];
@@ -89,173 +88,48 @@ public class SoundManager : MonoBehaviour
 		ambientSource.clip = null;
 	}
 	
-	public void PlayVoiceOver(string track)
+	public void PlayVoice(string subject)
 	{
-        voiceOverSource.Stop();
-        switch (track)
-        {
-                //Events Barkeeper
-            case Constants.EventBarkeeperDrink:
-                voiceOverSound = voiceClipBarkeeper[0];
-                break;
-            case Constants.EventBarkeeperMixexperte:
-                voiceOverSound = voiceClipBarkeeper[1];
-                break;
-            case Constants.EventBarkeeperFleck:
-                voiceOverSound = voiceClipBarkeeper[2];
-                break;            
-            case Constants.EventBarkeeperMischung:
-                voiceOverSound = voiceClipBarkeeper[3];
-                break;
-            case Constants.EventBarkeeperErfolgsgeheimnis:
-                voiceOverSound = voiceClipBarkeeper[4];
-                break;
-            case Constants.EventBarkeeperKillerdrink:
-                voiceOverSound = voiceClipBarkeeper[5];
-                break;
-            case Constants.EventBarkeeperRatten:
-                voiceOverSound = voiceClipBarkeeper[6];
-                break;
-            case Constants.EventBarkeeperDrogen:
-                voiceOverSound = voiceClipBarkeeper[7];
-                break;
-            case Constants.EventBarkeeperRattengift:
-                voiceOverSound = voiceClipBarkeeper[8];
-                break;
-            case Constants.EventBarkeeperBesterDrink:
-                voiceOverSound = voiceClipBarkeeper[9];
-                break;
-            case Constants.EventBarkeeperAllesMischen:
-                voiceOverSound = voiceClipBarkeeper[10];
-                break;
-                //Events Detektiv
-            case Constants.EventDetektivBesserNicht:
-                voiceOverSound = voiceClipDetective[0];
-                break;
-            case Constants.EventDetektivZimmerUntersuchen:
-                voiceOverSound = voiceClipDetective[1];
-                break;
-            case Constants.EventDetektivVersuchZuMischen:
-                voiceOverSound = voiceClipDetective[2];
-                break;
-            case Constants.EventDetektivInteressant:
-                voiceOverSound = voiceClipDetective[3];
-                break;
-            case Constants.EventDetektivNichtGut:
-                voiceOverSound = voiceClipDetective[4];
-                break;
-            case Constants.EventDetektivBuchUntersuchen:
-                voiceOverSound = voiceClipDetective[5];
-                break;
-            case Constants.EventDetektivWlanAusschalten:
-                voiceOverSound = voiceClipDetective[6];
-                break;
-            case Constants.EventDetektivSchlossKnacken:
-                voiceOverSound = voiceClipDetective[7];
-                break;
-            case Constants.EventDetektivBesserLassen:
-                voiceOverSound = voiceClipDetective[8];
-                break;
-            case Constants.EventDetektivFallGeloest:
-                voiceOverSound = voiceClipDetective[9];
-                break;
-                //Events Junkie
-            case Constants.EventJunkieMedizin:
-                voiceOverSound = voiceClipJunkie[0];
-                break;
-            case Constants.EventJunkieWasIsLos:
-                voiceOverSound = voiceClipJunkie[1];
-                break;
-            case Constants.EventJunkieCharly:
-                voiceOverSound = voiceClipJunkie[2];
-                break;
-            case Constants.EventJunkieHoseGeklaut:
-                voiceOverSound = voiceClipJunkie[3];
-                break;
-            case Constants.EventJunkieSchaefchen:
-                voiceOverSound = voiceClipJunkie[4];
-                break;
-            case Constants.EventJunkieVomBarmann:
-                voiceOverSound = voiceClipJunkie[5];
-                break;
-            case Constants.EventJunkieMalen:
-                voiceOverSound = voiceClipJunkie[6];
-                break;
-            case Constants.EventJunkieKurzNippen:
-                voiceOverSound = voiceClipJunkie[7];
-                break;
-            case Constants.EventJunkieBraucheStoff:
-                voiceOverSound = voiceClipJunkie[8];
-                break;
-            case Constants.EventJunkieMalenDiesUndDas:
-                voiceOverSound = voiceClipJunkie[9];
-                break;
-            case Constants.EventJunkieCharlyNein:
-                voiceOverSound = voiceClipJunkie[10];
-                break;
-            case Constants.EventJunkieNachschub:
-                voiceOverSound = voiceClipJunkie[11];
-                break;
-            case Constants.EventJunkieHirte:
-                voiceOverSound = voiceClipJunkie[12];
-                break;
-                //Events Doctor
-            case Constants.EventDoctorDummeMenschen:
-                voiceOverSound = voiceClipDoctor[0];
-                break;
-            case Constants.EventDoctorBinBeschaeftigt:
-                voiceOverSound = voiceClipDoctor[1];
-                break;
-            case Constants.EventDoctorNochDa:
-                voiceOverSound = voiceClipDoctor[2];
-                break;
-            case Constants.EventDoctorPflanzen:
-                voiceOverSound = voiceClipDoctor[3];
-                break;
-            case Constants.EventDoctorFingerWeg:
-                voiceOverSound = voiceClipDoctor[4];
-                break;
-            case Constants.EventDoctorIstAerztin:
-                voiceOverSound = voiceClipDoctor[5];
-                break;
-            case Constants.EventDoctorKeinAlkohol:
-                voiceOverSound = voiceClipDoctor[6];
-                break;
-            case Constants.EventDoctorZuTun:
-                voiceOverSound = voiceClipDoctor[7];
-                break;
-            case Constants.EventDoctorFaszinationPflanzen:
-                voiceOverSound = voiceClipDoctor[8];
-                break;
-            case Constants.EventDoctorMedikament:
-                voiceOverSound = voiceClipDoctor[9];
-                break;
-            case Constants.EventDoctorKrebsHeilen:
-                voiceOverSound = voiceClipDoctor[10];
-                break;
-            case Constants.EventDoctorZeitVerschwenden:
-                voiceOverSound = voiceClipDoctor[11];
-                break;
-            default:
-                break;
-        }
-        voiceOverSource.clip = voiceOverSound;
-        voiceOverSource.Play();
+		if(voiceSource.isPlaying)
+		{
+			return;
+		}
+		voiceSource.Stop();
+		voiceSource.clip = Resources.Load(subject, typeof(AudioClip)) as AudioClip;
+		voiceSource.Play();
 	}
 	
-	public void StopVoiceOver()
+	public void StopVoice()
 	{
-        voiceOverSource.Stop();
-        voiceOverSource.clip = null;
+		voiceSource.Stop();
+		voiceSource.clip = null;
 	}
 	
-	public void PlaySoundEffect()
+	public void PlaySoundEffect(string item)
 	{
-	
+		soundEffectSource.clip = Resources.Load(item, typeof(AudioClip)) as AudioClip;
+		soundEffectSource.Play();
 	}
 	
 	public void StopSoundEffect()
 	{
+		soundEffectSource = null;
+		soundEffectSource.clip = null;
+	}
 	
+	public void LowerBGVolume()
+	{
+		if(ambientSource.isPlaying) 
+		{
+			ambientSource.volume = 0.66f;
+		}
+	}
+	
+	public void DefaultBGVolume()
+	{
+		if(ambientSource.isPlaying)
+		{
+			ambientSource.volume = 1f;
+		}
 	}
 }

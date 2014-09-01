@@ -3,7 +3,8 @@ using System;
 
 public class InteractionManager : MonoBehaviour 
 {
-	bool isInteracting = false;
+	public float turnSpeed = 66f;
+	private bool isInteracting = false;
 
 	Vector3 itemOriginalPos;
 	public float itemDistanceFromCamera = 2f;
@@ -12,31 +13,34 @@ public class InteractionManager : MonoBehaviour
 	Vector3 playerOriginalPos;
 	public float suspectDistanceFromPlayer = 0.5f;
 	GameObject currentSuspect;
-
-    public delegate void DialogEvent (object sender, string data, int index);
-    public static event DialogEvent PlayVoice;
-    private Suspect activeSuspect;
+	
+	GameObject currentSelection;
 	
 	/// <summary>
 	/// Starts interaction with selected object.
 	/// </summary>
 	public void StartInteraction(GameObject selection)
 	{
+		if(selection.tag != "Clue")
+		{
+			ClueManager.instance.ActivateCluesOn(selection);
+			currentSelection = selection;
+		}
+		else
+		{
+			ClueManager.instance.FoundClue(selection);
+		}
+		
 		if(!isInteracting)
 		{
 			switch(selection.tag)
 			{
 			case "Interactable": 
-				GameState.ChangeState(GameState.States.Inspecting);
 				Inspect(selection);
-				isInteracting = true;
 				break;
 				
 			case "Suspect":
-                //Debug.Log("Interrogating " + selection.GetComponent<Suspect>().currentSuspect.ToString());
-				GameState.ChangeState(GameState.States.Interrogating);
 				Interrogate(selection);
-				isInteracting = true;
 				break;
 				
 			case "Door":
@@ -45,6 +49,7 @@ public class InteractionManager : MonoBehaviour
 				
 			default: break;
 			}
+			isInteracting = true;
 		}
 		else
 		{
@@ -57,8 +62,10 @@ public class InteractionManager : MonoBehaviour
 	/// </summary>
 	public void StopInteraction()
 	{
-		if(isInteracting)
+		if(GameState.IsInteracting)
 		{
+			ClueManager.instance.DeactivateCluesOn(currentSelection);
+			
 			switch(GameState.gameState)
 			{
 			case GameState.States.Inspecting:
@@ -71,18 +78,12 @@ public class InteractionManager : MonoBehaviour
 				
 			default: break;
 			}
-			GameState.ChangeState(GameState.States.InGame);
 			isInteracting = false;
 		}
 		else
 		{
 			return;
 		}
-	}
-	
-	public bool IsInteracting()
-	{
-		return isInteracting;
 	}
 	
 	/// <summary>
@@ -153,12 +154,12 @@ public class InteractionManager : MonoBehaviour
 	public void RotateItemLeft(GameObject interactable)
 	{	
 		if(GameState.IsState(GameState.States.Inspecting))
-			interactable.transform.Rotate(Vector3.up * 50 * Time.deltaTime,Space.World);
+			interactable.transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime,Space.World);
 	}
 	
 	public void RotateItemRight(GameObject interactable)
 	{
 		if(GameState.IsState(GameState.States.Inspecting))
-			interactable.transform.Rotate(Vector3.down * 50 * Time.deltaTime,Space.World);
+			interactable.transform.Rotate(Vector3.down * turnSpeed * Time.deltaTime,Space.World);
 	}
 }
