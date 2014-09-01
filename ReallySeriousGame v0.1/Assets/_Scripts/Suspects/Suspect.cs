@@ -35,11 +35,6 @@ public class Suspect : MonoBehaviourWithGazeComponent
 		state = SuspectState.Neutral;
 	}
 	
-	public SuspectState GetSuspectState()
-	{
-		return state;
-	}
-	
 	void OnMouseEnter()
 	{
 		behaviour.RandomReaction();
