@@ -50,21 +50,21 @@ public class VisualResponse : MonoBehaviour
 	
 	public void FixatedGesture()
 	{
-		newSpritePath = dir + "_Positive_" + UnityEngine.Random.Range(0,2);
-			
+		newSpritePath = dir + "_" + Suspect.state + "_" + UnityEngine.Random.Range(0,1);
+		
 		StartCoroutine("DoShortGesture");
 	}
 	
 	public void FixatedOnClueGesture(string clueID)
 	{
-		newSpritePath = dir + "_Nervous_" + clueID;
-		
+		newSpritePath = dir + "_" + Suspect.state + "_" + clueID;
+		Debug.Log(newSpritePath);
 		StartCoroutine("DoShortGesture");
 	}
 	
 	public void RandomOnClueGesture(string clueID)
 	{
-		newSpritePath = dir + "_Nervous_" + clueID;
+		newSpritePath = dir + "_" + Suspect.state + "_" + clueID;
 			
 		StartCoroutine("DoShortGesture");
 	}

@@ -6,6 +6,8 @@ TextureImporter:
     21300002: Barkeep_Interacting_Positive_1
     21300004: Barkeep_Interrogating_Positive_1
     21300006: Barkeep_Positive_1
+    21300008: Barkeep_Neutral_1
+    21300010: Barkeep_Neutral_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
