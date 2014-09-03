@@ -171,7 +171,7 @@ namespace iViewX
         /// </summary>
         void OnApplicationQuit()
         {
-            Debug.Log("Finish");
+            //Debug.Log("Finish");
             instance.joinEyeThread();
         }
 

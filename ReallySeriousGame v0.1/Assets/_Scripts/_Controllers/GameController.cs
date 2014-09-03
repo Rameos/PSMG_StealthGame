@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
 	
 	void Update () 
 	{	
-		Debug.Log(selectedObject);
+		//Debug.Log(selectedObject);
 		CheckControls();
 		CheckGameState();
 		ControllBGVolume();
@@ -126,7 +126,7 @@ public class GameController : MonoBehaviour
 		}
 		else if(selectedObject.tag == "Interactable")
 		{
-			Debug.Log("is interactable");
+			//Debug.Log("is interactable");
 			currentInteractable = selectedObject;
 			
 			if(GameState.IsState(GameState.States.InGame))

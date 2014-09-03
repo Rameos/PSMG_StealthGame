@@ -21,25 +21,25 @@ public class VerbalResponse : MonoBehaviour
 	
 	public void RandomVO()
 	{
-		newVOClipPath = dir + gameObject.name + "_Default_Neutral_" + Random.Range(0,2);
+		newVOClipPath = dir + gameObject.name + "_Default_" + Suspect.state + "_" + Random.Range(0,1);
 		PlayVO();
 	}
 	
 	public void FixatedVO()
 	{
-		newVOClipPath = dir + gameObject.name + "_Positive_" + Random.Range(0,2);
+		newVOClipPath = dir + gameObject.name + "_" + Suspect.state + "_" + Random.Range(0,1);
 		PlayVO();
 	}
 	
 	public void FixatedOnClueVO(string clueID)
 	{
-		newVOClipPath = dir + gameObject.name + "_Nervous_" + clueID;
+		newVOClipPath = dir + gameObject.name + "_" + Suspect.state + "_" + clueID;
 		PlayVO();
 	}
 	
 	public void RandomOnClueVO(string clueID)
 	{
-		newVOClipPath = dir + gameObject.name + "_Nervous_" + clueID;
+		newVOClipPath = dir + gameObject.name + "_" + Suspect.state + "_" + clueID;
 		PlayVO();
 	}
 	

@@ -1,12 +1,9 @@
 fileFormatVersion: 2
-guid: e14cb1ebea93c4d488ff86691fcc9fd8
+guid: acc2cf9f68f6c8440a4135d187852e75
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Interacting_Positive
-    21300002: Interacting_Positive_0
-    21300004: Barkeep_Interacting_Positive_0
-    21300006: Barkeep_Interrogating_Positive_0
-    21300008: Barkeep_Positive_0
+    21300000: handsback_1000
+    21300002: Barkeep_Default_Nervous_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

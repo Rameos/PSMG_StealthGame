@@ -22,7 +22,7 @@ public class Suspect : MonoBehaviourWithGazeComponent
 	
 	void Update()
 	{
-		Debug.Log("in action: " + behaviour.IsInAction);
+		//Debug.Log("in action: " + behaviour.IsInAction);
 	}
 	
 	public void SetNervousState()
@@ -33,11 +33,6 @@ public class Suspect : MonoBehaviourWithGazeComponent
 	public void SetNeutralState()
 	{
 		state = SuspectState.Neutral;
-	}
-	
-	public SuspectState GetSuspectState()
-	{
-		return state;
 	}
 	
 	void OnMouseEnter()
