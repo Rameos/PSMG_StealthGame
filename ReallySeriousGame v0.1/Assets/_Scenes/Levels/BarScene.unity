@@ -257,6 +257,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: smoothing
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
   m_RootGameObject: {fileID: 1177174995}
@@ -1305,14 +1309,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicClip:
-  - {fileID: 8300000, guid: f2ec400185b866147bfb27f2046cb9f3, type: 3}
-  - {fileID: 8300000, guid: b61008ed9a55d7c48a98dc682252165c, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   ambientClip:
-  - {fileID: 8300000, guid: ebd83106ec5d53f4a8da7f4f08577a6f, type: 3}
-  - {fileID: 8300000, guid: 23a839ad29b6cde49a067fd1d6ea8864, type: 3}
-  - {fileID: 8300000, guid: 2a49ac481880ab244b649cc20489fcc1, type: 3}
-  - {fileID: 8300000, guid: 0ff0d08aa8a702e4393b23f0b66753fe, type: 3}
-  - {fileID: 8300000, guid: d5b72c56542508e409187d225fc3ce76, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   soundEffectClip: []
   voiceClip: []
 --- !u!4 &506761352
@@ -3243,6 +3247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSpeed: 66
   itemDistanceFromCamera: 2
+  smoothing: 10
   suspectDistanceFromPlayer: .5
 --- !u!1001 &1218937052
 Prefab:
