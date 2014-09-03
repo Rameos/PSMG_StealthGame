@@ -261,6 +261,10 @@ Prefab:
       propertyPath: smoothing
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
+      propertyPath: suspectDistanceFromPlayer
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
   m_RootGameObject: {fileID: 1177174995}
@@ -3248,7 +3252,7 @@ MonoBehaviour:
   turnSpeed: 66
   itemDistanceFromCamera: 2
   smoothing: 10
-  suspectDistanceFromPlayer: .5
+  suspectDistanceFromPlayer: 2.5
 --- !u!1001 &1218937052
 Prefab:
   m_ObjectHideFlags: 0

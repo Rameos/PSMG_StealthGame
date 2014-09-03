@@ -98,7 +98,7 @@ public class InteractionManager : MonoBehaviour
 		currentItem = item;
 		#region position item
 		itemOriginalPos = currentItem.transform.position;
-		transform.LookAt(currentItem.transform);
+		//transform.LookAt(currentItem.transform);
         StartCoroutine(MoveToObject(item));
 		#endregion
 	}
@@ -110,10 +110,10 @@ public class InteractionManager : MonoBehaviour
         {
             if (!inspecting)
             {
-                Debug.Log("Not inspecting");
+                //Debug.Log("Not inspecting");
                 yield break;
             }
-            Debug.Log("Vector3.ToDistance(origin, target)= " + Vector3.Distance(origin, Camera.main.transform.position));
+            //Debug.Log("Vector3.ToDistance(origin, target)= " + Vector3.Distance(origin, Camera.main.transform.position));
             Vector3 vector = Vector3.Lerp(origin, target, smoothing * Time.deltaTime);
             item.transform.position = vector;
             origin = vector;
@@ -126,16 +126,16 @@ public class InteractionManager : MonoBehaviour
     {
         Vector3 origin = item.transform.position;
         Vector3 target = itemOriginalPos;
-        Debug.Log("origin= " + origin + "target= " + target);
+        //Debug.Log("origin= " + origin + "target= " + target);
         while (Vector3.Distance(origin, Camera.main.transform.position) >= 0)
         {
             if (inspecting)
             {
-                Debug.Log("Is inspecting");
+                //Debug.Log("Is inspecting");
                 item.transform.position = target;
                 yield break;
             }
-            Debug.Log("Vector3.FromDistance(origin, target)= " + Vector3.Distance(origin, Camera.main.transform.position));
+            //Debug.Log("Vector3.FromDistance(origin, target)= " + Vector3.Distance(origin, Camera.main.transform.position));
             Vector3 vector = Vector3.Lerp(origin, target, smoothing * Time.deltaTime);
             item.transform.position = vector;
             origin = vector;
@@ -162,31 +162,31 @@ public class InteractionManager : MonoBehaviour
 		#region position player
 		playerOriginalPos = transform.position;
 		Vector3 suspectPos = new Vector3(currentSuspect.transform.position.x, transform.position.y, currentSuspect.transform.position.z); //Lock Y-Axis
-		transform.LookAt(suspectPos);
-        //(StartCoroutine(MoveToSuspect(suspect));
-		transform.position = Vector3.Lerp(transform.position, currentSuspect.transform.position, suspectDistanceFromPlayer);
+		//transform.LookAt(currentSuspect.transform.position);
+        StartCoroutine(MoveToSuspect(suspect));
+		//transform.position = Vector3.Lerp(transform.position, currentSuspect.transform.position, suspectDistanceFromPlayer);
 		#endregion
 	}
 
-    //IEnumerator MoveToSuspect(GameObject item)
-    //{
-    //    Vector3 target = item.transform.position;
-    //    Vector3 origin = Camera.main.transform.position + Camera.main.transform.forward * itemDistanceFromCamera;
-    //    while (Vector3.Distance(origin, Camera.main.transform.position) > itemDistanceFromCamera)
-    //    {
-    //        if (!inspecting)
-    //        {
-    //            Debug.Log("Not inspecting");
-    //            yield break;
-    //        }
-    //        Debug.Log("Vector3.ToDistance(origin, target)= " + Vector3.Distance(origin, Camera.main.transform.position));
-    //        Vector3 vector = Vector3.Lerp(origin, target, smoothing * Time.deltaTime);
-    //        item.transform.position = vector;
-    //        origin = vector;
-    //        yield return null;
-    //    }
-    //    yield break;
-    //}
+    IEnumerator MoveToSuspect(GameObject item)
+    {
+        Vector3 target = item.transform.position;
+        Vector3 origin = transform.position;
+        while (Vector3.Distance(origin, target) > suspectDistanceFromPlayer)
+        {
+            if (!interrogating)
+            {
+                Debug.Log("Not interrogating");
+                yield break;
+            }
+            //Debug.Log("Vector3.ToDistance(origin, target)= " + Vector3.Distance(origin, target));
+            Vector3 vector = Vector3.Lerp(origin, target, 0.5f * smoothing * Time.deltaTime);
+            transform.position = vector;
+            origin = vector;
+            yield return null;
+        }
+        yield break;
+    }
 	
 	/// <summary>
 	/// Quit Interrogation and return player to his original location
@@ -194,8 +194,31 @@ public class InteractionManager : MonoBehaviour
 	public void StopInterrogation()
 	{
         interrogating = false;
+        StartCoroutine(MoveFromSuspect(currentSuspect));
 		transform.position = playerOriginalPos;
 	}
+
+    IEnumerator MoveFromSuspect(GameObject item)
+    {
+        Vector3 target = playerOriginalPos;
+        Vector3 origin = transform.position;
+        while (Vector3.Distance(origin, target) >= 0)
+        {
+            if (interrogating)
+            {
+                Debug.Log("Is interrogating");
+                transform.position = target;
+                yield break;
+            }
+            //Debug.Log("Vector3.ToDistance(origin, target)= " + Vector3.Distance(origin, target));
+            Vector3 vector = Vector3.Lerp(origin, target, 0.5f * smoothing * Time.deltaTime);
+            transform.position = vector;
+            origin = vector;
+            yield return null;
+        }
+        yield break;
+    }
+
 	
 	/// <summary>
 	/// Transition to next level
