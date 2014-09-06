@@ -54,6 +54,12 @@ public class BehaviourController : MonoBehaviour
 		}
 	}
 	
+	IEnumerator SeekAttention()
+	{
+		yield return new WaitForSeconds(2f);
+		NotLookingReaction();
+	}
+	
 	/// <summary>
 	/// Triggers suspect behaviour when not being focused by the player during interaction.
 	/// </summary>

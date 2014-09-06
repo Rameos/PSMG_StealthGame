@@ -9,6 +9,7 @@ public class ClueManager : MonoBehaviour
 	static List<string> foundClues = new List<string>();
 	Clue selectedClue;
 	bool cluesActivated = false;
+	string prefix = "Barmann Aussage: ";
 	
 	void Awake ()
 	{
@@ -88,7 +89,10 @@ public class ClueManager : MonoBehaviour
 		} 
 		else if(newClue.tag == "Interactable")
 		{
-			foundClues.Add("Barmann Aussage: " + newClue.name);
+			if(!foundClues.Contains(prefix + newClue.name))
+			{
+				foundClues.Add(prefix + newClue.name);
+			}
 		}
 	}
 	

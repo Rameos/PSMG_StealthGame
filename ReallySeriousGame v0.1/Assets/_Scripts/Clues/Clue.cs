@@ -12,12 +12,16 @@ public class Clue : MonoBehaviourWithGazeComponent
 	public bool isVisible 		= true; //Visible on suspect?
 	public bool isRelevant 		= false;
 	
+	InteractionManager interaction;
+	
 	void Awake()
 	{
 		highlight = GetComponent<Light>();
 		highlight.enabled = false;
+		interaction = GameObject.FindGameObjectWithTag("Player").GetComponent<InteractionManager>();
 	}
 	
+	#region mouse
 	void OnMouseEnter()
 	{
 		HighlightClue();
@@ -40,21 +44,38 @@ public class Clue : MonoBehaviourWithGazeComponent
 	{
 		UnHighlightClue();
 	}
+	#endregion
 	
+	#region gaze
 	public override void OnGazeEnter(RaycastHit hit)
 	{
+		HighlightClue();
 		
+		if(transform.parent.CompareTag("Suspect"))
+		{
+			transform.parent.SendMessage("RandomOnClueReaction", clueName);
+		}
 	}
 	
 	public override void OnGazeStay(RaycastHit hit)
 	{
-		
+		if(Keyboard.inputInteract())
+		{
+			GameController.instance.SetSelectedGazeObject(gameObject);
+			interaction.StartInteraction(gameObject);
+			
+		}
+		if(transform.parent.CompareTag("Suspect"))
+		{
+			transform.parent.SendMessage("FixatedOnClueReaction", clueName);
+		}
 	}
 	
 	public override void OnGazeExit()
 	{
-		
+		UnHighlightClue();
 	}
+	#endregion
 	
 	/// <summary>
 	/// Highlights the clue during interaction if it hasn't been discovered yet and is visible.

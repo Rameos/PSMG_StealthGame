@@ -9,15 +9,97 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	public Color highlightColor = new Color (0.75f, 1f, 0.75f, 1f);
 	bool isHighlighted = false;
 	
+	InteractionManager interaction;
+	
+	void Awake()
+	{
+		interaction = GameObject.FindGameObjectWithTag("Player").GetComponent<InteractionManager>();
+	}
+	
+	#region mouse
 	void OnMouseEnter()
+	{
+		if(!gazeModel.isEyeTrackerRunning)
+		{
+			if(!GameState.IsPaused && !isHighlighted)
+			{	
+				Highlight();
+			}
+			
+			if(this.tag == "Suspect")
+			{
+				this.SendMessage("RandomReaction");
+			}
+		}
+	}
+	
+	void OnMouseOver()
+	{
+		if(!gazeModel.isEyeTrackerRunning)
+		{
+			if(!GameState.IsPaused && !isHighlighted)
+			{
+				Highlight();
+			}
+			if(GameState.IsPaused && isHighlighted)
+			{
+				UnHighlight();
+			}
+			//Unhighlight when interacting with highlighted object
+			if(gameObject == GameController.instance.GetSelectedObject())
+			{
+				UnHighlight();
+			}
+			
+			//UGGGGGGGGGGGG
+			if(Keyboard.inputInteract())
+			{
+				if(GameState.IsState(GameState.States.Interrogating))
+				{	
+					GameController.instance.GetCurrentSuspect().SendMessage("ReactionOnInteractable", this.name);
+					ClueManager.instance.FoundClue(gameObject);
+				}
+			}
+			
+			if(this.tag == "Suspect")
+			{
+				this.SendMessage("FixatedReaction");
+			}
+		}
+	}
+	
+	void OnMouseExit()
+	{
+		if(!gazeModel.isEyeTrackerRunning)
+		{
+			if(isHighlighted)
+			{
+				UnHighlight();
+			}
+			
+			if(this.tag == "Suspect")
+			{
+				this.SendMessage("SeekAttention");
+			}
+		}
+	}
+	#endregion
+	
+	#region gaze
+	public override void OnGazeEnter(RaycastHit hit)
 	{
 		if(!GameState.IsPaused && !isHighlighted)
 		{	
 			Highlight();
 		}
+		
+		if(this.tag == "Suspect")
+		{
+			this.SendMessage("RandomReaction");
+		}
 	}
 	
-	void OnMouseOver()
+	public override void OnGazeStay(RaycastHit hit)
 	{
 		if(!GameState.IsPaused && !isHighlighted)
 		{
@@ -42,30 +124,32 @@ public class Interactable : MonoBehaviourWithGazeComponent
 				ClueManager.instance.FoundClue(gameObject);
 			}
 		}
+		
+		if(this.tag == "Suspect")
+		{
+			this.SendMessage("FixatedReaction");
+		}
+		
+		if(Keyboard.inputInteract())
+		{
+			GameController.instance.SetSelectedGazeObject(gameObject);
+			interaction.StartInteraction(gameObject);
+		}
 	}
 	
-	void OnMouseExit()
+	public override void OnGazeExit()
 	{
 		if(isHighlighted)
 		{
 			UnHighlight();
 		}
+		
+		if(this.tag == "Suspect")
+		{
+			this.SendMessage("SeekAttention");
+		}
 	}
-	
-	public override void OnGazeEnter(RaycastHit hit)
-	{
-	
-	}
-	
-	public override void OnGazeStay(RaycastHit hit)
-	{
-	
-	}
-	
-	public override void OnGazeExit()
-	{
-	
-	}
+	#endregion
 	
 	void Highlight() 
 	{

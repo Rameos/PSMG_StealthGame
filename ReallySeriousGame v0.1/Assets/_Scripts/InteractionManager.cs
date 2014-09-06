@@ -24,6 +24,7 @@ public class InteractionManager : MonoBehaviour
 	/// </summary>
 	public void StartInteraction(GameObject selection)
 	{
+		Debug.Log("interacting with: " + selection);
 		if(selection.tag != "Clue")
 		{
 			ClueManager.instance.ActivateCluesOn(selection);
@@ -94,6 +95,7 @@ public class InteractionManager : MonoBehaviour
 	/// </summary>
 	public void Inspect(GameObject item)
 	{
+		Debug.Log("inspecting: " + item);
         inspecting = true;
 		currentItem = item;
 		#region position item
@@ -157,6 +159,7 @@ public class InteractionManager : MonoBehaviour
 	/// </summary>
 	public void Interrogate(GameObject suspect)
 	{
+		Debug.Log("interrogating " + suspect);
         interrogating = true;
 		currentSuspect = suspect;
 		#region position player

@@ -40,7 +40,6 @@ public class GameController : MonoBehaviour
 	
 	void Update () 
 	{	
-		//Debug.Log(selectedObject);
 		CheckControls();
 		CheckGameState();
 		ControllBGVolume();
@@ -105,9 +104,44 @@ public class GameController : MonoBehaviour
 		return selectedObject;
 	}
 	
+	//Set selection for mouse interaction
 	public void SetSelectedObject()
 	{
 		selectedObject = Mouse.rayTarget().collider.gameObject;
+		
+		if(selectedObject.tag == "Suspect")
+		{
+			Debug.Log("is suspect");
+			currentSuspect = selectedObject;
+			
+			if(GameState.IsState(GameState.States.InGame))
+			{
+				GameState.ChangeState(GameState.States.Interrogating);
+			}
+		}
+		else if(selectedObject.tag == "Clue")
+		{
+			Debug.Log("is clue");
+			currentClue = selectedObject;
+		}
+		else if(selectedObject.tag == "Interactable")
+		{
+			//Debug.Log("is interactable");
+			currentInteractable = selectedObject;
+			
+			if(GameState.IsState(GameState.States.InGame))
+			{
+				GameState.ChangeState(GameState.States.Inspecting);
+			}
+		}
+	}
+	
+	//Set selection for gaze interaction
+	public void SetSelectedGazeObject(GameObject gazedObject)
+	{
+		selectedObject = gazedObject;
+		
+		Debug.Log("selected gaze object: " + selectedObject);
 		
 		if(selectedObject.tag == "Suspect")
 		{

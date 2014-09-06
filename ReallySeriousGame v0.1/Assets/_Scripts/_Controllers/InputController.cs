@@ -38,7 +38,7 @@ public class InputController : MonoBehaviour
 	void CheckKeyBoardInputs() 
 	{	
 		#region interactions keyboard
-		if(Keyboard.inputInteract())
+		if(Keyboard.inputInteract() && !gazeModel.isEyeTrackerRunning)
 		{
 			GameController.instance.SetSelectedObject();
 			interaction.StartInteraction(GameController.instance.GetSelectedObject());

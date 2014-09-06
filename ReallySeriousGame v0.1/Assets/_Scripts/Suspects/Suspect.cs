@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using iViewX;
 
-public class Suspect : MonoBehaviourWithGazeComponent 
+public class Suspect : MonoBehaviour 
 {
 	public enum SuspectState
 	{
@@ -33,41 +32,5 @@ public class Suspect : MonoBehaviourWithGazeComponent
 	public void SetNeutralState()
 	{
 		state = SuspectState.Neutral;
-	}
-	
-	void OnMouseEnter()
-	{
-		behaviour.RandomReaction();
-	}
-	
-	void OnMouseOver()
-	{
-		behaviour.FixatedReaction();
-	}
-	
-	void OnMouseExit()
-	{
-		StartCoroutine("SeekAttention");
-	}
-	
-	public override void OnGazeEnter(RaycastHit hit)
-	{
-		
-	}
-	
-	public override void OnGazeStay(RaycastHit hit)
-	{
-		
-	}
-	
-	public override void OnGazeExit()
-	{
-		
-	}
-	
-	IEnumerator SeekAttention()
-	{
-		yield return new WaitForSeconds(2f);
-		behaviour.NotLookingReaction();
 	}
 }
