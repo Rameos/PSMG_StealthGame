@@ -16,36 +16,60 @@ public class VerbalResponse : MonoBehaviour
 	
 	public void NotLookingVO()
 	{
-		Debug.Log("Hey I'm here.");
+		newVOClipPath = dir + gameObject.name + "/Not_Looking_" + Suspect.state + "/" + Random.Range(0,4);
+		PlayVO();
 	}
 	
 	public void RandomVO()
 	{
-		newVOClipPath = dir + gameObject.name + "_Default_" + Suspect.state + "_" + Random.Range(0,1);
+		newVOClipPath = dir + gameObject.name + "/" + GameState.gameState + "_" + Suspect.state + "/" + Random.Range(0,4);
 		PlayVO();
 	}
 	
 	public void FixatedVO()
 	{
-		newVOClipPath = dir + gameObject.name + "_" + Suspect.state + "_" + Random.Range(0,1);
+		newVOClipPath = dir + gameObject.name + "/" + GameState.gameState + "_" + Suspect.state + "/" + Random.Range(0,4);
 		PlayVO();
 	}
 	
 	public void FixatedOnClueVO(string clueID)
 	{
-		newVOClipPath = dir + gameObject.name + "_" + Suspect.state + "_" + clueID;
+		if(clueID == "EyeContact")
+		{
+			newVOClipPath = dir + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,9);
+		}
+		else
+		{
+			newVOClipPath = dir + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,3);
+		}
 		PlayVO();
 	}
 	
 	public void RandomOnClueVO(string clueID)
 	{
-		newVOClipPath = dir + gameObject.name + "_" + Suspect.state + "_" + clueID;
+		if(clueID == "EyeContact")
+		{
+			newVOClipPath = dir + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,9);
+		}
+		else
+		{
+			newVOClipPath = dir + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,3);
+		}
+		
 		PlayVO();
 	}
 	
 	public void VoiceOverForInteractable(string interactableName)
 	{
-		newVOClipPath = dir + gameObject.name + "_Positive_" + interactableName;
+		if(Suspect.state == Suspect.SuspectState.Nervous)
+		{
+			newVOClipPath = dir + gameObject.name + "/Interactable_" + Suspect.state + "/" + Random.Range(0,6); //Except T-Virus Hadouken
+		}
+		else
+		{
+			newVOClipPath = dir + gameObject.name + "/" + interactableName + "_" + Suspect.state + "/" + Random.Range(0,3);
+		}
+		
 		PlayVO();
 	}
 	

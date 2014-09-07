@@ -22,6 +22,7 @@ public class Suspect : MonoBehaviour
 	void Update()
 	{
 		//Debug.Log("in action: " + behaviour.IsInAction);
+		Debug.Log("suspect state: " + state);
 	}
 	
 	public void SetNervousState()
@@ -32,5 +33,10 @@ public class Suspect : MonoBehaviour
 	public void SetNeutralState()
 	{
 		state = SuspectState.Neutral;
+	}
+	
+	public SuspectState GetSuspectState()
+	{
+		return state;
 	}
 }

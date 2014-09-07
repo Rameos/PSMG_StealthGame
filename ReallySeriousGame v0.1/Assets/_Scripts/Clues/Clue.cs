@@ -10,7 +10,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 	public bool isHighlighted 	= false;
 	public bool isDiscovered 	= false; //Discovered by player?
 	public bool isVisible 		= true; //Visible on suspect?
-	public bool isRelevant 		= false;
+	public bool isRelevant 		= false; //Relevant to solving the case?
 	
 	InteractionManager interaction;
 	
@@ -26,7 +26,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 	{
 		HighlightClue();
 		
-		if(transform.parent.CompareTag("Suspect"))
+		if(transform.parent.CompareTag("Suspect") && clueName == "EyeContact")
 		{
 			transform.parent.SendMessage("RandomOnClueReaction", clueName);
 		}
@@ -34,6 +34,14 @@ public class Clue : MonoBehaviourWithGazeComponent
 	
 	void OnMouseOver()
 	{
+		if(Keyboard.inputInteract())
+		{
+			if(transform.parent.CompareTag("Suspect"))
+			{
+				transform.parent.SendMessage("RandomOnClueReaction", clueName);
+			}
+		}
+		
 		if(transform.parent.CompareTag("Suspect"))
 		{
 			transform.parent.SendMessage("FixatedOnClueReaction", clueName);
@@ -51,7 +59,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 	{
 		HighlightClue();
 		
-		if(transform.parent.CompareTag("Suspect"))
+		if(transform.parent.CompareTag("Suspect") && clueName == "EyeContact")
 		{
 			transform.parent.SendMessage("RandomOnClueReaction", clueName);
 		}
@@ -63,8 +71,12 @@ public class Clue : MonoBehaviourWithGazeComponent
 		{
 			GameController.instance.SetSelectedGazeObject(gameObject);
 			interaction.StartInteraction(gameObject);
-			
+			if(transform.parent.CompareTag("Suspect"))
+			{
+				transform.parent.SendMessage("RandomOnClueReaction", clueName);
+			}
 		}
+		
 		if(transform.parent.CompareTag("Suspect"))
 		{
 			transform.parent.SendMessage("FixatedOnClueReaction", clueName);
@@ -83,7 +95,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 	
 	void HighlightClue()
 	{
-		if(GameState.IsInteracting && !isHighlighted && !isDiscovered && isVisible)
+		if(GameState.IsInteracting && !isHighlighted && isVisible)
 		{	
 			highlight.enabled = true;
 			isHighlighted = true;

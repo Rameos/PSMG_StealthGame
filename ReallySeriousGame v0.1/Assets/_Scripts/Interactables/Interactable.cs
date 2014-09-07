@@ -54,7 +54,7 @@ public class Interactable : MonoBehaviourWithGazeComponent
 			//UGGGGGGGGGGGG
 			if(Keyboard.inputInteract())
 			{
-				if(GameState.IsState(GameState.States.Interrogating))
+				if(GameState.IsState(GameState.States.Interrogating) && this.tag != "Suspect")
 				{	
 					GameController.instance.GetCurrentSuspect().SendMessage("ReactionOnInteractable", this.name);
 					ClueManager.instance.FoundClue(gameObject);
@@ -118,7 +118,7 @@ public class Interactable : MonoBehaviourWithGazeComponent
 		//UGGGGGGGGGGGG
 		if(Keyboard.inputInteract())
 		{
-			if(GameState.IsState(GameState.States.Interrogating))
+			if(GameState.IsState(GameState.States.Interrogating) && this.tag != "Suspect")
 			{	
 				GameController.instance.GetCurrentSuspect().SendMessage("ReactionOnInteractable", this.name);
 				ClueManager.instance.FoundClue(gameObject);

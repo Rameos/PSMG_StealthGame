@@ -16,14 +16,21 @@ public class BehaviourController : MonoBehaviour
 	private VerbalResponse voice;
 	private VisualResponse gesture;
 	
-	private float interval = 10f;
-	private float timeOfLastReaction = -10f;
+	private float interval = 6f;
+	private float timeOfLastReaction = -6f;
 	private bool inAction = false;
 	
 	void Awake()
 	{
 		voice = GetComponent<VerbalResponse>();
 		gesture = GetComponent<VisualResponse>();
+	}
+	
+	void Update()
+	{
+		/*Debug.Log("voice: " + voice.IsSpeaking);
+		Debug.Log("gesture: " + gesture.IsInGesture);
+		Debug.Log("in action: " + inAction); //in action???*/
 	}
 	
 	public bool IsInAction
@@ -161,7 +168,7 @@ public class BehaviourController : MonoBehaviour
 			OnRandomClueBehaviour += voice.RandomOnClueVO;
 			OnRandomClueBehaviour += gesture.RandomOnClueGesture;
 			#endregion	
-			
+				
 			RandomOnClueBehaviour(clueID);
 			ClearRandomOnClueBahviour();
 			SetTimeOfLastReaction();
@@ -190,6 +197,12 @@ public class BehaviourController : MonoBehaviour
 	
 	void SetTimeOfLastReaction()
 	{
+		StartCoroutine("SetTimerForReaction");
+	}
+	
+	IEnumerator SetTimerForReaction()
+	{
+		yield return new WaitForSeconds(voice.audio.clip.length);
 		timeOfLastReaction = Time.time;
 	}
 	

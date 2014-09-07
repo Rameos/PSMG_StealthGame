@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour
 	public static GameController instance;
 	
 	SoundManager sound;
-	//ClueManager clueManager;
 	
 	//private string dataFileName = "/gameprogress.dat";
 	
@@ -19,6 +18,7 @@ public class GameController : MonoBehaviour
 	GameObject currentClue;
 	
 	int currentLevel = -1;
+	public float resetSuspectStateTimer = 7f;
 	
 	void Awake() 
 	{
@@ -35,11 +35,11 @@ public class GameController : MonoBehaviour
 		#endregion
 		
 		sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
-		//clueManager = GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
 	}
 	
 	void Update () 
 	{	
+		Debug.Log(GameState.gameState);
 		CheckControls();
 		CheckGameState();
 		ControllBGVolume();
@@ -111,7 +111,6 @@ public class GameController : MonoBehaviour
 		
 		if(selectedObject.tag == "Suspect")
 		{
-			Debug.Log("is suspect");
 			currentSuspect = selectedObject;
 			
 			if(GameState.IsState(GameState.States.InGame))
@@ -121,12 +120,10 @@ public class GameController : MonoBehaviour
 		}
 		else if(selectedObject.tag == "Clue")
 		{
-			Debug.Log("is clue");
 			currentClue = selectedObject;
 		}
 		else if(selectedObject.tag == "Interactable")
 		{
-			//Debug.Log("is interactable");
 			currentInteractable = selectedObject;
 			
 			if(GameState.IsState(GameState.States.InGame))
@@ -145,7 +142,6 @@ public class GameController : MonoBehaviour
 		
 		if(selectedObject.tag == "Suspect")
 		{
-			Debug.Log("is suspect");
 			currentSuspect = selectedObject;
 			
 			if(GameState.IsState(GameState.States.InGame))
@@ -155,12 +151,10 @@ public class GameController : MonoBehaviour
 		}
 		else if(selectedObject.tag == "Clue")
 		{
-			Debug.Log("is clue");
 			currentClue = selectedObject;
 		}
 		else if(selectedObject.tag == "Interactable")
 		{
-			//Debug.Log("is interactable");
 			currentInteractable = selectedObject;
 			
 			if(GameState.IsState(GameState.States.InGame))
@@ -172,11 +166,15 @@ public class GameController : MonoBehaviour
 	
 	public void ClearSelections()
 	{
+		GameState.ChangeState(GameState.States.InGame);
+		if(currentSuspect.GetComponent<Suspect>().GetSuspectState() == Suspect.SuspectState.Nervous)
+		{
+			StartCoroutine("ResetSuspectState", currentSuspect);
+		}
 		selectedObject = null;
 		currentSuspect = null;
 		currentClue = null;
 		currentInteractable = null;
-		GameState.ChangeState(GameState.States.InGame);
 	}
 	
 	public void SetCurrentSuspect(GameObject suspect)
@@ -209,6 +207,20 @@ public class GameController : MonoBehaviour
 		return currentInteractable;
 	}
 	#endregion
+	
+	IEnumerator ResetSuspectState(GameObject suspect)
+	{
+		float timer = 0f;
+		while(GameState.IsState(GameState.States.InGame))
+		{
+			if(timer == resetSuspectStateTimer)
+			{
+				suspect.GetComponent<Suspect>().SetNeutralState();
+			}
+			timer++;
+			yield return new WaitForSeconds(1f);
+		}
+	}
 	
 	/*
 	#region save/load player data

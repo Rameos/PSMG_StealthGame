@@ -67,13 +67,16 @@ public class InputController : MonoBehaviour
 	void CheckMouseInputs() 
 	{	
 		#region movement mouse
-		if(ScrollAreas.left.Contains(Mouse.Position()))		movement.turnLeft();
+		if(!notebook.NoteBookIsOpen())
+		{
+			if(ScrollAreas.left.Contains(Mouse.Position()))		movement.turnLeft();
 			
-		if(ScrollAreas.right.Contains(Mouse.Position()))	movement.turnRight();
+			if(ScrollAreas.right.Contains(Mouse.Position()))	movement.turnRight();
 			
-		if(ScrollAreas.top.Contains(Mouse.Position()))		movement.turnUp();
+			if(ScrollAreas.top.Contains(Mouse.Position()))		movement.turnUp();
 			
-		if(ScrollAreas.bottom.Contains(Mouse.Position()))	movement.turnDown();
+			if(ScrollAreas.bottom.Contains(Mouse.Position()))	movement.turnDown();
+		}
 		#endregion
 		
 		#region interactions mouse
@@ -91,13 +94,16 @@ public class InputController : MonoBehaviour
  	
 	void CheckGazeInputs()
 	{	
-		if(ScrollAreas.left.Contains(Gaze.Position()))		movement.turnLeft();
-		
-		if(ScrollAreas.right.Contains(Gaze.Position()))		movement.turnRight();
-		//BUG
-		if(ScrollAreas.top.Contains(Gaze.Position()))		movement.turnDown();
+		if(!notebook.NoteBookIsOpen())
+		{
+			if(ScrollAreas.left.Contains(Gaze.Position()))		movement.turnLeft();
 			
-		if(ScrollAreas.bottom.Contains(Gaze.Position()))	movement.turnUp();
+			if(ScrollAreas.right.Contains(Gaze.Position()))		movement.turnRight();
+			//BUG
+			if(ScrollAreas.top.Contains(Gaze.Position()))		movement.turnDown();
+			
+			if(ScrollAreas.bottom.Contains(Gaze.Position()))	movement.turnUp();
+		}
 	}
 	
 	void CheckGamepadInputs() 
@@ -155,8 +161,8 @@ public class InputController : MonoBehaviour
 [System.Serializable]
 public class ScrollAreas
 {
-	public static Rect top 		= new Rect(0, Screen.height - Screen.height / 6, Screen.width, Screen.height / 6);
-	public static Rect right 	= new Rect(Screen.width - Screen.width / 6, 0, Screen.width / 6, Screen.height);
-	public static Rect bottom 	= new Rect(0, 0, Screen.width, Screen.height / 6);
-	public static Rect left 	= new Rect(0, 0, Screen.width / 6, Screen.height);
+	public static Rect top 		= new Rect(0, Screen.height - Screen.height / 5f, Screen.width, Screen.height / 5f);
+	public static Rect right 	= new Rect(Screen.width - Screen.width / 2.5f, 0, Screen.width / 2.5f, Screen.height);
+	public static Rect bottom 	= new Rect(0, 0, Screen.width, Screen.height / 5f);
+	public static Rect left 	= new Rect(0, 0, Screen.width / 2.5f, Screen.height);
 }

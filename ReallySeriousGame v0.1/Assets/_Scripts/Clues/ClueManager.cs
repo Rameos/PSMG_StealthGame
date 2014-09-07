@@ -39,7 +39,7 @@ public class ClueManager : MonoBehaviour
 				if(clue.tag == "Clue")
 				{
 					string childClueName = clue.GetComponent<Clue>().clueName;
-					if(!foundClues.Contains(childClueName))
+					//if(!foundClues.Contains(childClueName))
 						clue.gameObject.SetActive(true);
 				}
 			}
@@ -82,7 +82,6 @@ public class ClueManager : MonoBehaviour
 		{
 			selectedClue = newClue.GetComponent<Clue>();
 			selectedClue.SetDiscovered();
-			selectedClue.gameObject.SetActive(false);
 			
 			if(!foundClues.Contains(selectedClue.clueName))
 				foundClues.Add(selectedClue.clueName);
