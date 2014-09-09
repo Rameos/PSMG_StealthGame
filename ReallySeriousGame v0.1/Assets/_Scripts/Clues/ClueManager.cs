@@ -9,6 +9,7 @@ public class ClueManager : MonoBehaviour
 	static List<string> foundClues = new List<string>();
 	Clue selectedClue;
 	bool cluesActivated = false;
+	string prefix = "";
 	
 	void Awake ()
 	{
@@ -37,8 +38,8 @@ public class ClueManager : MonoBehaviour
 			{
 				if(clue.tag == "Clue")
 				{
-					string childClueName = clue.GetComponent<Clue>().clueName;
-					if(!foundClues.Contains(childClueName))
+					//string childClueName = clue.GetComponent<Clue>().clueName;
+					//if(!foundClues.Contains(childClueName))
 						clue.gameObject.SetActive(true);
 				}
 			}
@@ -81,15 +82,18 @@ public class ClueManager : MonoBehaviour
 		{
 			selectedClue = newClue.GetComponent<Clue>();
 			selectedClue.SetDiscovered();
-			selectedClue.gameObject.SetActive(false);
 			
 			if(!foundClues.Contains(selectedClue.clueName))
 				foundClues.Add(selectedClue.clueName);
 		} 
 		else if(newClue.tag == "Interactable")
 		{
-			foundClues.Add("Barmann Aussage: " + newClue.name);
+			if(!foundClues.Contains(prefix + newClue.name))
+			{
+				foundClues.Add(prefix + newClue.name);
+			}
 		}
+		SoundManager.instance.PlaySoundEffect("Notebook");
 	}
 	
 	/// <summary>

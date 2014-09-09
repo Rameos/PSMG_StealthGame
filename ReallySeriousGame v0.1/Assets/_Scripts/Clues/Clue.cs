@@ -10,26 +10,33 @@ public class Clue : MonoBehaviourWithGazeComponent
 	public bool isHighlighted 	= false;
 	public bool isDiscovered 	= false; //Discovered by player?
 	public bool isVisible 		= true; //Visible on suspect?
-	public bool isRelevant 		= false;
+	public bool isRelevant 		= false; //Relevant to solving the case?
+	
+	InteractionManager interaction;
 	
 	void Awake()
 	{
 		highlight = GetComponent<Light>();
 		highlight.enabled = false;
+		interaction = GameObject.FindGameObjectWithTag("Player").GetComponent<InteractionManager>();
 	}
 	
+	#region mouse
 	void OnMouseEnter()
 	{
 		HighlightClue();
-		
-		if(transform.parent.CompareTag("Suspect"))
-		{
-			transform.parent.SendMessage("RandomOnClueReaction", clueName);
-		}
 	}
 	
 	void OnMouseOver()
 	{
+		if(Keyboard.inputInteract())
+		{
+			if(transform.parent.CompareTag("Suspect"))
+			{
+				transform.parent.SendMessage("RandomOnClueReaction", clueName);
+			}
+		}
+		
 		if(transform.parent.CompareTag("Suspect"))
 		{
 			transform.parent.SendMessage("FixatedOnClueReaction", clueName);
@@ -40,21 +47,37 @@ public class Clue : MonoBehaviourWithGazeComponent
 	{
 		UnHighlightClue();
 	}
+	#endregion
 	
+	#region gaze
 	public override void OnGazeEnter(RaycastHit hit)
 	{
-		
+		HighlightClue();
 	}
 	
 	public override void OnGazeStay(RaycastHit hit)
 	{
+		if(Keyboard.inputInteract())
+		{
+			GameController.instance.SetSelectedGazeObject(gameObject);
+			interaction.StartInteraction(gameObject);
+			if(transform.parent.CompareTag("Suspect"))
+			{
+				transform.parent.SendMessage("RandomOnClueReaction", clueName);
+			}
+		}
 		
+		if(transform.parent.CompareTag("Suspect"))
+		{
+			transform.parent.SendMessage("FixatedOnClueReaction", clueName);
+		}
 	}
 	
 	public override void OnGazeExit()
 	{
-		
+		UnHighlightClue();
 	}
+	#endregion
 	
 	/// <summary>
 	/// Highlights the clue during interaction if it hasn't been discovered yet and is visible.
@@ -62,7 +85,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 	
 	void HighlightClue()
 	{
-		if(GameState.IsInteracting && !isHighlighted && !isDiscovered && isVisible)
+		if(GameState.IsInteracting && !isHighlighted && isVisible)
 		{	
 			highlight.enabled = true;
 			isHighlighted = true;

@@ -16,8 +16,8 @@ public class BehaviourController : MonoBehaviour
 	private VerbalResponse voice;
 	private VisualResponse gesture;
 	
-	private float interval = 10f;
-	private float timeOfLastReaction = -10f;
+	private float interval = 6f;
+	private float timeOfLastReaction = -6f;
 	private bool inAction = false;
 	
 	void Awake()
@@ -26,32 +26,26 @@ public class BehaviourController : MonoBehaviour
 		gesture = GetComponent<VisualResponse>();
 	}
 	
+	void Update()
+	{
+		/*Debug.Log("voice: " + voice.IsSpeaking);
+		Debug.Log("gesture: " + gesture.IsInGesture);
+		Debug.Log("in action: " + inAction); //in action???*/
+	}
+	
 	public bool IsInAction
 	{
 		get
 		{
-			return inAction = (voice.IsSpeaking || gesture.IsInGesture);
+			inAction = (voice.IsSpeaking || gesture.IsInGesture);
+			return inAction;
 		}
 	}
 	
-	
-	/// <summary>
-	/// Triggers suspect behaviour when being accused of notebook subject.
-	/// </summary>
-	/// <param name="subject">Subject Name.</param>
-	public void ReactionOnAccusation(string subject)
+	IEnumerator SeekAttention()
 	{
-		if(!IsInAction)
-		{
-			#region subscribe
-			OnAccusationBehaviour += voice.AccusationVO;
-			OnAccusationBehaviour += gesture.AccusationGesture;
-			#endregion
-			
-			AccusationBehaviour(subject);
-			ClearAccusationBehaviour();
-			SetTimeOfLastReaction();
-		}
+		yield return new WaitForSeconds(2f);
+		NotLookingReaction();
 	}
 	
 	/// <summary>
@@ -61,17 +55,13 @@ public class BehaviourController : MonoBehaviour
 	{
 		if(!IsInAction)
 		{
-			if(Time.time >= timeOfLastReaction + interval && GameState.IsInteracting)
-			{
-				#region subscribe
-				OnNotLookingBehaviour += voice.NotLookingVO;
-				OnNotLookingBehaviour += gesture.NotLookingGesture;
-				#endregion
+			#region subscribe
+			OnNotLookingBehaviour += voice.NotLookingVO;
+			OnNotLookingBehaviour += gesture.NotLookingGesture;
+			#endregion
 				
-				NotLookingBehaviour();
-				ClearNotLookingBehaviour();
-				SetTimeOfLastReaction();
-			}
+			NotLookingBehaviour();
+			ClearNotLookingBehaviour();
 		}
 	}
 	
@@ -155,7 +145,7 @@ public class BehaviourController : MonoBehaviour
 			OnRandomClueBehaviour += voice.RandomOnClueVO;
 			OnRandomClueBehaviour += gesture.RandomOnClueGesture;
 			#endregion	
-			
+				
 			RandomOnClueBehaviour(clueID);
 			ClearRandomOnClueBahviour();
 			SetTimeOfLastReaction();
@@ -182,9 +172,18 @@ public class BehaviourController : MonoBehaviour
 		}
 	}
 	
-	void SetTimeOfLastReaction()
+	public void SetTimeOfLastReaction()
 	{
-		timeOfLastReaction = Time.time;
+		StartCoroutine("SetTimerForReaction");
+	}
+	
+	IEnumerator SetTimerForReaction()
+	{
+		if(voice.audio.clip != null)
+		{
+			yield return new WaitForSeconds(voice.audio.clip.length);
+			timeOfLastReaction = Time.time;
+		}
 	}
 	
 	#region event triggers

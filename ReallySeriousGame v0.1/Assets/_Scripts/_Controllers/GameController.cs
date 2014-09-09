@@ -9,16 +9,16 @@ public class GameController : MonoBehaviour
 	public static GameController instance;
 	
 	SoundManager sound;
-	//ClueManager clueManager;
 	
 	//private string dataFileName = "/gameprogress.dat";
 	
 	GameObject hitObject, selectedObject;
-	GameObject currentSuspect;
+	GameObject currentSuspect, lastSuspect;
 	GameObject currentInteractable;
 	GameObject currentClue;
 	
 	int currentLevel = -1;
+	public float resetSuspectStateTimer = 7f;
 	
 	void Awake() 
 	{
@@ -35,16 +35,15 @@ public class GameController : MonoBehaviour
 		#endregion
 		
 		sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
-		//clueManager = GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
 	}
 	
 	void Update () 
 	{	
-		//Debug.Log(selectedObject);
 		CheckControls();
 		CheckGameState();
 		ControllBGVolume();
 	}
+	
 	/// <summary>
 	/// Checks GameState and sets Background sound accordingly.
 	/// </summary>
@@ -105,44 +104,87 @@ public class GameController : MonoBehaviour
 		return selectedObject;
 	}
 	
+	//Set selection for mouse interaction
 	public void SetSelectedObject()
 	{
-		selectedObject = Mouse.rayTarget().collider.gameObject;
-		
-		if(selectedObject.tag == "Suspect")
+		if(!GameState.IsInteracting)
 		{
-			Debug.Log("is suspect");
-			currentSuspect = selectedObject;
+			selectedObject = Mouse.rayTarget().collider.gameObject;
 			
-			if(GameState.IsState(GameState.States.InGame))
+			if(selectedObject.tag == "Suspect")
 			{
-				GameState.ChangeState(GameState.States.Interrogating);
+				currentSuspect = selectedObject;
+				
+				if(GameState.IsState(GameState.States.InGame))
+				{
+					GameState.ChangeState(GameState.States.Interrogating);
+				}
+			}
+			else if(selectedObject.tag == "Clue")
+			{
+				currentClue = selectedObject;
+			}
+			else if(selectedObject.tag == "Interactable")
+			{
+				currentInteractable = selectedObject;
+				
+				if(GameState.IsState(GameState.States.InGame))
+				{
+					GameState.ChangeState(GameState.States.Inspecting);
+				}
 			}
 		}
-		else if(selectedObject.tag == "Clue")
+	}
+	
+	//Set selection for gaze interaction
+	public void SetSelectedGazeObject(GameObject gazedObject)
+	{
+		if(!GameState.IsInteracting)
 		{
-			Debug.Log("is clue");
-			currentClue = selectedObject;
-		}
-		else if(selectedObject.tag == "Interactable")
-		{
-			//Debug.Log("is interactable");
-			currentInteractable = selectedObject;
+			selectedObject = gazedObject;
 			
-			if(GameState.IsState(GameState.States.InGame))
+			Debug.Log("selected gaze object: " + selectedObject);
+			
+			if(selectedObject.tag == "Suspect")
 			{
-				GameState.ChangeState(GameState.States.Inspecting);
+				currentSuspect = selectedObject;
+				
+				if(GameState.IsState(GameState.States.InGame))
+				{
+					GameState.ChangeState(GameState.States.Interrogating);
+				}
+			}
+			else if(selectedObject.tag == "Clue")
+			{
+				currentClue = selectedObject;
+			}
+			else if(selectedObject.tag == "Interactable")
+			{
+				currentInteractable = selectedObject;
+				
+				if(GameState.IsState(GameState.States.InGame))
+				{
+					GameState.ChangeState(GameState.States.Inspecting);
+				}
 			}
 		}
 	}
 	
 	public void ClearSelections()
 	{
+		GameState.ChangeState(GameState.States.InGame);
+		if(currentSuspect != null)
+		{
+			lastSuspect = currentSuspect;
+		}
+		if(lastSuspect.GetComponent<Suspect>().GetSuspectState() == Suspect.SuspectState.Nervous)
+		{
+			StartCoroutine("ResetSuspectState", lastSuspect);
+		}
 		selectedObject = null;
 		currentSuspect = null;
 		currentClue = null;
 		currentInteractable = null;
-		GameState.ChangeState(GameState.States.InGame);
 	}
 	
 	public void SetCurrentSuspect(GameObject suspect)
@@ -175,6 +217,20 @@ public class GameController : MonoBehaviour
 		return currentInteractable;
 	}
 	#endregion
+	
+	IEnumerator ResetSuspectState(GameObject suspect)
+	{
+		float timer = 0f;
+		while(GameState.IsState(GameState.States.InGame))
+		{
+			if(timer == resetSuspectStateTimer)
+			{
+				suspect.GetComponent<Suspect>().SetNeutralState();
+			}
+			timer++;
+			yield return new WaitForSeconds(1f);
+		}
+	}
 	
 	/*
 	#region save/load player data

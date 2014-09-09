@@ -26,6 +26,8 @@ public class NoteBook : MonoBehaviour
 	private string notebookHeader = "NOTES";
 	private bool isToggled = false;
 	
+	public float setNervousTime = 7f;
+	
 	void Awake()
 	{
 		clue = GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
@@ -61,8 +63,36 @@ public class NoteBook : MonoBehaviour
 		}
 	}
 	
+	public bool NoteBookIsOpen()
+	{
+		return isToggled;
+	}
+	
 	public void ToggleNotebook()
 	{
+		if(!isToggled)
+		{
+			SoundManager.instance.PlaySoundEffect("Notebook");
+		}
 		isToggled = !isToggled;
+		
+		if(isToggled)
+		{
+			StartCoroutine("SetNervous");
+		}
+	}
+	
+	IEnumerator SetNervous()
+	{
+		float timer = 0f;
+		while(isToggled && GameState.IsState(GameState.States.Interrogating))
+		{
+			if(timer == setNervousTime)
+			{	
+				GameController.instance.GetCurrentSuspect().GetComponent<Suspect>().SetNervousState();
+			}
+			timer++;
+			yield return new WaitForSeconds(1f);
+		}
 	}
 }

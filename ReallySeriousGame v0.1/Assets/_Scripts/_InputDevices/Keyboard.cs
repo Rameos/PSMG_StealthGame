@@ -46,6 +46,13 @@ public class Keyboard
 		return false;
 	}
 	
+	public static bool inputAccuse()
+	{
+		if(Input.GetKeyDown(KeyCode.B))
+			return true;
+		return false;
+	}
+	
 	/// <summary>
 	/// Reads input for action: 'return'
 	/// </summary>
