@@ -8,12 +8,29 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	private Color initialColor;
 	public Color highlightColor = new Color (0.75f, 1f, 0.75f, 1f);
 	bool isHighlighted = false;
+	bool inInteraction = false;
+	bool hasBeenAccused = false;
 	
 	InteractionManager interaction;
 	
 	void Awake()
 	{
 		interaction = GameObject.FindGameObjectWithTag("Player").GetComponent<InteractionManager>();
+	}
+	
+	void Update()
+	{
+		if(!GameState.IsInteracting)
+		{
+			inInteraction = false;
+		}
+		if(this.tag == "Suspect")
+		{
+			if(!gameObject.GetComponent<SpriteRenderer>().isVisible)
+			{
+				SendMessage("NotLookingReaction");
+			}
+		}
 	}
 	
 	#region mouse
@@ -54,6 +71,10 @@ public class Interactable : MonoBehaviourWithGazeComponent
 			//UGGGGGGGGGGGG
 			if(Keyboard.inputInteract())
 			{
+				if(GameState.IsState(GameState.States.InGame))
+				{
+					inInteraction = true;
+				}
 				if(GameState.IsState(GameState.States.Interrogating) && this.tag != "Suspect")
 				{	
 					GameController.instance.GetCurrentSuspect().SendMessage("ReactionOnInteractable", this.name);
@@ -75,11 +96,6 @@ public class Interactable : MonoBehaviourWithGazeComponent
 			if(isHighlighted)
 			{
 				UnHighlight();
-			}
-			
-			if(this.tag == "Suspect")
-			{
-				this.SendMessage("SeekAttention");
 			}
 		}
 	}
@@ -143,18 +159,13 @@ public class Interactable : MonoBehaviourWithGazeComponent
 		{
 			UnHighlight();
 		}
-		
-		if(this.tag == "Suspect")
-		{
-			this.SendMessage("SeekAttention");
-		}
 	}
 	#endregion
 	
 	void Highlight() 
 	{
 		//Do not highlight selected object again.
-		if(gameObject != GameController.instance.GetSelectedObject())
+		if(gameObject != GameController.instance.GetSelectedObject() && !inInteraction)
 		{
 			initialColor = renderer.material.color;
 			renderer.material.color = highlightColor;
@@ -167,5 +178,19 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	{
 		renderer.material.color = initialColor;
 		isHighlighted = false;
+	}
+	
+	public bool HasBeenAccused()
+	{
+		return hasBeenAccused;
+	}
+	
+	public void SetAccused()
+	{
+		hasBeenAccused = true;
+		if(GetComponent<Suspect>() != null)
+		{
+			SendMessage("SetNervousState");
+		}
 	}
 }

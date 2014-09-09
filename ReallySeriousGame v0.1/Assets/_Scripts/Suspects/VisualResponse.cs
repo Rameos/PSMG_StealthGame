@@ -10,7 +10,7 @@ public class VisualResponse : MonoBehaviour
 	private float gestureDurationLong;
 	
 	private Sprite newSprite;
-	public string newSpritePath;
+	private string newSpritePath;
 	private Sprite defaultSprite;
 	
 	private bool inGesture = false;
@@ -20,16 +20,7 @@ public class VisualResponse : MonoBehaviour
 		newSprite = GetComponent<SpriteRenderer>().sprite;
 		
 		dir = "Sprites/Barkeep/" + gameObject.name;
-		
-		defaultSprite = Resources.Load(dir + "_Default_Neutral_0", typeof(Sprite)) as Sprite;
 	}
-	
-	/*void Update()
-	{
-		Debug.Log("sprite path: " + newSpritePath);
-		Debug.Log("new sprite: " + newSprite);
-		Debug.Log("last sprite: " + lastSprite);
-	}*/
 	
 	public void AccusationGesture(string subject)
 	{
@@ -58,7 +49,6 @@ public class VisualResponse : MonoBehaviour
 	public void FixatedOnClueGesture(string clueID)
 	{
 		newSpritePath = dir + "_" + Suspect.state + "_" + clueID;
-		Debug.Log(newSpritePath);
 		StartCoroutine("DoShortGesture");
 	}
 	
@@ -71,7 +61,7 @@ public class VisualResponse : MonoBehaviour
 	
 	public void GestureForInteractable(string interactableName)
 	{
-		newSpritePath = dir + "_Default_Neutral_0";
+		newSpritePath = dir + "_Default_" + Suspect.state + "_0";
 		
 		StartCoroutine("DoShortGesture");
 	}
@@ -95,7 +85,7 @@ public class VisualResponse : MonoBehaviour
 				
 			yield return new WaitForSeconds(gestureDurationShort);
 			
-			GetComponent<SpriteRenderer>().sprite = defaultSprite;
+			GetComponent<SpriteRenderer>().sprite = Resources.Load(dir + "_Default_" + Suspect.state + "_0", typeof (Sprite)) as Sprite;
 			inGesture = false;
 		}
 	}

@@ -37,27 +37,8 @@ public class BehaviourController : MonoBehaviour
 	{
 		get
 		{
-			return inAction = (voice.IsSpeaking || gesture.IsInGesture);
-		}
-	}
-	
-	
-	/// <summary>
-	/// Triggers suspect behaviour when being accused of notebook subject.
-	/// </summary>
-	/// <param name="subject">Subject Name.</param>
-	public void ReactionOnAccusation(string subject)
-	{
-		if(!IsInAction)
-		{
-			#region subscribe
-			OnAccusationBehaviour += voice.AccusationVO;
-			OnAccusationBehaviour += gesture.AccusationGesture;
-			#endregion
-			
-			AccusationBehaviour(subject);
-			ClearAccusationBehaviour();
-			SetTimeOfLastReaction();
+			inAction = (voice.IsSpeaking || gesture.IsInGesture);
+			return inAction;
 		}
 	}
 	
@@ -74,17 +55,13 @@ public class BehaviourController : MonoBehaviour
 	{
 		if(!IsInAction)
 		{
-			if(Time.time >= timeOfLastReaction + interval && GameState.IsInteracting)
-			{
-				#region subscribe
-				OnNotLookingBehaviour += voice.NotLookingVO;
-				OnNotLookingBehaviour += gesture.NotLookingGesture;
-				#endregion
+			#region subscribe
+			OnNotLookingBehaviour += voice.NotLookingVO;
+			OnNotLookingBehaviour += gesture.NotLookingGesture;
+			#endregion
 				
-				NotLookingBehaviour();
-				ClearNotLookingBehaviour();
-				SetTimeOfLastReaction();
-			}
+			NotLookingBehaviour();
+			ClearNotLookingBehaviour();
 		}
 	}
 	
@@ -195,15 +172,18 @@ public class BehaviourController : MonoBehaviour
 		}
 	}
 	
-	void SetTimeOfLastReaction()
+	public void SetTimeOfLastReaction()
 	{
 		StartCoroutine("SetTimerForReaction");
 	}
 	
 	IEnumerator SetTimerForReaction()
 	{
-		yield return new WaitForSeconds(voice.audio.clip.length);
-		timeOfLastReaction = Time.time;
+		if(voice.audio.clip != null)
+		{
+			yield return new WaitForSeconds(voice.audio.clip.length);
+			timeOfLastReaction = Time.time;
+		}
 	}
 	
 	#region event triggers

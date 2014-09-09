@@ -38,7 +38,7 @@ public class InputController : MonoBehaviour
 	void CheckKeyBoardInputs() 
 	{	
 		#region interactions keyboard
-		if(Keyboard.inputInteract() && !gazeModel.isEyeTrackerRunning)
+		if(Keyboard.inputInteract() && !gazeModel.isEyeTrackerRunning && Mouse.rayTarget().collider != null)
 		{
 			GameController.instance.SetSelectedObject();
 			interaction.StartInteraction(GameController.instance.GetSelectedObject());
@@ -48,6 +48,14 @@ public class InputController : MonoBehaviour
 		{
 			interaction.StopInteraction();
 			GameController.instance.ClearSelections();
+		}
+		
+		if(Keyboard.inputAccuse())
+		{
+			if(Mouse.rayTarget().collider != null)
+			{
+				interaction.StartAccusationOn(Mouse.rayTarget().collider.gameObject);
+			}
 		}
 		#endregion
 		

@@ -15,20 +15,48 @@ public class InteractionManager : MonoBehaviour
 	public float suspectDistanceFromPlayer = 0.5f;
 	GameObject currentSuspect;
 	
-	GameObject currentSelection;
     private bool inspecting = false;
     private bool interrogating = false;
+    
+    //mock
+    public bool hasClues = false;
+    public int accusations = 0;
+    
+	
+	public void StartAccusationOn(GameObject selection)
+	{
+		if(GameState.IsInteracting && selection != null)
+		{
+			#region trigger dialog
+			DialogManager.OnAccusation += SoundManager.instance.PlayAccusation;
+			
+			if(GameState.IsState(GameState.States.Interrogating))
+			{
+				DialogManager.OnAccusation += GameController.instance.GetCurrentSuspect().GetComponent<VerbalResponse>().VoiceOverOnBeingAccused;
+			}
+			gameObject.SendMessage("AccusationOn", selection);
+			#endregion
+			
+			if(selection.tag == "Clue")
+			{
+				selection.transform.parent.GetComponent<Interactable>().SetAccused();
+			}
+			else if(selection.GetComponent<Interactable>() as Interactable != null)
+			{
+				selection.GetComponent<Interactable>().SetAccused();
+			}
+		}
+		gameObject.SendMessage("ClearOnAccusation");
+	}
 	
 	/// <summary>
 	/// Starts interaction with selected object.
 	/// </summary>
 	public void StartInteraction(GameObject selection)
 	{
-		Debug.Log("interacting with: " + selection);
 		if(selection.tag != "Clue")
 		{
 			ClueManager.instance.ActivateCluesOn(selection);
-			currentSelection = selection;
 		}
 		else
 		{
@@ -68,7 +96,7 @@ public class InteractionManager : MonoBehaviour
 	{
 		if(GameState.IsInteracting)
 		{
-			ClueManager.instance.DeactivateCluesOn(currentSelection);
+			ClueManager.instance.DeactivateCluesOn(GameController.instance.GetSelectedObject());
 			
 			switch(GameState.gameState)
 			{
@@ -95,7 +123,6 @@ public class InteractionManager : MonoBehaviour
 	/// </summary>
 	public void Inspect(GameObject item)
 	{
-		Debug.Log("inspecting: " + item);
         inspecting = true;
 		currentItem = item;
 		#region position item
@@ -159,12 +186,10 @@ public class InteractionManager : MonoBehaviour
 	/// </summary>
 	public void Interrogate(GameObject suspect)
 	{
-		Debug.Log("interrogating " + suspect);
         interrogating = true;
 		currentSuspect = suspect;
 		#region position player
 		playerOriginalPos = transform.position;
-		Vector3 suspectPos = new Vector3(currentSuspect.transform.position.x, transform.position.y, currentSuspect.transform.position.z); //Lock Y-Axis
 		//transform.LookAt(currentSuspect.transform.position);
         StartCoroutine(MoveToSuspect(suspect));
 		//transform.position = Vector3.Lerp(transform.position, currentSuspect.transform.position, suspectDistanceFromPlayer);
@@ -179,7 +204,6 @@ public class InteractionManager : MonoBehaviour
         {
             if (!interrogating)
             {
-                Debug.Log("Not interrogating");
                 yield break;
             }
             //Debug.Log("Vector3.ToDistance(origin, target)= " + Vector3.Distance(origin, target));
@@ -209,7 +233,6 @@ public class InteractionManager : MonoBehaviour
         {
             if (interrogating)
             {
-                Debug.Log("Is interrogating");
                 transform.position = target;
                 yield break;
             }

@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
 	//private string dataFileName = "/gameprogress.dat";
 	
 	GameObject hitObject, selectedObject;
-	GameObject currentSuspect;
+	GameObject currentSuspect, lastSuspect;
 	GameObject currentInteractable;
 	GameObject currentClue;
 	
@@ -39,11 +39,11 @@ public class GameController : MonoBehaviour
 	
 	void Update () 
 	{	
-		Debug.Log(GameState.gameState);
 		CheckControls();
 		CheckGameState();
 		ControllBGVolume();
 	}
+	
 	/// <summary>
 	/// Checks GameState and sets Background sound accordingly.
 	/// </summary>
@@ -107,28 +107,31 @@ public class GameController : MonoBehaviour
 	//Set selection for mouse interaction
 	public void SetSelectedObject()
 	{
-		selectedObject = Mouse.rayTarget().collider.gameObject;
-		
-		if(selectedObject.tag == "Suspect")
+		if(!GameState.IsInteracting)
 		{
-			currentSuspect = selectedObject;
+			selectedObject = Mouse.rayTarget().collider.gameObject;
 			
-			if(GameState.IsState(GameState.States.InGame))
+			if(selectedObject.tag == "Suspect")
 			{
-				GameState.ChangeState(GameState.States.Interrogating);
+				currentSuspect = selectedObject;
+				
+				if(GameState.IsState(GameState.States.InGame))
+				{
+					GameState.ChangeState(GameState.States.Interrogating);
+				}
 			}
-		}
-		else if(selectedObject.tag == "Clue")
-		{
-			currentClue = selectedObject;
-		}
-		else if(selectedObject.tag == "Interactable")
-		{
-			currentInteractable = selectedObject;
-			
-			if(GameState.IsState(GameState.States.InGame))
+			else if(selectedObject.tag == "Clue")
 			{
-				GameState.ChangeState(GameState.States.Inspecting);
+				currentClue = selectedObject;
+			}
+			else if(selectedObject.tag == "Interactable")
+			{
+				currentInteractable = selectedObject;
+				
+				if(GameState.IsState(GameState.States.InGame))
+				{
+					GameState.ChangeState(GameState.States.Inspecting);
+				}
 			}
 		}
 	}
@@ -136,30 +139,33 @@ public class GameController : MonoBehaviour
 	//Set selection for gaze interaction
 	public void SetSelectedGazeObject(GameObject gazedObject)
 	{
-		selectedObject = gazedObject;
-		
-		Debug.Log("selected gaze object: " + selectedObject);
-		
-		if(selectedObject.tag == "Suspect")
+		if(!GameState.IsInteracting)
 		{
-			currentSuspect = selectedObject;
+			selectedObject = gazedObject;
 			
-			if(GameState.IsState(GameState.States.InGame))
+			Debug.Log("selected gaze object: " + selectedObject);
+			
+			if(selectedObject.tag == "Suspect")
 			{
-				GameState.ChangeState(GameState.States.Interrogating);
+				currentSuspect = selectedObject;
+				
+				if(GameState.IsState(GameState.States.InGame))
+				{
+					GameState.ChangeState(GameState.States.Interrogating);
+				}
 			}
-		}
-		else if(selectedObject.tag == "Clue")
-		{
-			currentClue = selectedObject;
-		}
-		else if(selectedObject.tag == "Interactable")
-		{
-			currentInteractable = selectedObject;
-			
-			if(GameState.IsState(GameState.States.InGame))
+			else if(selectedObject.tag == "Clue")
 			{
-				GameState.ChangeState(GameState.States.Inspecting);
+				currentClue = selectedObject;
+			}
+			else if(selectedObject.tag == "Interactable")
+			{
+				currentInteractable = selectedObject;
+				
+				if(GameState.IsState(GameState.States.InGame))
+				{
+					GameState.ChangeState(GameState.States.Inspecting);
+				}
 			}
 		}
 	}
@@ -167,9 +173,13 @@ public class GameController : MonoBehaviour
 	public void ClearSelections()
 	{
 		GameState.ChangeState(GameState.States.InGame);
-		if(currentSuspect.GetComponent<Suspect>().GetSuspectState() == Suspect.SuspectState.Nervous)
+		if(currentSuspect != null)
 		{
-			StartCoroutine("ResetSuspectState", currentSuspect);
+			lastSuspect = currentSuspect;
+		}
+		if(lastSuspect.GetComponent<Suspect>().GetSuspectState() == Suspect.SuspectState.Nervous)
+		{
+			StartCoroutine("ResetSuspectState", lastSuspect);
 		}
 		selectedObject = null;
 		currentSuspect = null;

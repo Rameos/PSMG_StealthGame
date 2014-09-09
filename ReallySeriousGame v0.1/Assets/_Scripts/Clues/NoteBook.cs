@@ -70,6 +70,10 @@ public class NoteBook : MonoBehaviour
 	
 	public void ToggleNotebook()
 	{
+		if(!isToggled)
+		{
+			SoundManager.instance.PlaySoundEffect("Notebook");
+		}
 		isToggled = !isToggled;
 		
 		if(isToggled)

@@ -25,11 +25,6 @@ public class Clue : MonoBehaviourWithGazeComponent
 	void OnMouseEnter()
 	{
 		HighlightClue();
-		
-		if(transform.parent.CompareTag("Suspect") && clueName == "EyeContact")
-		{
-			transform.parent.SendMessage("RandomOnClueReaction", clueName);
-		}
 	}
 	
 	void OnMouseOver()
@@ -58,11 +53,6 @@ public class Clue : MonoBehaviourWithGazeComponent
 	public override void OnGazeEnter(RaycastHit hit)
 	{
 		HighlightClue();
-		
-		if(transform.parent.CompareTag("Suspect") && clueName == "EyeContact")
-		{
-			transform.parent.SendMessage("RandomOnClueReaction", clueName);
-		}
 	}
 	
 	public override void OnGazeStay(RaycastHit hit)
