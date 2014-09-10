@@ -263,6 +263,6 @@ public class InteractionManager : MonoBehaviour
 	public void RotateItemRight(GameObject interactable)
 	{
 		if(GameState.IsState(GameState.States.Inspecting))
-			interactable.transform.Rotate(Vector3.down * turnSpeed * Time.deltaTime,Space.World);
+			interactable.transform.Rotate(Vector3.right * turnSpeed * Time.deltaTime,Space.World);
 	}
 }

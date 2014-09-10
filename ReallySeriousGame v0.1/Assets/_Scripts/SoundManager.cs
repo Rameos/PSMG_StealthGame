@@ -129,9 +129,26 @@ public class SoundManager : MonoBehaviour
 			}
 			else
 			{
-				if(ClueManager.instance.GetFoundClues().Contains(accused.name))
+				if(ClueManager.instance.GetFoundClues().Contains(accused.name) && !DialogManager.instance.GetListOfAccusations().Contains(accused.name))
 				{
-					voiceClipPath = dirAccusations + accused.name + "/Detective/" + Random.Range(0,2);
+					string subjectName = "";
+					if(accused.name == "Stain")
+					{
+						subjectName = "Bandage";
+					}
+					else if(accused.name == "T-Virus")
+					{
+						subjectName = "Umbrella";
+					}
+					else if(accused.name == "Certificate")
+					{
+						subjectName = "Crayons";
+					}
+					else
+					{
+						subjectName = accused.name;
+					}
+					voiceClipPath = dirAccusations + subjectName + "/Detective/" + Random.Range(0,2);
 					voiceSource.clip = Resources.Load(voiceClipPath, typeof(AudioClip)) as AudioClip;
 				}
 				else
