@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
 	
 	int currentLevel = -1;
 	public float resetSuspectStateTimer = 7f;
+	private const int CASE_CLOSED = 6;
+	bool caseClosed = false;
 	
 	void Awake() 
 	{
@@ -42,6 +44,7 @@ public class GameController : MonoBehaviour
 		CheckControls();
 		CheckGameState();
 		ControllBGVolume();
+		CheckCaseClosedState();
 	}
 	
 	/// <summary>
@@ -69,6 +72,32 @@ public class GameController : MonoBehaviour
 			}
 			currentLevel = Application.loadedLevel;
 		}
+	}
+	
+	void CheckCaseClosedState()
+	{
+		if(DialogManager.instance.GetCorrectAccusationsInOrder() == CASE_CLOSED)
+		{
+			StartCoroutine("WaitForDialogToFinish");
+		}
+	}
+	
+	void CaseClosed()
+	{
+		if(!caseClosed)
+		{
+			sound.PlayVoice("Sounds/Case_Closed/" + UnityEngine.Random.Range(0,2));
+			caseClosed = true;
+		}
+	}
+	
+	IEnumerator WaitForDialogToFinish()
+	{
+		while(GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().isPlaying || GameObject.FindGameObjectWithTag("Suspect").GetComponent<AudioSource>().isPlaying)
+		{
+			yield return null;
+		}
+		CaseClosed();
 	}
 	
 	void CheckControls()

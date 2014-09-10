@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using iViewX;
 
 public class NoteBook : MonoBehaviour 
 {
 	ClueManager clue;
+	InteractionManager interaction;
 	
 	public GUIStyle notebookStyle;
 	public Texture notebookTexture;
@@ -16,7 +18,6 @@ public class NoteBook : MonoBehaviour
 	private float notebookHeight 	= Screen.height * 0.7f;
 	private float offset			= 10;
 	
-	private Rect note;
 	private float noteHeight;
 	private float noteWidth;
 	
@@ -31,6 +32,7 @@ public class NoteBook : MonoBehaviour
 	void Awake()
 	{
 		clue = GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
+		interaction = GameObject.FindGameObjectWithTag("Player").GetComponent<InteractionManager>();
 		
 		notebookX 	= Screen.width - notebookWidth - offset;
 		notebookY 	= Screen.height - notebookHeight;
@@ -57,7 +59,8 @@ public class NoteBook : MonoBehaviour
 			{
 				if(GameState.IsState(GameState.States.Interrogating))
 				{
-					GameController.instance.GetCurrentSuspect().SendMessage("ReactionOnAccusation", notes[i]);
+					Debug.Log("note: " + GameObject.Find(notes[i]));
+					interaction.StartAccusationOn(GameObject.Find(notes[i]));
 				}
 			}
 		}

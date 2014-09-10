@@ -116,33 +116,37 @@ public class VerbalResponse : MonoBehaviour
 	
 	IEnumerator WaitToRespond(string subject)
 	{
-		
-		if(ClueManager.instance.GetFoundClues().Contains(subject))
+		if(ClueManager.instance.GetFoundClues().Contains(subject) && !DialogManager.instance.GetListOfAccusations().Contains(subject) && DialogManager.instance.IsCorrectOrderOfAccusations(subject))
 		{
-			newVOClipPath = dirAccused + subject + "/Suspect/" + Random.Range(0,2);
-			audio.clip = Resources.Load(newVOClipPath, typeof (AudioClip)) as AudioClip;
-		}
-		else if(ClueManager.instance.GetFoundClues().Count == 0)
-		{
-			if(emptyAccusationCount + 2 == defaultVOClip.Length)
+			string subjectName = "";
+			if(subject == "Stain")
 			{
-				emptyAccusationCount = 0;
+				subjectName = "Bandage";
 			}
-				
-			if(!gameObject.GetComponent<Interactable>().HasBeenAccused())
+			else if(subject == "T-Virus")
 			{
-				audio.clip = defaultVOClip[Random.Range(0,2)];
+				subjectName = "Umbrella";
+			}
+			else if(subject == "Certificate")
+			{
+				subjectName = "Crayons";
 			}
 			else
 			{
-				audio.clip = defaultVOClip[2 + emptyAccusationCount];
+				subjectName = subject;
 			}
-			emptyAccusationCount++;
+			newVOClipPath = dirAccused + subjectName + "/Suspect/" + Random.Range(0,2);
+			audio.clip = Resources.Load(newVOClipPath, typeof (AudioClip)) as AudioClip;
+			DialogManager.instance.AddToListOfAccusations(subject);
+			DialogManager.instance.AddToListOfAccusations(subjectName);
+		}
+		else if(ClueManager.instance.GetFoundClues().Count == 0)
+		{
+			EmptyAccusation();
 		}
 		else
 		{
-			newVOClipPath = dirAccused + "Default_Response/" + Random.Range(0,4);
-			audio.clip = Resources.Load(newVOClipPath, typeof (AudioClip)) as AudioClip;
+			DefaultResponseOnAccusation();
 		}
 		
 		if(GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().clip != null)
@@ -155,5 +159,29 @@ public class VerbalResponse : MonoBehaviour
 		gameObject.SendMessage("SetTimeOfLastReaction");
 		
 		isWaiting = false;
+	}
+	
+	void EmptyAccusation()
+	{
+		if(emptyAccusationCount + 2 == defaultVOClip.Length)
+		{
+			emptyAccusationCount = 0;
+		}
+		
+		if(!gameObject.GetComponent<Interactable>().HasBeenAccused())
+		{
+			audio.clip = defaultVOClip[Random.Range(0,2)];
+		}
+		else
+		{
+			audio.clip = defaultVOClip[2 + emptyAccusationCount];
+		}
+		emptyAccusationCount++;
+	}
+	
+	void DefaultResponseOnAccusation()
+	{
+		newVOClipPath = dirAccused + "Default_Response/" + Random.Range(0,4);
+		audio.clip = Resources.Load(newVOClipPath, typeof (AudioClip)) as AudioClip;
 	}
 }
