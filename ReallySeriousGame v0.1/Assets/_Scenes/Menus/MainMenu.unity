@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70fd144979754844b3c63c0a8690b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetSuspectStateTimer: 7
 --- !u!4 &290527552
 Transform:
   m_ObjectHideFlags: 0
@@ -214,13 +215,55 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a2c0e2af702659940948c3a3f3823d39, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c0e2af702659940948c3a3f3823d39, type: 2}
   m_RootGameObject: {fileID: 2115067181}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1300710451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: d3734a9d7daaf4a4986321ab572549b9, type: 2}
+  m_PrefabInternal: {fileID: 2077568661}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1300710453}
+  - 114: {fileID: 1300710452}
+  m_Layer: 0
+  m_Name: EyeTrackerController
+  m_TagString: GazeController
+  m_Icon: {fileID: 2800000, guid: 9242785d392820348a98bc2290e49706, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1300710452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: d3734a9d7daaf4a4986321ab572549b9,
+    type: 2}
+  m_PrefabInternal: {fileID: 2077568661}
+  m_GameObject: {fileID: 1300710451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8eb254268ce8547be8c6a33ad23cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useGazeFilter: 1
+  enableGazeReactionOfObjects: 1
+--- !u!4 &1300710453
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: d3734a9d7daaf4a4986321ab572549b9, type: 2}
+  m_PrefabInternal: {fileID: 2077568661}
+  m_GameObject: {fileID: 1300710451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1001 &1822715619
 Prefab:
   m_ObjectHideFlags: 0
@@ -361,6 +404,50 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1883412993}
   m_Enabled: 1
+--- !u!1001 &2077568661
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: d3734a9d7daaf4a4986321ab572549b9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d3734a9d7daaf4a4986321ab572549b9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d3734a9d7daaf4a4986321ab572549b9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d3734a9d7daaf4a4986321ab572549b9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d3734a9d7daaf4a4986321ab572549b9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d3734a9d7daaf4a4986321ab572549b9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d3734a9d7daaf4a4986321ab572549b9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d3734a9d7daaf4a4986321ab572549b9, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d3734a9d7daaf4a4986321ab572549b9, type: 2}
+  m_RootGameObject: {fileID: 1300710451}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &2115067181
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +485,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2a49ac481880ab244b649cc20489fcc1, type: 3}
   - {fileID: 8300000, guid: 0ff0d08aa8a702e4393b23f0b66753fe, type: 3}
   - {fileID: 8300000, guid: d5b72c56542508e409187d225fc3ce76, type: 3}
+  soundEffectClip: []
+  voiceClip: []
 --- !u!4 &2115067183
 Transform:
   m_ObjectHideFlags: 0
