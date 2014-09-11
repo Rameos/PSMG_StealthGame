@@ -20,10 +20,13 @@ public class BehaviourController : MonoBehaviour
 	private float timeOfLastReaction = -6f;
 	private bool inAction = false;
 	
+	private Suspect.SuspectState currentState;
+	
 	void Awake()
 	{
 		voice = GetComponent<VerbalResponse>();
 		gesture = GetComponent<VisualResponse>();
+		currentState = Suspect.state;
 	}
 	
 	void Update()
@@ -36,6 +39,7 @@ public class BehaviourController : MonoBehaviour
 		{
 			ClueManager.instance.DeactivateCluesOn(gameObject);
 		}
+		SetCurrentState();
 	}
 	
 	public bool IsInAction
@@ -44,6 +48,15 @@ public class BehaviourController : MonoBehaviour
 		{
 			inAction = (voice.IsSpeaking || gesture.IsInGesture);
 			return inAction;
+		}
+	}
+	
+	void SetCurrentState()
+	{
+		if(currentState != Suspect.state)
+		{
+			currentState = Suspect.state;
+			gesture.SetDefaultSprite();
 		}
 	}
 	
