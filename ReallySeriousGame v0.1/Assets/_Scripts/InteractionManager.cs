@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using iViewX;
 
 public class InteractionManager : MonoBehaviour 
 {
@@ -78,6 +79,10 @@ public class InteractionManager : MonoBehaviour
 			case "Door":
 				EnterDoor(); 
 				break;
+                
+            case "MenuItem":
+                SelectMenuItem(selection);
+                break;
 				
 			default: break;
 			}
@@ -88,6 +93,37 @@ public class InteractionManager : MonoBehaviour
 			return;
 		}
 	}
+
+    private void SelectMenuItem(GameObject selection)
+    {
+        switch (selection.name)
+        {
+            case "StartGame":
+                Application.LoadLevel("BarScene");
+                break;
+
+            case "LoadSave":
+                Debug.Log("LoadSave");
+                break;
+
+            case "SetControls":
+                Debug.Log("SetControls");
+                break;
+
+            case "StartCalibration":
+                Debug.Log("StartCalibration");
+                GazeControlComponent.Instance.StartCalibration();
+                break;
+
+            case "QuitGame":
+                Debug.Log("QuitGame");
+                Application.Quit();
+                break;
+
+            default:
+                break;
+        }
+    }
 	
 	/// <summary>
 	/// Stops interaction with selected object.
