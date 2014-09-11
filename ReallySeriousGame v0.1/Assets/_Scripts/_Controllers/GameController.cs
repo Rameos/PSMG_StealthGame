@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour
 	
 	void Update () 
 	{	
+		Debug.Log("current interactable: " + GetCurrentInteractable());
 		CheckControls();
 		CheckGameState();
 		ControllBGVolume();
@@ -134,10 +135,10 @@ public class GameController : MonoBehaviour
 	}
 	
 	//Set selection for mouse interaction
-	public void SetSelectedObject()
+	public void SetSelectedMouseObject()
 	{
-		if(!GameState.IsInteracting)
-		{
+		/*if(!GameState.IsInteracting)
+		{*/
 			selectedObject = Mouse.rayTarget().collider.gameObject;
 			
 			if(selectedObject.tag == "Suspect")
@@ -162,39 +163,36 @@ public class GameController : MonoBehaviour
 					GameState.ChangeState(GameState.States.Inspecting);
 				}
 			}
-		}
+		//}
 	}
 	
 	//Set selection for gaze interaction
 	public void SetSelectedGazeObject(GameObject gazedObject)
 	{
-		if(!GameState.IsInteracting)
+		selectedObject = gazedObject;
+			
+		Debug.Log("selected gaze object: " + selectedObject);
+			
+		if(selectedObject.tag == "Suspect")
 		{
-			selectedObject = gazedObject;
-			
-			Debug.Log("selected gaze object: " + selectedObject);
-			
-			if(selectedObject.tag == "Suspect")
-			{
-				currentSuspect = selectedObject;
+			currentSuspect = selectedObject;
 				
-				if(GameState.IsState(GameState.States.InGame))
-				{
-					GameState.ChangeState(GameState.States.Interrogating);
-				}
-			}
-			else if(selectedObject.tag == "Clue")
+			if(GameState.IsState(GameState.States.InGame))
 			{
-				currentClue = selectedObject;
+				GameState.ChangeState(GameState.States.Interrogating);
 			}
-			else if(selectedObject.tag == "Interactable")
-			{
-				currentInteractable = selectedObject;
+		}
+		else if(selectedObject.tag == "Clue")
+		{
+			currentClue = selectedObject;
+		}
+		else if(selectedObject.tag == "Interactable")
+		{
+			currentInteractable = selectedObject;
 				
-				if(GameState.IsState(GameState.States.InGame))
-				{
-					GameState.ChangeState(GameState.States.Inspecting);
-				}
+			if(GameState.IsState(GameState.States.InGame))
+			{
+				GameState.ChangeState(GameState.States.Inspecting);
 			}
 		}
 	}

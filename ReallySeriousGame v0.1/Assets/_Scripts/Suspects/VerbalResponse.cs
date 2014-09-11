@@ -119,9 +119,9 @@ public class VerbalResponse : MonoBehaviour
 		if(ClueManager.instance.GetFoundClues().Contains(subject) && !DialogManager.instance.GetListOfAccusations().Contains(subject) && DialogManager.instance.IsCorrectOrderOfAccusations(subject))
 		{
 			string subjectName = "";
-			if(subject == "Stain")
+			if(subject == "Bandage")
 			{
-				subjectName = "Bandage";
+				subjectName = "Stain";
 			}
 			else if(subject == "T-Virus")
 			{

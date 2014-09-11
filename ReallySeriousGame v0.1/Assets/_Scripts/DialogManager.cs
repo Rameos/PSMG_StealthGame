@@ -18,7 +18,6 @@ public class DialogManager : MonoBehaviour
 		#region singleton
 		if(instance == null) 
 		{
-			DontDestroyOnLoad(gameObject);
 			instance = this;
 		} 
 		else if(instance != this) 

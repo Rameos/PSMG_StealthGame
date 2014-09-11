@@ -38,15 +38,7 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	{
 		if(!gazeModel.isEyeTrackerRunning)
 		{
-			if(!GameState.IsPaused && !isHighlighted)
-			{	
-				Highlight();
-			}
-			
-			if(this.tag == "Suspect")
-			{
-				this.SendMessage("RandomReaction");
-			}
+			OnEnterBehaviour();
 		}
 	}
 	
@@ -54,38 +46,7 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	{
 		if(!gazeModel.isEyeTrackerRunning)
 		{
-			if(!GameState.IsPaused && !isHighlighted)
-			{
-				Highlight();
-			}
-			if(GameState.IsPaused && isHighlighted)
-			{
-				UnHighlight();
-			}
-			//Unhighlight when interacting with highlighted object
-			if(gameObject == GameController.instance.GetSelectedObject())
-			{
-				UnHighlight();
-			}
-			
-			//UGGGGGGGGGGGG
-			if(Keyboard.inputInteract())
-			{
-				if(GameState.IsState(GameState.States.InGame))
-				{
-					inInteraction = true;
-				}
-				if(GameState.IsState(GameState.States.Interrogating) && this.tag != "Suspect")
-				{	
-					GameController.instance.GetCurrentSuspect().SendMessage("ReactionOnInteractable", this.name);
-					ClueManager.instance.FoundClue(gameObject);
-				}
-			}
-			
-			if(this.tag == "Suspect")
-			{
-				this.SendMessage("FixatedReaction");
-			}
+			OnStayBehaviour();	
 		}
 	}
 	
@@ -93,16 +54,43 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	{
 		if(!gazeModel.isEyeTrackerRunning)
 		{
-			if(isHighlighted)
-			{
-				UnHighlight();
-			}
+			OnExitBehaviour();
 		}
 	}
 	#endregion
 	
 	#region gaze
 	public override void OnGazeEnter(RaycastHit hit)
+	{
+		OnEnterBehaviour();
+	}
+	
+	public override void OnGazeStay(RaycastHit hit)
+	{
+		OnStayBehaviour();
+		
+		if(gazeModel.isEyeTrackerRunning)
+		{
+			if(Keyboard.inputInteract())
+			{
+				GameController.instance.SetSelectedGazeObject(gameObject);
+				interaction.StartInteraction(gameObject);
+			}
+			
+			if(Keyboard.inputAccuse())
+			{
+				interaction.StartAccusationOn(gameObject);
+			}
+		}
+	}
+	
+	public override void OnGazeExit()
+	{
+		OnExitBehaviour();
+	}
+	#endregion
+	
+	void OnEnterBehaviour()
 	{
 		if(!GameState.IsPaused && !isHighlighted)
 		{	
@@ -115,7 +103,7 @@ public class Interactable : MonoBehaviourWithGazeComponent
 		}
 	}
 	
-	public override void OnGazeStay(RaycastHit hit)
+	void OnStayBehaviour()
 	{
 		if(!GameState.IsPaused && !isHighlighted)
 		{
@@ -134,6 +122,10 @@ public class Interactable : MonoBehaviourWithGazeComponent
 		//UGGGGGGGGGGGG
 		if(Keyboard.inputInteract())
 		{
+			if(GameState.IsState(GameState.States.InGame))
+			{
+				inInteraction = true;
+			}
 			if(GameState.IsState(GameState.States.Interrogating) && this.tag != "Suspect")
 			{	
 				GameController.instance.GetCurrentSuspect().SendMessage("ReactionOnInteractable", this.name);
@@ -145,22 +137,15 @@ public class Interactable : MonoBehaviourWithGazeComponent
 		{
 			this.SendMessage("FixatedReaction");
 		}
-		
-		if(Keyboard.inputInteract())
-		{
-			GameController.instance.SetSelectedGazeObject(gameObject);
-			interaction.StartInteraction(gameObject);
-		}
 	}
 	
-	public override void OnGazeExit()
+	void OnExitBehaviour()
 	{
 		if(isHighlighted)
 		{
 			UnHighlight();
 		}
 	}
-	#endregion
 	
 	void Highlight() 
 	{

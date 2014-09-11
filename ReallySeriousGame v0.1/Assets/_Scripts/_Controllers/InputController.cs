@@ -40,7 +40,7 @@ public class InputController : MonoBehaviour
 		#region interactions keyboard
 		if(Keyboard.inputInteract() && !gazeModel.isEyeTrackerRunning && Mouse.rayTarget().collider != null)
 		{
-			GameController.instance.SetSelectedObject();
+			GameController.instance.SetSelectedMouseObject();
 			interaction.StartInteraction(GameController.instance.GetSelectedObject());
 		}
 		
@@ -50,7 +50,7 @@ public class InputController : MonoBehaviour
 			GameController.instance.ClearSelections();
 		}
 		
-		if(Keyboard.inputAccuse())
+		if(Keyboard.inputAccuse() && !gazeModel.isEyeTrackerRunning)
 		{
 			if(Mouse.rayTarget().collider != null)
 			{
