@@ -28,9 +28,14 @@ public class BehaviourController : MonoBehaviour
 	
 	void Update()
 	{
-		/*Debug.Log("voice: " + voice.IsSpeaking);
-		Debug.Log("gesture: " + gesture.IsInGesture);
-		Debug.Log("in action: " + inAction); //in action???*/
+		if(!inAction)
+		{
+			ClueManager.instance.ActivateCluesOn(gameObject);
+		}
+		else
+		{
+			ClueManager.instance.DeactivateCluesOn(gameObject);
+		}
 	}
 	
 	public bool IsInAction
@@ -42,11 +47,10 @@ public class BehaviourController : MonoBehaviour
 		}
 	}
 	
-	IEnumerator SeekAttention()
+	/*IEnumerator SeekAttention()
 	{
 		yield return new WaitForSeconds(2f);
-		NotLookingReaction();
-	}
+	}*/
 	
 	/// <summary>
 	/// Triggers suspect behaviour when not being focused by the player during interaction.
@@ -55,13 +59,17 @@ public class BehaviourController : MonoBehaviour
 	{
 		if(!IsInAction)
 		{
-			#region subscribe
-			OnNotLookingBehaviour += voice.NotLookingVO;
-			OnNotLookingBehaviour += gesture.NotLookingGesture;
-			#endregion
+			if(Time.time >= timeOfLastReaction + interval && !GameState.IsInteracting)
+			{
+				#region subscribe
+				OnNotLookingBehaviour += voice.NotLookingVO;
+				OnNotLookingBehaviour += gesture.NotLookingGesture;
+				#endregion
 				
-			NotLookingBehaviour();
-			ClearNotLookingBehaviour();
+				NotLookingBehaviour();
+				ClearNotLookingBehaviour();
+				SetTimeOfLastReaction();
+			}
 		}
 	}
 	
@@ -139,8 +147,8 @@ public class BehaviourController : MonoBehaviour
 	/// <param name="clueID">Clue ID.</param>
 	public void RandomOnClueReaction(string clueID)
 	{
-		if(!IsInAction)
-		{
+		/*if(!IsInAction)
+		{*/
 			#region subscribe
 			OnRandomClueBehaviour += voice.RandomOnClueVO;
 			OnRandomClueBehaviour += gesture.RandomOnClueGesture;
@@ -149,7 +157,7 @@ public class BehaviourController : MonoBehaviour
 			RandomOnClueBehaviour(clueID);
 			ClearRandomOnClueBahviour();
 			SetTimeOfLastReaction();
-		}
+		/*}*/
 	}
 	//INTERACTION WITH INTERACTABLES
 	
@@ -159,8 +167,8 @@ public class BehaviourController : MonoBehaviour
 	/// <param name="clueID">Clue ID.</param>
 	public void ReactionOnInteractable(string interactableName)
 	{
-		if(!IsInAction)
-		{
+		/*if(!IsInAction)
+		{*/
 			#region subscribe
 			OnInteractableBehaviour += voice.VoiceOverForInteractable;
 			OnInteractableBehaviour += gesture.GestureForInteractable;
@@ -169,7 +177,7 @@ public class BehaviourController : MonoBehaviour
 			BehaviourOnInteractable(interactableName);
 			ClearOnInteractableBehaviour();
 			SetTimeOfLastReaction();
-		}
+		/*}*/
 	}
 	
 	public void SetTimeOfLastReaction()

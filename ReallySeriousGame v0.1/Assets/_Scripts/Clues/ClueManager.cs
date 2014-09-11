@@ -78,22 +78,29 @@ public class ClueManager : MonoBehaviour
 	/// <param name="newClue">Selected Clue.</param>
 	public void FoundClue(GameObject newClue)
 	{
-		if(newClue.tag == "Clue")
+		if(GameState.IsState(GameState.States.Interrogating) && GameController.instance.GetCurrentSuspect().GetComponent<Suspect>().IsNervous)
 		{
-			selectedClue = newClue.GetComponent<Clue>();
-			selectedClue.SetDiscovered();
-			
-			if(!foundClues.Contains(selectedClue.clueName))
-				foundClues.Add(selectedClue.clueName);
-		} 
-		else if(newClue.tag == "Interactable")
-		{
-			if(!foundClues.Contains(prefix + newClue.name))
-			{
-				foundClues.Add(prefix + newClue.name);
-			}
+			return;
 		}
-		SoundManager.instance.PlaySoundEffect("Notebook");
+		else
+		{
+			if(newClue.tag == "Clue")
+			{
+				selectedClue = newClue.GetComponent<Clue>();
+				selectedClue.SetDiscovered();
+				
+				if(!foundClues.Contains(selectedClue.clueName))
+					foundClues.Add(selectedClue.clueName);
+			} 
+			else if(newClue.tag == "Interactable")
+			{
+				if(!foundClues.Contains(prefix + newClue.name))
+				{
+					foundClues.Add(prefix + newClue.name);
+				}
+			}
+			SoundManager.instance.PlaySoundEffect("Notebook");
+		}
 	}
 	
 	/// <summary>
