@@ -206,9 +206,12 @@ public class GameController : MonoBehaviour
 		{
 			lastSuspect = currentSuspect;
 		}
-		if(lastSuspect.GetComponent<Suspect>().GetSuspectState() == Suspect.SuspectState.Nervous)
+		if(lastSuspect != null)
 		{
-			StartCoroutine("ResetSuspectState", lastSuspect);
+			if(lastSuspect.GetComponent<Suspect>().GetSuspectState() == Suspect.SuspectState.Nervous)
+			{
+				StartCoroutine("ResetSuspectState", lastSuspect);
+			}
 		}
 		selectedObject = null;
 		currentSuspect = null;

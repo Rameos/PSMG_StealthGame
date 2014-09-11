@@ -96,6 +96,7 @@ public class InteractionManager : MonoBehaviour
 	{
 		if(GameState.IsInteracting)
 		{
+			Debug.Log("stopping interaction with selected object: " + GameController.instance.GetSelectedObject());
 			ClueManager.instance.DeactivateCluesOn(GameController.instance.GetSelectedObject());
 			
 			switch(GameState.gameState)

@@ -57,12 +57,15 @@ public class ClueManager : MonoBehaviour
 	/// <param name="selectedObject">Selected GameObject.</param>
 	public void DeactivateCluesOn(GameObject selectedObject)
 	{
+		Debug.Log("Deactivating clues on: " + selectedObject);
 		if(cluesActivated)
 		{
 			foreach (Transform child in selectedObject.transform)
 			{
 				if(child.tag == "Clue")
+				{
 					child.gameObject.SetActive(false);
+				}
 			}
 			cluesActivated = false;
 		}
