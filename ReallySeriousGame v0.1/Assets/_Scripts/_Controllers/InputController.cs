@@ -73,17 +73,19 @@ public class InputController : MonoBehaviour
 	}
 	
 	void CheckMouseInputs() 
-	{	
+	{
+        //Debug.Log(Application.loadedLevelName);
+        //Debug.Log(Application.loadedLevelName.Equals("MainMenu"));
 		#region movement mouse
-		if(!notebook.NoteBookIsOpen())
-		{
-			if(ScrollAreas.left.Contains(Mouse.Position()))		movement.turnLeft();
+        if (!notebook.NoteBookIsOpen() && !Application.loadedLevelName.Equals("MainMenu"))
+            {
+                if (ScrollAreas.left.Contains(Mouse.Position()))    movement.turnLeft();
 			
-			if(ScrollAreas.right.Contains(Mouse.Position()))	movement.turnRight();
+			    if(ScrollAreas.right.Contains(Mouse.Position()))	movement.turnRight();
 			
-			if(ScrollAreas.top.Contains(Mouse.Position()))		movement.turnUp();
+			    if(ScrollAreas.top.Contains(Mouse.Position()))		movement.turnUp();
 			
-			if(ScrollAreas.bottom.Contains(Mouse.Position()))	movement.turnDown();
+			    if(ScrollAreas.bottom.Contains(Mouse.Position()))	movement.turnDown();
 		}
 		#endregion
 		
@@ -101,8 +103,8 @@ public class InputController : MonoBehaviour
  	}
  	
 	void CheckGazeInputs()
-	{	
-		if(!notebook.NoteBookIsOpen())
+	{
+        if (!notebook.NoteBookIsOpen() && !Application.loadedLevelName.Equals("MainMenu"))
 		{
 			if(ScrollAreas.left.Contains(Gaze.Position()))		movement.turnLeft();
 			

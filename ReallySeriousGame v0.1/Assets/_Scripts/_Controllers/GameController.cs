@@ -103,8 +103,8 @@ public class GameController : MonoBehaviour
 	
 	void CheckControls()
 	{
-		if(!(Application.loadedLevel == 0))
-		{
+        //if(!(Application.loadedLevel == 0))
+        //{
 			if(ControlsOptions.IsKeyboardControls)
 			{
 				InputController.instance.KeyboardControls();
@@ -113,7 +113,7 @@ public class GameController : MonoBehaviour
 			{
 				InputController.instance.GamepadControls();
 			}
-		}
+        //}
 	}
 	
 	void ControllBGVolume()

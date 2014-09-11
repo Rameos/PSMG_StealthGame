@@ -11,6 +11,7 @@ TagManager:
   - Clue
   - EventController
   - Box
+  - MenuItem
   - ClueManager
   - 
   Builtin Layer 0: Default
