@@ -30,10 +30,13 @@ public class DialogManager : MonoBehaviour
 	
 	public void AccusationOn(GameObject accused)
 	{
-		Debug.Log("accusation on: " + accused.name);
 		if(OnAccusation != null)
 		{
 			OnAccusation(accused);
+		}
+		if(accused.tag == "Suspect")
+		{
+			accused.GetComponent<VisualResponse>().SetDefaultSprite();
 		}
 	}
 	
@@ -62,8 +65,6 @@ public class DialogManager : MonoBehaviour
 	
 	public bool IsCorrectOrderOfAccusations(string accusation)
 	{
-		Debug.Log("check order: " + accusation);
-		Debug.Log("next in order: " + nextInOrder);
 		switch(nextInOrder)
 		{
 			case 0: 

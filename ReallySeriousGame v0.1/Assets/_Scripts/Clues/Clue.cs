@@ -4,7 +4,6 @@ using iViewX;
 
 public class Clue : MonoBehaviourWithGazeComponent
 {
-	public int clueID;
 	public string clueName;
 	private Light highlight;
 	public bool isHighlighted 	= false;

@@ -41,4 +41,20 @@ public class Suspect : MonoBehaviour
 	{
 		return state;
 	}
+	
+	public bool IsNervous
+	{
+		get
+		{
+			return state == SuspectState.Nervous;
+		}
+	}
+	
+	public bool IsNeutral
+	{
+		get
+		{
+			return state == SuspectState.Neutral;
+		}
+	}
 }

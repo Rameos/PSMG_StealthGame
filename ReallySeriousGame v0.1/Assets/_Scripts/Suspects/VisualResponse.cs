@@ -22,9 +22,17 @@ public class VisualResponse : MonoBehaviour
 		dir = "Sprites/Barkeep/" + gameObject.name;
 	}
 	
-	public void AccusationGesture(string subject)
+	public void SetDefaultSprite()
 	{
-		Debug.Log("Cross arms");
+		GetComponent<SpriteRenderer>().sprite = Resources.Load(dir + "_Default_" + Suspect.state + "_0", typeof (Sprite)) as Sprite;
+		if(Suspect.state == Suspect.SuspectState.Nervous)
+		{
+			GameObject.Find("Bandage").GetComponent<Clue>().ToggleVisibility();
+		}
+		else
+		{
+			GameObject.Find("Bandage").GetComponent<Clue>().ToggleVisibility();
+		}
 	}
 	
 	public void NotLookingGesture()
