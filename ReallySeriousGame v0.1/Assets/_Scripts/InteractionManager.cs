@@ -190,6 +190,7 @@ public class InteractionManager : MonoBehaviour
 
     IEnumerator MoveToObject(GameObject item) {
         Vector3 origin = item.transform.position;
+        Quaternion rotation = item.transform.rotation;
         Vector3 target = Camera.main.transform.position + Camera.main.transform.forward * itemDistanceFromCamera;
         while (Vector3.Distance(origin, Camera.main.transform.position) > itemDistanceFromCamera)
         {
