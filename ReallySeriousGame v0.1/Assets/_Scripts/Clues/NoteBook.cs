@@ -26,6 +26,7 @@ public class NoteBook : MonoBehaviour
 	private const int NOTEBOOK_ID = 0;
 	private string notebookHeader = "NOTES";
 	private bool isToggled = false;
+	private List<GazeButton> gazeUI;
 	
 	public float setNervousTime = 7f;
 	

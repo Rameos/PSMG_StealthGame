@@ -31,14 +31,6 @@ public class BehaviourController : MonoBehaviour
 	
 	void Update()
 	{
-		if(!inAction)
-		{
-			ClueManager.instance.ActivateCluesOn(gameObject);
-		}
-		else
-		{
-			ClueManager.instance.DeactivateCluesOn(gameObject);
-		}
 		SetCurrentState();
 	}
 	
