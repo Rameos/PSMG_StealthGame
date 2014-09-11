@@ -132,9 +132,9 @@ public class SoundManager : MonoBehaviour
 				if(ClueManager.instance.GetFoundClues().Contains(accused.name) && !DialogManager.instance.GetListOfAccusations().Contains(accused.name))
 				{
 					string subjectName = "";
-					if(accused.name == "Stain")
+					if(accused.name == "Bandage")
 					{
-						subjectName = "Bandage";
+						subjectName = "Stain";
 					}
 					else if(accused.name == "T-Virus")
 					{

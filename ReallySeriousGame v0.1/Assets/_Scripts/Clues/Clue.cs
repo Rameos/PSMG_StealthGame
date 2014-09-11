@@ -23,43 +23,60 @@ public class Clue : MonoBehaviourWithGazeComponent
 	#region mouse
 	void OnMouseEnter()
 	{
-		HighlightClue();
+		OnEnterBehaviour();
 	}
 	
 	void OnMouseOver()
 	{
-		if(Keyboard.inputInteract())
-		{
-			if(transform.parent.CompareTag("Suspect"))
-			{
-				transform.parent.SendMessage("RandomOnClueReaction", clueName);
-			}
-		}
-		
-		if(transform.parent.CompareTag("Suspect"))
-		{
-			transform.parent.SendMessage("FixatedOnClueReaction", clueName);
-		}
+		OnStayBehaviour();
 	}
 	
 	void OnMouseExit()
 	{
-		UnHighlightClue();
+		OnExitBehaviour();
 	}
 	#endregion
 	
 	#region gaze
 	public override void OnGazeEnter(RaycastHit hit)
 	{
-		HighlightClue();
+		OnEnterBehaviour();
 	}
 	
 	public override void OnGazeStay(RaycastHit hit)
 	{
+		OnStayBehaviour();
+		
+		if(gazeModel.isEyeTrackerRunning)
+		{
+			if(Keyboard.inputInteract())
+			{
+				GameController.instance.SetSelectedGazeObject(gameObject);
+				interaction.StartInteraction(gameObject);
+			}
+			
+			if(Keyboard.inputAccuse())
+			{
+				interaction.StartAccusationOn(gameObject);
+			}
+		}
+	}
+	
+	public override void OnGazeExit()
+	{
+		OnExitBehaviour();
+	}
+	#endregion
+	
+	void OnEnterBehaviour()
+	{
+		HighlightClue();
+	}
+	
+	void OnStayBehaviour()
+	{
 		if(Keyboard.inputInteract())
 		{
-			GameController.instance.SetSelectedGazeObject(gameObject);
-			interaction.StartInteraction(gameObject);
 			if(transform.parent.CompareTag("Suspect"))
 			{
 				transform.parent.SendMessage("RandomOnClueReaction", clueName);
@@ -72,11 +89,10 @@ public class Clue : MonoBehaviourWithGazeComponent
 		}
 	}
 	
-	public override void OnGazeExit()
+	void OnExitBehaviour()
 	{
 		UnHighlightClue();
 	}
-	#endregion
 	
 	/// <summary>
 	/// Highlights the clue during interaction if it hasn't been discovered yet and is visible.
