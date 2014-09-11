@@ -2,12 +2,12 @@
 using System.Collections;
 using iViewX;
 
-
 namespace iViewX
 {
     public delegate void buttonCallbackListener();
 
-    public class GazeButton : GUIElement{
+    public class GazeButton : GUIElement
+    {
 
         public GUIStyle myStyle;
         public bool isVisible = true;
@@ -31,7 +31,6 @@ namespace iViewX
             if(myStyle!= null)
             {
                 initStyle(myStyle);
-
             }
             actionToDo = callback;
         }
@@ -52,7 +51,6 @@ namespace iViewX
             if (myStyle != null)
             {
                 initStyle(myStyle);
-
             }
             actionToDo = callback;
         }
@@ -68,7 +66,6 @@ namespace iViewX
                     GUI.Box(position, contentImage, actualStyleOfTheElement);
                 }
             }
-
         }
 
 
@@ -82,7 +79,6 @@ namespace iViewX
             {
                 positionGaze = (gazeModel.posGazeLeft + gazeModel.posGazeRight) * 0.5f;
                 positionGaze.y = Screen.height - positionGaze.y;
-
             }
 
             //Check Colision
@@ -93,7 +89,6 @@ namespace iViewX
                 if (Input.GetButtonUp("SelectGUI"))
                     actionToDo();
             }
-
             else
             {
                 setActive();
@@ -109,12 +104,9 @@ namespace iViewX
 
         private void setFocused()
         {
-
-
             actualStyleOfTheElement.normal = myStyle.focused;
             //actualStyleOfTheElement.normal.background= myStyle.focused.background;
-
-       } 
+        } 
 
         private void initStyle(GUIStyle myStyle)
         {

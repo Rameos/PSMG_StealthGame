@@ -41,7 +41,6 @@ public class GameController : MonoBehaviour
 	
 	void Update () 
 	{	
-		Debug.Log("current interactable: " + GetCurrentInteractable());
 		CheckControls();
 		CheckGameState();
 		ControllBGVolume();

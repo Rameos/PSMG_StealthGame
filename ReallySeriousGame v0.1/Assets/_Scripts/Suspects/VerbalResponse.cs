@@ -10,13 +10,28 @@ public class VerbalResponse : MonoBehaviour
 	
 	public AudioClip[] defaultVOClip;
 	
+	private AudioSource voiceSource;
+	private AudioSource sfxSource;
+	private float sfxVolume = 0.4f;
+	
 	private bool isWaiting = false;
 	private int emptyAccusationCount = 0;
+	
+	void Awake()
+	{
+		voiceSource = gameObject.AddComponent<AudioSource>();
+		voiceSource.rolloffMode = AudioRolloffMode.Linear;
+		
+		sfxSource = gameObject.AddComponent<AudioSource>();
+		sfxSource.rolloffMode = AudioRolloffMode.Linear;
+		sfxSource.volume = sfxVolume;
+	}
 	
 	public void NotLookingVO()
 	{
 		if(!isWaiting)
-		{
+		{	
+			PlaySfx("Glass_Breaking_" + Random.Range(0,2));
 			newVOClipPath = dirDefault + gameObject.name + "/Not_Looking_" + Suspect.state + "/" + Random.Range(0,4);
 			PlayVO();
 		}
@@ -109,9 +124,16 @@ public class VerbalResponse : MonoBehaviour
 			return;
 		}*/
 		
-		audio.Stop();
-		audio.clip = Resources.Load(newVOClipPath, typeof(AudioClip)) as AudioClip;
-		audio.Play();
+		voiceSource.Stop();
+		voiceSource.clip = Resources.Load(newVOClipPath, typeof(AudioClip)) as AudioClip;
+		voiceSource.Play();
+	}
+	
+	void PlaySfx(string sfx)
+	{
+		sfxSource.Stop();
+		sfxSource.clip = Resources.Load("Sounds/Misc/" + sfx, typeof(AudioClip)) as AudioClip;
+		sfxSource.Play();
 	}
 	
 	IEnumerator WaitToRespond(string subject)

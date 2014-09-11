@@ -26,7 +26,9 @@ public class NoteBook : MonoBehaviour
 	private const int NOTEBOOK_ID = 0;
 	private string notebookHeader = "NOTES";
 	private bool isToggled = false;
-	private List<GazeButton> gazeUI;
+	private List<GazeButton> gazeUI = new List<GazeButton>();
+	
+	private bool isDrawing = false;
 	
 	public float setNervousTime = 7f;
 	
@@ -52,17 +54,50 @@ public class NoteBook : MonoBehaviour
 		}
 	}
 	
+	void Update()
+	{
+		if (isDrawing)
+		{
+			foreach (GazeButton button in gazeUI)
+			{
+				button.Update();
+			}
+		}
+		
+		if (Input.GetButtonDown("SelectGUI"))
+		{
+			if (isDrawing)
+				isDrawing = false;
+			else
+				isDrawing = true;
+			
+		}
+		else if (Input.GetButtonUp("SelectGUI"))
+		{
+			isDrawing = false;
+		}
+	}
+	
 	void DisplayFoundClues(int ID)
 	{
 		for(int i = 0; i < notes.Count; i++)
 		{
-			if(GUI.Button(new Rect(offset, (offset * 2) + (noteHeight * i), noteWidth, noteHeight), notes[i]))
+			/*if(GUI.Button(new Rect(offset, (offset * 2) + (noteHeight * i), noteWidth, noteHeight), notes[i]))
 			{
 				if(GameState.IsState(GameState.States.Interrogating))
 				{
 					Debug.Log("note: " + GameObject.Find(notes[i]));
 					interaction.StartAccusationOn(GameObject.Find(notes[i]));
 				}
+			}*/
+			gazeUI.Add(new GazeButton(new Rect(offset, (offset * 2) + (noteHeight * i), noteWidth, noteHeight), notes[i]));
+		}
+		
+		if(isDrawing)
+		{
+			foreach(GazeButton button in gazeUI)
+			{
+				button.OnGUI();
 			}
 		}
 	}
