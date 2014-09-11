@@ -8,6 +8,7 @@ public class InteractionManager : MonoBehaviour
 	private bool isInteracting = false;
 
 	Vector3 itemOriginalPos;
+    Quaternion itemOriginalRot;
 	public float itemDistanceFromCamera = 2f;
     public float smoothing = 10f;
 	GameObject currentItem;
@@ -170,6 +171,7 @@ public class InteractionManager : MonoBehaviour
 		currentItem = item;
 		#region position item
 		itemOriginalPos = currentItem.transform.position;
+        itemOriginalRot = currentItem.transform.rotation;
 		//transform.LookAt(currentItem.transform);
         StartCoroutine(MoveToObject(item));
 		#endregion
@@ -177,6 +179,7 @@ public class InteractionManager : MonoBehaviour
 
     IEnumerator MoveToObject(GameObject item) {
         Vector3 origin = item.transform.position;
+        Quaternion rotation = item.transform.rotation;
         Vector3 target = Camera.main.transform.position + Camera.main.transform.forward * itemDistanceFromCamera;
         while (Vector3.Distance(origin, Camera.main.transform.position) > itemDistanceFromCamera)
         {
@@ -196,21 +199,29 @@ public class InteractionManager : MonoBehaviour
 
     IEnumerator MoveFromObject(GameObject item)
     {
-        Vector3 origin = item.transform.position;
-        Vector3 target = itemOriginalPos;
+        Vector3 originPos = item.transform.position;
+        Vector3 targetPos = itemOriginalPos;
+        Quaternion originRot = item.transform.rotation;
+        Quaternion targetRot = itemOriginalRot;
         //Debug.Log("origin= " + origin + "target= " + target);
-        while (Vector3.Distance(origin, Camera.main.transform.position) >= 0)
+        while (Vector3.Distance(originPos, Camera.main.transform.position) >= 0)
         {
             if (inspecting)
             {
                 //Debug.Log("Is inspecting");
-                item.transform.position = target;
+                item.transform.position = targetPos;
+                item.transform.rotation = targetRot;
                 yield break;
             }
             //Debug.Log("Vector3.FromDistance(origin, target)= " + Vector3.Distance(origin, Camera.main.transform.position));
-            Vector3 vector = Vector3.Lerp(origin, target, smoothing * Time.deltaTime);
+            Vector3 vector = Vector3.Lerp(originPos, targetPos, smoothing * Time.deltaTime);
             item.transform.position = vector;
-            origin = vector;
+            originPos = vector;
+
+            Quaternion rotation = Quaternion.Lerp(originRot, targetRot, smoothing * Time.deltaTime);
+            item.transform.rotation = rotation;
+            originRot = rotation;
+
             yield return null;
         }
     }
