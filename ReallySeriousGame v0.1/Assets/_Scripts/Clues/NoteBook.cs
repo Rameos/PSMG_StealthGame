@@ -69,6 +69,16 @@ public class NoteBook : MonoBehaviour
 			foreach(GazeButton button in gazeUI)
 			{
 				button.OnGUI();
+			}
+		}
+	}
+	
+	void Update()
+	{
+		if(isToggled)
+		{
+			foreach(GazeButton button in gazeUI)
+			{
 				button.Update();
 			}
 		}
@@ -89,6 +99,7 @@ public class NoteBook : MonoBehaviour
 	
 	public void NoteInteraction(GameObject note)
 	{
+		Debug.Log(gazeUI.Count);
 		if(GameState.IsState(GameState.States.Interrogating))
 		{
 			Debug.Log("note to interact with: " + note);
