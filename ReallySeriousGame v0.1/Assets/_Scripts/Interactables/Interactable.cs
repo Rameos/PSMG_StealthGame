@@ -62,15 +62,18 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	#region gaze
 	public override void OnGazeEnter(RaycastHit hit)
 	{
-		OnEnterBehaviour();
+		if(gazeModel.isEyeTrackerRunning)
+		{
+			OnEnterBehaviour();
+		}
 	}
 	
 	public override void OnGazeStay(RaycastHit hit)
 	{
-		OnStayBehaviour();
-		
 		if(gazeModel.isEyeTrackerRunning)
 		{
+			OnStayBehaviour();
+			
 			if(Keyboard.inputInteract())
 			{
 				GameController.instance.SetSelectedGazeObject(gameObject);
@@ -86,7 +89,10 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	
 	public override void OnGazeExit()
 	{
-		OnExitBehaviour();
+		if(gazeModel.isEyeTrackerRunning)
+		{
+			OnExitBehaviour();
+		}
 	}
 	#endregion
 	

@@ -4,7 +4,7 @@ using iViewX;
 
 namespace iViewX
 {
-    public delegate void buttonCallbackListener();
+    public delegate void buttonCallbackListener(GameObject item);
 
     public class GazeButton : GUIElement
     {
@@ -81,7 +81,7 @@ namespace iViewX
 
                 if (Input.GetButtonDown("SelectGUI"))
 				{
-					actionToDo();
+					actionToDo(GameObject.Find(content));
                 }
             }
             else
