@@ -25,14 +25,6 @@ public class VisualResponse : MonoBehaviour
 	public void SetDefaultSprite()
 	{
 		GetComponent<SpriteRenderer>().sprite = Resources.Load(dir + "_Default_" + Suspect.state + "_0", typeof (Sprite)) as Sprite;
-		if(Suspect.state == Suspect.SuspectState.Nervous)
-		{
-			GameObject.Find("Bandage").SetActive(false);
-		}
-		else
-		{
-			GameObject.Find("Bandage").SetActive(true);
-		}
 	}
 	
 	public void NotLookingGesture()

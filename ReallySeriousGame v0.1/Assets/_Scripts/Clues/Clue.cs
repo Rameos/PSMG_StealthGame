@@ -23,32 +23,44 @@ public class Clue : MonoBehaviourWithGazeComponent
 	#region mouse
 	void OnMouseEnter()
 	{
-		OnEnterBehaviour();
+		if(!gazeModel.isEyeTrackerRunning)
+		{
+			OnEnterBehaviour();
+		}
 	}
 	
 	void OnMouseOver()
 	{
-		OnStayBehaviour();
+		if(!gazeModel.isEyeTrackerRunning)
+		{
+			OnStayBehaviour();
+		}
 	}
 	
 	void OnMouseExit()
 	{
-		OnExitBehaviour();
+		if(!gazeModel.isEyeTrackerRunning)
+		{
+			OnExitBehaviour();
+		}
 	}
 	#endregion
 	
 	#region gaze
 	public override void OnGazeEnter(RaycastHit hit)
 	{
-		OnEnterBehaviour();
+		if(gazeModel.isEyeTrackerRunning)
+		{
+			OnEnterBehaviour();
+		}
 	}
 	
 	public override void OnGazeStay(RaycastHit hit)
-	{
-		OnStayBehaviour();
-		
+	{	
 		if(gazeModel.isEyeTrackerRunning)
 		{
+			OnStayBehaviour();
+			
 			if(Keyboard.inputInteract())
 			{
 				GameController.instance.SetSelectedGazeObject(gameObject);
@@ -64,7 +76,10 @@ public class Clue : MonoBehaviourWithGazeComponent
 	
 	public override void OnGazeExit()
 	{
-		OnExitBehaviour();
+		if(gazeModel.isEyeTrackerRunning)
+		{
+			OnExitBehaviour();
+		}
 	}
 	#endregion
 	
@@ -81,6 +96,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 			{
 				transform.parent.SendMessage("RandomOnClueReaction", clueName);
 			}
+			ClueManager.instance.FoundClue(gameObject);
 		}
 		
 		if(transform.parent.CompareTag("Suspect"))

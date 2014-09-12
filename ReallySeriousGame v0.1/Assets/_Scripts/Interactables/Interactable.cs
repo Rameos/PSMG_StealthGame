@@ -62,15 +62,18 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	#region gaze
 	public override void OnGazeEnter(RaycastHit hit)
 	{
-		OnEnterBehaviour();
+		if(gazeModel.isEyeTrackerRunning)
+		{
+			OnEnterBehaviour();
+		}
 	}
 	
 	public override void OnGazeStay(RaycastHit hit)
 	{
-		OnStayBehaviour();
-		
 		if(gazeModel.isEyeTrackerRunning)
 		{
+			OnStayBehaviour();
+			
 			if(Keyboard.inputInteract())
 			{
 				GameController.instance.SetSelectedGazeObject(gameObject);
@@ -86,7 +89,10 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	
 	public override void OnGazeExit()
 	{
-		OnExitBehaviour();
+		if(gazeModel.isEyeTrackerRunning)
+		{
+			OnExitBehaviour();
+		}
 	}
 	#endregion
 	
@@ -126,7 +132,7 @@ public class Interactable : MonoBehaviourWithGazeComponent
 			{
 				inInteraction = true;
 			}
-			if(GameState.IsState(GameState.States.Interrogating) && this.tag != "Suspect")
+			if(GameState.IsState(GameState.States.Interrogating) && this.tag != "Suspect" && this.tag != "Box")
 			{	
 				GameController.instance.GetCurrentSuspect().SendMessage("ReactionOnInteractable", this.name);
 				ClueManager.instance.FoundClue(gameObject);

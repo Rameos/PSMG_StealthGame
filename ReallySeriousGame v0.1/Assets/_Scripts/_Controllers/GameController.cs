@@ -78,6 +78,7 @@ public class GameController : MonoBehaviour
 	{
 		if(DialogManager.instance.GetCorrectAccusationsInOrder() == CASE_CLOSED)
 		{
+			Debug.Log("Case Closed");
 			StartCoroutine("WaitForDialogToFinish");
 		}
 	}
@@ -136,46 +137,31 @@ public class GameController : MonoBehaviour
 	//Set selection for mouse interaction
 	public void SetSelectedMouseObject()
 	{
-		/*if(!GameState.IsInteracting)
-		{*/
+		if(!GameState.IsInteracting)
+		{
 			selectedObject = Mouse.rayTarget().collider.gameObject;
 			
-			if(selectedObject.tag == "Suspect")
-			{
-				currentSuspect = selectedObject;
-				
-				if(GameState.IsState(GameState.States.InGame))
-				{
-					GameState.ChangeState(GameState.States.Interrogating);
-				}
-			}
-			else if(selectedObject.tag == "Clue")
-			{
-				currentClue = selectedObject;
-			}
-			else if(selectedObject.tag == "Interactable")
-			{
-				currentInteractable = selectedObject;
-				
-				if(GameState.IsState(GameState.States.InGame))
-				{
-					GameState.ChangeState(GameState.States.Inspecting);
-				}
-			}
-		//}
+			SetSelection();
+		}
 	}
 	
 	//Set selection for gaze interaction
 	public void SetSelectedGazeObject(GameObject gazedObject)
 	{
-		selectedObject = gazedObject;
+		if(!GameState.IsInteracting)
+		{
+			selectedObject = gazedObject;
 			
-		Debug.Log("selected gaze object: " + selectedObject);
-			
+			SetSelection();
+		}
+	}
+	
+	void SetSelection()
+	{
 		if(selectedObject.tag == "Suspect")
 		{
 			currentSuspect = selectedObject;
-				
+			
 			if(GameState.IsState(GameState.States.InGame))
 			{
 				GameState.ChangeState(GameState.States.Interrogating);
@@ -188,10 +174,17 @@ public class GameController : MonoBehaviour
 		else if(selectedObject.tag == "Interactable")
 		{
 			currentInteractable = selectedObject;
-				
+			
 			if(GameState.IsState(GameState.States.InGame))
 			{
 				GameState.ChangeState(GameState.States.Inspecting);
+			}
+		}
+		else if(selectedObject.tag == "Box")
+		{
+			if(GameState.IsState(GameState.States.InGame))
+			{
+				GameState.ChangeState(GameState.States.Interrogating);
 			}
 		}
 	}

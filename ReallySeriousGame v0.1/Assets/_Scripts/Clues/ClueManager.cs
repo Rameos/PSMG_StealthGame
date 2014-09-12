@@ -57,6 +57,7 @@ public class ClueManager : MonoBehaviour
 	/// <param name="selectedObject">Selected GameObject.</param>
 	public void DeactivateCluesOn(GameObject selectedObject)
 	{
+		Debug.Log("deactivating on: " + selectedObject);
 		if(cluesActivated)
 		{
 			foreach (Transform child in selectedObject.transform)
@@ -86,6 +87,7 @@ public class ClueManager : MonoBehaviour
 		}
 		else
 		{
+			Debug.Log("found: " + newClue);
 			if(newClue.tag == "Clue")
 			{
 				selectedClue = newClue.GetComponent<Clue>();
@@ -102,6 +104,7 @@ public class ClueManager : MonoBehaviour
 				}
 			}
 			SoundManager.instance.PlaySoundEffect("Notebook");
+			NoteBook.instance.UpdateNoteButtonList();
 		}
 	}
 	

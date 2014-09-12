@@ -4,11 +4,10 @@ using iViewX;
 
 namespace iViewX
 {
-    public delegate void buttonCallbackListener();
+    public delegate void buttonCallbackListener(GameObject item);
 
     public class GazeButton : GUIElement
     {
-
         public GUIStyle myStyle;
         public bool isVisible = true;
 
@@ -20,25 +19,18 @@ namespace iViewX
 
         private buttonCallbackListener actionToDo;
     
-
 	    public GazeButton(Rect position,string content,GUIStyle myStyle,buttonCallbackListener callback)
         {
             this.position = position;
             this.content = content;
 
-            colliderPosition = new Rect(position.x, Camera.main.pixelHeight-position.y-position.height,position.width,position.height);
+            colliderPosition = new Rect(position.x, Camera.main.pixelHeight - position.y - position.height, position.width, position.height);
 
             if(myStyle!= null)
             {
                 initStyle(myStyle);
             }
             actionToDo = callback;
-        }
-
-        public GazeButton(Rect position, string content)
-        {
-            this.position = position;
-            this.content = content;
         }
 
         public GazeButton(Rect position, Texture2D content, GUIStyle myStyle, buttonCallbackListener callback)
@@ -60,7 +52,9 @@ namespace iViewX
             if(isVisible)
             {
                 if(content != "")
-                    GUI.Label(position, content,actualStyleOfTheElement);
+				{
+					GUI.Label(position, content,actualStyleOfTheElement);
+                }
                 else
                 {
                     GUI.Box(position, contentImage, actualStyleOfTheElement);
@@ -68,12 +62,11 @@ namespace iViewX
             }
         }
 
-
         public bool Update()
         {
             //Use mouseInput, if no EyeTracker runs
             Vector2 positionGaze = Input.mousePosition;
-
+            
             //Load the GazeData From the gazemodel
             if(gazeModel.isEyeTrackerRunning)
             {
@@ -86,8 +79,10 @@ namespace iViewX
             {
                 setFocused();
 
-                if (Input.GetButtonUp("SelectGUI"))
-                    actionToDo();
+                if (Input.GetButtonDown("SelectGUI"))
+				{
+					actionToDo(GameObject.Find(content));
+                }
             }
             else
             {

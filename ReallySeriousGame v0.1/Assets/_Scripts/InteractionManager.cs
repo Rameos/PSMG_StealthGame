@@ -32,7 +32,10 @@ public class InteractionManager : MonoBehaviour
 			
 			if(GameState.IsState(GameState.States.Interrogating))
 			{
-				DialogManager.OnAccusation += GameController.instance.GetCurrentSuspect().GetComponent<VerbalResponse>().VoiceOverOnBeingAccused;
+				if(selection.tag != "Box")
+				{
+					DialogManager.OnAccusation += GameController.instance.GetCurrentSuspect().GetComponent<VerbalResponse>().VoiceOverOnBeingAccused;
+				}
 			}
 			gameObject.SendMessage("AccusationOn", selection);
 			#endregion
@@ -44,6 +47,10 @@ public class InteractionManager : MonoBehaviour
 			else if(selection.GetComponent<Interactable>() as Interactable != null)
 			{
 				selection.GetComponent<Interactable>().SetAccused();
+				if(selection.tag == "Box")
+				{
+					selection.GetComponent<Box>().SetAlert();
+				}
 			}
 		}
 		gameObject.SendMessage("ClearOnAccusation");
@@ -72,6 +79,10 @@ public class InteractionManager : MonoBehaviour
 				break;
 				
 			case "Suspect":
+				Interrogate(selection);
+				break;
+			
+			case "Box":
 				Interrogate(selection);
 				break;
 				

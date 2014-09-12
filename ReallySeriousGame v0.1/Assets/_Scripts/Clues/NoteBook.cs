@@ -5,11 +5,13 @@ using iViewX;
 
 public class NoteBook : MonoBehaviour 
 {
-	ClueManager clue;
+	public static NoteBook instance;
+
+	ClueManager clueManager;
 	InteractionManager interaction;
 	
-	public GUIStyle notebookStyle;
-	public Texture notebookTexture;
+	/*public GUIStyle notebookStyle;
+	public Texture notebookTexture;*/
 	
 	private Rect notebook;
 	private float notebookX;
@@ -21,22 +23,35 @@ public class NoteBook : MonoBehaviour
 	private float noteHeight;
 	private float noteWidth;
 	
-	private List<string> notes;
+	private List<string> notes = new List<string>();
 	
-	private const int NOTEBOOK_ID = 0;
 	private string notebookHeader = "NOTES";
 	private bool isToggled = false;
-	private List<GazeButton> gazeUI = new List<GazeButton>();
 	
-	private bool isDrawing = false;
+	private List<GazeButton> gazeUI = new List<GazeButton>();
+	public GUIStyle gazeStyle;
 	
 	public float setNervousTime = 7f;
 	
 	void Awake()
 	{
-		clue = GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
-		interaction = GameObject.FindGameObjectWithTag("Player").GetComponent<InteractionManager>();
+		#region singleton
+		if(instance == null) 
+		{
+			instance = this;
+		} 
+		else if(instance != this) 
+		{
+			Destroy(gameObject);
+		}
+		#endregion
 		
+		clueManager = GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
+		interaction = GameObject.FindGameObjectWithTag("Player").GetComponent<InteractionManager>();
+	}
+	
+	void Start()
+	{
 		notebookX 	= Screen.width - notebookWidth - offset;
 		notebookY 	= Screen.height - notebookHeight;
 		notebook 	= new Rect(notebookX, notebookY, notebookWidth, notebookHeight);
@@ -49,56 +64,35 @@ public class NoteBook : MonoBehaviour
 	{
 		if(isToggled)
 		{
-			notes = clue.GetFoundClues();
-			notebook = GUI.Window(NOTEBOOK_ID, notebook, DisplayFoundClues, notebookHeader);
-		}
-	}
-	
-	void Update()
-	{
-		if (isDrawing)
-		{
-			foreach (GazeButton button in gazeUI)
-			{
-				button.Update();
-			}
-		}
-		
-		if (Input.GetButtonDown("SelectGUI"))
-		{
-			if (isDrawing)
-				isDrawing = false;
-			else
-				isDrawing = true;
+			GUI.Box(notebook, notebookHeader);
 			
-		}
-		else if (Input.GetButtonUp("SelectGUI"))
-		{
-			isDrawing = false;
-		}
-	}
-	
-	void DisplayFoundClues(int ID)
-	{
-		for(int i = 0; i < notes.Count; i++)
-		{
-			/*if(GUI.Button(new Rect(offset, (offset * 2) + (noteHeight * i), noteWidth, noteHeight), notes[i]))
-			{
-				if(GameState.IsState(GameState.States.Interrogating))
-				{
-					Debug.Log("note: " + GameObject.Find(notes[i]));
-					interaction.StartAccusationOn(GameObject.Find(notes[i]));
-				}
-			}*/
-			gazeUI.Add(new GazeButton(new Rect(offset, (offset * 2) + (noteHeight * i), noteWidth, noteHeight), notes[i]));
-		}
-		
-		if(isDrawing)
-		{
 			foreach(GazeButton button in gazeUI)
 			{
 				button.OnGUI();
+				button.Update();
 			}
+		}
+	}
+	
+	public void UpdateNoteButtonList()
+	{
+		gazeUI.Clear();
+		
+		notes = clueManager.GetFoundClues();
+		
+		for(int i = 0; i < notes.Count; i++)
+		{
+			buttonCallbackListener buttonAction = NoteInteraction;
+			gazeUI.Add(new GazeButton(new Rect(notebookX + offset, notebookY + (offset * 3) + (noteHeight * i), noteWidth, noteHeight), notes[i], gazeStyle, buttonAction));
+		}
+	}
+	
+	public void NoteInteraction(GameObject note)
+	{
+		if(GameState.IsState(GameState.States.Interrogating))
+		{
+			Debug.Log("note to interact with: " + note);
+			interaction.StartAccusationOn(note);
 		}
 	}
 	
@@ -113,6 +107,7 @@ public class NoteBook : MonoBehaviour
 		{
 			SoundManager.instance.PlaySoundEffect("Notebook");
 		}
+		
 		isToggled = !isToggled;
 		
 		if(isToggled)

@@ -1,4 +1,4 @@
-﻿// ----------------------------------------------------------------------------
+﻿/*// ----------------------------------------------------------------------------
 //
 // (C) Copyright 2014, Visual Interaction GmbH 
 //
@@ -87,7 +87,6 @@ public class ExampleGazeMenu : MonoBehaviour {
                 isDrawing = false;
             else
                 isDrawing = true;
-
         }
 
         // Important Note: Please create a "SelectGUI" input in the InputManager of Unity.
@@ -96,4 +95,4 @@ public class ExampleGazeMenu : MonoBehaviour {
             isDrawing = false;
         }
     }
-}
+}*/
