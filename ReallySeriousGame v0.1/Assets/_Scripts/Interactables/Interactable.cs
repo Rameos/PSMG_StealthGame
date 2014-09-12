@@ -126,7 +126,7 @@ public class Interactable : MonoBehaviourWithGazeComponent
 			{
 				inInteraction = true;
 			}
-			if(GameState.IsState(GameState.States.Interrogating) && this.tag != "Suspect")
+			if(GameState.IsState(GameState.States.Interrogating) && this.tag != "Suspect" && this.tag != "Box")
 			{	
 				GameController.instance.GetCurrentSuspect().SendMessage("ReactionOnInteractable", this.name);
 				ClueManager.instance.FoundClue(gameObject);

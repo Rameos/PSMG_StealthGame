@@ -180,6 +180,13 @@ public class GameController : MonoBehaviour
 				GameState.ChangeState(GameState.States.Inspecting);
 			}
 		}
+		else if(selectedObject.tag == "Box")
+		{
+			if(GameState.IsState(GameState.States.InGame))
+			{
+				GameState.ChangeState(GameState.States.Interrogating);
+			}
+		}
 	}
 	
 	public void ClearSelections()
