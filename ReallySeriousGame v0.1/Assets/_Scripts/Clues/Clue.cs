@@ -81,6 +81,7 @@ public class Clue : MonoBehaviourWithGazeComponent
 			{
 				transform.parent.SendMessage("RandomOnClueReaction", clueName);
 			}
+			ClueManager.instance.FoundClue(gameObject);
 		}
 		
 		if(transform.parent.CompareTag("Suspect"))

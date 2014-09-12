@@ -65,7 +65,7 @@ public class VerbalResponse : MonoBehaviour
 			}
 			else
 			{
-				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,3);
+				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,2);
 			}
 			PlayVO();
 		}
@@ -81,7 +81,7 @@ public class VerbalResponse : MonoBehaviour
 			}
 			else
 			{
-				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,3);
+				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,2);
 			}
 			
 			PlayVO();
@@ -96,7 +96,7 @@ public class VerbalResponse : MonoBehaviour
 		}
 		else
 		{
-			newVOClipPath = dirDefault + gameObject.name + "/" + interactableName + "_" + Suspect.state + "/" + Random.Range(0,3);
+			newVOClipPath = dirDefault + gameObject.name + "/" + interactableName + "_" + Suspect.state + "/" + Random.Range(0,2);
 		}
 		
 		PlayVO();
