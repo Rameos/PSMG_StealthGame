@@ -4122,7 +4122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1228491188
 Transform:
   m_ObjectHideFlags: 0
@@ -4917,6 +4917,7 @@ GameObject:
   - 114: {fileID: 1556629502}
   - 65: {fileID: 1556629503}
   - 82: {fileID: 1556629504}
+  - 114: {fileID: 1556629505}
   m_Layer: 0
   m_Name: Cardboard Box
   m_TagString: Box
@@ -5001,8 +5002,8 @@ AudioSource:
   m_GameObject: {fileID: 1556629498}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: a174ff3544abeff4f992444ea755f425, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5012,7 +5013,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -5051,6 +5052,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1556629505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1556629498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06313c5d3d30ff5469ba5816eeb9cb5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1557813043
 GameObject:
   m_ObjectHideFlags: 0
@@ -5296,7 +5308,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: cfbc8f9cfe105ec4790cbd87759d0542, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: cfbc8f9cfe105ec4790cbd87759d0542, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5630,7 +5642,8 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: .24999997
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9500000, guid: f8d5ab6720f0cc54ab6d61fb6b6b585a, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: f8d5ab6720f0cc54ab6d61fb6b6b585a, type: 3}
   m_RootGameObject: {fileID: 2078705680}
   m_IsPrefabParent: 0
@@ -6202,7 +6215,6 @@ GameObject:
   - 4: {fileID: 2078705684}
   - 33: {fileID: 2078705683}
   - 23: {fileID: 2078705682}
-  - 95: {fileID: 2078705681}
   m_Layer: 0
   m_Name: barregal
   m_TagString: Untagged
@@ -6210,22 +6222,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &2078705681
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: f8d5ab6720f0cc54ab6d61fb6b6b585a,
-    type: 3}
-  m_PrefabInternal: {fileID: 1793630703}
-  m_GameObject: {fileID: 2078705680}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f8d5ab6720f0cc54ab6d61fb6b6b585a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!23 &2078705682
 Renderer:
   m_ObjectHideFlags: 0
