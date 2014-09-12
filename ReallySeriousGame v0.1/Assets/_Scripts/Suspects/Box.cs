@@ -10,8 +10,9 @@ public class Box : MonoBehaviour
 	
 	IEnumerator Alert()
 	{
-		Debug.Log("Alert");
+		transform.FindChild("Exclamation").gameObject.SetActive(true);
+		audio.Play();
 		yield return new WaitForSeconds(3f);
-		Debug.Log("Finish");
+		transform.FindChild("Exclamation").gameObject.SetActive(false);
 	}
 }
