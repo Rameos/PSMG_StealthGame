@@ -64,6 +64,7 @@ namespace iViewX
 
         public bool Update()
         {
+        	Debug.Log("update");
             //Use mouseInput, if no EyeTracker runs
             Vector2 positionGaze = Input.mousePosition;
             
