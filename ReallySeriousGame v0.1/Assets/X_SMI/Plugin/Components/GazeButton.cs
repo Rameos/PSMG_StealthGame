@@ -4,7 +4,7 @@ using iViewX;
 
 namespace iViewX
 {
-    public delegate void buttonCallbackListener(GameObject item);
+    public delegate void buttonCallbackListener();
 
     public class GazeButton : GUIElement
     {
