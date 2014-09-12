@@ -12,7 +12,7 @@ public class Box : MonoBehaviour
 	{
 		transform.FindChild("Exclamation").gameObject.SetActive(true);
 		audio.Play();
-		yield return new WaitForSeconds(3f);
+		yield return new WaitForSeconds(2f);
 		transform.FindChild("Exclamation").gameObject.SetActive(false);
 	}
 }

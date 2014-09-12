@@ -104,6 +104,7 @@ public class ClueManager : MonoBehaviour
 				}
 			}
 			SoundManager.instance.PlaySoundEffect("Notebook");
+			NoteBook.instance.UpdateNoteButtonList();
 		}
 	}
 	

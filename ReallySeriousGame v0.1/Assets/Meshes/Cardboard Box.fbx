@@ -10,10 +10,10 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2014
 		Month: 09
-		Day: 10
+		Day: 12
 		Hour: 18
-		Minute: 04
-		Second: 28
+		Minute: 44
+		Second: 24
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2014-09-10 18:04:28:000"
+CreationTime: "2014-09-12 18:44:24:000"
 Creator: "Blender version 2.69 (sub 0)"
 
 ; Object definitions
@@ -29,7 +29,7 @@ Creator: "Blender version 2.69 (sub 0)"
 
 Definitions:  {
 	Version: 100
-	Count: 22
+	Count: 25
 	ObjectType: "Model" {
 		Count: 9
 	}
@@ -37,13 +37,13 @@ Definitions:  {
 		Count: 1
 	}
 	ObjectType: "Material" {
-		Count: 4
+		Count: 5
 	}
 	ObjectType: "Texture" {
-		Count: 4
+		Count: 5
 	}
 	ObjectType: "Video" {
-		Count: 4
+		Count: 5
 	}
 	ObjectType: "Pose" {
 		Count: 1
@@ -147,7 +147,7 @@ Objects:  {
 		Properties60:  {
 			Property: "QuaternionInterpolate", "bool", "",0
 			Property: "Visibility", "Visibility", "A+",1
-			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,0.441400498151779,0.000000000000000
+			Property: "Lcl Translation", "Lcl Translation", "A+",0.000511055230163,0.908142626285553,0.678213834762573
 			Property: "Lcl Rotation", "Lcl Rotation", "A+",-90.000009334538021,0.000000000000000,0.000000000000000
 			Property: "Lcl Scaling", "Lcl Scaling", "A+",1.000000000000000,1.000000000000000,1.000000000000000
 			Property: "RotationOffset", "Vector3D", "",0,0,0
@@ -221,42 +221,44 @@ Objects:  {
 		MultiTake: 1
 		Shading: Y
 		Culling: "CullingOff"
-		Vertices: 0.897923,1.000000,-0.435275,0.897923,-1.524871,-0.435275,-0.894270,-1.524871,-0.435275,-0.894269,1.000000,-0.435275,
-		          0.897924,0.999999,1.564725,0.897922,-1.524871,1.564725,-0.894270,-1.524871,1.564725,-0.894269,1.000000,1.564725,
-		          0.311440,-1.532006,1.351858,-0.314086,-1.532005,1.357356,-0.314086,-1.532005,1.186943,0.311440,-1.532006,1.186943,
-		          0.311440,-1.487536,1.351858,-0.314086,-1.487535,1.357356,-0.314086,-1.487535,1.186943,0.311440,-1.487536,1.186943,
-		          1.845903,1.000000,-0.435275,1.845903,-1.524871,-0.435275,-1.845439,-1.524871,-0.435275,-1.845438,1.000000,-0.435275,
-		          0.897923,2.128774,-0.435275,0.897923,-2.653646,-0.435275,-0.894270,-2.653645,-0.435275,-0.894269,2.128775,-0.435275
+		Vertices: 0.897412,1.678214,-0.902017,0.897412,-0.846657,-0.902017,-0.894781,-0.846657,-0.902017,-0.894780,1.678214,-0.902017,
+		          0.897413,1.678213,1.097983,0.897411,-0.846658,1.097983,-0.894781,-0.846657,1.097983,-0.894780,1.678214,1.097983,
+		          0.340881,-0.855921,0.821908,-0.344549,-0.855920,0.827931,-0.344549,-0.855920,0.641199,0.340881,-0.855921,0.641199,
+		          0.340881,-0.807193,0.821908,-0.344549,-0.807192,0.827931,-0.344549,-0.807192,0.641199,0.340881,-0.807193,0.641199,
+		          1.845392,1.678214,-0.902017,1.845392,-0.846657,-0.902017,-1.845950,-0.846657,-0.902017,-1.845949,1.678214,-0.902017,
+		          0.897412,2.806988,-0.902017,0.897412,-1.975432,-0.902017,-0.894781,-1.975431,-0.902017,-0.894780,2.806989,-0.902017,
+		          0.556873,-0.703955,0.466245,-0.644607,-0.703955,0.466245,0.556873,-0.703955,0.955360,-0.644607,-0.703955,0.955360
 		PolygonVertexIndex: 1,2,22,-22,4,7,6,-6,0,4,5,-2,5,6,10,9,-9,2,6,7,-4,4,0,3,-8,1,5,8,11,10,6,-3,
-		                    11,8,12,-16,10,11,15,-15,9,10,14,-14,8,9,13,-13,2,3,19,-19,0,1,17,-17,3,0,20,-24
+		                    11,8,12,-16,10,11,15,-15,9,10,14,-14,8,9,13,-13,2,3,19,-19,0,1,17,-17,3,0,20,-24,25,24,26,-28
 		GeometryVersion: 124
 		LayerElementNormal: 0 {
 			Version: 101
 			Name: ""
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "Direct"
-			Normals: 0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,
-			         -0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,
+			Normals: -0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,
+			         0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,
 			         1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,
-			         -0.001938,-0.999595,0.028410,-0.001938,-0.999595,0.028410,-0.001938,-0.999595,0.028410,-0.001938,-0.999595,0.028410,
-			         -0.001938,-0.999595,0.028410,-1.000000,0.000000,-0.000000,-1.000000,0.000000,-0.000000,-1.000000,0.000000,-0.000000,
+			         -0.002148,-0.999564,0.029439,-0.002148,-0.999564,0.029439,-0.002148,-0.999564,0.029439,-0.002148,-0.999564,0.029439,
+			         -0.002148,-0.999564,0.029439,-1.000000,0.000000,-0.000000,-1.000000,0.000000,-0.000000,-1.000000,0.000000,-0.000000,
 			         -1.000000,0.000000,-0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
-			         0.000000,1.000000,0.000000,0.000185,-0.999996,-0.002716,0.000185,-0.999996,-0.002716,0.000185,-0.999996,-0.002716,
-			         0.000185,-0.999996,-0.002716,0.000185,-0.999996,-0.002716,0.000185,-0.999996,-0.002716,0.000185,-0.999996,-0.002716,
+			         0.000000,1.000000,0.000000,0.000272,-0.999993,-0.003740,0.000272,-0.999993,-0.003740,0.000272,-0.999993,-0.003740,
+			         0.000272,-0.999993,-0.003740,0.000272,-0.999993,-0.003740,0.000272,-0.999993,-0.003740,0.000272,-0.999993,-0.003740,
 			         -1.000000,0.000000,0.000000,-1.000000,0.000000,0.000000,-1.000000,0.000000,0.000000,-1.000000,0.000000,0.000000,
 			         0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,
 			         1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,
 			         -0.008788,0.000000,-0.999961,-0.008788,0.000000,-0.999961,-0.008788,0.000000,-0.999961,-0.008788,0.000000,-0.999961,
 			         0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,
 			         0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,
-			         -0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000
+			         0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,
+			         0.000000,-1.000000,0.000000,0.000000,-1.000000,0.000000,0.000000,-1.000000,0.000000,0.000000,-1.000000,0.000000
 		}
 		LayerElementSmoothing: 0 {
 			Version: 102
 			Name: ""
 			MappingInformationType: "ByPolygon"
 			ReferenceInformationType: "Direct"
-			Smoothing: 0,0,0,0,0,0,0,0,0,0,0,0,0,0
+			Smoothing: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 		}
 		LayerElementUV: 0 {
 			Version: 101
@@ -267,13 +269,14 @@ Objects:  {
 			    0.001263,0.506327,0.993860,0.991473,0.001661,0.001677,0.046256,0.990320,0.055930,0.594828,0.373670,0.540385,
 			    -0.001613,0.995743,1.000529,-0.000082,0.058248,-0.001371,0.004106,0.003256,0.784211,0.166798,0.005717,0.991473,
 			    1.000175,0.999727,0.637863,0.536434,1.001034,0.503544,0.348049,0.594828,0.992249,0.003256,0.000707,0.969161,
-			    0.813719,0.814530,0.000707,0.803076,-0.000576,1.008339,0.901363,0.002281,0.000707,0.897921,1.000501,1.002836,
-			    0.001328,0.996381,0.373670,0.607673,0.005285,1.002548,0.005285,0.002005,0.005267,0.002281,0.547640,0.890707,
-			    0.285153,0.011242,0.954344,-0.001371,0.542720,0.834764,-0.000576,0.008339,1.001367,0.510161,1.000501,0.002836,
-			    0.000707,0.874316,0.981540,1.002548,0.813719,0.909375,0.954345,0.998629,0.058248,0.998629,0.000084,0.000084,
-			    0.994338,0.997746,1.001432,-0.001105,0.001596,0.512943,0.784211,0.990320,0.981540,0.002005,0.637863,0.607673,
-			    0.348049,0.523588,0.285153,0.834764,0.542720,0.079148,0.784211,0.166798,0.046256,0.166798,0.046256,0.166798
-			UVIndex: 43,32,33,52,47,12,48,13,22,7,17,15,16,59,36,3,56,39,26,29,41,45,37,14,46,57,51,35,38,55,9,58,31,53,19,11,25,24,2,42,10,21,54,0,44,28,23,4,50,40,18,5,20,6,8,49,34,27,1,30
+			    0.813719,0.814530,0.126019,0.723578,0.000707,0.803076,-0.000576,1.008339,0.901363,0.002281,0.000707,0.897921,
+			    1.000501,1.002836,0.001328,0.996381,0.373670,0.607673,0.005285,1.002548,0.005285,0.002005,0.005267,0.002281,
+			    0.547640,0.890707,0.285153,0.011242,0.954344,-0.001371,0.542720,0.834764,-0.000576,0.008339,0.132556,0.856012,
+			    1.001367,0.510161,1.000501,0.002836,0.893693,0.848713,0.000707,0.874316,0.981540,1.002548,0.813719,0.909375,
+			    0.954345,0.998629,0.058248,0.998629,0.000084,0.000084,0.994338,0.997746,1.001432,-0.001105,0.001596,0.512943,
+			    0.784211,0.990320,0.981540,0.002005,0.637863,0.607673,0.348049,0.523588,0.887157,0.716278,0.285153,0.834764,
+			    0.542720,0.079148,0.784211,0.166798,0.046256,0.166798,0.046256,0.166798
+			UVIndex: 46,33,34,55,50,12,51,13,22,7,17,15,16,63,37,3,60,40,27,30,43,48,38,14,49,61,54,36,39,59,9,62,32,56,19,11,26,24,2,45,10,21,57,0,47,29,23,4,53,42,18,5,20,6,8,52,35,28,1,31,25,58,44,41
 		}
 		LayerElementTexture: 0 {
 			Version: 101
@@ -282,14 +285,14 @@ Objects:  {
 			ReferenceInformationType: "IndexToDirect"
 			BlendMode: "Translucent"
 			TextureAlpha: 1
-			TextureId: 3,2,3,3,3,3,3,0,0,0,0,1,1,3
+			TextureId: 3,2,3,3,3,3,3,0,0,0,0,1,1,3,4
 		}
 		LayerElementMaterial: 0 {
 			Version: 101
 			Name: ""
 			MappingInformationType: "ByPolygon"
 			ReferenceInformationType: "IndexToDirect"
-			Materials: 3,2,3,3,3,3,3,0,0,0,0,1,1,3
+			Materials: 3,2,3,3,3,3,3,0,0,0,0,1,1,3,4
 		}
 		Layer: 0 {
 			Version: 100
@@ -1513,6 +1516,36 @@ Objects:  {
 			Property: "Reflectivity", "double", "",0
 		}
 	}
+	Material: "Material::Material__snake_png", "" {
+		Version: 102
+		ShadingModel: "lambert"
+		MultiLayer: 0
+		Properties60:  {
+			Property: "ShadingModel", "KString", "", "Lambert"
+			Property: "MultiLayer", "bool", "",0
+			Property: "EmissiveColor", "ColorRGB", "",0.8000,0.8000,0.8000
+			Property: "EmissiveFactor", "double", "",0.0000
+			Property: "AmbientColor", "ColorRGB", "",1.0000,1.0000,1.0000
+			Property: "AmbientFactor", "double", "",1.0000
+			Property: "DiffuseColor", "ColorRGB", "",0.8000,0.8000,0.8000
+			Property: "DiffuseFactor", "double", "",0.8000
+			Property: "Bump", "Vector3D", "",0,0,0
+			Property: "TransparentColor", "ColorRGB", "",1,1,1
+			Property: "TransparencyFactor", "double", "",0.0000
+			Property: "SpecularColor", "ColorRGB", "",1.0000,1.0000,1.0000
+			Property: "SpecularFactor", "double", "",0.5000
+			Property: "ShininessExponent", "double", "",12.3
+			Property: "ReflectionColor", "ColorRGB", "",0,0,0
+			Property: "ReflectionFactor", "double", "",1
+			Property: "Emissive", "ColorRGB", "",0,0,0
+			Property: "Ambient", "ColorRGB", "",1.0,1.0,1.0
+			Property: "Diffuse", "ColorRGB", "",0.8,0.8,0.8
+			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
+			Property: "Shininess", "double", "",12.3
+			Property: "Opacity", "double", "",1.0
+			Property: "Reflectivity", "double", "",0
+		}
+	}
 	Video: "Video::schachel_rand_jpg", "Clip" {
 		Type: "Clip"
 		Properties60:  {
@@ -1596,6 +1629,27 @@ Objects:  {
 		UseMipMap: 0
 		Filename: "schachtel oberfläche.jpg"
 		RelativeFilename: "C:\Users\Puppetmaster\Desktop\New Game +\fertige Assets\texturen\schachtel oberfläche.jpg"
+	}
+	Video: "Video::snake_png", "Clip" {
+		Type: "Clip"
+		Properties60:  {
+			Property: "FrameRate", "double", "",0
+			Property: "LastFrame", "int", "",0
+			Property: "Width", "int", "",0
+			Property: "Height", "int", "",0
+			Property: "Path", "charptr", "", "snake.png"
+			Property: "StartFrame", "int", "",0
+			Property: "StopFrame", "int", "",0
+			Property: "PlaySpeed", "double", "",1
+			Property: "Offset", "KTime", "",0
+			Property: "InterlaceMode", "enum", "",0
+			Property: "FreeRunning", "bool", "",0
+			Property: "Loop", "bool", "",0
+			Property: "AccessMode", "enum", "",0
+		}
+		UseMipMap: 0
+		Filename: "snake.png"
+		RelativeFilename: "C:\Users\Puppetmaster\Desktop\New Game +\fertige Assets\texturen\schachtel\snake.png"
 	}
 	Texture: "Texture::schachel_rand_jpg", "TextureVideoClip" {
 		Type: "TextureVideoClip"
@@ -1713,6 +1767,35 @@ Objects:  {
 		Texture_Alpha_Source: "None"
 		Cropping: 0,0,0,0
 	}
+	Texture: "Texture::snake_png", "TextureVideoClip" {
+		Type: "TextureVideoClip"
+		Version: 202
+		TextureName: "Texture::snake_png"
+		Properties60:  {
+			Property: "Translation", "Vector", "A+",0,0,0
+			Property: "Rotation", "Vector", "A+",0,0,0
+			Property: "Scaling", "Vector", "A+",1,1,1
+			Property: "Texture alpha", "Number", "A+",4
+			Property: "TextureTypeUse", "enum", "",0
+			Property: "CurrentTextureBlendMode", "enum", "",1
+			Property: "UseMaterial", "bool", "",0
+			Property: "UseMipMap", "bool", "",0
+			Property: "CurrentMappingType", "enum", "",0
+			Property: "UVSwap", "bool", "",0
+			Property: "WrapModeU", "enum", "",0
+			Property: "WrapModeV", "enum", "",0
+			Property: "TextureRotationPivot", "Vector3D", "",0,0,0
+			Property: "TextureScalingPivot", "Vector3D", "",0,0,0
+			Property: "VideoProperty", "object", ""
+		}
+		Media: "Video::snake_png"
+		FileName: "snake.png"
+		RelativeFilename: "C:\Users\Puppetmaster\Desktop\New Game +\fertige Assets\texturen\schachtel\snake.png"
+		ModelUVTranslation: 0,0
+		ModelUVScaling: 1,1
+		Texture_Alpha_Source: "None"
+		Cropping: 0,0,0,0
+	}
 	Pose: "Pose::BIND_POSES", "BindPose" {
 		Type: "BindPose"
 		Version: 100
@@ -1721,7 +1804,7 @@ Objects:  {
 		NbPoseNodes: 1
 		PoseNode:  {
 			Node: "Model::schachtel"
-			Matrix: 0.000000075497901,0.000000000000000,-1.000000000000000,0.000000000000000,-1.000000000000000,0.000000000000000,-0.000000075497901,0.000000000000000,0.000000000000000,1.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,0.441400498151779,0.000000000000000,1.000000000000000
+			Matrix: 0.000000075497901,0.000000000000000,-1.000000000000000,0.000000000000000,-1.000000000000000,0.000000000000000,-0.000000075497901,0.000000000000000,0.000000000000000,1.000000000000000,0.000000000000000,0.000000000000000,0.000511055230163,0.908142626285553,0.678213834762573,1.000000000000000
 		}
 	}
 	GlobalSettings:  {
@@ -1768,6 +1851,8 @@ Relations:  {
 	}
 	Material: "Material::Material__schachtel_oberfl_che_jpg", "" {
 	}
+	Material: "Material::Material__snake_png", "" {
+	}
 	Texture: "Texture::schachel_rand_jpg", "TextureVideoClip" {
 	}
 	Texture: "Texture::schachtel_boden_jpg", "TextureVideoClip" {
@@ -1776,6 +1861,8 @@ Relations:  {
 	}
 	Texture: "Texture::schachtel_oberfl_che_jpg", "TextureVideoClip" {
 	}
+	Texture: "Texture::snake_png", "TextureVideoClip" {
+	}
 	Video: "Video::schachel_rand_jpg", "Clip" {
 	}
 	Video: "Video::schachtel_boden_jpg", "Clip" {
@@ -1783,6 +1870,8 @@ Relations:  {
 	Video: "Video::schachtel_dechel_jpg", "Clip" {
 	}
 	Video: "Video::schachtel_oberfl_che_jpg", "Clip" {
+	}
+	Video: "Video::snake_png", "Clip" {
 	}
 }
 
@@ -1795,14 +1884,17 @@ Connections:  {
 	Connect: "OO", "Material::Material__schachtel_boden_jpg", "Model::schachtel"
 	Connect: "OO", "Material::Material__schachtel_dechel_jpg", "Model::schachtel"
 	Connect: "OO", "Material::Material__schachtel_oberfl_che_jpg", "Model::schachtel"
+	Connect: "OO", "Material::Material__snake_png", "Model::schachtel"
 	Connect: "OO", "Texture::schachel_rand_jpg", "Model::schachtel"
 	Connect: "OO", "Texture::schachtel_boden_jpg", "Model::schachtel"
 	Connect: "OO", "Texture::schachtel_dechel_jpg", "Model::schachtel"
 	Connect: "OO", "Texture::schachtel_oberfl_che_jpg", "Model::schachtel"
+	Connect: "OO", "Texture::snake_png", "Model::schachtel"
 	Connect: "OO", "Video::schachel_rand_jpg", "Texture::schachel_rand_jpg"
 	Connect: "OO", "Video::schachtel_boden_jpg", "Texture::schachtel_boden_jpg"
 	Connect: "OO", "Video::schachtel_dechel_jpg", "Texture::schachtel_dechel_jpg"
 	Connect: "OO", "Video::schachtel_oberfl_che_jpg", "Texture::schachtel_oberfl_che_jpg"
+	Connect: "OO", "Video::snake_png", "Texture::snake_png"
 }
 ;Takes and animation section
 ;----------------------------------------------------
@@ -1821,27 +1913,27 @@ Takes:  {
 			Channel: "Transform" {
 				Channel: "T" {
 					Channel: "X" {
-						Default: 0.000000000000000
+						Default: 0.000511055230163
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1924423250,0.000000000000000,L
+							1924423250,0.000511055230163,L
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: 0.441400498151779
+						Default: 0.908142626285553
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1924423250,0.441400498151779,L
+							1924423250,0.908142626285553,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: 0.000000000000000
+						Default: 0.678213834762573
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1924423250,0.000000000000000,L
+							1924423250,0.678213834762573,L
 						Color: 0,0,1
 					}
 					LayerType: 1

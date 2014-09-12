@@ -5,7 +5,9 @@ using iViewX;
 
 public class NoteBook : MonoBehaviour 
 {
-	ClueManager clue;
+	public static NoteBook instance;
+
+	ClueManager clueManager;
 	InteractionManager interaction;
 	
 	/*public GUIStyle notebookStyle;
@@ -21,7 +23,7 @@ public class NoteBook : MonoBehaviour
 	private float noteHeight;
 	private float noteWidth;
 	
-	private List<string> notes;
+	private List<string> notes = new List<string>();
 	
 	private string notebookHeader = "NOTES";
 	private bool isToggled = false;
@@ -33,7 +35,18 @@ public class NoteBook : MonoBehaviour
 	
 	void Awake()
 	{
-		clue 		= GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
+		#region singleton
+		if(instance == null) 
+		{
+			instance = this;
+		} 
+		else if(instance != this) 
+		{
+			Destroy(gameObject);
+		}
+		#endregion
+		
+		clueManager = GameObject.FindGameObjectWithTag("ClueManager").GetComponent<ClueManager>();
 		interaction = GameObject.FindGameObjectWithTag("Player").GetComponent<InteractionManager>();
 	}
 	
@@ -51,31 +64,32 @@ public class NoteBook : MonoBehaviour
 	{
 		if(isToggled)
 		{
-			notes = clue.GetFoundClues();
-			
 			GUI.Box(notebook, notebookHeader);
-			DisplayFoundClues();
+			
+			foreach(GazeButton button in gazeUI)
+			{
+				button.OnGUI();
+				button.Update();
+			}
 		}
 	}
 	
-	void DisplayFoundClues()
+	public void UpdateNoteButtonList()
 	{
+		gazeUI.Clear();
+		
+		notes = clueManager.GetFoundClues();
+		
 		for(int i = 0; i < notes.Count; i++)
 		{
 			buttonCallbackListener buttonAction = NoteInteraction;
 			gazeUI.Add(new GazeButton(new Rect(notebookX + offset, notebookY + (offset * 3) + (noteHeight * i), noteWidth, noteHeight), notes[i], gazeStyle, buttonAction));
 		}
-		
-		foreach(GazeButton button in gazeUI)
-		{
-			button.OnGUI();
-			button.Update();
-		}
 	}
 	
 	public void NoteInteraction()
 	{
-		Debug.Log("click");
+		Debug.Log(gazeUI.Count);
 	}
 	
 	public bool NoteBookIsOpen()
@@ -89,6 +103,7 @@ public class NoteBook : MonoBehaviour
 		{
 			SoundManager.instance.PlaySoundEffect("Notebook");
 		}
+		
 		isToggled = !isToggled;
 		
 		if(isToggled)
