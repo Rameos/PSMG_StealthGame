@@ -10,10 +10,10 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2014
 		Month: 09
-		Day: 09
-		Hour: 03
-		Minute: 51
-		Second: 39
+		Day: 12
+		Hour: 23
+		Minute: 01
+		Second: 36
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2014-09-09 03:51:39:000"
+CreationTime: "2014-09-12 23:01:36:000"
 Creator: "Blender version 2.69 (sub 0)"
 
 ; Object definitions
@@ -147,7 +147,7 @@ Objects:  {
 		Properties60:  {
 			Property: "QuaternionInterpolate", "bool", "",0
 			Property: "Visibility", "Visibility", "A+",1
-			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Translation", "Lcl Translation", "A+",0.003423114772886,0.013462161645293,-0.942738413810730
 			Property: "Lcl Rotation", "Lcl Rotation", "A+",-90.000009334538021,0.000000000000000,0.000000000000000
 			Property: "Lcl Scaling", "Lcl Scaling", "A+",1.000000000000000,1.000000000000000,1.000000000000000
 			Property: "RotationOffset", "Vector3D", "",0,0,0
@@ -221,9 +221,9 @@ Objects:  {
 		MultiTake: 1
 		Shading: Y
 		Culling: "CullingOff"
-		Vertices: -0.147587,0.935384,-0.119448,-0.162113,0.953080,-0.133973,0.168959,0.953080,-0.133973,0.154433,0.935384,-0.119448,
-		          -0.147587,0.935384,0.146372,-0.162113,0.953080,0.160897,0.168959,0.953080,0.160897,0.154433,0.935384,0.146372,
-		          -0.134428,0.939751,-0.102604,0.141274,0.939751,-0.102604,-0.134428,0.939751,0.129528,0.141274,0.939751,0.129528
+		Vertices: -0.151010,-0.007354,-0.132910,-0.165536,0.010342,-0.147435,0.165536,0.010342,-0.147435,0.151010,-0.007354,-0.132910,
+		          -0.151010,-0.007354,0.132910,-0.165536,0.010342,0.147435,0.165536,0.010342,0.147435,0.151010,-0.007354,0.132910,
+		          -0.137851,-0.002987,-0.116066,0.137851,-0.002987,-0.116066,-0.137851,-0.002987,0.116066,0.137851,-0.002987,0.116066
 		PolygonVertexIndex: 4,5,1,-1,5,6,2,-2,6,7,3,-3,0,3,9,-9,0,1,2,-4,7,6,5,-5,11,10,8,-10,7,4,10,-12,
 		                    3,7,11,-10,4,0,8,-11
 		GeometryVersion: 124
@@ -232,14 +232,14 @@ Objects:  {
 			Name: ""
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "Direct"
-			Normals: -0.772953,-0.634464,0.000000,-0.772953,-0.634464,0.000000,-0.772953,-0.634464,0.000000,-0.772953,-0.634464,0.000000,
+			Normals: -0.772953,-0.634463,0.000000,-0.772953,-0.634463,0.000000,-0.772953,-0.634463,0.000000,-0.772953,-0.634463,0.000000,
 			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
 			         0.772954,-0.634462,0.000000,0.772954,-0.634462,0.000000,0.772954,-0.634462,0.000000,0.772954,-0.634462,0.000000,
-			         0.000000,-0.967997,0.250962,0.000000,-0.967997,0.250962,0.000000,-0.967997,0.250962,0.000000,-0.967997,0.250962,
-			         0.000000,-0.634464,-0.772953,0.000000,-0.634464,-0.772953,0.000000,-0.634464,-0.772953,0.000000,-0.634464,-0.772953,
+			         0.000000,-0.967998,0.250959,0.000000,-0.967998,0.250959,0.000000,-0.967998,0.250959,0.000000,-0.967998,0.250959,
+			         0.000000,-0.634463,-0.772953,0.000000,-0.634463,-0.772953,0.000000,-0.634463,-0.772953,0.000000,-0.634463,-0.772953,
 			         0.000000,-0.634462,0.772954,0.000000,-0.634462,0.772954,0.000000,-0.634462,0.772954,0.000000,-0.634462,0.772954,
 			         0.000000,-1.000000,0.000000,0.000000,-1.000000,0.000000,0.000000,-1.000000,0.000000,0.000000,-1.000000,0.000000,
-			         0.000000,-0.967997,-0.250962,0.000000,-0.967997,-0.250962,0.000000,-0.967997,-0.250962,0.000000,-0.967997,-0.250962,
+			         0.000000,-0.967998,-0.250958,0.000000,-0.967998,-0.250958,0.000000,-0.967998,-0.250958,0.000000,-0.967998,-0.250958,
 			         -0.314965,-0.949103,0.000000,-0.314965,-0.949103,0.000000,-0.314965,-0.949103,0.000000,-0.314965,-0.949103,0.000000,
 			         0.314965,-0.949103,0.000000,0.314965,-0.949103,0.000000,0.314965,-0.949103,0.000000,0.314965,-0.949103,0.000000
 		}
@@ -255,11 +255,11 @@ Objects:  {
 			Name: "UVMap"
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "IndexToDirect"
-			UV: 0.000094,0.000094,0.133071,0.833171,0.885192,0.810673,0.847085,0.934687,0.777702,0.069753,0.147180,0.182894,
-			    0.886937,0.000252,0.075947,0.054322,0.214810,0.752284,0.003473,-0.004049,0.887980,0.999906,0.040989,0.065313,
-			    0.854399,0.000088,0.846351,0.065767,0.789803,0.702109,1.001316,0.996045,0.002123,0.995592,0.001137,0.999749,
-			    1.000581,-0.000927,0.041723,0.934233
-			UVIndex: 7,5,8,1,5,4,14,8,4,12,2,14,0,6,13,11,1,8,14,2,12,4,5,7,15,16,9,18,10,17,19,3,6,10,3,13,17,0,11,19
+			UV: 0.095967,0.000116,0.753650,1.035012,0.999884,0.565605,0.606403,0.000116,0.002123,0.995592,1.000581,-0.000927,
+			    0.409337,0.684570,0.061610,0.455948,0.606403,0.565605,0.479651,0.064378,0.775882,1.056024,0.119645,0.039200,
+			    0.037677,0.475236,0.414872,0.726055,0.514784,0.000116,0.492275,0.036547,1.001316,0.996045,0.808535,1.069804,
+			    0.418227,0.778402,0.000116,0.496420,0.999884,0.000116,0.133190,0.068642,0.003473,-0.004049
+			UVIndex: 12,19,0,11,8,3,20,2,17,10,15,14,11,15,9,21,11,0,14,15,13,18,19,12,16,4,22,5,13,12,7,6,15,10,1,9,12,11,21,7
 		}
 		LayerElementTexture: 0 {
 			Version: 101
@@ -1379,7 +1379,7 @@ Objects:  {
 		AudioColor: 0,1,0
 		CameraOrthoZoom: 1
 	}
-	Material: "Material::None__Unbenannt_png", "" {
+	Material: "Material::None__pseudo_holz_png", "" {
 		Version: 102
 		ShadingModel: "phong"
 		MultiLayer: 0
@@ -1439,14 +1439,14 @@ Objects:  {
 			Property: "Reflectivity", "double", "",0
 		}
 	}
-	Video: "Video::Unbenannt_png", "Clip" {
+	Video: "Video::pseudo_holz_png", "Clip" {
 		Type: "Clip"
 		Properties60:  {
 			Property: "FrameRate", "double", "",0
 			Property: "LastFrame", "int", "",0
 			Property: "Width", "int", "",0
 			Property: "Height", "int", "",0
-			Property: "Path", "charptr", "", "Unbenannt.png"
+			Property: "Path", "charptr", "", "pseudo holz.png"
 			Property: "StartFrame", "int", "",0
 			Property: "StopFrame", "int", "",0
 			Property: "PlaySpeed", "double", "",1
@@ -1457,8 +1457,8 @@ Objects:  {
 			Property: "AccessMode", "enum", "",0
 		}
 		UseMipMap: 0
-		Filename: "Unbenannt.png"
-		RelativeFilename: "C:\Users\Puppetmaster\Desktop\New Game +\texturen\Unbenannt.png"
+		Filename: "pseudo holz.png"
+		RelativeFilename: "C:\Users\Puppetmaster\Desktop\New Game +\fertige Assets\texturen\pseudo holz.png"
 	}
 	Video: "Video::schild_png", "Clip" {
 		Type: "Clip"
@@ -1481,10 +1481,10 @@ Objects:  {
 		Filename: "schild.png"
 		RelativeFilename: "C:\Users\Puppetmaster\Desktop\New Game +\schild\schild.png"
 	}
-	Texture: "Texture::Unbenannt_png", "TextureVideoClip" {
+	Texture: "Texture::pseudo_holz_png", "TextureVideoClip" {
 		Type: "TextureVideoClip"
 		Version: 202
-		TextureName: "Texture::Unbenannt_png"
+		TextureName: "Texture::pseudo_holz_png"
 		Properties60:  {
 			Property: "Translation", "Vector", "A+",0,0,0
 			Property: "Rotation", "Vector", "A+",0,0,0
@@ -1502,9 +1502,9 @@ Objects:  {
 			Property: "TextureScalingPivot", "Vector3D", "",0,0,0
 			Property: "VideoProperty", "object", ""
 		}
-		Media: "Video::Unbenannt_png"
-		FileName: "Unbenannt.png"
-		RelativeFilename: "C:\Users\Puppetmaster\Desktop\New Game +\texturen\Unbenannt.png"
+		Media: "Video::pseudo_holz_png"
+		FileName: "pseudo holz.png"
+		RelativeFilename: "C:\Users\Puppetmaster\Desktop\New Game +\fertige Assets\texturen\pseudo holz.png"
 		ModelUVTranslation: 0,0
 		ModelUVScaling: 1,1
 		Texture_Alpha_Source: "None"
@@ -1547,7 +1547,7 @@ Objects:  {
 		NbPoseNodes: 1
 		PoseNode:  {
 			Node: "Model::urkunde"
-			Matrix: 0.000000075497901,0.000000000000000,-1.000000000000000,0.000000000000000,-1.000000000000000,0.000000000000000,-0.000000075497901,0.000000000000000,0.000000000000000,1.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,1.000000000000000
+			Matrix: 0.000000075497901,0.000000000000000,-1.000000000000000,0.000000000000000,-1.000000000000000,0.000000000000000,-0.000000075497901,0.000000000000000,0.000000000000000,1.000000000000000,0.000000000000000,0.000000000000000,0.003423114772886,0.013462161645293,-0.942738413810730,1.000000000000000
 		}
 	}
 	GlobalSettings:  {
@@ -1586,15 +1586,15 @@ Relations:  {
 	}
 	Model: "Model::Camera Switcher", "CameraSwitcher" {
 	}
-	Material: "Material::None__Unbenannt_png", "" {
+	Material: "Material::None__pseudo_holz_png", "" {
 	}
 	Material: "Material::None__schild_png", "" {
 	}
-	Texture: "Texture::Unbenannt_png", "TextureVideoClip" {
+	Texture: "Texture::pseudo_holz_png", "TextureVideoClip" {
 	}
 	Texture: "Texture::schild_png", "TextureVideoClip" {
 	}
-	Video: "Video::Unbenannt_png", "Clip" {
+	Video: "Video::pseudo_holz_png", "Clip" {
 	}
 	Video: "Video::schild_png", "Clip" {
 	}
@@ -1605,11 +1605,11 @@ Relations:  {
 
 Connections:  {
 	Connect: "OO", "Model::urkunde", "Model::Scene"
-	Connect: "OO", "Material::None__Unbenannt_png", "Model::urkunde"
+	Connect: "OO", "Material::None__pseudo_holz_png", "Model::urkunde"
 	Connect: "OO", "Material::None__schild_png", "Model::urkunde"
-	Connect: "OO", "Texture::Unbenannt_png", "Model::urkunde"
+	Connect: "OO", "Texture::pseudo_holz_png", "Model::urkunde"
 	Connect: "OO", "Texture::schild_png", "Model::urkunde"
-	Connect: "OO", "Video::Unbenannt_png", "Texture::Unbenannt_png"
+	Connect: "OO", "Video::pseudo_holz_png", "Texture::pseudo_holz_png"
 	Connect: "OO", "Video::schild_png", "Texture::schild_png"
 }
 ;Takes and animation section
@@ -1629,27 +1629,27 @@ Takes:  {
 			Channel: "Transform" {
 				Channel: "T" {
 					Channel: "X" {
-						Default: 0.000000000000000
+						Default: 0.003423114772886
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1924423250,0.000000000000000,L
+							1924423250,0.003423114772886,L
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: 0.000000000000000
+						Default: 0.013462161645293
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1924423250,0.000000000000000,L
+							1924423250,0.013462161645293,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: 0.000000000000000
+						Default: -0.942738413810730
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1924423250,0.000000000000000,L
+							1924423250,-0.942738413810730,L
 						Color: 0,0,1
 					}
 					LayerType: 1

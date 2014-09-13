@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9d45eca65b748d544b1018382da9804a
+guid: b32c4233f454b704981e8b60f3a5a2b3
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: urkunde
+    4300000: hocker_schwarz
     7400000: Default Take
     9500000: //RootNode
   materials:
