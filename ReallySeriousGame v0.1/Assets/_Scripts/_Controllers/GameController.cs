@@ -41,10 +41,13 @@ public class GameController : MonoBehaviour
 	
 	void Update () 
 	{	
-		CheckControls();
 		CheckGameState();
-		ControllBGVolume();
-		CheckCaseClosedState();
+		if(!(Application.loadedLevel == 0) && !(Application.loadedLevel == 1))
+		{
+			CheckControls();
+			ControllBGVolume();
+			CheckCaseClosedState();
+		}
 	}
 	
 	/// <summary>
@@ -67,6 +70,9 @@ public class GameController : MonoBehaviour
 				sound.PlayAmbientSound(Application.loadedLevelName);
 				GameState.ChangeState(GameState.States.InGame);
 				break;
+			case "Outro":
+				sound.PlayBGMusic(Application.loadedLevelName);
+				break;
 			default:
 				break;
 			}
@@ -78,7 +84,6 @@ public class GameController : MonoBehaviour
 	{
 		if(DialogManager.instance.GetCorrectAccusationsInOrder() == CASE_CLOSED)
 		{
-			Debug.Log("Case Closed");
 			StartCoroutine("WaitForDialogToFinish");
 		}
 	}
@@ -89,31 +94,41 @@ public class GameController : MonoBehaviour
 		{
 			sound.PlayVoice("Sounds/Case_Closed/" + UnityEngine.Random.Range(0,2));
 			caseClosed = true;
+			StartCoroutine("Outro");
 		}
 	}
 	
 	IEnumerator WaitForDialogToFinish()
 	{
-		while(GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().isPlaying || GameObject.FindGameObjectWithTag("Suspect").GetComponent<AudioSource>().isPlaying)
+		if(!caseClosed)
+		{
+			while(GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().isPlaying || GameObject.FindGameObjectWithTag("Suspect").GetComponent<AudioSource>().isPlaying)
+			{
+				yield return null;
+			}
+			CaseClosed();
+		}
+	}
+	
+	IEnumerator Outro()
+	{
+		while(GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().isPlaying)
 		{
 			yield return null;
 		}
-		CaseClosed();
+		Application.LoadLevel("Outro");
 	}
 	
 	void CheckControls()
 	{
-        //if(!(Application.loadedLevel == 0))
-        //{
-			if(ControlsOptions.IsKeyboardControls)
-			{
-				InputController.instance.KeyboardControls();
-			}
-			else if(ControlsOptions.IsGamepadControls)
-			{
-				InputController.instance.GamepadControls();
-			}
-        //}
+		if(ControlsOptions.IsKeyboardControls)
+		{
+			InputController.instance.KeyboardControls();
+		}
+		else if(ControlsOptions.IsGamepadControls)
+		{
+			InputController.instance.GamepadControls();
+		}
 	}
 	
 	void ControllBGVolume()
