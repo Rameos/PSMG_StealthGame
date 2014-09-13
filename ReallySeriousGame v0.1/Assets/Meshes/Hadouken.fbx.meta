@@ -1,20 +1,13 @@
 fileFormatVersion: 2
-guid: e34b0feb64ac38a48b574d643c7d6a49
+guid: 3035270b682816e4f9bd18c718eb5da9
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: hadouken_drink_au_en
-    100004: hadouken_drink_innen
     400000: //RootNode
-    400002: hadouken_drink_au_en
-    400004: hadouken_drink_innen
-    2300000: hadouken_drink_au_en
-    2300002: hadouken_drink_innen
-    3300000: hadouken_drink_au_en
-    3300002: hadouken_drink_innen
-    4300000: hadouken_drink_innen
-    4300002: hadouken_drink_au_en
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: hadouken_drink_au_en
     7400000: Default Take
     9500000: //RootNode
   materials:
