@@ -48,6 +48,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2a49ac481880ab244b649cc20489fcc1, type: 3}
   - {fileID: 8300000, guid: 0ff0d08aa8a702e4393b23f0b66753fe, type: 3}
   - {fileID: 8300000, guid: d5b72c56542508e409187d225fc3ce76, type: 3}
+  soundEffectClip: []
+  voiceClip:
+  - {fileID: 8300000, guid: e3a0073ec1f7b774c953b66b899217f2, type: 3}
+  - {fileID: 8300000, guid: b6cdc6ec88a9c4e4bb12b3ba46e77299, type: 3}
+  - {fileID: 8300000, guid: ebfe79577d70bb9418428de6b14988aa, type: 3}
+  - {fileID: 8300000, guid: 01ad56d91f648264e82dba87232163a6, type: 3}
+  - {fileID: 8300000, guid: 31872e1434aed264dbf429afee11ba35, type: 3}
+  - {fileID: 8300000, guid: 1176d345c748edf42a57d4c51f6d0f21, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

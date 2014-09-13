@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
 		
 		if(GUI.Button(new Rect(buttonXPos, buttonPos1, buttonWidth, buttonHeight), "Start Game")) 
 		{
-			Application.LoadLevel("BarScene");
+			Application.LoadLevel("Intro");
 		}
 		
 		if(GUI.Button(new Rect(buttonXPos, buttonPos2, buttonWidth, buttonHeight), "Load Save")) 

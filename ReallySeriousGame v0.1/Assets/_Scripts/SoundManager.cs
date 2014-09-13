@@ -54,7 +54,10 @@ public class SoundManager : MonoBehaviour
 		switch(level)
 		{
 			case "MainMenu":
-				backgroundSound = musicClip[Random.Range(0, musicClip.Length)];
+				backgroundSound = musicClip[0];
+				break;
+			case "Outro":
+				backgroundSound = musicClip[1];
 				break;
 			default: break;
 		}
@@ -123,7 +126,7 @@ public class SoundManager : MonoBehaviour
 		}
 		else
 		{
-			if(GameState.IsState(GameState.States.Inspecting))
+			if(GameState.IsState(GameState.States.Inspecting) || accused.tag == "Box")
 			{
 				EmptyAccusationOn(accused);
 			}
@@ -183,6 +186,7 @@ public class SoundManager : MonoBehaviour
 		{
 			if(accused.GetComponent<Interactable>() as Interactable != null)
 			{
+				Debug.Log(accused);
 				if(!accused.GetComponent<Interactable>().HasBeenAccused())
 				{
 					voiceSource.clip = voiceClip[Random.Range(0, 2)];
