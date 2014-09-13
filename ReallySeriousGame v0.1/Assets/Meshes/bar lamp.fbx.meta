@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ec094ef7429495f43a072ee0b66da282
+guid: a6082f1c499c4924aaaa965d13bd8318
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cylinder
+    4300000: lampe
     7400000: Default Take
     9500000: //RootNode
   materials:

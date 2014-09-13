@@ -1,17 +1,14 @@
 fileFormatVersion: 2
-guid: 5a84b8001fa4c714486e15d8ff1c7f28
+guid: 5d81bcfab23cfe54c862840d12a222fd
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Camera
-    100004: Plane
     400000: //RootNode
-    400002: Camera
-    400004: Plane
-    2300000: Plane
-    3300000: Plane
-    4300000: Plane
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pflanze
+    7400000: Default Take
     9500000: //RootNode
   materials:
     importMaterials: 1

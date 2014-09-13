@@ -59,6 +59,20 @@ public class InputController : MonoBehaviour
 		}
 		#endregion
 		
+		#region movement
+		
+		if(GameState.IsState(GameState.States.InGame))
+		{
+			if(Keyboard.inputForward())		movement.moveForward();
+			
+			if(Keyboard.inputBackward())	movement.moveBackward();
+			
+			if(Keyboard.inputLeft())		movement.strafeLeft();
+			
+			if(Keyboard.inputRight())		movement.strafeRight();
+		}
+		#endregion
+		
 		//NOTEBOOK
 		if(Keyboard.inputToggleNotebook())
 		{

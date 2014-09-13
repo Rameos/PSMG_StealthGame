@@ -38,7 +38,8 @@ public class VerbalResponse : MonoBehaviour
 	}
 	
 	public void RandomVO()
-	{
+	{	
+		int count = 0;
 		if(!isWaiting)
 		{
 			newVOClipPath = dirDefault + gameObject.name + "/" + GameState.gameState + "_" + Suspect.state + "/" + Random.Range(0,4);

@@ -1,17 +1,13 @@
 fileFormatVersion: 2
-guid: 4c4defeeacbee844f938132dc7f28849
+guid: 70999a706745ac34c8636a6dc0312d63
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: bar_counter
-    100004: Camera
     400000: //RootNode
-    400002: bar_counter
-    400004: Camera
-    2300000: bar_counter
-    3300000: bar_counter
-    4300000: bar_counter
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: urkunde
     7400000: Default Take
     9500000: //RootNode
   materials:
