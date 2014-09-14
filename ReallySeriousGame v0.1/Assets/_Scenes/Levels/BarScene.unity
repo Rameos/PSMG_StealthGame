@@ -1022,11 +1022,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.11978304
+      value: -1.78285658
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.7926302
+      value: 2.15719032
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1486,7 +1486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &313856127
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -2578,7 +2578,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 313856126}
   m_LocalRotation: {x: -.707106829, y: 0, z: -6.18172393e-08, w: -.707106829}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -8.07340506e-09, y: .33449477, z: .0604151227}
   m_LocalScale: {x: 1, y: .208811224, z: 4.78901386}
   m_Children: []
   m_Father: {fileID: 442774672}
@@ -4040,7 +4040,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 442774669}
   m_LocalRotation: {x: .909450054, y: 5.79290997e-08, z: 2.15775486e-08, w: -.415813267}
-  m_LocalPosition: {x: -1.10715783, y: 2.82735443, z: -5.96046448e-08}
+  m_LocalPosition: {x: -1.4344182, y: 2.16716051, z: -5.96046448e-08}
   m_LocalScale: {x: 4.78905725, y: 1, z: 4.78901482}
   m_Children:
   - {fileID: 313856129}
@@ -8790,7 +8790,7 @@ Transform:
   m_PrefabInternal: {fileID: 280172627}
   m_GameObject: {fileID: 1083024042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.11978304, y: 2.7926302, z: -.0510095954}
+  m_LocalPosition: {x: -1.78285658, y: 2.15719032, z: -.0510095954}
   m_LocalScale: {x: 3.23061156, y: 3.89211941, z: .5}
   m_Children: []
   m_Father: {fileID: 1831920948}
@@ -12415,7 +12415,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300004, guid: aa17676a16f16114592d7def929d928d, type: 3}
+  m_Sprite: {fileID: 21300002, guid: c8a887a39d2d0b74da5a1c045c8dbba7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1831920948
 Transform:

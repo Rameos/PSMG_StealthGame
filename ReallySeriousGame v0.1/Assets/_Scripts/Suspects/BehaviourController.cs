@@ -52,33 +52,27 @@ public class BehaviourController : MonoBehaviour
 			{
 				foreach(Transform clue in gameObject.transform)
 				{
-					if(clue.tag == "Clue")
-					{
-						clue.gameObject.SetActive(false);
-					}
+					clue.gameObject.SetActive(false);
 				}
 			}
 			else
 			{	
 				foreach(Transform clue in gameObject.transform)
 				{
-					if(clue.tag == "Clue")
+					if(clue.name == "Bandage")
 					{
-						if(clue.name == "Bandage")
+						if(currentState == Suspect.SuspectState.Nervous)
 						{
-							if(currentState == Suspect.SuspectState.Nervous)
-							{
-								clue.gameObject.SetActive(false);
-							}
-							else
-							{
-								clue.gameObject.SetActive(true);
-							}
+							clue.gameObject.SetActive(false);
 						}
 						else
 						{
 							clue.gameObject.SetActive(true);
 						}
+					}
+					else
+					{
+						clue.gameObject.SetActive(true);
 					}
 				}
 			}

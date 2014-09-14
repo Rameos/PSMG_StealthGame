@@ -1,9 +1,17 @@
 fileFormatVersion: 2
-guid: a490da683bcf1fd44b53f28621af3515
+guid: e14cb1ebea93c4d488ff86691fcc9fd8
 TextureImporter:
   fileIDToRecycleName:
-    21300000: bent_forward_1000 (1)
-    21300002: Barkeep_Neutral_Tollpatsch
+    21300000: Interacting_Positive
+    21300002: Interacting_Positive_0
+    21300004: Barkeep_Interacting_Positive_0
+    21300006: Barkeep_Interrogating_Positive_0
+    21300008: Barkeep_Positive_0
+    21300010: Barkeep_Neutral_0
+    21300012: Barkeep_Neutral_Face
+    21300014: Barkeep_Neutral_EyeContact
+    21300016: Barkeep_Neutral_Tollpatsch
+    21300018: _Barkeep_Neutral_Tollpatsch
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

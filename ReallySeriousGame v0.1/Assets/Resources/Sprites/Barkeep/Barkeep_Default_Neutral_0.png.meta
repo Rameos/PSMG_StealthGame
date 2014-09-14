@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: aa17676a16f16114592d7def929d928d
+guid: c8a887a39d2d0b74da5a1c045c8dbba7
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Default_Neutral
-    21300002: Default_Neutral_0
-    21300004: Barkeep_Default_Neutral_0
+    21300000: side-smile_1000 (1)
+    21300002: Barkeep_Default_Neutral_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: a490da683bcf1fd44b53f28621af3515
+guid: acc2cf9f68f6c8440a4135d187852e75
 TextureImporter:
   fileIDToRecycleName:
-    21300000: bent_forward_1000 (1)
-    21300002: Barkeep_Neutral_Tollpatsch
+    21300000: handsback_1000
+    21300002: Barkeep_Default_Nervous_0
+    21300004: _Barkeep_Default_Nervous_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
