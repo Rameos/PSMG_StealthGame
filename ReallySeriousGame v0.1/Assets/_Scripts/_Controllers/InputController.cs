@@ -120,10 +120,6 @@ public class InputController : MonoBehaviour
 	{
         if (!notebook.NoteBookIsOpen() && !Application.loadedLevelName.Equals("MainMenu"))
 		{
-			if(ScrollAreas.left.Contains(Gaze.Position()))		movement.turnLeft();
-			
-			if(ScrollAreas.right.Contains(Gaze.Position()))		movement.turnRight();
-			//BUG
 			if(ScrollAreas.top.Contains(Gaze.Position()))		movement.turnDown();
 			
 			if(ScrollAreas.bottom.Contains(Gaze.Position()))	movement.turnUp();

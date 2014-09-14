@@ -67,7 +67,7 @@ public class DialogManager : MonoBehaviour
 		switch(nextInOrder)
 		{
 			case 0: 
-				if(accusation == "EyeContact") 
+				if(accusation == "Tollpatsch") 
 				{
 					correctOrderOfAccusations[nextInOrder] = true; 
 					nextInOrder++;

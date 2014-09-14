@@ -1406,11 +1406,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: clueName
-      value: EyeContact
+      value: Tollpatsch
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: m_Name
-      value: EyeContact
+      value: Tollpatsch
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 0ae8bdbb7a2448c459bbeab97ba66f80, type: 2}
       propertyPath: m_IsActive
@@ -8391,7 +8391,7 @@ GameObject:
   - 114: {fileID: 1414855905}
   - 65: {fileID: 1414855904}
   m_Layer: 0
-  m_Name: EyeContact
+  m_Name: Tollpatsch
   m_TagString: Clue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8422,7 +8422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb32917f72210554f8e7a7f5899c46d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueName: EyeContact
+  clueName: Tollpatsch
   isHighlighted: 0
   isDiscovered: 0
   isVisible: 1
@@ -8804,8 +8804,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1499708172}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.0348511, y: 5.95029736, z: -99.5034943}
+  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: -37.9563103, y: 5.95029736, z: -107.92646}
   m_LocalScale: {x: 1.20000005, y: 2.5, z: .100000001}
   m_Children: []
   m_Father: {fileID: 1237980364}

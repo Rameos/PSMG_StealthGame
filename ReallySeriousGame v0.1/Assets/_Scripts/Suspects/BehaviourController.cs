@@ -32,6 +32,7 @@ public class BehaviourController : MonoBehaviour
 	void Update()
 	{
 		SetCurrentState();
+		SetClueVisibility();
 	}
 	
 	public bool IsInAction
@@ -40,6 +41,47 @@ public class BehaviourController : MonoBehaviour
 		{
 			inAction = (voice.IsSpeaking || gesture.IsInGesture);
 			return inAction;
+		}
+	}
+	
+	void SetClueVisibility()
+	{
+		if(GameController.instance.GetCurrentSuspect() != null)
+		{
+			if(IsInAction)
+			{
+				foreach(Transform clue in gameObject.transform)
+				{
+					if(clue.tag == "Clue")
+					{
+						clue.gameObject.SetActive(false);
+					}
+				}
+			}
+			else
+			{	
+				foreach(Transform clue in gameObject.transform)
+				{
+					if(clue.tag == "Clue")
+					{
+						if(clue.name == "Bandage")
+						{
+							if(currentState == Suspect.SuspectState.Nervous)
+							{
+								clue.gameObject.SetActive(false);
+							}
+							else
+							{
+								clue.gameObject.SetActive(true);
+							}
+						}
+						else
+						{
+							clue.gameObject.SetActive(true);
+						}
+					}
+				}
+			}
 		}
 	}
 	

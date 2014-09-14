@@ -4,11 +4,12 @@ using System.Collections;
 public class Outro : MonoBehaviour 
 {
 	private string outroText = "";
-	private string outroLine1 = "Wir hoffen euch hat diese kurze Live-Demo gefallen!";
-	private string outroLine2 = "Vielen Danke für eure Aufmerksamkeit!";
+	private string outroLine1 = "Durch die grandiose Arbeit des charismatischen Detektivs\nwurde wieder ein schwieriger Fall zu den Akten gelegt.";
+	private string outroLine2 = "Wir hoffen euch hat diese kurze Live-Demo gefallen!";
+	private string outroLine3 = "Vielen Danke für eure Aufmerksamkeit!";
 	
 	private int linesDisplayed = 0;
-	private int totalLines = 2;
+	private int totalLines = 3;
 	
 	void Start()
 	{
@@ -35,6 +36,7 @@ public class Outro : MonoBehaviour
 			{
 			case 0: outroText = outroLine1; break;
 			case 1: outroText = outroLine2; break;
+			case 2: outroText = outroLine3; break;
 			default:
 				break;
 			}

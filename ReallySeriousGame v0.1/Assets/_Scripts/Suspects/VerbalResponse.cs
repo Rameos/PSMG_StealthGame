@@ -17,6 +17,13 @@ public class VerbalResponse : MonoBehaviour
 	private bool isWaiting = false;
 	private int emptyAccusationCount = 0;
 	
+	#region dialog index
+	private int eyeContactCount = 0;
+	private int notInterrogatingCount = 0;
+	private int interrogatingCount = 0;
+	private int clueDialogCount = 0;
+	#endregion
+	
 	void Awake()
 	{
 		voiceSource = gameObject.AddComponent<AudioSource>();
@@ -39,11 +46,19 @@ public class VerbalResponse : MonoBehaviour
 	
 	public void RandomVO()
 	{	
-		int count = 0;
 		if(!isWaiting)
 		{
-			newVOClipPath = dirDefault + gameObject.name + "/" + GameState.gameState + "_" + Suspect.state + "/" + Random.Range(0,4);
+			newVOClipPath = dirDefault + gameObject.name + "/" + GameState.gameState + "_" + Suspect.state + "/" + notInterrogatingCount;
 			PlayVO();
+			
+			if(notInterrogatingCount == 3)
+			{
+				notInterrogatingCount = 0;
+			}
+			else
+			{
+				notInterrogatingCount++;
+			}
 		}
 	}
 	
@@ -51,8 +66,17 @@ public class VerbalResponse : MonoBehaviour
 	{
 		if(!isWaiting)
 		{
-			newVOClipPath = dirDefault + gameObject.name + "/" + GameState.gameState + "_" + Suspect.state + "/" + Random.Range(0,4);
+			newVOClipPath = dirDefault + gameObject.name + "/" + GameState.gameState + "_" + Suspect.state + "/" + interrogatingCount;
 			PlayVO();
+			Debug.Log(newVOClipPath);
+			if(interrogatingCount == 3)
+			{
+				interrogatingCount = 0;
+			}
+			else
+			{
+				interrogatingCount++;
+			}
 		}
 	}
 	
@@ -60,13 +84,31 @@ public class VerbalResponse : MonoBehaviour
 	{
 		if(!isWaiting)
 		{
-			if(clueID == "EyeContact")
+			if(clueID == "Tollpatsch")
 			{
-				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,9);
+				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + eyeContactCount;
+				
+				if(eyeContactCount == 8)
+				{
+					eyeContactCount = 0;
+				}
+				else
+				{
+					eyeContactCount++;
+				}
 			}
 			else
 			{
-				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,2);
+				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + clueDialogCount;
+				
+				if(clueDialogCount == 2)
+				{
+					clueDialogCount = 0;
+				}
+				else
+				{
+					clueDialogCount++;
+				}
 			}
 			PlayVO();
 		}
@@ -76,13 +118,30 @@ public class VerbalResponse : MonoBehaviour
 	{
 		if(!isWaiting)
 		{
-			if(clueID == "EyeContact")
+			if(clueID == "Tollpatsch")
 			{
-				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,9);
+				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + eyeContactCount;
+				Debug.Log(newVOClipPath);
+				if(eyeContactCount == 8)
+				{
+					eyeContactCount = 0;
+				}
+				else
+				{
+					eyeContactCount++;
+				}
 			}
 			else
 			{
-				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + Random.Range(0,2);
+				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + clueDialogCount;
+				if(clueDialogCount == 2)
+				{
+					clueDialogCount = 0;
+				}
+				else
+				{
+					clueDialogCount++;
+				}
 			}
 			
 			PlayVO();
@@ -93,7 +152,20 @@ public class VerbalResponse : MonoBehaviour
 	{
 		if(Suspect.state == Suspect.SuspectState.Nervous)
 		{
-			newVOClipPath = dirDefault + gameObject.name + "/Interactable_" + Suspect.state + "/" + Random.Range(0,6); //Except T-Virus Hadouken
+			string subject = "";
+			if(interactableName == "Hadouken")
+			{
+				subject = "/Hadouken_";
+			}
+			else if(interactableName == "T-Virus")
+			{
+				subject = "/T-Virus_";
+			}
+			else
+			{
+				subject = "/Interactable_";
+			}
+			newVOClipPath = dirDefault + gameObject.name + subject + Suspect.state + "/" + Random.Range(0,3); //Except T-Virus Hadouken
 		}
 		else
 		{

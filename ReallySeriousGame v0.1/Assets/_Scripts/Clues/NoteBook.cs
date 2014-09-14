@@ -99,7 +99,6 @@ public class NoteBook : MonoBehaviour
 	
 	public void NoteInteraction(GameObject note)
 	{
-		Debug.Log(gazeUI.Count);
 		if(GameState.IsState(GameState.States.Interrogating))
 		{
 			Debug.Log("note to interact with: " + note);
