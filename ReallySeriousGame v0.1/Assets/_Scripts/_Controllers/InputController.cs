@@ -38,19 +38,19 @@ public class InputController : MonoBehaviour
 	void CheckKeyBoardInputs() 
 	{	
 		#region interactions keyboard
-		if(Keyboard.inputInteract() && !gazeModel.isEyeTrackerRunning && Mouse.rayTarget().collider != null)
+		if(Input.GetButtonDown("Interact") && !gazeModel.isEyeTrackerRunning && Mouse.rayTarget().collider != null)
 		{
 			GameController.instance.SetSelectedMouseObject();
 			interaction.StartInteraction(GameController.instance.GetSelectedObject());
 		}
 		
-		if(Keyboard.inputReturn())
+		if(Input.GetButtonDown("Stop Interaction"))
 		{
 			interaction.StopInteraction();
 			GameController.instance.ClearSelections();
 		}
 		
-		if(Keyboard.inputAccuse() && !gazeModel.isEyeTrackerRunning)
+		if(Input.GetButtonDown("Accuse") && !gazeModel.isEyeTrackerRunning)
 		{
 			if(Mouse.rayTarget().collider != null)
 			{
@@ -74,13 +74,13 @@ public class InputController : MonoBehaviour
 		#endregion
 		
 		//NOTEBOOK
-		if(Keyboard.inputToggleNotebook())
+		if(Input.GetButtonDown("Notebook"))
 		{
 			notebook.ToggleNotebook();
 		}
 		
 		//PAUSE
-		if(Keyboard.inputPause())
+		if(Input.GetButtonDown("Pause"))
 		{
 			pause.TogglePause();
 		}
@@ -104,12 +104,12 @@ public class InputController : MonoBehaviour
 		#endregion
 		
 		#region interactions mouse
-		if(Mouse.leftClicked())
+		if(Input.GetButtonDown("Turn Horizontal"))
 		{
 			interaction.RotateItemLeft(GameController.instance.GetSelectedObject());
 		}
 		
-		if(Mouse.rightClicked()) 
+		if(Input.GetButtonDown("Turn Vertical")) 
 		{
 			interaction.RotateItemRight(GameController.instance.GetSelectedObject());
 		}

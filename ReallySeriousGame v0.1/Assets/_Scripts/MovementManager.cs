@@ -12,12 +12,12 @@ public class MovementManager : MonoBehaviour
 	//Translate
 	public void moveForward() 
 	{
-		transform.Translate		(Vector3.forward * moveSpeed * Time.deltaTime);
+		transform.Translate		(Vector3.forward * moveSpeed * Time.deltaTime, Space.World);
 	}
 
 	public void moveBackward() 
 	{
-		transform.Translate		(Vector3.back * moveSpeed * Time.deltaTime);
+		transform.Translate		(Vector3.back * moveSpeed * Time.deltaTime, Space.World);
 	}
 
 	public void strafeRight() 
