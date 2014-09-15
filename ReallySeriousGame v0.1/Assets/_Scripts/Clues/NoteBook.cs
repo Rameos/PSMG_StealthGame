@@ -112,7 +112,7 @@ public class NoteBook : MonoBehaviour
 		{
 			buttonCallbackListener buttonAction = NoteAccusation;
 			buttonCallbackListener2 buttonAction2 = NoteSelection;
-			gazeUI.Add(new GazeButton(new Rect(notebookX + noteWidth / 2 + offset * 2, notebookY + (offset * 8.1f) + (noteHeight * i), noteWidth, noteHeight), notes[i], gazeStyle, buttonAction, buttonAction2));
+			gazeUI.Add(new GazeButton(new Rect(notebookX + noteWidth / 2 + offset * 2, notebookY + notebookHeight / 6 + (noteHeight * i), noteWidth, noteHeight), notes[i], gazeStyle, buttonAction, buttonAction2));
 		}
 	}
 	

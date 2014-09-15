@@ -22,6 +22,7 @@ public class VerbalResponse : MonoBehaviour
 	private int notInterrogatingCount = 0;
 	private int interrogatingCount = 0;
 	private int clueDialogCount = 0;
+	private int interactableDialogCount = 0;
 	#endregion
 	
 	void Awake()
@@ -165,11 +166,20 @@ public class VerbalResponse : MonoBehaviour
 			{
 				subject = "/Interactable_";
 			}
-			newVOClipPath = dirDefault + gameObject.name + subject + Suspect.state + "/" + Random.Range(0,3); //Except T-Virus Hadouken
+			newVOClipPath = dirDefault + gameObject.name + subject + Suspect.state + "/" + interactableDialogCount; //Except T-Virus Hadouken
 		}
 		else
 		{
 			newVOClipPath = dirDefault + gameObject.name + "/" + interactableName + "_" + Suspect.state + "/" + Random.Range(0,2);
+		}
+		
+		if(interactableDialogCount == 3)
+		{
+			interactableDialogCount = 0;
+		}
+		else
+		{
+			interactableDialogCount++;
 		}
 		
 		PlayVO();

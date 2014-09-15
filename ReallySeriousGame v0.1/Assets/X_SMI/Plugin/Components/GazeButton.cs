@@ -87,7 +87,6 @@ namespace iViewX
                 if (Input.GetButtonDown("GUIAccuse"))
 				{
 					actionToDo(GameObject.Find(content));
-					setNormal();
                 }
                 
                 if (Input.GetButtonDown("GUISelect"))
@@ -108,11 +107,6 @@ namespace iViewX
                 setActive();
             }
             return false; 
-        }
-        
-        private void setNormal()
-        {
-        	actualStyleOfTheElement.normal = myStyle.hover;
         }
 
         private void setActive()
