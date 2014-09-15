@@ -91,11 +91,7 @@ public class InteractionManager : MonoBehaviour
 			case "Door":
 				EnterDoor(); 
 				break;
-                
-            case "MenuItem":
-                SelectMenuItem(selection);
-                break;
-				
+					
 			default: break;
 			}
 			isInteracting = true;
@@ -105,37 +101,6 @@ public class InteractionManager : MonoBehaviour
 			return;
 		}
 	}
-
-    private void SelectMenuItem(GameObject selection)
-    {
-        switch (selection.name)
-        {
-            case "StartGame":
-                Application.LoadLevel("BarScene");
-                break;
-
-            case "LoadSave":
-                Debug.Log("LoadSave");
-                break;
-
-            case "SetControls":
-                Debug.Log("SetControls");
-                break;
-
-            case "StartCalibration":
-                Debug.Log("StartCalibration");
-                GazeControlComponent.Instance.StartCalibration();
-                break;
-
-            case "QuitGame":
-                Debug.Log("QuitGame");
-                Application.Quit();
-                break;
-
-            default:
-                break;
-        }
-    }
 	
 	/// <summary>
 	/// Stops interaction with selected object.
@@ -190,7 +155,7 @@ public class InteractionManager : MonoBehaviour
 
     IEnumerator MoveToObject(GameObject item) {
         Vector3 origin = item.transform.position;
-        Quaternion rotation = item.transform.rotation;
+        //Quaternion rotation = item.transform.rotation;
         Vector3 target = Camera.main.transform.position + Camera.main.transform.forward * itemDistanceFromCamera;
         while (Vector3.Distance(origin, Camera.main.transform.position) > itemDistanceFromCamera)
         {

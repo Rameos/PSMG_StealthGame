@@ -216,15 +216,15 @@ public class VerbalResponse : MonoBehaviour
 			string subjectName = "";
 			if(subject == "Bandage")
 			{
-				subjectName = "Stain";
+				subjectName = "Fleck";
 			}
 			else if(subject == "T-Virus")
 			{
-				subjectName = "Umbrella";
+				subjectName = "Cocktailschirm";
 			}
-			else if(subject == "Certificate")
+			else if(subject == "Urkunde")
 			{
-				subjectName = "Crayons";
+				subjectName = "Buntstifte";
 			}
 			else
 			{

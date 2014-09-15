@@ -11,7 +11,7 @@ public class GazeInputFromAOI : MonoBehaviour {
     [SerializeField]
     private float widthAOI;
     [SerializeField]
-    private bool isAOIVisualisationOn = true;
+    //private bool isAOIVisualisationOn = true;
 
     private AOI AOI_Left;
     private AOI AOI_Right;
@@ -20,14 +20,14 @@ public class GazeInputFromAOI : MonoBehaviour {
     /// <summary>
     /// Zeichnet die AOI
     /// </summary>
-    void OnGUI()
+    /*void OnGUI()
     {
         if (isAOIVisualisationOn)
         {
             GUI.DrawTexture(AOI_Left.volume, texture_LeftAOI);
             GUI.DrawTexture(AOI_Right.volume, texture_RightAOI);
         }
-    }
+    }*/
 
     /// <summary>
     /// Berechnet zu Beginn der App die fläche der AOI

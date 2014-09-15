@@ -24,7 +24,7 @@ public class RotateCamWithGaze : MonoBehaviour {
     private void checkInput()
     {
         float inputHorizontal = Input.GetAxis("Horizontal") +gazeInput.checkGazeInput();
-        Debug.Log("Input: " + inputHorizontal);
+        //Debug.Log("Input: " + inputHorizontal);
 
         gameObject.transform.Rotate(0,inputHorizontal*rotationSpeed,0, Space.World);
     }

@@ -5,6 +5,8 @@ using iViewX;
 namespace iViewX
 {
     public delegate void buttonCallbackListener(GameObject item);
+	public delegate void buttonCallbackListener2(string itemName);
+	public delegate void buttonCallbackListener3();
 
     public class GazeButton : GUIElement
     {
@@ -18,8 +20,10 @@ namespace iViewX
         private GUIStyle actualStyleOfTheElement = new GUIStyle();
 
         private buttonCallbackListener actionToDo;
+        private buttonCallbackListener2 actionToDo2;
+        private buttonCallbackListener3 actionToDo3;
     
-	    public GazeButton(Rect position,string content,GUIStyle myStyle,buttonCallbackListener callback)
+	    public GazeButton(Rect position,string content,GUIStyle myStyle,buttonCallbackListener callback, buttonCallbackListener2 callback2)
         {
             this.position = position;
             this.content = content;
@@ -31,9 +35,10 @@ namespace iViewX
                 initStyle(myStyle);
             }
             actionToDo = callback;
+            actionToDo2 = callback2;
         }
 
-        public GazeButton(Rect position, Texture2D content, GUIStyle myStyle, buttonCallbackListener callback)
+        public GazeButton(Rect position, Texture2D content, GUIStyle myStyle, buttonCallbackListener3 callback)
         {
             this.position = position;
             this.contentImage = content;
@@ -44,7 +49,7 @@ namespace iViewX
             {
                 initStyle(myStyle);
             }
-            actionToDo = callback;
+            actionToDo3 = callback;
         }
 
         public void OnGUI()
@@ -79,9 +84,23 @@ namespace iViewX
             {
                 setFocused();
 
-                if (Input.GetButtonDown("SelectGUI"))
+                if (Input.GetButtonDown("GUIAccuse"))
 				{
 					actionToDo(GameObject.Find(content));
+					setNormal();
+                }
+                
+                if (Input.GetButtonDown("GUISelect"))
+                {
+                	if(actionToDo2 != null)
+					{
+						actionToDo2(content);
+                	}
+                	if(actionToDo3 != null)
+					{
+						actionToDo3();
+						actionToDo3 = null;
+                	}
                 }
             }
             else
@@ -89,6 +108,11 @@ namespace iViewX
                 setActive();
             }
             return false; 
+        }
+        
+        private void setNormal()
+        {
+        	actualStyleOfTheElement.normal = myStyle.hover;
         }
 
         private void setActive()

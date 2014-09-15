@@ -79,7 +79,7 @@ public class DialogManager : MonoBehaviour
 					return false;
 				}
 			case 1: 
-				if(accusation == "Mustache")
+				if(accusation == "Bart")
 				{
 					correctOrderOfAccusations[nextInOrder] = true; 
 					nextInOrder++;
@@ -91,7 +91,7 @@ public class DialogManager : MonoBehaviour
 					return false;
 				}
 			case 2: 
-				if(accusation == "T-Virus" || accusation == "Umbrella")
+				if(accusation == "T-Virus" || accusation == "Cocktailschirm")
 				{
 					correctOrderOfAccusations[nextInOrder] = true; 
 					nextInOrder++;
@@ -103,7 +103,7 @@ public class DialogManager : MonoBehaviour
 					return false;
 				}
 			case 3:
-				if(accusation == "Stain" || accusation == "Bandage")
+				if(accusation == "Fleck" || accusation == "Bandage")
 				{
 					correctOrderOfAccusations[nextInOrder] = true; 
 					nextInOrder++;
@@ -115,7 +115,7 @@ public class DialogManager : MonoBehaviour
 					return false;
 				}
 			case 4:
-				if(accusation == "Crayons" || accusation == "Certificate")
+				if(accusation == "Buntstifte" || accusation == "Urkunde")
 				{
 					correctOrderOfAccusations[nextInOrder] = true; 
 					nextInOrder++;
