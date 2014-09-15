@@ -69,7 +69,6 @@ public class VerbalResponse : MonoBehaviour
 		{
 			newVOClipPath = dirDefault + gameObject.name + "/" + GameState.gameState + "_" + Suspect.state + "/" + interrogatingCount;
 			PlayVO();
-			Debug.Log(newVOClipPath);
 			if(interrogatingCount == 3)
 			{
 				interrogatingCount = 0;
@@ -122,7 +121,6 @@ public class VerbalResponse : MonoBehaviour
 			if(clueID == "Tollpatsch")
 			{
 				newVOClipPath = dirDefault + gameObject.name + "/" + clueID + "_" + Suspect.state + "/" + eyeContactCount;
-				Debug.Log(newVOClipPath);
 				if(eyeContactCount == 8)
 				{
 					eyeContactCount = 0;

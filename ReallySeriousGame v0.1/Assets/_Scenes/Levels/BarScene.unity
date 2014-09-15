@@ -9388,7 +9388,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -9.18007946
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: m_LocalPosition.y
@@ -9396,7 +9396,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -6.29296827
+      value: -6.41077757
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -9404,7 +9404,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: m_LocalRotation.z
@@ -9412,7 +9412,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
       propertyPath: m_RootOrder
@@ -13337,8 +13337,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: f91bc13e41433a740852fdf6104afe1b, type: 2}
   m_PrefabInternal: {fileID: 824341817}
   m_GameObject: {fileID: 1177174995}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.42848706, z: -6.29296827}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: -9.18007946, y: 1.42848706, z: -6.41077757}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 893080425}

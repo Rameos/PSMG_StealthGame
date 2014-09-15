@@ -244,7 +244,6 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	
 	public void ResetAccusedState()
 	{
-		Debug.Log("has not been recently accused");
 		hasRecentlyBeenAccused = false;
 	}
 }

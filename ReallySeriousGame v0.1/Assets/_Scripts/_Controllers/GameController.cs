@@ -43,7 +43,6 @@ public class GameController : MonoBehaviour
 	
 	void Update () 
 	{	
-		Debug.Log(GameState.gameState);
 		CheckGameState();
 		if(!(Application.loadedLevel == 0) && !(Application.loadedLevel == 1))
 		{

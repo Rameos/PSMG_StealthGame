@@ -78,7 +78,6 @@ public class NoteBook : MonoBehaviour
 			
 			if(isInfoBoxActive)
 			{
-				Debug.Log("drawing");
 				buttonCallbackListener3 buttonAction3 = DeactivateInfoBox;
 				infoBox = new GazeButton(notebook, clueInfoBox, gazeStyle, buttonAction3);
 				infoBox.OnGUI();
@@ -121,7 +120,6 @@ public class NoteBook : MonoBehaviour
 		{
 			if(GameState.IsState(GameState.States.Interrogating))
 			{
-				Debug.Log("note to interact with: " + note);
 				interaction.StartAccusationOn(note);
 			}
 		}
@@ -131,10 +129,8 @@ public class NoteBook : MonoBehaviour
 	{
 		if(!isInfoBoxActive)
 		{
-			Debug.Log("selecting");
 			Debug.Log(infoBoxDir + itemName);
 			clueInfoBox = Resources.Load(infoBoxDir + itemName, typeof(Texture2D)) as Texture2D;
-			Debug.Log(clueInfoBox);
 			isInfoBoxActive = true;
 		}
 	}
@@ -143,7 +139,6 @@ public class NoteBook : MonoBehaviour
 	{
 		if(isInfoBoxActive)
 		{
-			Debug.Log("deactivating");
 			isInfoBoxActive = false;
 		}
 	}

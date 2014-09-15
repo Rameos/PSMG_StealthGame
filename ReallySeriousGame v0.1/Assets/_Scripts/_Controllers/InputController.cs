@@ -77,6 +77,11 @@ public class InputController : MonoBehaviour
 		{
 			pause.TogglePause();
 		}
+		
+		float turnHorizontal = Input.GetAxis("Turn Horizontal");
+		float turnVertical = Input.GetAxis("Turn Vertical");
+		
+		interaction.RotateItem(turnVertical, turnHorizontal, GameController.instance.GetSelectedObject());
 	}
 	
 	void CheckMouseInputs() 
@@ -94,13 +99,6 @@ public class InputController : MonoBehaviour
 			
 			    if(ScrollAreas.bottom.Contains(Mouse.Position()))	movement.turnDown();
 		}
-		#endregion
-		
-		#region interactions mouse
-		float turnHorizontal = Input.GetAxis("Turn Horizontal");
-		float turnVertical = Input.GetAxis("Turn Vertical");
-		
-		interaction.RotateItem(turnVertical, turnHorizontal, GameController.instance.GetSelectedObject());
 		#endregion
  	}
  	

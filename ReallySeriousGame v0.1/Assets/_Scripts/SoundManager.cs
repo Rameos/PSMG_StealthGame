@@ -151,10 +151,8 @@ public class SoundManager : MonoBehaviour
 					else
 					{
 						subjectName = accused.name;
-						Debug.Log(subjectName);
 					}
 					voiceClipPath = dirAccusations + subjectName + "/Detective/" + Random.Range(0,2);
-					Debug.Log(voiceClipPath);
 					voiceSource.clip = Resources.Load(voiceClipPath, typeof(AudioClip)) as AudioClip;
 				}
 				else
