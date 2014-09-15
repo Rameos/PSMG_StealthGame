@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
 		#endregion
 		
 		sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+		Application.targetFrameRate = 60;
 	}
 	
 	void Update () 

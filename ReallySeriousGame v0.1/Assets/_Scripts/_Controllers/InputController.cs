@@ -104,12 +104,12 @@ public class InputController : MonoBehaviour
 		#endregion
 		
 		#region interactions mouse
-		if(Input.GetButtonDown("Turn Horizontal"))
+		if(Input.GetButton("Turn Horizontal"))
 		{
 			interaction.RotateItemLeft(GameController.instance.GetSelectedObject());
 		}
 		
-		if(Input.GetButtonDown("Turn Vertical")) 
+		if(Input.GetButton("Turn Vertical")) 
 		{
 			interaction.RotateItemRight(GameController.instance.GetSelectedObject());
 		}

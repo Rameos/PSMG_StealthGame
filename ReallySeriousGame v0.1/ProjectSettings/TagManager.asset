@@ -13,6 +13,7 @@ TagManager:
   - Box
   - MenuItem
   - ClueManager
+  - Glas
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
