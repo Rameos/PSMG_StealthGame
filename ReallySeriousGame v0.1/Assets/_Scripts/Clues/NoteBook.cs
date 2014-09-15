@@ -25,7 +25,6 @@ public class NoteBook : MonoBehaviour
 	
 	private List<string> notes = new List<string>();
 	
-	private string notebookHeader = "NOTES";
 	private bool isToggled = false;
 	
 	private GazeButton infoBox;
@@ -36,7 +35,7 @@ public class NoteBook : MonoBehaviour
 	private List<GazeButton> gazeUI = new List<GazeButton>();
 	public GUIStyle gazeStyle;
 	
-	public float setNervousTime = 7f;
+	public float setNervousTime = 5f;
 	
 	void Awake()
 	{

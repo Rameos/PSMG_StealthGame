@@ -60,17 +60,10 @@ public class InputController : MonoBehaviour
 		#endregion
 		
 		#region movement
+		float moveHorizontal = Input.GetAxis("Horizontal");
+		float moveVertical = Input.GetAxis("Vertical");
 		
-		if(GameState.IsState(GameState.States.InGame))
-		{
-			if(Keyboard.inputForward())		movement.moveForward();
-			
-			if(Keyboard.inputBackward())	movement.moveBackward();
-			
-			if(Keyboard.inputLeft())		movement.strafeLeft();
-			
-			if(Keyboard.inputRight())		movement.strafeRight();
-		}
+		movement.move(moveHorizontal, moveVertical);
 		#endregion
 		
 		//NOTEBOOK
@@ -93,7 +86,7 @@ public class InputController : MonoBehaviour
 		#region movement mouse
         if (!notebook.NoteBookIsOpen() && !Application.loadedLevelName.Equals("MainMenu"))
             {
-                if (ScrollAreas.left.Contains(Mouse.Position()))    movement.turnLeft();
+                if(ScrollAreas.left.Contains(Mouse.Position()))    	movement.turnLeft();
 			
 			    if(ScrollAreas.right.Contains(Mouse.Position()))	movement.turnRight();
 			
@@ -104,15 +97,10 @@ public class InputController : MonoBehaviour
 		#endregion
 		
 		#region interactions mouse
-		if(Input.GetButton("Turn Horizontal"))
-		{
-			interaction.RotateItemLeft(GameController.instance.GetSelectedObject());
-		}
+		float turnHorizontal = Input.GetAxis("Turn Horizontal");
+		float turnVertical = Input.GetAxis("Turn Vertical");
 		
-		if(Input.GetButton("Turn Vertical")) 
-		{
-			interaction.RotateItemRight(GameController.instance.GetSelectedObject());
-		}
+		interaction.RotateItem(turnVertical, turnHorizontal, GameController.instance.GetSelectedObject());
 		#endregion
  	}
  	

@@ -38,10 +38,12 @@ public class GameController : MonoBehaviour
 		
 		sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
 		Application.targetFrameRate = 60;
+		Screen.fullScreen = true;
 	}
 	
 	void Update () 
 	{	
+		Debug.Log(GameState.gameState);
 		CheckGameState();
 		if(!(Application.loadedLevel == 0) && !(Application.loadedLevel == 1))
 		{
@@ -264,6 +266,7 @@ public class GameController : MonoBehaviour
 			if(timer == resetSuspectStateTimer)
 			{
 				suspect.GetComponent<Suspect>().SetNeutralState();
+				suspect.GetComponent<Interactable>().ResetAccusedState();
 			}
 			timer++;
 			yield return new WaitForSeconds(1f);
