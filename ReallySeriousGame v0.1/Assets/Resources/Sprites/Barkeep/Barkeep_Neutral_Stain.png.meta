@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: c46167438acb72343ba09896c469f28b
+guid: 474da3a88045f3f438716454c6f09454
 TextureImporter:
   fileIDToRecycleName:
-    21300000: bothered_1000
-    21300002: Barkeep_Nervous_Stain
-    21300004: Barkeep_Neutral_Stain
+    21300000: bothered_1000 (1)
+    21300002: Barkeep_Neutral_Stain
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

@@ -9,7 +9,10 @@ public class Interactable : MonoBehaviourWithGazeComponent
 	public Color highlightColor = new Color (0.75f, 1f, 0.75f, 1f);
 	bool isHighlighted = false;
 	bool inInteraction = false;
-	bool hasBeenAccused = false;
+	bool hasRecentlyBeenAccused = false;
+	//int transitionToNeutral = 10;
+	/*bool transitioning = false;
+	bool isFixating = false;*/
 	
 	InteractionManager interaction;
 	
@@ -105,12 +108,18 @@ public class Interactable : MonoBehaviourWithGazeComponent
 		
 		if(this.tag == "Suspect")
 		{
+			/*if(hasRecentlyBeenAccused && GameState.IsState(GameState.States.Interrogating))
+			{
+				SendMessage("SetNervousState");
+			}*/
 			this.SendMessage("RandomReaction");
 		}
 	}
 	
 	void OnStayBehaviour()
 	{
+		/*isFixating = true;*/
+		
 		if(!GameState.IsPaused && !isHighlighted)
 		{
 			Highlight();
@@ -124,6 +133,11 @@ public class Interactable : MonoBehaviourWithGazeComponent
 		{
 			UnHighlight();
 		}
+		
+		/*if(hasRecentlyBeenAccused)
+		{	
+			SendMessage("SetNervousState");
+		}*/
 		
 		//UGGGGGGGGGGGG
 		if(Keyboard.inputInteract())
@@ -151,6 +165,23 @@ public class Interactable : MonoBehaviourWithGazeComponent
 		{
 			UnHighlight();
 		}
+		
+		/*if(this.tag == "Suspect")
+		{
+			if(!transitioning)
+			{
+				if(!(!NoteBook.instance.NoteBookIsOpen() && GameState.IsState(GameState.States.Interrogating) && !isFixating))
+				{
+					transitioning = false;
+				}
+				else
+				{
+					StartCoroutine("TransitionToNeutral");
+				}
+			}
+		}
+		
+		isFixating = false;*/
 	}
 	
 	void Highlight() 
@@ -171,17 +202,48 @@ public class Interactable : MonoBehaviourWithGazeComponent
 		isHighlighted = false;
 	}
 	
+	/*IEnumerator TransitionToNeutral()
+	{
+		Debug.Log("transitioning");
+		transitioning = true;
+		
+		while(!NoteBook.instance.NoteBookIsOpen() && GameState.IsState(GameState.States.Interrogating) && !isFixating)
+		{
+			Debug.Log("transition");
+			float timer = 0;
+			Debug.Log(timer);
+			if(timer == transitionToNeutral)
+			{
+				SendMessage("SetNeutralState");
+				timer = 0;
+				transitioning = false;
+			}
+			timer++;
+			yield return new WaitForSeconds(1f);
+		}
+	}
+	
+	public void SetIsFixating()
+	{
+		isFixating = true;
+	}*/
+	
 	public bool HasBeenAccused()
 	{
-		return hasBeenAccused;
+		return hasRecentlyBeenAccused;
 	}
 	
 	public void SetAccused()
 	{
-		hasBeenAccused = true;
+		hasRecentlyBeenAccused = true;
 		if(GetComponent<Suspect>() != null)
 		{
 			SendMessage("SetNervousState");
 		}
+	}
+	
+	public void ResetAccusedState()
+	{
+		hasRecentlyBeenAccused = false;
 	}
 }

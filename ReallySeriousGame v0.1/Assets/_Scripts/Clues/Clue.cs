@@ -102,6 +102,11 @@ public class Clue : MonoBehaviourWithGazeComponent
 		if(transform.parent.CompareTag("Suspect"))
 		{
 			transform.parent.SendMessage("FixatedOnClueReaction", clueName);
+			/*if(transform.parent.GetComponent<Interactable>().HasBeenAccused())
+			{
+				transform.parent.SendMessage("SetNervousState");
+			}
+			transform.parent.SendMessage("SetIsFixating");*/
 		}
 	}
 	

@@ -44,6 +44,7 @@ public class SoundManager : MonoBehaviour
 		
 		ambientSource = gameObject.AddComponent<AudioSource>();
 		ambientSource.loop = true;
+		ambientSource.rolloffMode = AudioRolloffMode.Linear;
 		
 		soundEffectSource = gameObject.AddComponent<AudioSource>();
 	}
@@ -137,15 +138,15 @@ public class SoundManager : MonoBehaviour
 					string subjectName = "";
 					if(accused.name == "Bandage")
 					{
-						subjectName = "Stain";
+						subjectName = "Fleck";
 					}
 					else if(accused.name == "T-Virus")
 					{
-						subjectName = "Umbrella";
+						subjectName = "Cocktailschirm";
 					}
-					else if(accused.name == "Certificate")
+					else if(accused.name == "Urkunde")
 					{
-						subjectName = "Crayons";
+						subjectName = "Buntstifte";
 					}
 					else
 					{
@@ -186,7 +187,6 @@ public class SoundManager : MonoBehaviour
 		{
 			if(accused.GetComponent<Interactable>() as Interactable != null)
 			{
-				Debug.Log(accused);
 				if(!accused.GetComponent<Interactable>().HasBeenAccused())
 				{
 					voiceSource.clip = voiceClip[Random.Range(0, 2)];

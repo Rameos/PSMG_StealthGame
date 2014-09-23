@@ -27,13 +27,11 @@ public class Suspect : MonoBehaviour
 	
 	public void SetNervousState()
 	{
-		Debug.Log("suspect nervous");
 		state = SuspectState.Nervous;
 	}
 	
 	public void SetNeutralState()
 	{
-		Debug.Log("suspect neutral");
 		state = SuspectState.Neutral;
 	}
 	

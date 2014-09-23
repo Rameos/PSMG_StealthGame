@@ -38,19 +38,19 @@ public class InputController : MonoBehaviour
 	void CheckKeyBoardInputs() 
 	{	
 		#region interactions keyboard
-		if(Keyboard.inputInteract() && !gazeModel.isEyeTrackerRunning && Mouse.rayTarget().collider != null)
+		if(Input.GetButtonDown("Interact") && !gazeModel.isEyeTrackerRunning && Mouse.rayTarget().collider != null)
 		{
 			GameController.instance.SetSelectedMouseObject();
 			interaction.StartInteraction(GameController.instance.GetSelectedObject());
 		}
 		
-		if(Keyboard.inputReturn())
+		if(Input.GetButtonDown("Stop Interaction"))
 		{
 			interaction.StopInteraction();
 			GameController.instance.ClearSelections();
 		}
 		
-		if(Keyboard.inputAccuse() && !gazeModel.isEyeTrackerRunning)
+		if(Input.GetButtonDown("Accuse") && !gazeModel.isEyeTrackerRunning)
 		{
 			if(Mouse.rayTarget().collider != null)
 			{
@@ -60,30 +60,28 @@ public class InputController : MonoBehaviour
 		#endregion
 		
 		#region movement
+		float moveHorizontal = Input.GetAxis("Horizontal");
+		float moveVertical = Input.GetAxis("Vertical");
 		
-		if(GameState.IsState(GameState.States.InGame))
-		{
-			if(Keyboard.inputForward())		movement.moveForward();
-			
-			if(Keyboard.inputBackward())	movement.moveBackward();
-			
-			if(Keyboard.inputLeft())		movement.strafeLeft();
-			
-			if(Keyboard.inputRight())		movement.strafeRight();
-		}
+		movement.move(moveHorizontal, moveVertical);
 		#endregion
 		
 		//NOTEBOOK
-		if(Keyboard.inputToggleNotebook())
+		if(Input.GetButtonDown("Notebook"))
 		{
 			notebook.ToggleNotebook();
 		}
 		
 		//PAUSE
-		if(Keyboard.inputPause())
+		if(Input.GetButtonDown("Pause"))
 		{
 			pause.TogglePause();
 		}
+		
+		float turnHorizontal = Input.GetAxis("Turn Horizontal");
+		float turnVertical = Input.GetAxis("Turn Vertical");
+		
+		interaction.RotateItem(turnVertical, turnHorizontal, GameController.instance.GetSelectedObject());
 	}
 	
 	void CheckMouseInputs() 
@@ -93,7 +91,7 @@ public class InputController : MonoBehaviour
 		#region movement mouse
         if (!notebook.NoteBookIsOpen() && !Application.loadedLevelName.Equals("MainMenu"))
             {
-                if (ScrollAreas.left.Contains(Mouse.Position()))    movement.turnLeft();
+                if(ScrollAreas.left.Contains(Mouse.Position()))    	movement.turnLeft();
 			
 			    if(ScrollAreas.right.Contains(Mouse.Position()))	movement.turnRight();
 			
@@ -102,28 +100,12 @@ public class InputController : MonoBehaviour
 			    if(ScrollAreas.bottom.Contains(Mouse.Position()))	movement.turnDown();
 		}
 		#endregion
-		
-		#region interactions mouse
-		if(Mouse.leftClicked())
-		{
-			interaction.RotateItemLeft(GameController.instance.GetSelectedObject());
-		}
-		
-		if(Mouse.rightClicked()) 
-		{
-			interaction.RotateItemRight(GameController.instance.GetSelectedObject());
-		}
-		#endregion
  	}
  	
 	void CheckGazeInputs()
 	{
         if (!notebook.NoteBookIsOpen() && !Application.loadedLevelName.Equals("MainMenu"))
 		{
-			if(ScrollAreas.left.Contains(Gaze.Position()))		movement.turnLeft();
-			
-			if(ScrollAreas.right.Contains(Gaze.Position()))		movement.turnRight();
-			//BUG
 			if(ScrollAreas.top.Contains(Gaze.Position()))		movement.turnDown();
 			
 			if(ScrollAreas.bottom.Contains(Gaze.Position()))	movement.turnUp();

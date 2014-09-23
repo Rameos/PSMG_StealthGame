@@ -10,14 +10,21 @@ public class MovementManager : MonoBehaviour
 
 	#region movement
 	//Translate
+	public void move(float x, float z)
+	{
+		x = x * moveSpeed * Time.deltaTime;
+		z = z * moveSpeed * Time.deltaTime;
+		transform.Translate		(x, 0, z, Space.World);
+	}
+	
 	public void moveForward() 
 	{
-		transform.Translate		(Vector3.forward * moveSpeed * Time.deltaTime);
+		transform.Translate		(Vector3.forward * moveSpeed * Time.deltaTime, Space.World);
 	}
 
 	public void moveBackward() 
 	{
-		transform.Translate		(Vector3.back * moveSpeed * Time.deltaTime);
+		transform.Translate		(Vector3.back * moveSpeed * Time.deltaTime, Space.World);
 	}
 
 	public void strafeRight() 

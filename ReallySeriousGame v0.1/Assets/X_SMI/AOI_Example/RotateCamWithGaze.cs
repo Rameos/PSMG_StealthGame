@@ -10,15 +10,22 @@ public class RotateCamWithGaze : MonoBehaviour {
         gazeInput = gameObject.GetComponent<GazeInputFromAOI>();
 	}
 	
-	void Update () {
-        checkInput();
+	void Update () 
+	{
+		if(gazeModel.isEyeTrackerRunning)
+		{
+			if(!NoteBook.instance.NoteBookIsOpen() && !Application.loadedLevelName.Equals("MainMenu"))
+			{
+				checkInput();
+			}
+		}
 	}
 
     private void checkInput()
     {
         float inputHorizontal = Input.GetAxis("Horizontal") +gazeInput.checkGazeInput();
-        Debug.Log("Input: " + inputHorizontal);
+        //Debug.Log("Input: " + inputHorizontal);
 
-        gameObject.transform.Rotate(0,inputHorizontal*rotationSpeed,0);
+        gameObject.transform.Rotate(0,inputHorizontal*rotationSpeed,0, Space.World);
     }
 }

@@ -37,6 +37,8 @@ public class GameController : MonoBehaviour
 		#endregion
 		
 		sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+		Application.targetFrameRate = 60;
+		Screen.fullScreen = true;
 	}
 	
 	void Update () 
@@ -263,6 +265,7 @@ public class GameController : MonoBehaviour
 			if(timer == resetSuspectStateTimer)
 			{
 				suspect.GetComponent<Suspect>().SetNeutralState();
+				suspect.GetComponent<Interactable>().ResetAccusedState();
 			}
 			timer++;
 			yield return new WaitForSeconds(1f);

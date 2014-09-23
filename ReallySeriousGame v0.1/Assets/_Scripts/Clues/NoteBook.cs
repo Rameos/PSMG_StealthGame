@@ -10,14 +10,14 @@ public class NoteBook : MonoBehaviour
 	ClueManager clueManager;
 	InteractionManager interaction;
 	
-	/*public GUIStyle notebookStyle;
-	public Texture notebookTexture;*/
+	public GUIStyle notebookStyle;
+	public Texture notebookTexture;
 	
 	private Rect notebook;
 	private float notebookX;
 	private float notebookY;
 	private float notebookWidth		= Screen.width / 3;
-	private float notebookHeight 	= Screen.height * 0.7f;
+	private float notebookHeight 	= Screen.height * 0.85f;
 	private float offset			= 10;
 	
 	private float noteHeight;
@@ -25,13 +25,17 @@ public class NoteBook : MonoBehaviour
 	
 	private List<string> notes = new List<string>();
 	
-	private string notebookHeader = "NOTES";
 	private bool isToggled = false;
+	
+	private GazeButton infoBox;
+	private bool isInfoBoxActive = false;
+	private Texture2D clueInfoBox;
+	private string infoBoxDir = "Notebook/";
 	
 	private List<GazeButton> gazeUI = new List<GazeButton>();
 	public GUIStyle gazeStyle;
 	
-	public float setNervousTime = 7f;
+	public float setNervousTime = 5f;
 	
 	void Awake()
 	{
@@ -56,19 +60,27 @@ public class NoteBook : MonoBehaviour
 		notebookY 	= Screen.height - notebookHeight;
 		notebook 	= new Rect(notebookX, notebookY, notebookWidth, notebookHeight);
 		
-		noteHeight 	= notebookHeight * 0.1f;
-		noteWidth 	= notebookWidth - (offset * 2);
+		noteHeight 	= notebookHeight * 0.08f;
+		noteWidth 	= notebookWidth * 0.5f - (offset * 2);
 	}
 	
 	void OnGUI()
 	{
 		if(isToggled)
 		{
-			GUI.Box(notebook, notebookHeader);
+			GUI.DrawTexture(notebook,notebookTexture,ScaleMode.ScaleToFit,true);
+			//GUI.Box(notebook, notebookTexture);
 			
 			foreach(GazeButton button in gazeUI)
 			{
 				button.OnGUI();
+			}
+			
+			if(isInfoBoxActive)
+			{
+				buttonCallbackListener3 buttonAction3 = DeactivateInfoBox;
+				infoBox = new GazeButton(notebook, clueInfoBox, gazeStyle, buttonAction3);
+				infoBox.OnGUI();
 			}
 		}
 	}
@@ -81,6 +93,10 @@ public class NoteBook : MonoBehaviour
 			{
 				button.Update();
 			}
+			if(isInfoBoxActive)
+			{
+				infoBox.Update();
+			}
 		}
 	}
 	
@@ -92,18 +108,38 @@ public class NoteBook : MonoBehaviour
 		
 		for(int i = 0; i < notes.Count; i++)
 		{
-			buttonCallbackListener buttonAction = NoteInteraction;
-			gazeUI.Add(new GazeButton(new Rect(notebookX + offset, notebookY + (offset * 3) + (noteHeight * i), noteWidth, noteHeight), notes[i], gazeStyle, buttonAction));
+			buttonCallbackListener buttonAction = NoteAccusation;
+			buttonCallbackListener2 buttonAction2 = NoteSelection;
+			gazeUI.Add(new GazeButton(new Rect(notebookX + noteWidth / 2 + offset * 2, notebookY + notebookHeight / 6 + (noteHeight * i), noteWidth, noteHeight), notes[i], gazeStyle, buttonAction, buttonAction2));
 		}
 	}
 	
-	public void NoteInteraction(GameObject note)
+	public void NoteAccusation(GameObject note)
 	{
-		Debug.Log(gazeUI.Count);
-		if(GameState.IsState(GameState.States.Interrogating))
+		if(!isInfoBoxActive)
 		{
-			Debug.Log("note to interact with: " + note);
-			interaction.StartAccusationOn(note);
+			if(GameState.IsState(GameState.States.Interrogating))
+			{
+				interaction.StartAccusationOn(note);
+			}
+		}
+	}
+	
+	public void NoteSelection(string itemName)
+	{
+		if(!isInfoBoxActive)
+		{
+			Debug.Log(infoBoxDir + itemName);
+			clueInfoBox = Resources.Load(infoBoxDir + itemName, typeof(Texture2D)) as Texture2D;
+			isInfoBoxActive = true;
+		}
+	}
+	
+	public void DeactivateInfoBox()
+	{
+		if(isInfoBoxActive)
+		{
+			isInfoBoxActive = false;
 		}
 	}
 	
