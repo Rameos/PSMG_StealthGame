@@ -59,12 +59,12 @@ public class InputController : MonoBehaviour
 		}
 		#endregion
 		
-		#region movement
+		/*#region movement
 		float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
 		
 		movement.move(moveHorizontal, moveVertical);
-		#endregion
+		#endregion*/
 		
 		//NOTEBOOK
 		if(Input.GetButtonDown("Notebook"))
